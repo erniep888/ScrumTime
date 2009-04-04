@@ -1,0 +1,13 @@
+# Ignore these files during import
+*.log
+*.iml
+*.ipr
+*.iws
+out/*
+Thumbs.db
+*~
+*.iml
+*.ipr
+*.iws
+test/reports/*
+classes/*

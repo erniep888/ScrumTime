@@ -1,0 +1,304 @@
+/**
+Main Page Layout
+*/
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+body {
+    font: 10px verdana;
+}
+
+.mainPage {
+    width: 1024px;
+    background-color: white;
+}
+
+#appMessagePane {
+/*margin-top:200px;*/
+    padding: 5px;
+    position: absolute;
+    left: 45%;
+    border-left: gray solid 1px;
+    border-right: gray solid 1px;
+    border-bottom: gray solid 1px;
+    background-color: white;
+    display: none;
+}
+
+#appMessagePane span {
+    font: 0.7em verdana;
+    color: #990033;
+}
+
+/**
+Header style
+*/
+#header table {
+    border: 0;
+    width: 100%;
+}
+
+#header .logo {
+    width: 300px;
+    text-align: left;
+    padding-left: 7px;
+}
+
+#header .loginStatus {
+    text-align: right;
+    vertical-align: bottom;
+    padding-right: 10px;
+    font-size: 0.8em;
+}
+
+#header .loginStatus .userName {
+    font-style: italic;
+}
+
+.loginLabel {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 0.7em;
+    padding-top: 4px;
+    vertical-align: text-top;
+    text-align: right;
+}
+
+.loginTrEdit {
+    width: 180px;
+    padding-top:2px;
+    padding-left: 5px;
+    text-align: right;
+}
+.loginTextSize {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 0.7em;
+}
+#loginCheckbox{
+    padding-top:2px;
+    padding-left:2px;
+    text-align:left;
+}
+#loginCheckboxMessage{
+    text-align:left;
+    padding-top:2px;
+
+}
+#loginButtonTd{
+    padding-top:2px;
+    text-align:right;
+}
+#loginButton{
+    font-size:0.8em;
+}
+#loginMaintenance{
+    width:450px;
+    vertical-align:top;
+    padding-top:4px;
+}
+
+#registerAndForgotPasswordTd{
+    padding-left:115px;
+    font-size:0.6em;
+}
+.loginStatus{
+    padding-right:5px;
+}
+
+/**
+Flash Message format for not logged in
+**/
+.notLoggedInFlashMessage{
+    font-size:0.65em;
+    text-align:left;  
+    padding-top:5px;
+    padding-right:25px;    
+    color:red
+}
+
+/**
+Main Menu style
+*/
+#mainMenuDiv {
+    border-top:#e9c682 solid 1px;
+    border-bottom:#e9c682 solid 1px;
+    font-size:14px;
+    vertical-align:middle;
+}
+#mainMenuUl {
+    margin: 0;
+    padding-left: 20px;
+}
+
+#mainMenuUl li {
+    display: inline;
+    list-style-type: none;
+    margin: 0;
+    padding: 15px;
+    cursor:pointer;
+}
+
+#mainMenuUl li span{
+    padding-right:5px;
+}
+#mainMenuUl li img{
+    margin-right:-9px;
+}
+
+#mainMenuUl a:link, #mainMenuUl a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+#mainMenuUl a:link.active, #mainMenuUl a:visited.active {
+    border-bottom: #fff solid 1px;
+    background-color: #fff;
+    color: #000;
+}
+
+#mainMenuUl a:hover {
+    /*background-color: #ffffcd;*/
+    text-decoration: underline;
+}
+
+#breadCrumbTrail{
+    position:absolute;
+    margin-left:600px;
+    margin-top:-16px;
+    width:400px;
+    text-align:right;
+}
+#breadCrumbTrail span{
+    font-size:9px;
+}
+
+/**
+Content style
+*/
+.mainContent {
+    height: 400px;
+    overflow-y: auto;
+}
+
+/**
+Footer style
+*/
+#footer {
+    margin-top:8px;
+}
+#footer table {
+    width: 100%;
+    border: 0;
+    border-top: #ccc solid 1px;
+    border-bottom: #ccc solid 1px;
+}
+
+#footer .siteOwner {
+    font-size: 0.7em;
+    padding-left: 10px;
+}
+
+#footer .applicationVersion {
+    text-align: right;
+}
+
+#footer .applicationVersion .releaseNumber {
+    font-size: 0.8em;
+}
+
+#footer .applicationVersion .dateStamp {
+    font-size: 0.65em;
+    padding-right: 10px;
+}
+
+/**
+Main application status message container
+**/
+#appStatusMessageContainer {
+    float: right;
+    margin-right: 130px;
+    margin-top: 5px;
+    width: 380px;
+    font-size: 0.7em;
+    color: #0f9950;
+
+}
+
+/**
+Form Edit Field and Label typical settings
+*/
+.formEditLabelTypicalSettings {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 0.8em;
+    padding-top: 4px;
+    padding-left: 15px;
+    width: 90px;
+    vertical-align: text-top;
+}
+
+.formEditFieldTypicalSettings {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 0.8em;
+    padding-top: 4px;
+    padding-left: 5px;
+}
+
+.basicFormButton {
+    margin-top: 2px;
+    margin-left: 4px;
+}
+/**
+Messages
+**/
+.message {
+    font-size:0.8em;
+    background: #f3f8fc url(../images/information.png) 8px 50% no-repeat;
+    border: 1px solid #b2d1ff;
+    color: #006dba;
+    margin: 10px 0 5px 0;
+    padding: 5px 5px 5px 30px
+}
+
+/**
+ERRORS
+**/
+div.errors {
+    border-top: #ccc dotted 1px;
+    border-bottom: #ccc dotted 1px;
+    background: #fff3f3;
+    color: #cc0000;
+    width:100%;
+    overflow-x: auto;
+    margin-bottom:5px;
+}
+
+div.errors ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+div.errors li {
+    background: url( ../images/exclamation.png ) 10px no-repeat 50%;
+    line-height: 20px;
+    padding:0;
+    padding-left: 35px;
+    font-size:0.75em;
+    margin: 0;
+}
+
+td.errors select {
+    border: 1px solid #de0000;
+}
+
+td.errors input {
+    border: 2px solid #de0000;
+}
+
+td.errors textarea {
+    border: 1px solid #de0000;
+}
