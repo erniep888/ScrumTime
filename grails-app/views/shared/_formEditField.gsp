@@ -31,6 +31,6 @@
 </td>
 <td ${fieldTrClassString}>
     <input ${idValue} ${fieldClassString} ${inputType}
-            ${sizeString} ${maxLengthString}
-            name='${fieldName}' value="${fieldValue?.encodeAsHTML()}"/>${postHtml}
+        ${sizeString} ${maxLengthString}
+        name='${fieldName}' value="${fieldValue?.encodeAsHTML()}"/>${postHtml}
 </td>

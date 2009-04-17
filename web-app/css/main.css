@@ -1,279 +1,36 @@
-/**
-Main Page Layout
-*/
-html, body {
-    height: 100%;
-    width: 100%;
-    margin: 0px;
-    padding: 0px;
+/* Basic */
+html {
+    font-family: arial;
 }
-
 
 body {
-    font: 10px verdana;
+    text-align: center;
 }
 
-.mainPage {
-    width: 1024px;
-    background-color: white;
+a:link, a:visited {
+    color: #666;
 }
 
-#appMessagePane {
-/*margin-top:200px;*/
-    padding: 5px;
-    position: absolute;
-    left: 45%;
-    border-left: gray solid 1px;
-    border-right: gray solid 1px;
-    border-bottom: gray solid 1px;
-    background-color: white;
-    display: none;
-}
-
-#appMessagePane span {
-    font: 0.7em verdana;
-    color: #990033;
-}
-
-/**
-Header style
-*/
-#header table {
-    border: 0;
-    width: 100%;
-}
-
-#header .logo {
-    width: 300px;
-    text-align: left;
-    padding-left: 7px;
-}
-
-#header .loginStatus {
-    text-align: right;
-    vertical-align: bottom;
-    padding-right: 10px;
-    font-size: 0.8em;
-}
-
-#header .loginStatus .userName {
-    font-style: italic;
-}
-
-.loginLabel {
-    font-family: arial, helvetica, sans-serif;
-    font-size: 0.7em;
-    padding-top: 4px;
-    vertical-align: text-top;
-    text-align: right;
-}
-
-.loginTrEdit {
-    width: 180px;
-    padding-top:2px;
-    padding-left: 5px;
-    text-align: right;
-}
-.loginTextSize {
-    font-family: arial, helvetica, sans-serif;
-    font-size: 0.7em;
-}
-#loginCheckbox{
-    padding-top:2px;
-    padding-left:2px;
-    text-align:left;
-}
-#loginCheckboxMessage{
-    text-align:left;
-    padding-top:2px;
-
-}
-#loginButtonTd{
-    padding-top:2px;
-    text-align:right;
-}
-#loginButton{
-    font-size:0.8em;
-}
-#loginMaintenance{
-    width:450px;
-    vertical-align:top;
-    padding-top:4px;
-}
-
-#registerAndForgotPasswordTd{
-    padding-left:115px;
-    font-size:0.6em;
-}
-.loginStatus{
-    padding-right:5px;
-}
-
-/**
-Flash Message format for not logged in
-**/
-.notLoggedInFlashMessage{
-    font-size:0.65em;
-    text-align:left;  
-    padding-top:5px;
-    padding-right:25px;    
-    color:red
-}
-
-/**
-Main Menu style
-*/
-#mainMenuDiv {
-    border-top:#e9c682 solid 1px;
-    border-bottom:#e9c682 solid 1px;
-    font-size:14px;
-    vertical-align:middle;
-}
-#mainMenuUl {
-    margin: 0;
-    padding-left: 20px;
-}
-
-#mainMenuUl li {
-    display: inline;
-    list-style-type: none;
-    margin: 0;
-    padding: 15px;
-    cursor:pointer;
-}
-
-#mainMenuUl li span{
-    padding-right:5px;
-}
-#mainMenuUl li img{
-    margin-right:-9px;
-}
-
-#mainMenuUl a:link, #mainMenuUl a:visited {
-    text-decoration: none;
-    color: black;
-}
-
-#mainMenuUl a:link.active, #mainMenuUl a:visited.active {
+a:link.active, a:visited.active {
     border-bottom: #fff solid 1px;
     background-color: #fff;
-    color: #000;
-}
-
-#mainMenuUl a:hover {
-    /*background-color: #ffffcd;*/
-    text-decoration: underline;
-}
-
-#breadCrumbTrail{
-    position:absolute;
-    margin-left:600px;
-    margin-top:-16px;
-    width:400px;
-    text-align:right;
-}
-#breadCrumbTrail span{
-    font-size:9px;
-}
-
-/**
-Content style
-*/
-.mainContent {
-    height: 400px;
-    overflow-y: auto;
-}
-
-/**
-Footer style
-*/
-#footer {
-    margin-top:8px;
-}
-#footer table {
-    width: 100%;
-    border: 0;
-    border-top: #ccc solid 1px;
-    border-bottom: #ccc solid 1px;
-}
-
-#footer .siteOwner {
-    font-size: 0.7em;
-    padding-left: 10px;
-}
-
-#footer .applicationVersion {
-    text-align: right;
-}
-
-#footer .applicationVersion .releaseNumber {
-    font-size: 0.8em;
-}
-
-#footer .applicationVersion .dateStamp {
-    font-size: 0.65em;
-    padding-right: 10px;
-}
-
-/**
-Main application status message container
-**/
-#appStatusMessageContainer {
-    float: right;
-    margin-right: 130px;
-    margin-top: 5px;
-    width: 380px;
-    font-size: 0.7em;
-    color: #0f9950;
 
 }
 
-/**
-Form Edit Field and Label typical settings
-*/
-.formEditLabelTypicalSettings {
-    font-family: arial, helvetica, sans-serif;
-    font-size: 0.8em;
-    padding-top: 4px;
-    padding-left: 15px;
-    width: 90px;
-    vertical-align: text-top;
+a:hover {
+/*background-color: #ffffcd;*/
+    color: #00b;
 }
 
-.formEditFieldTypicalSettings {
-    font-family: arial, helvetica, sans-serif;
-    font-size: 0.8em;
-    padding-top: 4px;
-    padding-left: 5px;
-}
-
-.basicFormButton {
-    margin-top: 2px;
-    margin-left: 4px;
-}
-/**
-Messages
-**/
-.message {
-    font-size:0.8em;
-    background: #f3f8fc url(../images/information.png) 8px 50% no-repeat;
-    border: 1px solid #b2d1ff;
-    color: #006dba;
-    margin: 10px 0 5px 0;
-    padding: 5px 5px 5px 30px
-}
-
-/**
-ERRORS
-**/
+/* ERRORS */
 div.errors {
     border-top: #ccc dotted 1px;
     border-bottom: #ccc dotted 1px;
     background: #fff3f3;
     color: #cc0000;
-    width:100%;
+    width: 100%;
     overflow-x: auto;
-    margin-bottom:5px;
+    margin-bottom: 5px;
 }
 
 div.errors ul {
@@ -283,11 +40,11 @@ div.errors ul {
 }
 
 div.errors li {
-    background: url( ../images/exclamation.png ) 10px no-repeat 50%;
+    background: url(../images/message_types/exclamation.png) 10px no-repeat 50%;
     line-height: 20px;
-    padding:0;
+    padding: 0;
     padding-left: 35px;
-    font-size:0.75em;
+    font-size: 0.75em;
     margin: 0;
 }
 
@@ -302,3 +59,424 @@ td.errors input {
 td.errors textarea {
     border: 1px solid #de0000;
 }
+
+.checkBoxError {
+    border: red solid 2px;
+}
+
+/* General Font */
+.fontPurpBlue {
+    color: #3d0090;
+}
+
+.fontGrayBlue {
+    color: #006999;
+}
+
+.fontBlue {
+    color: blue;
+}
+
+.fontGreen {
+    color: #348e0b;
+}
+
+.fontBrightGreen {
+    color: #009f10;
+}
+
+.fontLtBrown {
+    color: #9a9000;
+}
+
+.fontBolder {
+    font-weight: bolder;
+}
+
+.fontBlack {
+    color: #000;
+}
+
+.fontDkGray {
+    color: #666666;
+}
+
+.fontVerdana {
+    font-family: verdana;
+}
+
+.fontItalics {
+    font-style: italic;
+}
+
+.font10 {
+    font-size: 10px;
+}
+
+.font11 {
+    font-size: 11px;
+}
+
+.font12 {
+    font-size: 12px;
+}
+
+.font13 {
+    font-size: 13px;
+}
+
+.font14 {
+    font-size: 14px;
+}
+
+.font15 {
+    font-size: 15px;
+}
+
+.font16 {
+    font-size: 16px;
+}
+
+.font17 {
+    font-size: 17px;
+}
+
+.font18 {
+    font-size: 18px;
+}
+
+/* General Alignment */
+.alignRight {
+    text-align: right;
+}
+
+.alignLeft {
+    text-align: left;
+}
+
+.alignCenter {
+    text-align: center;
+}
+
+.alignTop {
+    vertical-align: text-top;
+}
+
+.alignMiddle {
+    vertical-align: middle;
+}
+
+/** General Padding */
+.padLeft4 {
+    padding-left: 4px;
+}
+
+.padLeft15 {
+    padding-left: 15px;
+}
+
+.padLeft30 {
+    padding-left: 30px;
+}
+
+.padLeft41 {
+    padding-left: 41px;
+}
+
+.padLeft60 {
+    padding-left: 60px;
+}
+
+.padLeft80 {
+    padding-left: 80px;
+}
+
+.padLeft110 {
+    padding-left: 110px;
+}
+
+.padLeft114 {
+    padding-left: 114px;
+}
+
+.padRight10 {
+    padding-right: 10px;
+}
+
+.padRight30 {
+    padding-right: 30px;
+}
+
+.padRight50 {
+    padding-right: 50px;
+}
+
+.padTop5 {
+    padding-top: 5px;
+}
+
+.padTop7 {
+    padding-top: 7px;
+}
+
+.padTop8 {
+    padding-top: 8px;
+}
+
+.padTop10 {
+    padding-top: 10px;
+}
+
+.padBottom5 {
+    padding-bottom: 5px;
+}
+
+.padBottom20 {
+    padding-bottom: 20px;
+}
+
+/** General Heights **/
+.height30 {
+    height: 30px;
+}
+
+.height32 {
+    height: 32px;
+}
+
+.height200 {
+    height: 200px;
+}
+
+.height460 {
+    height: 460px;
+}
+
+/** General Widths **/
+.width10 {
+    width: 10px;
+}
+
+.width18 {
+    width: 18px;
+}
+
+.width25 {
+    width: 25px;
+}
+
+.width30 {
+    width: 30px;
+}
+
+.width48 {
+    width: 48px;
+}
+
+.width50 {
+    width: 50px;
+}
+
+.width56 {
+    width: 56px;
+}
+
+.width60 {
+    width: 60px;
+}
+
+.width80 {
+    width: 80px;
+}
+
+.width95 {
+    width: 95px;
+}
+
+.width108 {
+    width: 108px;
+}
+
+.width113 {
+    width: 113px;
+}
+
+.width117 {
+    width: 117px;
+}
+
+.width120 {
+    width: 120px;
+}
+
+.width126 {
+    width: 126px;
+}
+
+.width150 {
+    width: 150px;
+}
+
+.width180 {
+    width: 180px;
+}
+
+.width250 {
+    width: 250px;
+}
+
+.width390 {
+    width: 390px;
+}
+
+.width391 {
+    width: 391px;
+}
+
+.width394 {
+    width: 394px;
+}
+
+.width100Pct {
+    width: 100%;
+}
+
+/* General Background Colors */
+.bkGdColorWhite {
+    background-color: #fff;
+}
+
+.bkGdColorKhaki {
+    background-color: #f7eecd;
+}
+
+.bkGdColorLtGray {
+    background-color: #e1e5e8;
+}
+
+.bkGdColorLtBlue {
+    background-color: #b3c8f0;
+
+}
+
+.bkGdColorLtYellow {
+    background-color: #ffffcc;
+}
+
+/* Registration */
+.registrationDiv {
+    margin-left: auto;
+    margin-right: auto;
+    width: 700px;
+    background-color: #eee;
+    border: #999 solid 4px;
+}
+
+.registrationTable {
+    font-family: arial;
+    margin-left: auto;
+    margin-right: auto;
+    width: 680px;
+}
+
+.registrationTitle {
+    text-align: center;
+    font-size: 18px;
+}
+
+.jcaptchaBorder {
+    border: #999999 solid 1px;
+    width: 100px;
+    position: relative;
+}
+
+/* Local Login */
+.localLoginDiv {
+    margin-left: auto;
+    margin-right: auto;
+    width: 550px;
+    background-color: #eee;
+    border: #999 solid 4px;
+}
+
+.localLoginTable {
+    font-family: arial;
+    margin-left: auto;
+    margin-right: auto;
+    width: 350px;
+}
+
+/* General Div Window */
+.generalDivWindow {
+    width: 100%; /*background-color: #eee;*/
+    padding-top: 10px;
+    padding-bottom: 10px; /*border: #999 solid 1px;*/
+}
+
+/* Create Review */
+.createReviewTable {
+    font-family: arial;
+    margin-left: 24px;
+    margin-right: auto;
+    width: 830px;
+}
+
+.createReviewTitle {
+    text-align: left;
+    font-size: 18px;
+}
+
+.inputText {
+    letter-spacing: 1px;
+    font-family: verdana;
+    border: #999999 solid 2px;
+    color: #0000cc;
+}
+
+/* General Areas */
+.areaBorder {
+    border: #999999 solid 2px;
+}
+
+.areaHdrFont {
+    color: #333333;
+    letter-spacing: 1px;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+.areaBorderTopGray {
+    border-top: gray solid 1px;
+}
+
+/* General Borders */
+.borderTopThinGrayDotted {
+    border-top: gray dotted 1px;
+}
+
+.borderBtmThinGray {
+    border-bottom: gray solid 1px;
+}
+
+/*Content File*/
+.fileTableHeader {
+    height: 25px;
+    background-color: #c8dbe6;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: bottom;
+    font-weight: bold;
+    border-top: white solid 1px;
+    border-right: white solid 1px;
+}
+
+.fileTableData {
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #f7f7f7;
+    border-top: white solid 1px;
+    border-right: white solid 1px;
+}
+
+

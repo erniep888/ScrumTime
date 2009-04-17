@@ -1,0 +1,91 @@
+/* Login/Register/Logout Menu */
+.loginTable {
+    width: 100%;
+    text-align: right;
+    font-family: arial;
+    font-size: 16px;
+}
+
+/* Main Menu */
+.tabCenter {
+    background: #F4F4F4 url(../images/tabs/tab_background.png) repeat-x;
+    text-align: center;
+    color: #555;
+    width: 100px;
+    height: 25px
+}
+
+.tabCenter a:hover {
+    font-size: 17px;
+    letter-spacing: 1px;
+}
+
+.tabLeft {
+    background: #F4F4F4 url(../images/tabs/tab_background_left.png);
+    width: 4px;
+    height: 25px
+}
+
+.tabRight {
+    background: #F4F4F4 url(../images/tabs/tab_background_right.png);
+    width: 4px;
+    height: 25px
+}
+
+.tabCenterSelected {
+    background: #F4F4F4 url(../images/tabs/tab_background_selected.png) repeat-x;
+    text-align: center;
+    color: #555;
+    width: 100px;
+    height: 25px
+}
+
+.tabLeftSelected {
+    background: #F4F4F4 url(../images/tabs/tab_background_left_selected.png);
+    width: 4px;
+    height: 25px
+}
+
+.tabRightSelected {
+    background: #F4F4F4 url(../images/tabs/tab_background_right_selected.png);
+    width: 4px;
+    height: 25px
+}
+
+.tabBottomBorder {
+    background: #F4F4F4 url(../images/tabs/tab_background_bottom.png) repeat-x;
+    height: 25px;
+}
+
+/* Project Menu */
+#secondLevelMenuDiv {
+/*border-top:#e9c682 solid 1px;*/
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-bottom: #999999 solid 2px;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+#thirdLevelMenuDiv {
+/*border-top:#e9c682 solid 1px;*/
+    background-color: #fff;
+    padding-top: 12px;
+    padding-bottom: 8px;
+    border-bottom: #999999 solid 1px;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+#fourthLevelMenuDiv {
+/*border-top:#e9c682 solid 1px;*/
+    background-color: #ffffcc;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: #999999 dashed 1px;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+
+

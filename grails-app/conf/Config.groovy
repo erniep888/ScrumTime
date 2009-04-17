@@ -1,5 +1,5 @@
 /**
- *  Copyright 2008   scrumtime.org owners
+ *  Copyright 2009   scrumtime.org
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -12,18 +12,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  *
-**/
-import com.octo.captcha.service.multitype.GenericManageableCaptchaService
-import com.octo.captcha.engine.GenericCaptchaEngine
-import com.octo.captcha.image.gimpy.GimpyFactory
-import com.octo.captcha.component.word.wordgenerator.RandomWordGenerator
-import com.octo.captcha.component.image.wordtoimage.ComposedWordToImage
-import com.octo.captcha.component.image.fontgenerator.RandomFontGenerator
-import java.awt.Font
-import com.octo.captcha.component.image.backgroundgenerator.GradientBackgroundGenerator
-import com.octo.captcha.component.image.color.SingleColorGenerator
-import com.octo.captcha.component.image.textpaster.NonLinearTextPaster
-import java.awt.Color
+ * */
 
 // locations to search for config files that get merged into the main config
 // config files can either be Java properties files or ConfigSlurper scripts
@@ -36,19 +25,31 @@ import java.awt.Color
 // if(System.properties["${appName}.config.location"]) {
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
+import com.octo.captcha.service.multitype.GenericManageableCaptchaService
+import com.octo.captcha.engine.GenericCaptchaEngine
+import com.octo.captcha.image.gimpy.GimpyFactory
+import com.octo.captcha.component.word.wordgenerator.RandomWordGenerator
+import com.octo.captcha.component.image.wordtoimage.ComposedWordToImage
+import com.octo.captcha.component.image.fontgenerator.RandomFontGenerator
+import java.awt.Font
+import com.octo.captcha.component.image.backgroundgenerator.GradientBackgroundGenerator
+import com.octo.captcha.component.image.color.SingleColorGenerator
+import com.octo.captcha.component.image.textpaster.NonLinearTextPaster
+import java.awt.Color
+
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
 grails.mime.types = [html: ['text/html', 'application/xhtml+xml'],
-        xml: ['text/xml', 'application/xml'],
-        text: 'text-plain',
-        js: 'text/javascript',
-        rss: 'application/rss+xml',
-        atom: 'application/atom+xml',
-        css: 'text/css',
-        csv: 'text/csv',
-        all: '*/*',
-        json: ['application/json', 'text/json'],
-        form: 'application/x-www-form-urlencoded',
-        multipartForm: 'multipart/form-data'
+    xml: ['text/xml', 'application/xml'],
+    text: 'text-plain',
+    js: 'text/javascript',
+    rss: 'application/rss+xml',
+    atom: 'application/atom+xml',
+    css: 'text/css',
+    csv: 'text/csv',
+    all: '*/*',
+    json: ['application/json', 'text/json'],
+    form: 'application/x-www-form-urlencoded',
+    multipartForm: 'multipart/form-data'
 ]
 // The default codec used to encode data with ${}
 grails.views.default.codec = "none" // none, html, base64
@@ -59,10 +60,31 @@ grails.converters.encoding = "UTF-8"
 grails.enable.native2ascii = true
 
 // set per-environment serverURL stem for creating absolute links
+// set per-environment serverURL stem for creating absolute links
 environments {
-    production {
-        grails.serverURL = "http://www.scrumtime.org"
+    development {
+        grails.serverURL = "http://localhost:8080/scrumtime/"
+        grails.defaultProtocol = "http://"
+        grails.secureProtocol = "http://"
+        grails.domainName = "localhost:8080"
+        grails.webAppPath = "/scrumtime"
+        grails.mail.host = "somehostname"
+        grails.mail.port = 25
+        grails.mail.username = "emailusername"
+        grails.mail.password = "password"
+        grails.mail.props = ["mail.smtp.auth": "true",
+            "mail.smtp.socketFactory.port": "25",
+            "mail.smtp.socketFactory.class": "javax.net.SocketFactory",
+            "mail.smtp.socketFactory.fallback": "true"]
+        grails.cookieName = "scrumtime.user"
     }
+    test {
+        grails.serverURL = "http://localhost:8080/scrumtime"
+    }
+    production {
+        grails.serverURL = "http://scrumtime.org"
+    }
+
 }
 
 // log4j configuration
@@ -93,51 +115,37 @@ log4j {
     }
     additivity.StackTrace = false
 }
+
 jcaptchas {
     imageCaptcha = new GenericManageableCaptchaService(
-            new GenericCaptchaEngine(
-                    new GimpyFactory(
-                            new RandomWordGenerator(
-                                    "abcdefghijklmnpqrstuvwxyz123456789"
-                            ),
-                            new ComposedWordToImage(
-                                    new RandomFontGenerator(
-                                            14, // min font size
-                                            22, // max font size
-                                            [new Font("sansserif", 0, 0),
-                                                    new Font("monospaced", 0, 0)] as Font[]
-                                    ),
-                                    new GradientBackgroundGenerator(
-                                            100, // width
-                                            22, // height
-                                            new SingleColorGenerator(new Color(150, 110, 120)),
-                                            new SingleColorGenerator(new Color(230, 220, 220))
-                                    ),
-                                    new NonLinearTextPaster(
-                                            4, // minimal length of text
-                                            5, // maximal length of text
-                                            new Color(240, 240, 80)
-                                    )
-                            )
+        new GenericCaptchaEngine(
+            new GimpyFactory(
+                new RandomWordGenerator(
+                    "abcdefghijklmnpqrstuvwxyz123456789"
+                ),
+                new ComposedWordToImage(
+                    new RandomFontGenerator(
+                        14, // min font size
+                        22, // max font size
+                        [new Font("sansserif", 0, 0),
+                            new Font("monospaced", 0, 0)] as Font[]
+                    ),
+                    new GradientBackgroundGenerator(
+                        100, // width
+                        22, // height
+                        new SingleColorGenerator(new Color(150, 110, 120)),
+                        new SingleColorGenerator(new Color(230, 220, 220))
+                    ),
+                    new NonLinearTextPaster(
+                        4, // minimal length of text
+                        5, // maximal length of text
+                        new Color(240, 240, 80)
                     )
-            ),
-            180, // minGuarantedStorageDelayInSeconds
-            180000 // maxCaptchaStoreSize
+                )
+            )
+        ),
+        180, // minGuarantedStorageDelayInSeconds
+        180000 // maxCaptchaStoreSize
     )
 }
-
-grails {
-    mail {
-        host = "myoutbound.smtp"
-        port = 25
-        username = "myuserId"
-        password = "mypassword"
-        props = ["mail.smtp.auth": "true",
-                "mail.smtp.socketFactory.port": "25",
-                "mail.smtp.socketFactory.class": "javax.net.SocketFactory",
-                "mail.smtp.socketFactory.fallback": "true"]
-
-    }
-}
-
 

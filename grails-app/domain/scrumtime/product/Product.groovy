@@ -1,22 +1,25 @@
 /**
- *  Copyright 2008   scrumtime.org owners
+ *  Copyright 2009   scrumtime.org
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at 
- * 
- *     http://www.apache.org/licenses/LICENSE-2.0 
+ *  You may obtain a copy of the License at
  *
- *  Unless required by applicable law or agreed to in writing, software 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
- *  See the License for the specific language governing permissions and 
- *  limitations under the License. 
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
  *
-**/
+ **/
 package scrumtime.product
 
-import scrumtime.release.Release
 import scrumtime.user.SystemUser
+import scrumtime.organization.Organization
+import scrumtime.release.Release
+import scrumtime.sprint.Sprint
+import scrumtime.backlog.BacklogItem
 
 class Product implements Comparable{
     Date dateCreated
@@ -24,18 +27,28 @@ class Product implements Comparable{
 
     String name
     String description
-    static hasMany = [releases: Release, owners : SystemUser]
+    Organization organization
+    static hasMany = [sprints: Sprint,releases: Release, owners : SystemUser,chickens : SystemUser,pigs : SystemUser]
+    SortedSet sprints
     SortedSet releases
     SortedSet owners
-    String visibility
+    SortedSet chickens
+    SortedSet pigs
+    SystemUser creator
 
     static constraints = {
-		name(unique: true,blank:false,nullable:false, size:1..80)
+		name(blank:false,nullable:false, size:1..256)
         description(blank:false, size:1..512)
-        visibility(nullable:false, blank:false)
+        organization(nullable:true)
+        sprints(nullable:true)
+        releases(nullable:true)
+        owners(nullable:true)
+        chickens(nullable:true)
+        pigs(nullable:true)
+        creator(nullable:false)
     }
-    
-    
+
+
     def int compareTo(obj) {
         def result = 0
         if (obj instanceof Product){
@@ -47,6 +60,4 @@ class Product implements Comparable{
         }
         return result
     }
-
-
 }

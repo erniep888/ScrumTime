@@ -3,38 +3,38 @@
     <condition property="grails" value="grails.bat">
         <os family="windows"/>
     </condition>
-    <property name="grails" value="grails" />
+    <property name="grails" value="grails"/>
 
-	<!-- ================================= 
-          target: clean              
-         ================================= -->
+    <!-- =================================
+    target: clean
+   ================================= -->
     <target name="clean" description="--> Cleans a Grails application">
-		<exec executable="${grails}" failonerror="true">
-			<arg value="clean"/>
-		</exec>                               
+        <exec executable="${grails}" failonerror="true">
+            <arg value="clean"/>
+        </exec>
     </target>
 
-	<!-- ================================= 
-          target: war              
-         ================================= -->
+    <!-- =================================
+    target: war
+   ================================= -->
     <target name="war" description="--> Creates a WAR of a Grails application">
-		<exec executable="${grails}" failonerror="true">
-			<arg value="war"/>
-		</exec>                               
+        <exec executable="${grails}" failonerror="true">
+            <arg value="war"/>
+        </exec>
     </target>
-	
-	<!-- ================================= 
-          target: test              
-         ================================= -->
+
+    <!-- =================================
+    target: test
+   ================================= -->
     <target name="test" description="--> Run a Grails applications unit tests">
-		<exec executable="${grails}" failonerror="true">
-			<arg value="test-app"/>
-		</exec>                               
+        <exec executable="${grails}" failonerror="true">
+            <arg value="test-app"/>
+        </exec>
     </target>
-	
-	<!-- ================================= 
-          target: deploy              
-         ================================= -->
+
+    <!-- =================================
+    target: deploy
+   ================================= -->
     <target name="deploy" depends="war" description="--> The deploy target (initially empty)">
         <!-- TODO -->
     </target>

@@ -1,159 +1,161 @@
 /**
- *  Copyright 2008   scrumtime.org owners
+ *  Copyright 2009   scrumtime.org
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at 
- * 
- *     http://www.apache.org/licenses/LICENSE-2.0 
+ *  You may obtain a copy of the License at
  *
- *  Unless required by applicable law or agreed to in writing, software 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
- *  See the License for the specific language governing permissions and 
- *  limitations under the License. 
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
  *
-**/
+ * */
 package scrumtime.user
 
+import scrumtime.lookup.LocaleLookup
+import scrumtime.lookup.TimeZoneLookup
 import scrumtime.user.SystemUser
-import scrumtime.user.UserInformation
-import scrumtime.common.PrioritizedLanguage
-import scrumtime.common.PrioritizedTimeZone
-import scrumtime.common.VisibilityType
 import scrumtime.user.SystemUserCredential
-import scrumtime.user.UserSettings
+import scrumtime.user.UserInformation
 
 class RegistrationController {
+    def systemUserService
+    def userInformationService
+    def cookieService
+    def localAuthenticationService
     def jcaptchaService
-    def userManagmentService
     def mailService
-    def productService
-    def releaseService
-    def sprintService
-    def scrumService
 
-    def allowedMethods = [index: ['POST', 'GET'], activate: ['GET', 'POST'],
-            success: ['POST']]
-    def afterInterceptor = {model ->
-        model.hideLogin = 'true'
-    }
+    def allowedMethods = [index: ['GET'], register: ['POST'],
+        registrationSaved: ['GET', 'POST'], activate: ['GET', 'POST']]
 
     def index = {
-        SystemUser systemUser = new SystemUser()
-        systemUser.properties = params
+        def systemUser = new SystemUser()
+        def systemUserCredential = new SystemUserCredential()
+        def userInformation = new UserInformation(languageTwoLetterISO639: 'en', timeZoneId: 'America/Atikokan')
 
-        UserInformation userInformation = new UserInformation()
-        userInformation.properties = params
-        userInformation.validationCode = new Date().getTime()
+        def timeZones = TimeZoneLookup.findAllBySupported(true, [sort: "shortName"])
+        def locales = LocaleLookup.findAllBySupported(true, [sort: "displayLanguage"])
+        render(view: '/user/registration',
+            model: [systemUser: systemUser,
+                userInformation: userInformation,
+                systemUserCredential: systemUserCredential,
+                timeZones: timeZones, locales: locales])
+    }
 
-        SystemUserCredential systemUserCredential = new SystemUserCredential()
-        systemUserCredential.properties = params
+    def register = {
+        def systemUser = systemUserService.createSystemUser(params)
+        def systemUserCredential = localAuthenticationService.createSystemUserCredential(params, systemUser)
+        def userInformation = userInformationService.createUserInformation(params, systemUser)
 
-        if (params.selectedLanguage) {
-            userInformation.language = PrioritizedLanguage.get(params.selectedLanguage)
-        }
-        if (params.selectedTimeZone) {
-            userInformation.timeZone = PrioritizedTimeZone.get(params.selectedTimeZone)
-        }
-        if (userInformation.captchaResponse && session.id) {
-            if (!validCaptcha(userInformation.captchaResponse, session.id)) {
-                userInformation.captchaResponse = null
-            }
-        }
-        try {
-            if (systemUser.username) {
-                userManagmentService.registerDBRealmUser(systemUser,
-                        systemUserCredential, userInformation)
-                if (!systemUser.hasErrors() && !systemUserCredential.hasErrors()
-                        && !userInformation.hasErrors()) {
-                    sendEmailVerification(request, systemUser, userInformation)
-                    render(view: '/user/registration/registration',
-                            model: [success: true, username: systemUser.username,
-                                    breadCrumbTrail:'Registration Success'])
-                    return
-                } else {
-                    userInformation.errors.each { println it }  // TODO: log this
-                    systemUserCredential.errors.each { println it } // TODO: log this
-                    systemUser.errors.each { println it }  // TODO: log this
-                }
-            }
-        } catch (Exception ex) {
-            println ex.getMessage()
-            // TODO: log this
-        }
+        SystemUser.withTransaction {status ->
+            if (!systemUser.hasErrors())
+                systemUser.save()
+            if (!systemUserCredential.hasErrors())
+                systemUserCredential.save()
+            if (!userInformation.hasErrors())
+                userInformation.save()
 
-        render(view: '/user/registration/registration',
-                model: [systemUser: systemUser, userInformation: userInformation,
+            if (systemUser.hasErrors() || systemUserCredential.hasErrors() ||
+                userInformation.hasErrors()) {
+                status.setRollbackOnly()
+                userInformation.errors.each { log.error it }
+                systemUserCredential.errors.each { log.error it }
+                systemUser.errors.each { log.error it }
+                def timeZones = TimeZoneLookup.findAllBySupported(true, [sort: "shortName"])
+                def locales = LocaleLookup.findAllBySupported(true, [sort: "displayLanguage"])
+                systemUserCredential.password = systemUserCredential.retypedPassword
+                render(view: '/user/registration',
+                    model: [systemUser: systemUser,
+                        userInformation: userInformation,
                         systemUserCredential: systemUserCredential,
-                        languages: PrioritizedLanguage.listOrderByDisplayLanguage(),
-                        timeZones: PrioritizedTimeZone.listOrderByShortForm(),
-                        breadCrumbTrail:'Registration'])
-    }
-
-    private boolean validCaptcha(def captcha, def sessionId) {
-        def valid = false
-        try {
-            if (jcaptchaService.validateResponse(
-                    "imageCaptcha", sessionId, captcha)) {
-                valid = true
+                        timeZones: timeZones, locales: locales])
+                return
+            } else {
+                chain(action: 'registrationSaved',
+                    model: [code: userInformation.validationCode,
+                        systemUser: systemUser])
+                return
             }
-        } catch (Exception ex) {
-            valid = false
         }
-        return valid
+    }
+    def registrationSaved = {
+        if (!chainModel) {
+            render 'Invalid request'
+            return
+        }
+        def code = chainModel["code"]
+        def systemUser = chainModel["systemUser"]
+        if (code && systemUser) {
+            def userInformation = UserInformation.findBySystemUser(systemUser)
+            if (userInformation?.validationCode.longValue() == code.longValue()) {
+                sendEmailVerification(userInformation)
+                render(view: '/user/registrationSaved',
+                    model: [username: systemUser.username])
+            } else {
+                render "no result"
+            }
+
+        } else {
+            render "no result"
+        }
+
     }
 
-    private void sendEmailVerification(def request, def systemUser, def userInformation) {
-
+    private void sendEmailVerification(def userInformation) {
+        log.info(message(code: 'registration.email.html',
+            args: [grailsApplication.config.grails.secureProtocol,
+                grailsApplication.config.grails.domainName +
+                    grailsApplication.config.grails.webAppPath,
+                userInformation.systemUser.id,
+                userInformation.validationCode,
+                userInformation.systemUser.username,
+                userInformation.nickName]))
         mailService.sendMail {
-            to systemUser.username
+            to userInformation.systemUser.username
             from "donotreply@inclinesolutions.com"
-            subject "Welcome to Scrum Time"
-            html """You have registered for an account on the Scrum Time website.<br><br>
-                            In order to activate your account, you must follow this link:<br><br>
-                            <a href="${request.scheme}://www.scrumtime.net/registration/activate?uid=${systemUser.id}&act=${userInformation.validationCode}">
-                            ${request.scheme}://www.scrumtime.net/registration/activate?uid=${systemUser.id}&act=${userInformation.validationCode}</a>
-                            <br><br>
-                            Your account information is as follows:<br>
-                            -------------------------------------<br>
-                            User Name: ${systemUser.username}<br>
-                            Nick Name: ${userInformation.nickName}<br><br>
-
-                            Sincerely,<br>
-                            Scrum Time Team"""
+            subject(message(code: 'registration.email.subject'))
+            html(message(code: 'registration.email.html',
+                args: [grailsApplication.config.grails.secureProtocol,
+                    grailsApplication.config.grails.domainName +
+                        grailsApplication.config.grails.webAppPath,
+                    userInformation.systemUser.id,
+                    userInformation.validationCode,
+                    userInformation.systemUser.username,
+                    userInformation.nickName]))
         }
     }
 
-    /**
-     * Handles the validation url that enables user accounts.
-     */
     def activate = {
         def success = false
         def systemUser
         if (params.uid && params.act) {
-            systemUser = SystemUser.get(params.uid)
-            def userInformation = UserInformation.findBySystemUser(systemUser)
-            if (params.act) {
-                try {
-                    def codeFromUrl = new Long(params.act)
-                    if (codeFromUrl == userInformation.validationCode) {
-                        userInformation.emailVerified = true
-                        userInformation.save(flush:true)
-                        success = true                        
+            SystemUser.withTransaction {status ->
+                systemUser = SystemUser.get(params.uid)
+                def userInformation = UserInformation.findBySystemUser(systemUser)
+                if (params.act) {
+                    try {
+                        def codeFromUrl = new Long(params.act)
+                        if (codeFromUrl == userInformation.validationCode) {
+                            userInformation.emailVerified = true
+                            systemUser.enabled = true
+                            systemUser.save(flush: true)
+                            userInformation.save(flush: true)
+                            success = true
+                        }
+                    } catch (Exception e) {
+                        log.error e.getMessage()
+                        status.setRollbackOnly()
                     }
-                } catch (Exception e) {
-                    println e.getMessage() // TODO: log this
                 }
             }
         }
-        render(view: '/user/registration/registration',
-                model: [activation: true, activationSuccess: success,
-                        username: systemUser?.username,
-                        breadCrumbTrail:'Registration Activation'])
+        render(view: '/user/registrationActivated',
+            model: [activationSuccess: success,
+                username: systemUser?.username])
     }
 
-    def success = {
-        render(view: '/user/registration/registration',
-                model: [success: 'true', username: params.username])
-    }
 }

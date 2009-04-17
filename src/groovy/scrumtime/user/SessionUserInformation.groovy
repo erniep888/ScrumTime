@@ -1,5 +1,5 @@
 /**
- *  Copyright 2008   scrumtime.org owners
+ *  Copyright 2009   scrumtime.org
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -12,15 +12,10 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  *
-**/
+ * */
 package scrumtime.user
 
-/**
- * This class is currently required to deal with the fact that
- * Grails 1.0 cannot detach domain objects from the database.
- * Grails 1.1 is expected to support this.
- */
-class SessionUserInformation{
+public class SessionUserInformation {
     Integer id    // systemUser id
     String nickName
     String username

@@ -11,8 +11,8 @@
 
     <tag>
         <description>
-        	Includes a javascript src file, library or inline script
-	 	if the tag has no src or library attributes its assumed to be an inline script
+            Includes a javascript src file, library or inline script
+            if the tag has no src or library attributes its assumed to be an inline script
         </description>
         <name>javascript</name>
         <tag-class>org.codehaus.groovy.grails.plugins.web.taglib.JavascriptTagLib</tag-class>
@@ -37,37 +37,37 @@
         </attribute>
         <dynamic-attributes>false</dynamic-attributes>
     </tag>
-    
+
     <!--  
     <tag>
-    	<description>
-    	</description>
-    	<name></name>
-    	<tag-class></tag-class>
-    	<body-content></body-content>
-    	<attribute>
-    		<description></description>
-    		<name></name>
-    		<required></required>
-    		<rtexprvalue></rtexprvalue>
-    	</attribute>
+        <description>
+        </description>
+        <name></name>
+        <tag-class></tag-class>
+        <body-content></body-content>
+        <attribute>
+            <description></description>
+            <name></name>
+            <required></required>
+            <rtexprvalue></rtexprvalue>
+        </attribute>
     </tag>
     -->
     <tag>
-    	<description>Escapes a javasacript string replacing single/double quotes and new lines
-    	</description>
-    	<name>escapeJavascript</name>
-    	<tag-class>org.codehaus.groovy.grails.plugins.web.taglib.JavascriptTagLib</tag-class>
-    	<body-content>JSP</body-content>
+        <description>Escapes a javasacript string replacing single/double quotes and new lines
+        </description>
+        <name>escapeJavascript</name>
+        <tag-class>org.codehaus.groovy.grails.plugins.web.taglib.JavascriptTagLib</tag-class>
+        <body-content>JSP</body-content>
     </tag>
-    
+
     <tag>
-    	<description>Creates a form submit button that submits the current form to a remote ajax call
-    	</description>
-    	<name>submitToRemote</name>
-    	<tag-class>org.codehaus.groovy.grails.plugins.web.taglib.JavascriptTagLib</tag-class>
-    	<body-content>JSP</body-content>
-    	<attribute>
+        <description>Creates a form submit button that submits the current form to a remote ajax call
+        </description>
+        <name>submitToRemote</name>
+        <tag-class>org.codehaus.groovy.grails.plugins.web.taglib.JavascriptTagLib</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
             <name>name</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
@@ -88,14 +88,14 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
-    
+
     <tag>
-    	<description>A field that sends its value to a remote link
-    	</description>
-    	<name>remoteField</name>
-    	<tag-class>org.codehaus.groovy.grails.plugins.web.taglib.JavascriptTagLib</tag-class>
-    	<body-content>JSP</body-content>
-    	<attribute>
+        <description>A field that sends its value to a remote link
+        </description>
+        <name>remoteField</name>
+        <tag-class>org.codehaus.groovy.grails.plugins.web.taglib.JavascriptTagLib</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
             <name>name</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
@@ -110,7 +110,7 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
-    	<attribute>
+        <attribute>
             <name>before</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
@@ -194,7 +194,7 @@
     </tag>
     <tag>
         <description>
-        	Enables the storing of a value into the given ${var}
+            Enables the storing of a value into the given ${var}
         </description>
         <name>set</name>
         <tag-class>org.codehaus.groovy.grails.web.taglib.GroovySetTag</tag-class>
@@ -216,7 +216,7 @@
 
     <tag>
         <description>
-        	Enables the storing of a value into the given ${var} into the page context
+            Enables the storing of a value into the given ${var} into the page context
         </description>
         <name>def</name>
         <tag-class>org.codehaus.groovy.grails.web.taglib.GroovyDefTag</tag-class>
@@ -238,7 +238,7 @@
 
     <tag>
         <description>
-        	Logical if tag to test whether the given condition is true
+            Logical if tag to test whether the given condition is true
         </description>
         <name>if</name>
         <tag-class>org.codehaus.groovy.grails.web.taglib.GroovyIfTag</tag-class>
@@ -254,7 +254,7 @@
 
     <tag>
         <description>
-        	Logical else tag as fallback if the if condition fails
+            Logical else tag as fallback if the if condition fails
         </description>
         <name>else</name>
         <tag-class>org.codehaus.groovy.grails.web.taglib.GroovyElseTag</tag-class>
@@ -264,7 +264,7 @@
 
     <tag>
         <description>
-        	Logical elseif tag to test whether the given condition is true
+            Logical elseif tag to test whether the given condition is true
         </description>
         <name>elseif</name>
         <tag-class>org.codehaus.groovy.grails.web.taglib.GroovyElseIfTag</tag-class>
@@ -278,9 +278,9 @@
         <dynamic-attributes>false</dynamic-attributes>
     </tag>
 
-	<tag>
+    <tag>
         <description>
-        	Tag to loop over a collection while the test expression returns true
+            Tag to loop over a collection while the test expression returns true
         </description>
         <name>while</name>
         <tag-class>org.codehaus.groovy.grails.web.taglib.GroovyWhileTag</tag-class>
@@ -300,13 +300,13 @@
         <tag-class>org.codehaus.groovy.grails.web.taglib.GroovyEachTag</tag-class>
         <body-content>JSP</body-content>
         <attribute>
-        	<description>The collection to iterate over</description>
+            <description>The collection to iterate over</description>
             <name>in</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
         <attribute>
-        	<description>An optional var-name to reference onto the elements</description>
+            <description>An optional var-name to reference onto the elements</description>
             <name>var</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
@@ -325,19 +325,19 @@
         <tag-class>org.codehaus.groovy.grails.web.taglib.GroovyFindAllTag</tag-class>
         <body-content>JSP</body-content>
         <attribute>
-        	<description>The collection to iterate over</description>
+            <description>The collection to iterate over</description>
             <name>in</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
         <attribute>
-        	<description>An optional var-name to reference onto the elements</description>
+            <description>An optional var-name to reference onto the elements</description>
             <name>var</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
         <attribute>
-        	<description>The expression to filter the elements to iterate over</description>
+            <description>The expression to filter the elements to iterate over</description>
             <name>expr</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
@@ -350,28 +350,30 @@
         <dynamic-attributes>true</dynamic-attributes>
     </tag>
 
-	<tag>
+    <tag>
         <description>Iterates over the given collection and collects the elements
-        	you want to work with</description>
+            you want to work with
+        </description>
         <name>collect</name>
         <tag-class>org.codehaus.groovy.grails.web.taglib.GroovyCollectTag</tag-class>
         <body-content>JSP</body-content>
         <attribute>
-        	<description>The collection to iterate over</description>
+            <description>The collection to iterate over</description>
             <name>in</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
         <attribute>
-        	<description>An optional var-name to reference onto the elements</description>
+            <description>An optional var-name to reference onto the elements</description>
             <name>var</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
         <attribute>
-        	<description>The expression to use to collect the elements. The
-        	expression must retur true to add the element to the
-        	collection</description>
+            <description>The expression to use to collect the elements. The
+                expression must retur true to add the element to the
+                collection
+            </description>
             <name>expr</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
@@ -386,25 +388,27 @@
 
     <tag>
         <description>Iterates over the given collection and filters the elements
-        with a regular expression</description>
+            with a regular expression
+        </description>
         <name>grep</name>
         <tag-class>org.codehaus.groovy.grails.web.taglib.GroovyGrepTag</tag-class>
         <body-content>JSP</body-content>
         <attribute>
-        	<description>The collection to iterate over</description>
+            <description>The collection to iterate over</description>
             <name>in</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
         <attribute>
-        	<description>An optional var-name to reference onto the elements</description>
+            <description>An optional var-name to reference onto the elements</description>
             <name>var</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
         <attribute>
-        	<description>The regular expression to filter the element with. The
-        	filter is a simple Groovy Regex</description>
+            <description>The regular expression to filter the element with. The
+                filter is a simple Groovy Regex
+            </description>
             <name>filter</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
