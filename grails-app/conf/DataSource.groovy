@@ -15,12 +15,6 @@ environments {
         dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop','update'
             url = "jdbc:hsqldb:mem:devDB"
-//            pooled = true
-//            driverClassName = "com.mysql.jdbc.Driver"
-//            dbCreate = "create-drop" // one of 'create', 'create-drop','update'
-//            url = "jdbc:mysql://localhost/scrumtime_dev"
-//            username = "scrumtime_dev"
-//            password = "scrumtime_dev1"
         }
     }
     test {

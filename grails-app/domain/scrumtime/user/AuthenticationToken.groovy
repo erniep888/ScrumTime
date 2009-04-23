@@ -19,7 +19,6 @@ import scrumtime.user.SystemUser
 
 class AuthenticationToken {
     SystemUser systemUser
-    String nickName
     Date timeOfAuthentication
 
     def String toString() {
@@ -27,7 +26,6 @@ class AuthenticationToken {
     }
 
     static constraints = {
-        nickName(nullable: false, blank: false)
         systemUser(nullable: false)
         timeOfAuthentication(nullable: false)
     }

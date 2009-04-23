@@ -33,4 +33,18 @@ class TimeZoneController {
 
         render TimeZoneLookup.listOrderByShortName() as XML
     }
+
+    def init = {
+        def timeZoneLookup
+        def availableIds = TimeZone.getAvailableIDs()
+        for (id in availableIds) {
+            def timeZone = TimeZone.getTimeZone(id)
+            timeZoneLookup = new TimeZoneLookup(timeZoneId: id,
+                shortName: timeZone.getDisplayName(false, TimeZone.SHORT),
+                longName: timeZone.getDisplayName(false, TimeZone.LONG),
+                supported: true)
+            timeZoneLookup.save()
+        }
+        redirect (controller:'home',action:'index')
+    }
 }

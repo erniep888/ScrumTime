@@ -1,7 +1,7 @@
 <table cellpadding="0" cellspacing="0" style="width:100%">
     <tr>
-        <td class="tabBottomBorder" style="width:auto;">&nbsp;</td>
-        <td style="width:620px">
+        <td class="tabBottomBorder" style="width:20px;">&nbsp;</td>
+        <td style="width:772px">
             <table cellpadding="0" cellspacing="0">
                 <tr>
                     <g:if test="${!mainMenuSelection || mainMenuSelection == '' || mainMenuSelection == 'home'}">
@@ -13,24 +13,33 @@
                             model="['tabStatus':'OFF','tabLabel':'Home','tabLink':grailsApplication.config.grails.webAppPath]"/>
                     </g:else>
                     <td class="tabBottomBorder" style="width:20px"></td>
-                    <g:if test="${mainMenuSelection == 'projects'}">
+                    <g:if test="${mainMenuSelection == 'scrum'}">
                         <g:render template="/menu/mainMenuTab"
-                            model="['tabStatus':'ON','tabLabel':'Projects']"/>
+                            model="['tabStatus':'ON','tabLabel':'Scrum']"/>
                     </g:if>
                     <g:else>
                         <g:render template="/menu/mainMenuTab"
-                            model="['tabStatus':'OFF','tabLabel':'Projects','tabLink':createLink(controller:'navigation',action:'index')]"/>
+                            model="['tabStatus':'OFF','tabLabel':'Scrum','tabLink':createLink(controller:'scrum',action:'index')]"/>
                     </g:else>
                     <td class="tabBottomBorder" style="width:20px"></td>
-                    <g:if test="${mainMenuSelection == 'community'}">
+                    <g:if test="${mainMenuSelection == 'backlog'}">
+                        <g:render template="/menu/mainMenuTab"
+                            model="['tabStatus':'ON','tabLabel':'Backlog']"/>
+                    </g:if>
+                    <g:else>
+                        <g:render template="/menu/mainMenuTab"
+                            model="['tabStatus':'OFF','tabLabel':'Backlog','tabLink':createLink(controller:'backlog',action:'index')]"/>
+                    </g:else>
+                    <td class="tabBottomBorder" style="width:20px"></td>
+                    <g:if test="${mainMenuSelection == 'management'}">
                         <g:render template="/menu/mainMenuTab"
                             model="['tabStatus':'ON','tabLabel':
-                  'Community','tabLink': createLink(controller:'community', action:'list')]"/>
+                  'Management','tabLink': createLink(controller:'management', action:'index')]"/>
                     </g:if>
                     <g:else>
                         <g:render template="/menu/mainMenuTab"
                             model="['tabStatus':'OFF','tabLabel':
-                  'Community','tabLink': createLink(controller:'community', action:'list')]"/>
+                  'Management','tabLink': createLink(controller:'management', action:'index')]"/>
                     </g:else>
                     <td class="tabBottomBorder" style="width:20px"></td>
                     <g:if test="${mainMenuSelection == 'search'}">

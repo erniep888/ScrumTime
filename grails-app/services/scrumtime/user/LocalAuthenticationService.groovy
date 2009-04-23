@@ -61,7 +61,6 @@ class LocalAuthenticationService {
                         if (credential.password == hashedChallengePassword) {
                             authenticationToken.systemUser = systemUser
                             authenticationToken.timeOfAuthentication = new Date()
-                            authenticationToken.nickName = userInformation.nickName
                             authenticationToken.save()
                         } else {
                             authenticationToken.errors.rejectValue('systemUser',

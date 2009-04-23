@@ -43,7 +43,7 @@ div.errors li {
     background: url(../images/message_types/exclamation.png) 10px no-repeat 50%;
     line-height: 20px;
     padding: 0;
-    padding-left: 35px;
+    padding-left: 40px;
     font-size: 0.75em;
     margin: 0;
 }
@@ -64,9 +64,26 @@ td.errors textarea {
     border: red solid 2px;
 }
 
+/*input, select, textarea {*/
+    /*background-color: #fcfcfc;*/
+    /*border: 1px solid #bbb;*/
+    /*font: 12px verdana, arial, helvetica, sans-serif;*/
+    /*margin: 2px 0;*/
+    /*padding: 1px 4px;*/
+/*}*/
+/*select {*/
+   /*padding: 2px 2px 2px 0;*/
+/*}*/
+
+
+/*input:focus, select:focus, textarea:focus {*/
+    /*border: 1px solid cornflowerblue;*/
+/*}*/
+
+
 /* General Font */
 .fontPurpBlue {
-    color: #3d0090;
+    color: #3d0090;    
 }
 
 .fontGrayBlue {

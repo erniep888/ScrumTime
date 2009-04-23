@@ -20,4 +20,8 @@ class HomeController {
     def index = {
         render(view: '/home/index')
     }
+
+    def init = {
+        chain(controller:'locale',action:'init')
+    }
 }

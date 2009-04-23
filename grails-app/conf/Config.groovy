@@ -68,9 +68,9 @@ environments {
         grails.secureProtocol = "http://"
         grails.domainName = "localhost:8080"
         grails.webAppPath = "/scrumtime"
-        grails.mail.host = "somehostname"
+        grails.mail.host = "hostname"
         grails.mail.port = 25
-        grails.mail.username = "emailusername"
+        grails.mail.username = "username"
         grails.mail.password = "password"
         grails.mail.props = ["mail.smtp.auth": "true",
             "mail.smtp.socketFactory.port": "25",
@@ -82,7 +82,7 @@ environments {
         grails.serverURL = "http://localhost:8080/scrumtime"
     }
     production {
-        grails.serverURL = "http://scrumtime.org"
+        grails.serverURL = "http://scrumtime.net"
     }
 
 }

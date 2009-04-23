@@ -6,15 +6,14 @@ class BacklogItem {
 
     String title
     String description
-    int workRemaining  // in hours
-    int workCompleted // in hours
+    int workEstimate  // in hours
     String assignedTo
     String estimatedBy
 
     static constraints = {
-        title(blank: false, nullable: false, size: 1..80)
+        title(blank: false, nullable: false, size: 1..256)
         description(nullable: true, size: 0..512)
-        assignedTo(nullable: true)
+        workEstimate(nullable:false)
         assignedTo(nullable: true)
         estimatedBy(nullable: true)
     }

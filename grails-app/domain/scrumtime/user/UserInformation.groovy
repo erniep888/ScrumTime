@@ -24,7 +24,6 @@ class UserInformation {
     Date lastUpdated
     String firstName
     String lastName
-    String nickName
     String timeZoneId
     String languageTwoLetterISO639
     Boolean acceptedUserAgreement = false
@@ -39,8 +38,7 @@ class UserInformation {
         lastName(nullable: true)
         timeZoneId(nullable: false)
         languageTwoLetterISO639(nullable: false)
-        systemUser(nullable: false)
-        nickName(blank: false, unique: true, nullable: false, length: 1..50)
+        systemUser(nullable: false)        
     }
 
     static mapping = {

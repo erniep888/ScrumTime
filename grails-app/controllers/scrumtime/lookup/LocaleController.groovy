@@ -32,4 +32,17 @@ class LocaleController {
 
         render LocaleLookup.listOrderByDisplayLanguage() as XML
     }
+
+    def init = {
+        def localeLookup
+        def locales = Locale.getAvailableLocales()
+        for (locale in locales) {
+            localeLookup = new LocaleLookup(languageTwoLetterISO639: locale.getLanguage(),
+                displayLanguage: locale.getDisplayLanguage(),
+                displayCountry: locale.getDisplayCountry(),
+                supported: true)
+            localeLookup.save()
+        }
+        chain (controller:'timeZone',action:'init')
+    }
 }

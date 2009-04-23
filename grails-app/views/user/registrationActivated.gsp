@@ -4,7 +4,7 @@
     <meta name="layout" content="simpleMenu"/>
 </head>
 <body>
-<form action="${createLinkTo(file: 'index.gsp')}" method="get" name="registrationSaved" id="registrationSaved">
+<g:form controller="home" action="index">
     <div class="registrationDiv height200">
         <table class="registrationTable" cellpadding="6" cellspacing="5" border="0">
             <tr>
@@ -29,11 +29,11 @@
             </tr>
             <tr>
                 <td class="alignCenter padTop10">
-                    <input class="width80" id="continueButton" type="submit" value="${message(code: 'scrumtime.button.continue')}"/>
+                    <g:submitButton class="width80" value="${message(code: 'scrumtime.button.continue')}" name="continue"/>
                 </td>
             </tr>
         </table>
     </div>
-</form>
+</g:form>
 </body>
 </html>

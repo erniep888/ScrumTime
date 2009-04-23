@@ -1,6 +1,6 @@
 <table cellpadding="0" cellspacing="0" style="width:100%" border="0">
     <tr>
-        <td style="height:20px">
+        <td style="height:80px">
             <div><img src="${createLinkTo(dir: 'images', file: 'scrumtime_logo.jpg')}" alt="Scrum Time"/></div>
         </td>
         <td>
@@ -15,7 +15,7 @@
                 </systemuser:ifNotLoggedIn>
                 <systemuser:ifIsLoggedIn>
                     <tr>
-                        <td><g:message code="scrumtime.salutation"/> ${session?.authenticationToken.nickName}</td>
+                        <td><g:message code="scrumtime.salutation"/> ${session?.authenticationToken.systemUser.nickName}</td>
                         <td class="width18">|</td>
                         <td class="width56"><g:link controller="userAuthentication" action="logout"><g:message code="scrumtime.mainmenu.logout"/></g:link></td>
                     </tr>

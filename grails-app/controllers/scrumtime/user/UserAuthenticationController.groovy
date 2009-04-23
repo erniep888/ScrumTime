@@ -34,7 +34,7 @@ class UserAuthenticationController {
                     Cookie userCookie = cookieService.generateUserCookie(request, params.username)
                     response.addCookie(userCookie)
                 }
-                redirect(uri: "/index.gsp")
+                redirect(uri: "/")
             } else {
                 if (authenticationToken && authenticationToken.hasErrors()) {
                     flash.message = message(error: authenticationToken.errors.allErrors.get(0))
@@ -59,7 +59,7 @@ class UserAuthenticationController {
             session.authenticationToken = null
         }
 
-        redirect(uri: "/index.gsp")
+        redirect(uri: "/")
     }
 
 

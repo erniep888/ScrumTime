@@ -11,7 +11,7 @@
     background: #F4F4F4 url(../images/tabs/tab_background.png) repeat-x;
     text-align: center;
     color: #555;
-    width: 100px;
+    width: 104px;
     height: 25px
 }
 
@@ -36,7 +36,7 @@
     background: #F4F4F4 url(../images/tabs/tab_background_selected.png) repeat-x;
     text-align: center;
     color: #555;
-    width: 100px;
+    width: 104px;
     height: 25px
 }
 
@@ -72,6 +72,15 @@
     background-color: #fff;
     padding-top: 12px;
     padding-bottom: 8px;
+    border-bottom: #999999 solid 1px;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+#subWindowMenuDiv{
+    background-color: #fff;
+    padding-top: 6px;
+    padding-bottom: 6px;
     border-bottom: #999999 solid 1px;
     font-size: 14px;
     vertical-align: middle;

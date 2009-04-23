@@ -16,10 +16,8 @@
 package scrumtime.product
 
 import scrumtime.user.SystemUser
-import scrumtime.organization.Organization
 import scrumtime.release.Release
 import scrumtime.sprint.Sprint
-import scrumtime.backlog.BacklogItem
 
 class Product implements Comparable{
     Date dateCreated
@@ -27,7 +25,7 @@ class Product implements Comparable{
 
     String name
     String description
-    Organization organization
+    String organization
     static hasMany = [sprints: Sprint,releases: Release, owners : SystemUser,chickens : SystemUser,pigs : SystemUser]
     SortedSet sprints
     SortedSet releases

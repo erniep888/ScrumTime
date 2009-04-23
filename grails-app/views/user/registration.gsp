@@ -8,9 +8,9 @@
     <div class="errors">
         <g:renderErrors bean="${systemUser}" field="username" as="list"/>
         <g:renderErrors bean="${systemUser}" field="retypedUsername" as="list"/>
+        <g:renderErrors bean="${systemUser}" field="nickName" as="list"/>
         <g:renderErrors bean="${systemUserCredential}" field="password" as="list"/>
-        <g:renderErrors bean="${systemUserCredential}" field="retypedPassword" as="list"/>
-        <g:renderErrors bean="${userInformation}" field="nickName" as="list"/>
+        <g:renderErrors bean="${systemUserCredential}" field="retypedPassword" as="list"/>        
         <g:renderErrors bean="${userInformation}" field="captchaResponse" as="list"/>
         <g:renderErrors bean="${userInformation}" field="acceptedUserAgreement" as="list"/>
     </div>
@@ -60,7 +60,7 @@
                     <g:message code="registration.page.label.nickname"/>
                 </td>
                 <td class="alignLeft padLeft4 ${hasErrors(field: 'nickName', ' errors')}">
-                    <input name='nickName' value="${userInformation?.nickName?.encodeAsHTML()}"/>
+                    <input name='nickName' value="${systemUser?.nickName?.encodeAsHTML()}"/>
                 </td>
             </tr>
             <tr>

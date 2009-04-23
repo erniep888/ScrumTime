@@ -113,7 +113,7 @@ class RegistrationController {
                 userInformation.systemUser.id,
                 userInformation.validationCode,
                 userInformation.systemUser.username,
-                userInformation.nickName]))
+                userInformation.systemUser.nickName]))
         mailService.sendMail {
             to userInformation.systemUser.username
             from "donotreply@inclinesolutions.com"
@@ -125,7 +125,7 @@ class RegistrationController {
                     userInformation.systemUser.id,
                     userInformation.validationCode,
                     userInformation.systemUser.username,
-                    userInformation.nickName]))
+                    userInformation.systemUser.nickName]))
         }
     }
 

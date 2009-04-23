@@ -19,6 +19,7 @@ class SystemUser implements Comparable {
     /** Username  */
     String username
     String retypedUsername
+    String nickName
     /** is enabled  */
     boolean enabled
 
@@ -42,5 +43,6 @@ class SystemUser implements Comparable {
         username(blank: false, unique: true, email: true, length: 3..80)
         retypedUsername(blank: false, unique: true, email: true, length: 3..80)
         enabled()
+        nickName(blank: false, unique: true, nullable: false, length: 1..50)
     }
 }

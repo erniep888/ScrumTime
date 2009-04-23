@@ -20,7 +20,7 @@
 <div style="height:30px;">
     <table style="width:100%;text-align:left;font-family:arial;font-size:16px;" border="0">
         <tr>
-            <td><a href="${createLinkTo(file: 'index.gsp')}"><g:message code="registration.page.homelink"/></a></td>
+            <td><a href="${createLink(controller:'home', action:'index')}"><g:message code="registration.page.homelink"/></a></td>
         </tr>
     </table>
 </div>

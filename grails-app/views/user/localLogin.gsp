@@ -9,7 +9,7 @@
         ${flash.message}
     </div>
 </g:hasErrors>
-<g:form action="login" method="post">
+<g:form controller="userAuthentication" action="login" method="post">
     <div class="localLoginDiv height360">
         <table class="localLoginTable" cellpadding="6" cellspacing="5" border="0">
             <tr>
@@ -46,12 +46,12 @@
             </tr>
             <tr>
                 <td class="alignCenter" id="registerButtonTd" colspan="2">
-                    <input id="registerButton" type="submit" value="${message(code: 'locallogin.page.button.login')}"/>
+                    <g:submitButton class="width80" value="${message(code: 'scrumtime.mainmenu.login')}" name="loginButton"/>
                 </td>
             </tr>
             <tr>
                 <td class="alignCenter" colspan="2">
-                    <a href="${createLinkTo(file: 'index.gsp')}"><g:message code="locallogin.page.label.resetpassword"/></a>
+                    <a href="${createLink(controller:'home', action:'index')}"><g:message code="locallogin.page.label.resetpassword"/></a>
                 </td>
             </tr>
         </table>
