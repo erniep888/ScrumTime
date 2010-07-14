@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StoryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -107,6 +108,7 @@
     <Content Include="Views\Home\StoryControl.ascx" />
     <Content Include="Views\Home\StoryTrControl.ascx" />
     <Content Include="Views\Home\StoryEditControl.ascx" />
+    <Content Include="Views\Story\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

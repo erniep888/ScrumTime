@@ -145,12 +145,14 @@ namespace ScrumTime.Models
         /// <param name="storyId">Initial value of the StoryId property.</param>
         /// <param name="narrative">Initial value of the Narrative property.</param>
         /// <param name="points">Initial value of the Points property.</param>
-        public static Story CreateStory(global::System.Int32 storyId, global::System.String narrative, global::System.Int32 points)
+        /// <param name="userDefinedId">Initial value of the UserDefinedId property.</param>
+        public static Story CreateStory(global::System.Int32 storyId, global::System.String narrative, global::System.Int32 points, global::System.String userDefinedId)
         {
             Story story = new Story();
             story.StoryId = storyId;
             story.Narrative = narrative;
             story.Points = points;
+            story.UserDefinedId = userDefinedId;
             return story;
         }
 
@@ -231,6 +233,30 @@ namespace ScrumTime.Models
         private global::System.Int32 _Points;
         partial void OnPointsChanging(global::System.Int32 value);
         partial void OnPointsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String UserDefinedId
+        {
+            get
+            {
+                return _UserDefinedId;
+            }
+            set
+            {
+                OnUserDefinedIdChanging(value);
+                ReportPropertyChanging("UserDefinedId");
+                _UserDefinedId = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("UserDefinedId");
+                OnUserDefinedIdChanged();
+            }
+        }
+        private global::System.String _UserDefinedId;
+        partial void OnUserDefinedIdChanging(global::System.String value);
+        partial void OnUserDefinedIdChanged();
 
         #endregion
     
@@ -385,6 +411,30 @@ namespace ScrumTime.Models
         private Nullable<global::System.Int32> _StoryId;
         partial void OnStoryIdChanging(Nullable<global::System.Int32> value);
         partial void OnStoryIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AssignedTo
+        {
+            get
+            {
+                return _AssignedTo;
+            }
+            set
+            {
+                OnAssignedToChanging(value);
+                ReportPropertyChanging("AssignedTo");
+                _AssignedTo = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("AssignedTo");
+                OnAssignedToChanged();
+            }
+        }
+        private global::System.String _AssignedTo;
+        partial void OnAssignedToChanging(global::System.String value);
+        partial void OnAssignedToChanged();
 
         #endregion
     
