@@ -1,10 +1,4 @@
 
-**/bin/Debug
-**/bin/Release
-Thumbs.db
-*.pdb
-**/*.cache
-
 #ignore thumbnails created by windows
 Thumbs.db
 #Ignore files build by Visual Studio
@@ -33,4 +27,3 @@ obj/
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*
-ScrumTime/ScrumTime/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
