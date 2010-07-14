@@ -1,0 +1,5 @@
+C:\Users\epaschall\Documents\GitRepository\ScrumTime\ScrumTime\bin\ScrumTime.dll
+C:\Users\epaschall\Documents\GitRepository\ScrumTime\ScrumTime\bin\ScrumTime.pdb
+C:\Users\epaschall\Documents\GitRepository\ScrumTime\ScrumTime\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\epaschall\Documents\GitRepository\ScrumTime\ScrumTime\obj\Debug\ScrumTime.dll
+C:\Users\epaschall\Documents\GitRepository\ScrumTime\ScrumTime\obj\Debug\ScrumTime.pdb

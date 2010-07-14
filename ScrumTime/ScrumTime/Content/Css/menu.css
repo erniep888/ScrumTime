@@ -1,0 +1,143 @@
+/* Menu */
+
+#menuDiv{	
+	background: #fff url('../Images/Tabs/MenuBaseBg.png') repeat-x;
+	height:49px;	
+	width:960px;
+	position:absolute;
+	top:91px;
+	vertical-align:top;
+	text-align:left;		
+}
+
+#menuBackgroundDiv {
+	background: #fff url('../Images/Tabs/MenuBaseBg.png') repeat-x;
+	height:25px;
+	position:absolute;
+	width:100%;
+	z-index:1;
+	top:91px;		
+}
+
+#tabs{
+	width:960px;
+	height:49px;
+	position:absolute;
+	top:0px;		
+}
+
+#tabs ul {
+	margin:0;
+	padding:0;
+	position:absolute;
+	top:0px;
+}
+
+#tabs li {
+	float: left;
+	display: inline; 
+	margin:0;
+	width:auto;
+}
+#tabs li a {
+	float: left;
+	background: #fff url('../Images/Tabs/UnselectedTabBg.png');
+	color: #808080;
+	padding: 3px 0;
+	width: 116px;
+	height:24px;
+	text-align: center;
+	font-weight: bold;
+	text-decoration: none;
+	background-repeat: repeat-x;
+	margin-right:10px;
+}
+ #tabs li a.current {
+	float: left;
+	background: #fff url('../Images/Tabs/SelectedTabBg.png');
+	color: #808080;
+	padding: 3px 0;
+	width: 116px;
+	height:24px;
+	text-align: center;
+	font-weight: bold;
+	text-decoration: none;
+	background-repeat: repeat-x;
+
+ }	
+ #tabs li a:hover {
+	color: #000;
+ }
+
+ #submenu
+ {
+     padding:0;
+     margin:0;     
+ }
+ #submenu ul
+ {
+     padding:0;
+     margin:0;     
+ }
+
+ #submenu li
+ {
+     display: inline; 
+     float:left;     
+ }
+ #submenu li a 
+ {
+    font-size:11px;
+	float: left;	
+	color: #666;
+	padding: 0;
+	width: 66px;
+	height:24px;
+	text-align: left;
+	font-weight: bold;	
+	margin-right:10px;
+ }
+ #submenu li a:hover {
+	color: #000;
+	text-decoration:underline;
+ }
+ #submenu li a.current 
+ {
+    font-size:12px;
+    float: left;
+    color: #333;
+    padding: 0;
+    width: 66px;
+    height:24px;
+    text-align: left;
+    font-weight: bold;
+    text-decoration: none;	
+ }	
+ 
+ #projectControlMenu
+ {
+     width:958px;height:4px;border:1px solid black;margin-bottom:5px;background-color:#eee;
+ }
+ #projectControlMenu a.current 
+ {
+    font-size:12px;
+    float: left;
+    color: #333;
+    text-align: left;
+    font-weight: bold;
+    text-decoration: none;	
+ }	
+ #projectControlMenu a 
+ {
+    font-size:11px;
+	float: left;	
+	color: #666;
+	padding: 0;	
+	text-align: left;
+	font-weight: bold;	
+	margin-right:10px;
+ }
+ #projectControlMenu a:hover {
+	color: #000;
+	text-decoration:underline;
+ }
