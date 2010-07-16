@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="C:\WebApplications\ScrumTime" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="Content/Images/MessageTypes/exclamation.png" publishTime="05/24/2010 13:11:12" />
+    <file relUrl="Views/Home/Index.aspx" publishTime="06/15/2010 21:01:49" />
+    <file relUrl="Content/Images/MessageTypes/information.png" publishTime="06/04/2010 22:05:02" />
+    <file relUrl="Content/Images/disk.png" publishTime="06/08/2010 18:32:50" />
+    <file relUrl="Content/Images/favicon.ico" publishTime="06/04/2010 22:05:02" />
+    <file relUrl="Content/Images/scrumtime_logo.jpg" publishTime="06/04/2010 22:05:02" />
+    <file relUrl="Scripts/jquery.validate-vsdoc.js" publishTime="06/04/2010 22:05:02" />
+    <file relUrl="Views/Shared/MainMenu.ascx" publishTime="06/07/2010 21:21:08" />
+    <file relUrl="Content/Images/Logos/ScrumTime.com.Title.png" publishTime="06/15/2010 20:44:11" />
+    <file relUrl="Scripts/MicrosoftAjax.js" publishTime="05/24/2010 13:07:58" />
+    <file relUrl="Content/Images/Logos/ScrumTime.com.Title_372x57.png" publishTime="06/15/2010 20:44:11" />
+    <file relUrl="Scripts/jquery-1.4.1.js" publishTime="06/04/2010 22:05:02" />
+    <file relUrl="Views/Shared/LogOnUserControl.ascx" publishTime="06/07/2010 15:22:10" />
+    <file relUrl="Content/Css/menu.css" publishTime="06/07/2010 20:37:04" />
+    <file relUrl="Scripts/MicrosoftMvcValidation.debug.js" publishTime="05/24/2010 13:07:58" />
+    <file relUrl="Content/Css/main.css" publishTime="06/15/2010 21:07:07" />
+    <file relUrl="Scripts/MicrosoftMvcAjax.debug.js" publishTime="05/24/2010 13:07:58" />
+    <file relUrl="Scripts/jquery.validate.min.js" publishTime="06/04/2010 22:05:02" />
+    <file relUrl="Content/Images/Logos/ScrumTime.com.Title_157x25.png" publishTime="06/15/2010 20:44:11" />
+    <file relUrl="Global.asax" publishTime="05/24/2010 13:07:58" />
+    <file relUrl="Views/Shared/Authenticating.Master" publishTime="06/15/2010 20:47:26" />
+    <file relUrl="Views/Account/ChangePassword.aspx" publishTime="06/07/2010 17:08:52" />
+    <file relUrl="Scripts/jquery.validate.js" publishTime="06/04/2010 22:05:02" />
+    <file relUrl="Views/Shared/NonAuthenticating.Master" publishTime="06/15/2010 21:09:39" />
+    <file relUrl="Scripts/jquery-1.4.1.min.js" publishTime="06/04/2010 22:05:02" />
+    <file relUrl="Content/Images/news_paper.gif" publishTime="06/04/2010 22:05:02" />
+    <file relUrl="Views/Home/About.aspx" publishTime="06/07/2010 17:09:02" />
+    <file relUrl="Views/Account/LogOn.aspx" publishTime="06/07/2010 17:37:50" />
+    <file relUrl="Scripts/MicrosoftMvcValidation.js" publishTime="06/04/2010 22:05:02" />
+    <file relUrl="Views/Account/Register.aspx" publishTime="06/07/2010 17:39:46" />
+    <file relUrl="Content/Images/MessageTypes/spinner.gif" publishTime="06/04/2010 22:05:02" />
+    <file relUrl="bin/ScrumTime.dll" publishTime="06/15/2010 20:49:09" />
+    <file relUrl="Scripts/MicrosoftMvcAjax.js" publishTime="05/24/2010 13:07:58" />
+    <file relUrl="Views/Project/Index.aspx" publishTime="06/07/2010 20:38:20" />
+    <file relUrl="Views/Account/ChangePasswordSuccess.aspx" publishTime="06/07/2010 17:09:00" />
+    <file relUrl="Content/Css/Site.css" publishTime="06/07/2010 15:34:58" />
+    <file relUrl="Content/Images/Tabs/UnselectedTabBg.png" publishTime="06/04/2010 22:05:02" />
+    <file relUrl="Content/Images/Tabs/MenuBaseBg.png" publishTime="06/04/2010 22:05:02" />
+    <file relUrl="Views/Project/Create.aspx" publishTime="06/07/2010 21:07:22" />
+    <file relUrl="Views/Shared/Error.aspx" publishTime="06/04/2010 22:05:02" />
+    <file relUrl="Content/Images/asterisk.gif" publishTime="06/04/2010 22:05:02" />
+    <file relUrl="Content/Images/screen.png" publishTime="06/04/2010 22:05:02" />
+    <file relUrl="Views/Project/List.aspx" publishTime="06/07/2010 21:39:12" />
+    <file relUrl="Views/Shared/ProjectSubMenu.ascx.ascx" publishTime="06/07/2010 20:19:14" />
+    <file relUrl="Web.config" publishTime="06/17/2010 19:30:55" />
+    <file relUrl="Content/Images/pdf_icon.gif" publishTime="06/04/2010 22:05:02" />
+    <file relUrl="Content/Images/Logos/ScrumTime.com.Title_279x43.png" publishTime="06/15/2010 20:44:11" />
+    <file relUrl="Content/Images/Tabs/SelectedTabBg.png" publishTime="06/04/2010 22:05:02" />
+    <file relUrl="Scripts/MicrosoftAjax.debug.js" publishTime="05/24/2010 13:07:58" />
+    <file relUrl="Content/Images/scrumtime_tagline.jpg" publishTime="06/04/2010 22:05:02" />
+    <file relUrl="bin/ScrumTime.pdb" publishTime="06/15/2010 20:49:09" />
+    <file relUrl="Content/Images/Logos/ScrumTime.com.Title_118x19.png" publishTime="06/15/2010 20:44:11" />
+    <file relUrl="Content/Images/Logos/ScrumTime.com.Title_209x33.png" publishTime="06/15/2010 20:44:11" />
+    <file relUrl="Views/Web.config" publishTime="06/04/2010 22:05:02" />
+    <file relUrl="Content/Images/movie.png" publishTime="06/04/2010 22:05:02" />
+    <file relUrl="Scripts/jquery-1.4.1-vsdoc.js" publishTime="06/04/2010 22:05:02" />
+  </publishProfile>
+</publishData>
