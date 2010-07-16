@@ -8,7 +8,7 @@
                 if (Model.SelectedMenuName == "Home")
                 {
             %>
-			        <li><a href="#" class="current">Home</a></li>
+			        <li><a href="#" class="current">Dashboard</a></li>
             <%
                 }
                 else 
