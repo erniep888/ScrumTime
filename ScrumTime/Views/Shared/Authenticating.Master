@@ -39,8 +39,8 @@
 	<div id="footerBackgroundDiv">        
     </div>
     <div id="pageCenterFooterDiv">
-        <div style="position:absolute;top:0px;font-size:smaller;left:4px">ScrumTime.com 2010</div>
-        <div style="position:absolute;top:0px;font-size:smaller;right:4px">Release 0.6 20100621</div>
+        <div style="position:absolute;top:0px;font-size:smaller;left:4px">ScrumTime</div>
+        <div style="position:absolute;top:0px;font-size:smaller;right:4px">Release 0.9 20100821</div>
     </div>
 </body>
 
