@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ScrumTime.Models;
+using ScrumTime.ViewModels;
+using ScrumTime.Helpers;
 
 namespace ScrumTime.Controllers
 {
@@ -16,14 +18,51 @@ namespace ScrumTime.Controllers
             _ScrumTimeEntities = new ScrumTimeEntities();
         }
 
+
+
+        /************* \/ *********************** Alizarin */
+        public ActionResult Story(string test)
+        {
+            var eval = test;
+            ScrumTimeEntities entities = new ScrumTimeEntities();
+            Story story = entities.Stories.First<Story>();
+            return PartialView("StoryTrControl", story);
+        }
+
+        public ActionResult StoryJson(string test)
+        {
+            string[] acceptTypes = Request.AcceptTypes;
+
+            var eval = test;
+            ScrumTimeEntities entities = new ScrumTimeEntities();
+            Story story = entities.Stories.First<Story>();
+            if (acceptTypes.Any(v => v.Contains("json")))
+            {
+                List<object> stories = new List<object>();
+                stories.Add(new { Narrative = story.Narrative, Points = story.Points, StoryId = story.StoryId });
+                return new SecureJsonResult(stories);
+            }
+            else
+                return PartialView("StoryControl", story);
+        }
+
+        public ActionResult StoryEdit()
+        {
+            ScrumTimeEntities entities = new ScrumTimeEntities();
+            return PartialView("StoryEditControl");
+        }
+
+        /************* /\ *********************** Alizarin */
+
+
         //
         // GET: /Story/
 
         public ActionResult Index()
         {
-            var results = from s in _ScrumTimeEntities.Stories
-                          select s;
-            return View(results);
+            //var results = from s in _ScrumTimeEntities.Stories
+            //              select s;
+            return View(new ProjectViewModel());
         }
 
         //
@@ -40,7 +79,7 @@ namespace ScrumTime.Controllers
         public ActionResult Create()
         {
             return View();
-        } 
+        }
 
         //
         // POST: /Story/Create
@@ -59,10 +98,10 @@ namespace ScrumTime.Controllers
                 return View();
             }
         }
-        
+
         //
         // GET: /Story/Edit/5
- 
+
         public ActionResult Edit(int id)
         {
             return View();
@@ -77,7 +116,7 @@ namespace ScrumTime.Controllers
             try
             {
                 // TODO: Add update logic here
- 
+
                 return RedirectToAction("Index");
             }
             catch
@@ -88,7 +127,7 @@ namespace ScrumTime.Controllers
 
         //
         // GET: /Story/Delete/5
- 
+
         public ActionResult Delete(int id)
         {
             return View();
@@ -103,7 +142,7 @@ namespace ScrumTime.Controllers
             try
             {
                 // TODO: Add delete logic here
- 
+
                 return RedirectToAction("Index");
             }
             catch
