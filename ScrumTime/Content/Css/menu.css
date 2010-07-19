@@ -116,7 +116,7 @@
  
  #projectControlMenu
  {
-     width:958px;
+     width:960px;
      height:4px;
      border:1px solid black;
      background-color:#eee;
@@ -125,7 +125,7 @@
  }
  .projectSubControlSeparator
  {
-     width:958px;
+     width:960px;
      margin-top:-2px;
      height:4px;
      border:1px solid #444;
@@ -134,6 +134,7 @@
  #projectSubControlMenu
  {
      margin-top:24px;
+     float:none;
  }
  #projectControlMenu a.current 
  {

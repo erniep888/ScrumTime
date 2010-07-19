@@ -14,7 +14,7 @@
                 else 
                 {
             %>   
-                    <li><%: Html.ActionLink("Home", "Index", "Home")%></li> 
+                    <li><%: Html.ActionLink("Dashboard", "Index", "Home")%></li> 
             <%
                 }
                 if (Model.SelectedMenuName == "Project")

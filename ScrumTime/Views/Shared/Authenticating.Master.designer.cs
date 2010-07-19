@@ -8,10 +8,9 @@
 //------------------------------------------------------------------------------
 
 namespace ScrumTime {
-
-
-    public partial class Authenticating
-    {
+    
+    
+    public partial class Authenticating {
         
         /// <summary>
         /// Head1 control.
@@ -30,6 +29,15 @@ namespace ScrumTime {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder TitleContent;
+        
+        /// <summary>
+        /// HeadContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadContent;
         
         /// <summary>
         /// MainContent control.

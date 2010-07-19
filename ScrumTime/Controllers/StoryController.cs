@@ -55,6 +55,14 @@ namespace ScrumTime.Controllers
         /************* /\ *********************** Alizarin */
 
 
+        public ActionResult List()
+        {
+            StoryCollectionViewModel storyCollectionViewModel = new StoryCollectionViewModel();
+            storyCollectionViewModel.SelectedSubMenuName = "Backlog";
+            storyCollectionViewModel.Name = "Acme";
+            return View(storyCollectionViewModel);
+        }
+
         //
         // GET: /Story/
 

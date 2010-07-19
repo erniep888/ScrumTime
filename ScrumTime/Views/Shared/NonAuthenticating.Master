@@ -7,10 +7,18 @@
     <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
     <link rel="shortcut icon" href="/Content/Images/favicon.ico" type="image/x-icon"/>
     <meta http-equiv="CACHE-CONTROL" content="NO-CACHE"/>
+    <script src="http://www.google.com/jsapi" type="text/javascript"></script> 
+    <script type="text/javascript">
+        // Load jQuery
+        google.load("jquery", "1.4.2");
+        google.load("jqueryui", "1.8.2");
+     </script>
 
     <link rel="stylesheet" href="/Content/Css/main.css" type="text/css" />
     <link rel="stylesheet" href="/Content/Css/menu.css" type="text/css" />
-    <link rel="stylesheet" href="/Content/Css/Site.css" type="text/css" />    
+    <link rel="stylesheet" href="/Content/Css/Site.css" type="text/css" />  
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>  
 </head>
 
 <body>

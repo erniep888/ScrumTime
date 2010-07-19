@@ -11,8 +11,14 @@
     <link rel="stylesheet" href="/Content/Css/main.css" type="text/css" />
     <link rel="stylesheet" href="/Content/Css/menu.css" type="text/css" />
     <link rel="stylesheet" href="/Content/Css/Site.css" type="text/css" />  
-    <script src="<%= Url.Content("~/Scripts/jquery-1.4.1.min.js") %>" type="text/javascript"></script>  
-    <script src="<%= Url.Content("~/Scripts/jquery-ui-1.8.2.custom.min.js") %>" type="text/javascript"></script>  
+    <script src="http://www.google.com/jsapi" type="text/javascript"></script> 
+    <script type="text/javascript"> 
+        // Load jQuery
+        google.load("jquery", "1.4.2");
+        google.load("jqueryui", "1.8.2");
+     </script>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
 </head>
 
 <body>
@@ -32,8 +38,6 @@
 	
         <div id="main" style="position:absolute;top:118px;margin:0px;left:0px;">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-
-            
         </div>        
     </div>
 	<div id="footerBackgroundDiv">        
