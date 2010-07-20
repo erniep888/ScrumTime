@@ -21,7 +21,7 @@ namespace ScrumTime.Controllers
 
 
         /************* \/ *********************** Alizarin */
-        public ActionResult Story(string test)
+        public ActionResult StoryTasks(string test)
         {
             var eval = test;
             ScrumTimeEntities entities = new ScrumTimeEntities();
@@ -46,7 +46,7 @@ namespace ScrumTime.Controllers
                 return PartialView("StoryControl", story);
         }
 
-        public ActionResult StoryEdit()
+        public ActionResult Edit()
         {
             ScrumTimeEntities entities = new ScrumTimeEntities();
             return PartialView("StoryEditControl");
@@ -98,32 +98,6 @@ namespace ScrumTime.Controllers
             try
             {
                 // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /Story/Edit/5
-
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /Story/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
 
                 return RedirectToAction("Index");
             }

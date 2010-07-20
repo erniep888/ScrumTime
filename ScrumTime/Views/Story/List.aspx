@@ -40,7 +40,7 @@
         <div style="width:960px;height:386px;border-left:2px solid #999;border-right:2px solid #aaa;
             border-bottom:2px solid #999;overflow:scroll;">
             <table style="width:943px;font-family:Verdana;padding:0" cellpadding="0" cellspacing="0">                
-                <tbody style="font-size:12px;height:10px;">
+                <tbody style="font-size:12px;">
                     <tr style="background-color:#eee;">
                         <td class="story_1" style="vertical-align:middle;text-align:center;width:78px;border:0px;">1</td>
                         <td style="vertical-align:middle;text-align:center;width:78px;border:0px;">10</td>

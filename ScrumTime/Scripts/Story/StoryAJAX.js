@@ -7,7 +7,7 @@ function loadJSON() {
             //                alert(data.d);
             //             });
             //$('#storyId_1').load('Home/Story');
-            $(this).parent().parent().load('Story/Story');
+            $(this).parent().parent().load('/Story/StoryTasks');
             //            var obj = $(this).parent().parent();
             //            alert(obj.get(0).tagName);
         });
@@ -23,7 +23,7 @@ function setClickEvent_Narrative(count) {
                 var className = $(this).attr("class");
                 var storyId = className.substring(6, className.length);
                 //alert(storyId);
-                $(this).parent().load('Story/StoryEdit');
+                $(this).parent().load('/Story/Edit');
                 //$('#storyId_1').load('Home/StoryEdit');
             });
         }
