@@ -46,6 +46,11 @@ namespace ScrumTime.Controllers
                 return PartialView("StoryControl", story);
         }
 
+        public ActionResult ReadOnlyRow()
+        {
+            return PartialView("StoryReadOnlyRow");
+        }
+
         public ActionResult Edit()
         {
             ScrumTimeEntities entities = new ScrumTimeEntities();

@@ -151,6 +151,7 @@
     <Content Include="Views\Story\List.aspx" />
     <Content Include="Views\Story\StoryControl.ascx" />
     <Content Include="Views\Story\StoryEditControl.ascx" />
+    <Content Include="Views\Story\StoryReadOnlyRow.ascx" />
     <Content Include="Views\Story\StoryTrControl.ascx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

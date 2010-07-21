@@ -30,3 +30,10 @@ function setClickEvent_Narrative(count) {
     });
     return;
 }
+
+function cancelRowEdit(parentTagId) {
+    $(parentTagId).load('/Story/ReadOnlyRow');
+    //var twoparent = event.src;
+    //$(this).srcElement.parent().parent().load('/Story/ReadOnlyRow');
+    
+}

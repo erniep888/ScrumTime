@@ -11,4 +11,4 @@
             <option value="8" selected="selected">8</option>
             <option value="100">100</option>
         </select></td>
-    <td style="vertical-align:middle;text-align:center;width:194px;font-weight:bold;color:#0035a0;border:0px;">Save | Cancel</td>
+    <td style="vertical-align:middle;text-align:center;width:194px;font-weight:bold;color:#0035a0;border:0px;">Save | <span onclick="cancelRowEdit('#row_1');">Cancel</span></td>
