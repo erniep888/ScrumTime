@@ -31,9 +31,18 @@ function setClickEvent_Narrative(count) {
     return;
 }
 
+function setSingleClickEvent_Narrative(targetIndex) {
+    $(".story_" + targetIndex).click(function () {
+        var className = $(this).attr("class");
+        var storyId = className.substring(6, className.length);
+        $(this).parent().load('/Story/Edit');
+    });
+    return;
+}
+
 function cancelRowEdit(parentTagId) {
     $(parentTagId).load('/Story/ReadOnlyRow');
     //var twoparent = event.src;
     //$(this).srcElement.parent().parent().load('/Story/ReadOnlyRow');
-    
+    return;
 }

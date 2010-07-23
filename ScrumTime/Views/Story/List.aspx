@@ -48,7 +48,7 @@
                         <td class="story_1" style="vertical-align:middle;text-align:center;width:80px;border:0px;">8</td>
                         <td style="vertical-align:middle;text-align:center;width:194px;border:0px;">Delete | <span id="task_1">Tasks</span></td>
                     </tr>
-                    <tr>
+                    <tr id="row_2">
                         <td class="story_2" style="vertical-align:middle;text-align:center;width:78px;border:0px;">2</td>
                         <td style="vertical-align:middle;text-align:center;width:78px;border:0px;">12</td>
                         <td class="story_2" style="border:0px;width:530px;">As the author, I want to see the top of the table of contents prior to opening a full book. (* Please also take note of the fonts for the table of contents. *)</td>

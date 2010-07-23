@@ -6,3 +6,7 @@
     <td class="story_1" style="vertical-align:middle;text-align:center;width:80px;border:0px;">8</td>
     <td style="vertical-align:middle;text-align:center;width:194px;border:0px;">Delete | <span id="task_1">Tasks</span></td>
                     
+    <script type="text/javascript">
+        setSingleClickEvent_Narrative(1);
+    </script>
+    
