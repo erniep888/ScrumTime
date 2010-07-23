@@ -31,11 +31,14 @@ function setClickEvent_Narrative(count) {
     return;
 }
 
-function setSingleClickEvent_Narrative(targetIndex) {
+function setupReadOnlyRow(targetIndex) {
     $(".story_" + targetIndex).click(function () {
         var className = $(this).attr("class");
         var storyId = className.substring(6, className.length);
         $(this).parent().load('/Story/Edit');
+    });
+    $("#task_" + targetIndex).click(function () {
+        $(this).parent().parent().load('/Story/StoryTasks');
     });
     return;
 }

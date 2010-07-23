@@ -6,10 +6,10 @@
 
 <asp:Content ID="StoryBacklogHeadContent" ContentPlaceHolderID="HeadContent" runat="server">
     <script src="<%= Url.Content("~/Scripts/Story/StoryAjax.js") %>" type="text/javascript"></script>  
-    <script type="text/javascript">
+    <%--<script type="text/javascript">
         loadJSON();
         setClickEvent_Narrative(2);
-    </script>    
+    </script>    --%>
     <style type="text/css">
         td {padding-top:4px;padding-bottom:4px}
     </style>
@@ -42,11 +42,7 @@
             <table style="width:943px;font-family:Verdana;padding:0" cellpadding="0" cellspacing="0">                
                 <tbody style="font-size:12px;">
                     <tr id="row_1" style="background-color:#eee;">
-                        <td class="story_1" style="vertical-align:middle;text-align:center;width:78px;border:0px;">1</td>
-                        <td style="vertical-align:middle;text-align:center;width:78px;border:0px;">10</td>
-                        <td class="story_1" style="border:0px;width:530px">As the author, I want to see the text in multiple fonts.</td>
-                        <td class="story_1" style="vertical-align:middle;text-align:center;width:80px;border:0px;">8</td>
-                        <td style="vertical-align:middle;text-align:center;width:194px;border:0px;">Delete | <span id="task_1">Tasks</span></td>
+                        <% Html.RenderPartial("~/Views/Story/StoryReadOnlyRow.ascx", new ScrumTime.Models.Story()); %>    
                     </tr>
                     <tr id="row_2">
                         <td class="story_2" style="vertical-align:middle;text-align:center;width:78px;border:0px;">2</td>
