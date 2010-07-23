@@ -41,16 +41,24 @@
             border-bottom:2px solid #999;overflow:scroll;">
             <table style="width:943px;font-family:Verdana;padding:0" cellpadding="0" cellspacing="0">                
                 <tbody style="font-size:12px;">
-                    <tr id="row_1" style="background-color:#eee;">
-                        <% Html.RenderPartial("~/Views/Story/StoryReadOnlyRow.ascx", new ScrumTime.Models.Story()); %>    
-                    </tr>
-                    <tr id="row_2">
-                        <td class="story_2" style="vertical-align:middle;text-align:center;width:78px;border:0px;">2</td>
-                        <td style="vertical-align:middle;text-align:center;width:78px;border:0px;">12</td>
-                        <td class="story_2" style="border:0px;width:530px;">As the author, I want to see the top of the table of contents prior to opening a full book. (* Please also take note of the fonts for the table of contents. *)</td>
-                        <td class="story_2" style="vertical-align:middle;text-align:center;width:80px;border:0px;">8</td>
-                        <td style="vertical-align:middle;text-align:center;width:194px;border:0px;">Delete | Tasks</td>
-                    </tr>
+                <%  int index = 1;
+                    string rowBackgroundColor = "#eee";
+                    foreach (ScrumTime.Models.Story story in Model.Stories)
+                    {
+                        if (index % 1 == 0)
+                            rowBackgroundColor = "#fff";
+                        else
+                            rowBackgroundColor = "#eee";
+                       %>
+                       <tr id="row_<%= index %>" style="background-color:<%= rowBackgroundColor %>";>
+                       <%
+                            Html.RenderPartial("~/Views/Story/StoryReadOnlyRow.ascx", story); 
+                       %>
+                       </tr>
+                       <%
+                        index++;
+                    }                               
+                %>                      
                 </tbody>
             </table>
         </div>        

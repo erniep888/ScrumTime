@@ -75,5 +75,43 @@ body{
 	color:#222;
 }
 
+.simpleLink:active{
+    text-decoration:none; 
+    color:#666;
+}
+
+.simpleLink:visited{
+    text-decoration:none; 
+    color:#666;
+}
+.simpleLink:link{
+    text-decoration:none; 
+    color:#666;
+}
+
+.simpleLink:hover{
+    text-decoration:underline;
+    color:#222;
+}
+
+.noticableLink:active{
+    text-decoration:none; 
+    color:#0035a0;
+}
+
+.noticableLink:visited{
+    text-decoration:none; 
+    color:#0035a0;
+}
+.noticableLink:link{
+    text-decoration:none; 
+    color:#0035a0;
+}
+
+.noticableLink:hover{
+    text-decoration:underline;
+    color:#0035a0;
+}
+
 
 

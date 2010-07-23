@@ -35,7 +35,7 @@ function setupReadOnlyRow(targetIndex) {
     $(".story_" + targetIndex).click(function () {
         var className = $(this).attr("class");
         var storyId = className.substring(6, className.length);
-        $(this).parent().load('/Story/Edit');
+        $(this).parent().load('/Story/Edit', { id: targetIndex });
     });
     $("#task_" + targetIndex).click(function () {
         $(this).parent().parent().load('/Story/StoryTasks');
@@ -43,9 +43,7 @@ function setupReadOnlyRow(targetIndex) {
     return;
 }
 
-function cancelRowEdit(parentTagId) {
-    $(parentTagId).load('/Story/ReadOnlyRow');
-    //var twoparent = event.src;
-    //$(this).srcElement.parent().parent().load('/Story/ReadOnlyRow');
+function cancelRowEdit(parentTagId, id) {
+    $(parentTagId).load('/Story/ReadOnlyRow', { id: id});
     return;
 }

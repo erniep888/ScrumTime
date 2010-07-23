@@ -46,15 +46,30 @@ namespace ScrumTime.Controllers
                 return PartialView("StoryControl", story);
         }
 
-        public ActionResult ReadOnlyRow()
+        public ActionResult ReadOnlyRow(int id)
         {
-            return PartialView("StoryReadOnlyRow");
+            Story story = GetStoryById(id);
+            return PartialView("StoryReadOnlyRow", story);
         }
 
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
+            Story story = GetStoryById(id);
+            return PartialView("StoryEditControl", story);
+        }
+
+        private Story GetStoryById(int id)
+        {
+            Story story = null;
             ScrumTimeEntities entities = new ScrumTimeEntities();
-            return PartialView("StoryEditControl");
+            var results = from s in entities.Stories
+                          where s.StoryId == id
+                          select s;
+            if (results.Count() > 0)
+                story = results.First<Story>();
+            else
+                story = new Story();
+            return story;
         }
 
         /************* /\ *********************** Alizarin */
@@ -65,6 +80,9 @@ namespace ScrumTime.Controllers
             StoryCollectionViewModel storyCollectionViewModel = new StoryCollectionViewModel();
             storyCollectionViewModel.SelectedSubMenuName = "Backlog";
             storyCollectionViewModel.Name = "Acme";
+            ScrumTimeEntities entities = new ScrumTimeEntities();
+            List<Story> stories = entities.Stories.ToList<Story>();
+            storyCollectionViewModel.Stories = stories;
             return View(storyCollectionViewModel);
         }
 
