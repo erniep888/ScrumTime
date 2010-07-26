@@ -12,4 +12,4 @@
             <option value="13" selected="selected">13</option>
             <option value="100">100</option>
         </select></td>
-    <td style="vertical-align:middle;text-align:center;width:194px;font-weight:bold;color:#0035a0;border:0px;">Save | <a href="#" class="noticableLink" onclick="cancelRowEdit('#row_<%= Model.StoryId %>', <%= Model.StoryId %>);">Cancel</span></td>
+    <td style="vertical-align:middle;text-align:center;width:194px;font-weight:bold;color:#0035a0;border:0px;">Save | <a href="#" class="noticableLink" onclick="cancelRowEdit('#row_<%= Model.StoryId %>', <%= Model.StoryId %>, <%= Model.Priority %>);">Cancel</span></td>

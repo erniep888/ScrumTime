@@ -1,5 +1,8 @@
 ﻿
-function setupReadOnlyStoryRow(storyId) {
+function setupReadOnlyStoryRow(storyId, priority) {
+    var bgColor = getBackgroundColor(priority);
+    $("#row_" + storyId).css("background-color", bgColor);
+
     $(".story_" + storyId).click(function () {
         $(this).parent().load('/Story/EditRow', { id: storyId });
     });
@@ -9,10 +12,23 @@ function setupReadOnlyStoryRow(storyId) {
     return;
 }
 
-function cancelRowEdit(parentTagId, id) {
-    $(parentTagId).load('/Story/ReadOnlyRow', { id: id});
+function cancelRowEdit(parentTagId, storyId, priority) {
+    var bgColor = getBackgroundColor(priority);
+    $("#row_" + storyId).css("background-color", bgColor);
+
+    $(parentTagId).load('/Story/ReadOnlyRow', { id: storyId });
     return;
 }
+
+// returns the alternating color for the row
+function getBackgroundColor(storyPriority) {
+    if (storyPriority % 2 == 0)
+        return '#ddd';
+    else {
+        return '#fff';
+    }
+}
+
 
 
 // loadJSON is not currently used...but do not delete just yet
