@@ -27,7 +27,7 @@
 	<div id="menuBackgroundDiv" style="z-index:50"></div>
 	<div id="pageCenterDiv">
 		<div id="pageTitleDiv">
-			<img id="pageLogo" src="/Content/Images/Logos/ScrumTime.com.Title_279x43.png" alt="ScrumTime"/>			
+			<img id="pageLogo" src="/Content/Images/Logos/ScrumTime.com.Title_157x25.png" alt="ScrumTime"/>			
 			<div id="pageTagline">scrum project management tool</div>
 		</div>
 		

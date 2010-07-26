@@ -14,7 +14,7 @@
                     <div style="margin-left:10px;border:1px dotted #333;margin-right:10px;margin-bottom:10px">
                         <div id="Div4" style="height:22px;width:100%;background-color:#dd9300;
                             font-family:Verdana;font-size:10px;padding-top:0px">
-                            <div style="font-size:11px;font-weight:bold;color:#eee;padding-left:8px;">Tasks <span style="width:70px;color:#0035a0;margin-left:20px">( New )</span></div>
+                            <div style="font-size:11px;font-weight:bold;color:#eee;padding-left:8px;">Tasks <span style="width:70px;color:#0035a0;margin-left:20px">( Add )</span></div>
                         </div>
                         <table style="width:100%;font-family:Verdana;padding:0;background-color:#ffd766" cellpadding="0" cellspacing="0">
                             <thead style="height:18px;width:100%;font-size:12px;color:#772;" >

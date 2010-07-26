@@ -23,7 +23,7 @@
         <div id="Div3" style="height:24px;width:964px;background-color:#aaa;
             font-family:Verdana;font-size:12px;padding-top:6px">
             <%--<div style="position:absolute;left:26px;font-size:14px;font-weight:bold;color:#eee">Stories</div>--%>
-            <div style="position:absolute;left:16px;width:115px;color:#00a;margin-top:0px">New Story</div>
+            <div style="position:absolute;left:16px;width:115px;color:#00a;margin-top:0px">Add Story</div>
             <div style="position:absolute;left:918px;width:50px;margin-top:0px;color:#00a;">Filter</div>
         </div>       
         <table style="width:964px;font-family:Verdana;padding:0;border:2px solid #999;height:30px;margin-left:0px;

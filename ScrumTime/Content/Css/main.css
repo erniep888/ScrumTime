@@ -32,14 +32,14 @@ body{
 
 #pageLogo {	
 	float:left;
-	margin-top:18px;
-	margin-left: 20px;
+	margin-top:22px;
+	margin-left: 12px;
 }
 
 #pageLogoGraph 
 {
     float:left;
-    margin-top:18px;
+    margin-top:25px;
     margin-left:-2px;
 }
 

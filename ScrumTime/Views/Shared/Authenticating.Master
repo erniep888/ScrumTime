@@ -27,8 +27,8 @@
 	<div id="menuBackgroundDiv"></div>
 	<div id="pageCenterDiv">
 		<div id="pageTitleDiv">			
-            <img id="pageLogoGraph" src="/Content/Images/Logos/logo_graph_48x48.png" alt="ScrumTime"/>		 
-            <img id="pageLogo" src="/Content/Images/Logos/ScrumTime.com.Title_279x43.png" alt="ScrumTime"/>		           	
+            <img id="pageLogoGraph" src="/Content/Images/Logos/logo_graph_48x48.png" height="32px" width="32px" alt="ScrumTime"/>		 
+            <img id="pageLogo" src="/Content/Images/Logos/ScrumTime.com.Title_209x33.png" alt="ScrumTime"/>		           	
 			<div id="pageTagline">scrum project management tool</div>
 		</div>
 		<% Html.RenderPartial("MainMenu"); %>
