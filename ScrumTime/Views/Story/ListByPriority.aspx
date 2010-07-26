@@ -5,11 +5,7 @@
 </asp:Content>
 
 <asp:Content ID="StoryBacklogHeadContent" ContentPlaceHolderID="HeadContent" runat="server">
-    <script src="<%= Url.Content("~/Scripts/Story/StoryAjax.js") %>" type="text/javascript"></script>  
-    <%--<script type="text/javascript">
-        loadJSON();
-        setClickEvent_Narrative(2);
-    </script>    --%>
+    <script src="<%= Url.Content("~/Scripts/Story.js") %>" type="text/javascript"></script>  
     <style type="text/css">
         td {padding-top:4px;padding-bottom:4px}
     </style>
@@ -22,7 +18,6 @@
     <div style="margin-top:32px">
         <div id="Div3" style="height:24px;width:964px;background-color:#aaa;
             font-family:Verdana;font-size:12px;padding-top:6px">
-            <%--<div style="position:absolute;left:26px;font-size:14px;font-weight:bold;color:#eee">Stories</div>--%>
             <div style="position:absolute;left:16px;width:115px;color:#00a;margin-top:0px">Add Story</div>
             <div style="position:absolute;left:918px;width:50px;margin-top:0px;color:#00a;">Filter</div>
         </div>       
@@ -52,7 +47,7 @@
                        %>
                        <tr id="row_<%= index %>" style="background-color:<%= rowBackgroundColor %>";>
                        <%
-                            Html.RenderPartial("~/Views/Story/StoryReadOnlyRow.ascx", story); 
+                            Html.RenderPartial("~/Views/Story/ReadOnlyRow.ascx", story); 
                        %>
                        </tr>
                        <%

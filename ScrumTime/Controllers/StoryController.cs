@@ -21,13 +21,33 @@ namespace ScrumTime.Controllers
 
 
         /************* \/ *********************** Alizarin */
-        public ActionResult StoryTasks(string test)
+
+        public ActionResult ListByPriority()
         {
-            var eval = test;
+            StoryCollectionViewModel storyCollectionViewModel = new StoryCollectionViewModel();
+            storyCollectionViewModel.SelectedSubMenuName = "Backlog";
+            storyCollectionViewModel.Name = "Acme";  // TODO: Get this from current project
             ScrumTimeEntities entities = new ScrumTimeEntities();
-            Story story = entities.Stories.First<Story>();
-            return PartialView("StoryTrControl", story);
+            List<Story> stories = entities.Stories.ToList<Story>();
+            storyCollectionViewModel.Stories = stories;
+            return View(storyCollectionViewModel);
         }
+
+        public ActionResult ReadOnlyRow(int id)
+        {
+            Story story = GetStoryById(id);
+            return PartialView(story);
+        }
+
+        public ActionResult EditRow(int id)
+        {
+            Story story = GetStoryById(id);
+            return PartialView(story);
+        }
+
+        /************* /\ *********************** Alizarin */
+
+
 
         public ActionResult StoryJson(string test)
         {
@@ -46,17 +66,9 @@ namespace ScrumTime.Controllers
                 return PartialView("StoryControl", story);
         }
 
-        public ActionResult ReadOnlyRow(int id)
-        {
-            Story story = GetStoryById(id);
-            return PartialView("StoryReadOnlyRow", story);
-        }
+        
 
-        public ActionResult Edit(int id)
-        {
-            Story story = GetStoryById(id);
-            return PartialView("StoryEditControl", story);
-        }
+        
 
         private Story GetStoryById(int id)
         {
@@ -72,19 +84,7 @@ namespace ScrumTime.Controllers
             return story;
         }
 
-        /************* /\ *********************** Alizarin */
-
-
-        public ActionResult List()
-        {
-            StoryCollectionViewModel storyCollectionViewModel = new StoryCollectionViewModel();
-            storyCollectionViewModel.SelectedSubMenuName = "Backlog";
-            storyCollectionViewModel.Name = "Acme";
-            ScrumTimeEntities entities = new ScrumTimeEntities();
-            List<Story> stories = entities.Stories.ToList<Story>();
-            storyCollectionViewModel.Stories = stories;
-            return View(storyCollectionViewModel);
-        }
+        
 
         //
         // GET: /Story/

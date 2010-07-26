@@ -7,6 +7,6 @@
     <td style="vertical-align:middle;text-align:center;width:194px;border:0px;">Delete | <a id="task_<%= Model.StoryId %>" class="simpleLink" href="#">Tasks</a></td>
                     
     <script type="text/javascript">       
-        setupReadOnlyRow(<%= Model.StoryId %>);
+        setupReadOnlyStoryRow(<%= Model.StoryId %>);
     </script>
     

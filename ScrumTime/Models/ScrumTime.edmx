@@ -4,15 +4,28 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ScrumTime.Models.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="ScrumTime.Models.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="ScrumTimeModelsStoreContainer">
+          <EntitySet Name="Projects" EntityType="ScrumTime.Models.Store.Projects" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Stories" EntityType="ScrumTime.Models.Store.Stories" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tasks" EntityType="ScrumTime.Models.Store.Tasks" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Stories_Projects" Association="ScrumTime.Models.Store.FK_Stories_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Stories" EntitySet="Stories" />
+          </AssociationSet>
           <AssociationSet Name="FK_Tasks_Stories" Association="ScrumTime.Models.Store.FK_Tasks_Stories">
             <End Role="Stories" EntitySet="Stories" />
             <End Role="Tasks" EntitySet="Tasks" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Projects">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="ProjectId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1024" />
+        </EntityType>
         <EntityType Name="Stories">
           <Key>
             <PropertyRef Name="StoryId" />
@@ -21,6 +34,8 @@
           <Property Name="Narrative" Type="nvarchar" Nullable="false" MaxLength="1024" />
           <Property Name="Points" Type="int" Nullable="false" />
           <Property Name="UserDefinedId" Type="nvarchar" MaxLength="250" />
+          <Property Name="Priority" Type="int" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Tasks">
           <Key>
@@ -29,11 +44,23 @@
           <Property Name="TaskId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="1024" />
           <Property Name="Hours" Type="decimal" Scale="1" />
-          <Property Name="StoryId" Type="int" />
+          <Property Name="StoryId" Type="int" Nullable="false" />
           <Property Name="AssignedTo" Type="nvarchar" MaxLength="250" />
         </EntityType>
+        <Association Name="FK_Stories_Projects">
+          <End Role="Projects" Type="ScrumTime.Models.Store.Projects" Multiplicity="1" />
+          <End Role="Stories" Type="ScrumTime.Models.Store.Stories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="Stories">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tasks_Stories">
-          <End Role="Stories" Type="ScrumTime.Models.Store.Stories" Multiplicity="0..1" />
+          <End Role="Stories" Type="ScrumTime.Models.Store.Stories" Multiplicity="1" />
           <End Role="Tasks" Type="ScrumTime.Models.Store.Tasks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Stories">
@@ -44,71 +71,118 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ScrumTime.Models" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="ScrumTimeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Projects" EntityType="ScrumTime.Models.Project" />
           <EntitySet Name="Stories" EntityType="ScrumTime.Models.Story" />
           <EntitySet Name="Tasks" EntityType="ScrumTime.Models.Task" />
+          <AssociationSet Name="FK_Stories_Projects" Association="ScrumTime.Models.FK_Stories_Projects">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Story" EntitySet="Stories" />
+          </AssociationSet>
           <AssociationSet Name="FK_Tasks_Stories" Association="ScrumTime.Models.FK_Tasks_Stories">
-            <End Role="Stories" EntitySet="Stories" />
-            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="Story" EntitySet="Stories" />
+            <End Role="Task" EntitySet="Tasks" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Type="Int32" Name="ProjectId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Stories" Relationship="ScrumTime.Models.FK_Stories_Projects" FromRole="Project" ToRole="Story" />
+        </EntityType>
         <EntityType Name="Story">
           <Key>
             <PropertyRef Name="StoryId" />
           </Key>
-          <Property Name="StoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Narrative" Type="String" Nullable="false" MaxLength="1024" Unicode="true" FixedLength="false" />
-          <Property Name="Points" Type="Int32" Nullable="false" />
-          <Property Name="UserDefinedId" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Tasks" Relationship="ScrumTime.Models.FK_Tasks_Stories" FromRole="Stories" ToRole="Tasks" />
+          <Property Type="Int32" Name="StoryId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Narrative" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Points" Nullable="false" />
+          <Property Type="String" Name="UserDefinedId" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Priority" Nullable="false" />
+          <Property Type="Int32" Name="ProjectId" Nullable="false" />
+          <NavigationProperty Name="Project" Relationship="ScrumTime.Models.FK_Stories_Projects" FromRole="Story" ToRole="Project" />
+          <NavigationProperty Name="Tasks" Relationship="ScrumTime.Models.FK_Tasks_Stories" FromRole="Story" ToRole="Task" />
         </EntityType>
         <EntityType Name="Task">
           <Key>
             <PropertyRef Name="TaskId" />
           </Key>
-          <Property Name="TaskId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="1024" Unicode="true" FixedLength="false" />
-          <Property Name="Hours" Type="Decimal" Precision="18" Scale="1" />
-          <Property Name="StoryId" Type="Int32" />
-          <Property Name="AssignedTo" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Story" Relationship="ScrumTime.Models.FK_Tasks_Stories" FromRole="Tasks" ToRole="Stories" />
+          <Property Type="Int32" Name="TaskId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="Hours" Precision="18" Scale="1" />
+          <Property Type="Int32" Name="StoryId" Nullable="false" />
+          <Property Type="String" Name="AssignedTo" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Story" Relationship="ScrumTime.Models.FK_Tasks_Stories" FromRole="Task" ToRole="Story" />
         </EntityType>
-        <Association Name="FK_Tasks_Stories">
-          <End Role="Stories" Type="ScrumTime.Models.Story" Multiplicity="0..1" />
-          <End Role="Tasks" Type="ScrumTime.Models.Task" Multiplicity="*" />
+        <Association Name="FK_Stories_Projects">
+          <End Type="ScrumTime.Models.Project" Role="Project" Multiplicity="1" />
+          <End Type="ScrumTime.Models.Story" Role="Story" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Stories">
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasks_Stories">
+          <End Type="ScrumTime.Models.Story" Role="Story" Multiplicity="1" />
+          <End Type="ScrumTime.Models.Task" Role="Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Story">
               <PropertyRef Name="StoryId" />
             </Principal>
-            <Dependent Role="Tasks">
+            <Dependent Role="Task">
               <PropertyRef Name="StoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ScrumTimeModelsStoreContainer" CdmEntityContainer="ScrumTimeEntities">
-          <EntitySetMapping Name="Stories"><EntityTypeMapping TypeName="ScrumTime.Models.Story"><MappingFragment StoreEntitySet="Stories">
-            <ScalarProperty Name="StoryId" ColumnName="StoryId" />
-            <ScalarProperty Name="Narrative" ColumnName="Narrative" />
-            <ScalarProperty Name="Points" ColumnName="Points" />
-            <ScalarProperty Name="UserDefinedId" ColumnName="UserDefinedId" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Tasks"><EntityTypeMapping TypeName="ScrumTime.Models.Task"><MappingFragment StoreEntitySet="Tasks">
-            <ScalarProperty Name="TaskId" ColumnName="TaskId" />
-            <ScalarProperty Name="Description" ColumnName="Description" />
-            <ScalarProperty Name="Hours" ColumnName="Hours" />
-            <ScalarProperty Name="StoryId" ColumnName="StoryId" />
-            <ScalarProperty Name="AssignedTo" ColumnName="AssignedTo" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="ScrumTime.Models.Project">
+              <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stories">
+            <EntityTypeMapping TypeName="ScrumTime.Models.Story">
+              <MappingFragment StoreEntitySet="Stories">
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="UserDefinedId" ColumnName="UserDefinedId" />
+                <ScalarProperty Name="Points" ColumnName="Points" />
+                <ScalarProperty Name="Narrative" ColumnName="Narrative" />
+                <ScalarProperty Name="StoryId" ColumnName="StoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="ScrumTime.Models.Task">
+              <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="AssignedTo" ColumnName="AssignedTo" />
+                <ScalarProperty Name="StoryId" ColumnName="StoryId" />
+                <ScalarProperty Name="Hours" ColumnName="Hours" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -130,11 +204,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="ScrumTime" ZoomLevel="114">
-        <EntityTypeShape EntityType="ScrumTime.Models.Story" Width="1.5" PointX="0.75" PointY="1" Height="1.9802864583333335" IsExpanded="true" />
-        <EntityTypeShape EntityType="ScrumTime.Models.Task" Width="1.5" PointX="3" PointY="0.875" Height="2.1725878906249996" IsExpanded="true" />
-        <AssociationConnector Association="ScrumTime.Models.FK_Tasks_Stories" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="1.9901432291666668" />
-          <ConnectorPoint PointX="3" PointY="1.9901432291666668" />
+        <EntityTypeShape EntityType="ScrumTime.Models.Project" Width="1.5" PointX="0.75" PointY="1.375" Height="1.7879850260416657" />
+        <EntityTypeShape EntityType="ScrumTime.Models.Story" Width="1.5" PointX="3" PointY="1" Height="2.5571907552083335" />
+        <EntityTypeShape EntityType="ScrumTime.Models.Task" Width="1.5" PointX="5.25" PointY="1.125" Height="2.1725878906249996" />
+        <AssociationConnector Association="ScrumTime.Models.FK_Stories_Projects" >
+          <ConnectorPoint PointX="2.25" PointY="2.2689925130208328" />
+          <ConnectorPoint PointX="3" PointY="2.2689925130208328" />
+        </AssociationConnector>
+        <AssociationConnector Association="ScrumTime.Models.FK_Tasks_Stories" >
+          <ConnectorPoint PointX="4.5" PointY="2.2112939453125" />
+          <ConnectorPoint PointX="5.25" PointY="2.2112939453125" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

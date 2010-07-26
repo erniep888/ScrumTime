@@ -18,7 +18,8 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("ScrumTime.Models", "FK_Tasks_Stories", "Stories", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(ScrumTime.Models.Story), "Tasks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScrumTime.Models.Task), true)]
+[assembly: EdmRelationshipAttribute("ScrumTime.Models", "FK_Stories_Projects", "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ScrumTime.Models.Project), "Story", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScrumTime.Models.Story), true)]
+[assembly: EdmRelationshipAttribute("ScrumTime.Models", "FK_Tasks_Stories", "Story", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ScrumTime.Models.Story), "Task", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScrumTime.Models.Task), true)]
 
 #endregion
 
@@ -73,6 +74,22 @@ namespace ScrumTime.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<Project> Projects
+        {
+            get
+            {
+                if ((_Projects == null))
+                {
+                    _Projects = base.CreateObjectSet<Project>("Projects");
+                }
+                return _Projects;
+            }
+        }
+        private ObjectSet<Project> _Projects;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Story> Stories
         {
             get
@@ -106,6 +123,14 @@ namespace ScrumTime.Models
         #region AddTo Methods
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the Projects EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToProjects(Project project)
+        {
+            base.AddObject("Projects", project);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Stories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToStories(Story story)
@@ -132,6 +157,136 @@ namespace ScrumTime.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="ScrumTime.Models", Name="Project")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Project : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Project object.
+        /// </summary>
+        /// <param name="projectId">Initial value of the ProjectId property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static Project CreateProject(global::System.Int32 projectId, global::System.String name)
+        {
+            Project project = new Project();
+            project.ProjectId = projectId;
+            project.Name = name;
+            return project;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ProjectId
+        {
+            get
+            {
+                return _ProjectId;
+            }
+            set
+            {
+                if (_ProjectId != value)
+                {
+                    OnProjectIdChanging(value);
+                    ReportPropertyChanging("ProjectId");
+                    _ProjectId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ProjectId");
+                    OnProjectIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ProjectId;
+        partial void OnProjectIdChanging(global::System.Int32 value);
+        partial void OnProjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("ScrumTime.Models", "FK_Stories_Projects", "Story")]
+        public EntityCollection<Story> Stories
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Story>("ScrumTime.Models.FK_Stories_Projects", "Story");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Story>("ScrumTime.Models.FK_Stories_Projects", "Story", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="ScrumTime.Models", Name="Story")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -145,12 +300,16 @@ namespace ScrumTime.Models
         /// <param name="storyId">Initial value of the StoryId property.</param>
         /// <param name="narrative">Initial value of the Narrative property.</param>
         /// <param name="points">Initial value of the Points property.</param>
-        public static Story CreateStory(global::System.Int32 storyId, global::System.String narrative, global::System.Int32 points)
+        /// <param name="priority">Initial value of the Priority property.</param>
+        /// <param name="projectId">Initial value of the ProjectId property.</param>
+        public static Story CreateStory(global::System.Int32 storyId, global::System.String narrative, global::System.Int32 points, global::System.Int32 priority, global::System.Int32 projectId)
         {
             Story story = new Story();
             story.StoryId = storyId;
             story.Narrative = narrative;
             story.Points = points;
+            story.Priority = priority;
+            story.ProjectId = projectId;
             return story;
         }
 
@@ -255,6 +414,54 @@ namespace ScrumTime.Models
         private global::System.String _UserDefinedId;
         partial void OnUserDefinedIdChanging(global::System.String value);
         partial void OnUserDefinedIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Priority
+        {
+            get
+            {
+                return _Priority;
+            }
+            set
+            {
+                OnPriorityChanging(value);
+                ReportPropertyChanging("Priority");
+                _Priority = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Priority");
+                OnPriorityChanged();
+            }
+        }
+        private global::System.Int32 _Priority;
+        partial void OnPriorityChanging(global::System.Int32 value);
+        partial void OnPriorityChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ProjectId
+        {
+            get
+            {
+                return _ProjectId;
+            }
+            set
+            {
+                OnProjectIdChanging(value);
+                ReportPropertyChanging("ProjectId");
+                _ProjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ProjectId");
+                OnProjectIdChanged();
+            }
+        }
+        private global::System.Int32 _ProjectId;
+        partial void OnProjectIdChanging(global::System.Int32 value);
+        partial void OnProjectIdChanged();
 
         #endregion
     
@@ -266,18 +473,56 @@ namespace ScrumTime.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ScrumTime.Models", "FK_Tasks_Stories", "Tasks")]
-        public EntityCollection<Task> Tasks
+        [EdmRelationshipNavigationPropertyAttribute("ScrumTime.Models", "FK_Stories_Projects", "Project")]
+        public Project Project
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Task>("ScrumTime.Models.FK_Tasks_Stories", "Tasks");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("ScrumTime.Models.FK_Stories_Projects", "Project").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("ScrumTime.Models.FK_Stories_Projects", "Project").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Project> ProjectReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("ScrumTime.Models.FK_Stories_Projects", "Project");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Task>("ScrumTime.Models.FK_Tasks_Stories", "Tasks", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Project>("ScrumTime.Models.FK_Stories_Projects", "Project", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("ScrumTime.Models", "FK_Tasks_Stories", "Task")]
+        public EntityCollection<Task> Tasks
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Task>("ScrumTime.Models.FK_Tasks_Stories", "Task");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Task>("ScrumTime.Models.FK_Tasks_Stories", "Task", value);
                 }
             }
         }
@@ -300,11 +545,13 @@ namespace ScrumTime.Models
         /// </summary>
         /// <param name="taskId">Initial value of the TaskId property.</param>
         /// <param name="description">Initial value of the Description property.</param>
-        public static Task CreateTask(global::System.Int32 taskId, global::System.String description)
+        /// <param name="storyId">Initial value of the StoryId property.</param>
+        public static Task CreateTask(global::System.Int32 taskId, global::System.String description, global::System.Int32 storyId)
         {
             Task task = new Task();
             task.TaskId = taskId;
             task.Description = description;
+            task.StoryId = storyId;
             return task;
         }
 
@@ -389,9 +636,9 @@ namespace ScrumTime.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> StoryId
+        public global::System.Int32 StoryId
         {
             get
             {
@@ -406,8 +653,8 @@ namespace ScrumTime.Models
                 OnStoryIdChanged();
             }
         }
-        private Nullable<global::System.Int32> _StoryId;
-        partial void OnStoryIdChanging(Nullable<global::System.Int32> value);
+        private global::System.Int32 _StoryId;
+        partial void OnStoryIdChanging(global::System.Int32 value);
         partial void OnStoryIdChanged();
     
         /// <summary>
@@ -444,16 +691,16 @@ namespace ScrumTime.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ScrumTime.Models", "FK_Tasks_Stories", "Stories")]
+        [EdmRelationshipNavigationPropertyAttribute("ScrumTime.Models", "FK_Tasks_Stories", "Story")]
         public Story Story
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Story>("ScrumTime.Models.FK_Tasks_Stories", "Stories").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Story>("ScrumTime.Models.FK_Tasks_Stories", "Story").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Story>("ScrumTime.Models.FK_Tasks_Stories", "Stories").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Story>("ScrumTime.Models.FK_Tasks_Stories", "Story").Value = value;
             }
         }
         /// <summary>
@@ -465,13 +712,13 @@ namespace ScrumTime.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Story>("ScrumTime.Models.FK_Tasks_Stories", "Stories");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Story>("ScrumTime.Models.FK_Tasks_Stories", "Story");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Story>("ScrumTime.Models.FK_Tasks_Stories", "Stories", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Story>("ScrumTime.Models.FK_Tasks_Stories", "Story", value);
                 }
             }
         }
