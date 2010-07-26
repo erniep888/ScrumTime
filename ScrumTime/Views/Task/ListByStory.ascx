@@ -7,7 +7,7 @@
                 <td style="vertical-align:middle;text-align:center;width:78px;border:0px;">10</td>
                 <td class="story_1" style="border:0px;width:530px;">As the author, I want to see the text in multiple fonts.</td>
                 <td class="story_1" style="vertical-align:middle;text-align:center;width:80px;border:0px;">8</td>
-                <td style="vertical-align:middle;text-align:center;width:192px;border:0px;"><span id="closetask_1" style="font-size:12px;font-weight:bold;color:#0035a0">Close Tasks</span></td>
+                <td style="vertical-align:middle;text-align:center;width:192px;border:0px;"><a id="closeTask_<%= Model.StoryId %>" class="simpleLink" href="#" style="font-size:12px;font-weight:bold;color:#0035a0" onclick="cancelRowEdit('#row_<%= Model.StoryId %>', <%= Model.StoryId %>)">Close Tasks</a></td>
             </tr>
             <tr>
                 <td colspan="5">

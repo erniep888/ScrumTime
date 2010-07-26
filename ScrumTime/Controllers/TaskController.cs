@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using ScrumTime.Models;
 using ScrumTime.ViewModels;
 using ScrumTime.Helpers;
+using ScrumTime.Services;
 
 namespace ScrumTime.Controllers
 {
@@ -13,16 +14,18 @@ namespace ScrumTime.Controllers
     {
 
         ScrumTimeEntities _ScrumTimeEntities;
+        StoryService _StoryService;
 
         public TaskController()
         {
             _ScrumTimeEntities = new ScrumTimeEntities();
+            _StoryService = new StoryService(_ScrumTimeEntities);
         }
 
         public ActionResult ListByStory(int storyId)
         {
             ScrumTimeEntities entities = new ScrumTimeEntities();
-            Story story = entities.Stories.First<Story>();  // TODO: Find by story id
+            Story story = _StoryService.GetStoryById(storyId);
             return PartialView(story);
         }
 

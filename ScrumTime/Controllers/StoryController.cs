@@ -6,16 +6,19 @@ using System.Web.Mvc;
 using ScrumTime.Models;
 using ScrumTime.ViewModels;
 using ScrumTime.Helpers;
+using ScrumTime.Services;
 
 namespace ScrumTime.Controllers
 {
     public class StoryController : Controller
     {
         ScrumTimeEntities _ScrumTimeEntities;
+        StoryService _StoryService;
 
         public StoryController()
         {
             _ScrumTimeEntities = new ScrumTimeEntities();
+            _StoryService = new StoryService(_ScrumTimeEntities);
         }
 
 
@@ -35,13 +38,13 @@ namespace ScrumTime.Controllers
 
         public ActionResult ReadOnlyRow(int id)
         {
-            Story story = GetStoryById(id);
+            Story story = _StoryService.GetStoryById(id);
             return PartialView(story);
         }
 
         public ActionResult EditRow(int id)
         {
-            Story story = GetStoryById(id);
+            Story story = _StoryService.GetStoryById(id);
             return PartialView(story);
         }
 
@@ -67,22 +70,6 @@ namespace ScrumTime.Controllers
         }
 
         
-
-        
-
-        private Story GetStoryById(int id)
-        {
-            Story story = null;
-            ScrumTimeEntities entities = new ScrumTimeEntities();
-            var results = from s in entities.Stories
-                          where s.StoryId == id
-                          select s;
-            if (results.Count() > 0)
-                story = results.First<Story>();
-            else
-                story = new Story();
-            return story;
-        }
 
         
 

@@ -5,7 +5,7 @@
 </asp:Content>
 
 <asp:Content ID="StoryBacklogHeadContent" ContentPlaceHolderID="HeadContent" runat="server">
-    <script src="<%= Url.Content("~/Scripts/Story.js") %>" type="text/javascript"></script>  
+    <script src="<%= Url.Content("~/Scripts/Story.js") %>" type="text/javascript"></script>   
     <style type="text/css">
         td {padding-top:4px;padding-bottom:4px}
     </style>
@@ -24,9 +24,9 @@
         <table style="width:964px;font-family:Verdana;padding:0;border:2px solid #999;height:30px;margin-left:0px;
             background-color:#4682b4;font-size:14px;color:#666;" cellpadding="0" cellspacing="0">
             <tr>
-                <th style="text-align:center;width:78px;border:0px;">Priority</th>
-                <th style="text-align:center;width:78px;border:0px;">ID</th>
-                <th style="border:0px;width:548px">Narrative</th>                    
+                <th style="text-align:center;width:68px;border:0px;">Priority</th>
+                <th style="text-align:center;width:106px;border:0px;">Id/Name</th>
+                <th style="border:0px;width:528px">Narrative</th>                    
                 <th style="text-align:center;width:80px;border:0px;">Points</th>
                 <th style="text-align:center;width:194px;border:0px;">Actions</th>
                 <th style="width:11px;border:0px;"></th>

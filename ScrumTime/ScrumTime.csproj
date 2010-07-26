@@ -85,6 +85,7 @@
       <DependentUpon>ScrumTime.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\StoryService.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\CommunityViewModel.cs" />
     <Compile Include="ViewModels\ProjectCollectionViewModel.cs" />
@@ -140,6 +141,7 @@
     <Content Include="Content\Images\Tabs\SelectedTabBg.png" />
     <Content Include="Content\Images\Tabs\UnselectedTabBg.png" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\Task.js" />
     <Content Include="Scripts\Story.js" />
     <Content Include="Views\Community\Index.aspx" />
     <Content Include="Views\Project\Create.aspx" />
