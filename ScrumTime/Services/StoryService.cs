@@ -15,10 +15,11 @@ namespace ScrumTime.Services
             _ScrumTimeEntities = scrumTimeEntities;
         }
 
-        public Story GetStoryById(int id)
-        {
+
+        public Story GetStoryById(ScrumTimeEntities scrumTimeEntities, int id)
+        {            
             Story story = null;
-            var results = from s in _ScrumTimeEntities.Stories
+            var results = from s in scrumTimeEntities.Stories
                           where s.StoryId == id
                           select s;
             if (results.Count() > 0)
@@ -28,72 +29,115 @@ namespace ScrumTime.Services
             return story;
         }
 
+        public Story GetStoryById(int id)
+        {
+            return GetStoryById(_ScrumTimeEntities, id);
+        }
+
         public Story SaveStory(Story story)
         {
             if (story != null)
             {
-                Story previousStory = null;
-                int totalNumberOfStories = _ScrumTimeEntities.Stories.Count();
-                if (story.StoryId != null)
+                if (story.StoryId == 0)  // this is new
                 {
-                    previousStory = GetStoryById(story.StoryId);
-                    if (previousStory != null &&
-                        previousStory.Priority == story.Priority)
+                    SetPriorityForSave(story, 0, story.Priority);
+                    _ScrumTimeEntities.AddToStories(story);
+                }
+                else  // the story exists
+                {
+                    ScrumTimeEntities freshScrumTimeEntities =
+                        new ScrumTimeEntities(_ScrumTimeEntities.Connection.ConnectionString);
+                    Story existingStory = GetStoryById(freshScrumTimeEntities, story.StoryId);
+                    if (existingStory != null && existingStory.StoryId > 0)
                     {
-                        // No need to update other story priorities
+                        SetPriorityForSave(story, existingStory.Priority, story.Priority);
                     }
                     else
                     {
-                        // Update other story priorities greater than this story priority
-
+                        throw new Exception("The story no longer exists.");
                     }
                 }
+                _ScrumTimeEntities.SaveChanges();
             }
             return story;
         }
 
-        protected void UpdateStoryPriorities(int currentPriority, int totalNumberOfStories)
+        public void DeleteStory(int storyId)
         {
-            if (currentPriority < 1)
-                currentPriority = 1;
-            else if (currentPriority > totalNumberOfStories)
-                currentPriority = totalNumberOfStories;
+            Story existingStory = GetStoryById(storyId);
+
+            if (existingStory != null && existingStory.StoryId > 0)
+            {
+                int totalStories = _ScrumTimeEntities.Stories.Count();
+                _ScrumTimeEntities.DeleteObject(existingStory);
+                DecreasePriorityValuesInclusive(existingStory.Priority+1, totalStories);
+                _ScrumTimeEntities.SaveChanges();
+            }
+            else
+                throw new Exception("You have attempted to delete a story that does not exist.");
+        }
+
+
+        // Set both priorities to zero or less for a delete scenario
+        protected void SetPriorityForSave(Story story, int currentPriority, int targetPriority)
+        {
+            int totalStories = _ScrumTimeEntities.Stories.Count();
+             
+            if (currentPriority < 1) // this is a new story
+            {
+                targetPriority = AdjustToWithinBounds(targetPriority, totalStories + 1);
+                story.Priority = targetPriority;
+                IncreasePriorityValuesInclusive(targetPriority, totalStories);
+            }
+            else  // this is an existing story
+            {
+                targetPriority = AdjustToWithinBounds(targetPriority, totalStories);
+                story.Priority = targetPriority;
+                if (currentPriority < targetPriority)
+                {
+                    DecreasePriorityValuesInclusive(currentPriority + 1, targetPriority);
+                }
+                else if (currentPriority > targetPriority)
+                {
+                    IncreasePriorityValuesInclusive(targetPriority, currentPriority - 1);
+                }
+            }                                  
+        }
+
+        protected void DecreasePriorityValuesInclusive(int start, int stop)
+        {
             var results = from s in _ScrumTimeEntities.Stories
-                          where s.Priority >= currentPriority
-                          orderby s.Priority ascending
+                          where s.Priority >= start && s.Priority <= stop
+                          orderby s.Priority
+                          select s;
+            foreach (Story story in results)
+            {
+                story.Priority--;
+            }
+        }
+
+        protected void IncreasePriorityValuesInclusive(int start, int stop)
+        {
+            var results = from s in _ScrumTimeEntities.Stories
+                          where s.Priority >= start && s.Priority <= stop
+                          orderby s.Priority
                           select s;
             foreach (Story story in results)
             {
                 story.Priority++;
             }
-            _ScrumTimeEntities.SaveChanges();
         }
 
-        protected void DecreasePriorityValuesByOne(int start, int stop)
+
+        protected int AdjustToWithinBounds(int targetPriority, int totalStories)
         {
-            var results = from s in _ScrumTimeEntities.Stories
-                          where s.Priority > start && s.Priority <= stop
-                          orderby s.Priority ascending
-                          select s;
-            foreach (Story s in results)
-            {
-                s.Priority--;
-            }
-            _ScrumTimeEntities.SaveChanges();
+            if (targetPriority > totalStories)
+                targetPriority = totalStories;
+            else if (targetPriority < 1)
+                targetPriority = 1;
+            return targetPriority;
         }
 
-        protected void IncreasePriorityValuesByOne(int start, int stop)
-        {
-            var results = from s in _ScrumTimeEntities.Stories
-                          where s.Priority >= start && s.Priority < stop
-                          orderby s.Priority ascending
-                          select s;
-            foreach (Story s in results)
-            {
-                s.Priority++;
-            }
-            _ScrumTimeEntities.SaveChanges();
-        }
 
     }
 }
