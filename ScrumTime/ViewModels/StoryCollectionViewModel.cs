@@ -7,8 +7,7 @@ using ScrumTime.Models;
 namespace ScrumTime.ViewModels
 {
     public class StoryCollectionViewModel : ProjectViewModel
-    {        
-
+    {
         public StoryCollectionViewModel()
         {
             SelectedMenuName = "Project";

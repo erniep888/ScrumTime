@@ -45,7 +45,11 @@ namespace ScrumTime.Controllers
         public ActionResult EditRow(int id)
         {
             Story story = _StoryService.GetStoryById(id);
-            return PartialView(story);
+            StoryViewModel storyViewModel = new StoryViewModel()
+            {
+                StoryModel = story
+            };
+            return PartialView(storyViewModel);
         }
 
         /************* /\ *********************** Alizarin */

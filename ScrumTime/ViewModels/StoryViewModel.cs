@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ScrumTime.Models;
+using ScrumTime.Helpers;
 
 namespace ScrumTime.ViewModels
 {
     public class StoryViewModel : ProjectViewModel
     {
+        public Story StoryModel { get; set; }
+        public List<int> Points { get; private set; }
+
         public StoryViewModel()
         {
             SelectedMenuName = "Project";
             SelectedSubMenuName = "Scrum";
+            Points = StoryPoints.All();
         }
     }
 }
