@@ -78,6 +78,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\SecureJsonResult.cs" />
+    <Compile Include="Helpers\StoryPoints.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ScrumTime.Designer.cs">
       <AutoGen>True</AutoGen>
