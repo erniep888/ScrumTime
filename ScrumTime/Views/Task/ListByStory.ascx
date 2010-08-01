@@ -3,10 +3,10 @@
    <td style="padding:0px;margin:0px;border:0px;" colspan="5">
         <table style="width:941px;font-family:Verdana;padding:0px;margin:0px;" cellpadding="0" cellspacing="0">
             <tr style="background-color:#eee;padding:0px;margin:0px;">
-                <td class="story_1" style="vertical-align:middle;text-align:center;width:78px;border:0px;">1</td>
-                <td style="vertical-align:middle;text-align:center;width:78px;border:0px;">10</td>
-                <td class="story_1" style="border:0px;width:530px;">As the author, I want to see the text in multiple fonts.</td>
-                <td class="story_1" style="vertical-align:middle;text-align:center;width:80px;border:0px;">8</td>
+                <td class="story_1" style="vertical-align:middle;text-align:center;width:78px;border:0px;"><%= Model.StoryId %></td>
+                <td style="vertical-align:middle;text-align:center;width:78px;border:0px;"><%= Model.UserDefinedId %></td>
+                <td class="story_1" style="border:0px;width:530px;"><%= Model.Narrative %></td>
+                <td class="story_1" style="vertical-align:middle;text-align:center;width:80px;border:0px;"><%= Model.Points %></td>
                 <td style="vertical-align:middle;text-align:center;width:192px;border:0px;"><a id="closeTask_<%= Model.StoryId %>" class="simpleLink" href="#" style="font-size:12px;font-weight:bold;color:#0035a0" onclick="cancelRowEdit('#row_<%= Model.StoryId %>', <%= Model.StoryId %>, <%= Model.Priority %>)">Close Tasks</a></td>
             </tr>
             <tr>
@@ -26,30 +26,19 @@
                                 </tr>
                             </thead>
                             <tbody style="font-size:12px;">
-                                <tr style="background-color:#ffffe0;">
-                                    <td style="vertical-align:middle;text-align:center;width:80px;">10</td>
-                                    <td>Create the table structure.</td>
-                                    <td style="vertical-align:middle;text-align:center;width:80px">1</td>
-                                    <td style="vertical-align:middle;text-align:center;width:194px">Delete</td>
-                                </tr>
-                                <tr style="background-color:#ffffe0;">
-                                    <td style="vertical-align:middle;text-align:center;width:80px;">13</td>
-                                    <td>Create the domain object.</td>
-                                    <td style="vertical-align:middle;text-align:center;width:80px">1</td>
-                                    <td style="vertical-align:middle;text-align:center;width:194px">Delete</td>
-                                </tr>
-                                <tr style="background-color:#ffffe0;">
-                                    <td style="vertical-align:middle;text-align:center;width:80px;">8</td>
-                                    <td>Create the view model.</td>
-                                    <td style="vertical-align:middle;text-align:center;width:80px">3</td>
-                                    <td style="vertical-align:middle;text-align:center;width:194px">Delete</td>
-                                </tr>
-                                <tr style="background-color:#ffffe0;">
-                                    <td style="vertical-align:middle;text-align:center;width:80px;">22</td>
-                                    <td>Create the view.</td>
-                                    <td style="vertical-align:middle;text-align:center;width:80px">8</td>
-                                    <td style="vertical-align:middle;text-align:center;width:194px">Delete</td>
-                                </tr>
+                                <%
+                                    foreach (ScrumTime.Models.Task task in Model.Tasks)
+                                    {
+                                %>
+                                        <tr style="background-color:#ffffe0;">
+                                            <td style="vertical-align:middle;text-align:center;width:80px;"><%= task.TaskId %></td>
+                                            <td><%= task.Description %></td>
+                                            <td style="vertical-align:middle;text-align:center;width:80px"><%= task.Hours %></td>
+                                            <td style="vertical-align:middle;text-align:center;width:194px">Delete</td>
+                                        </tr>
+                                <%
+                                    }
+                                %>                                
                             </tbody>
                         </table>
                     </div>
