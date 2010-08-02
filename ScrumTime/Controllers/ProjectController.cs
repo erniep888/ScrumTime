@@ -13,8 +13,8 @@ namespace ScrumTime.Controllers
         // GET: /Project/
 
         public ActionResult Index()
-        {            
-            return View(new ProjectViewModel());
+        {
+            return RedirectToAction("ListByPriority", "Story");
         }
 
         //
