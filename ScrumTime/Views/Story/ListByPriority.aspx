@@ -42,9 +42,7 @@
                     {
                        %>
                        <tr id="storyRow_<%= index %>" class="storyRow" style="border:0px" >
-                       <%
-                            Html.RenderPartial("~/Views/Story/ReadOnlyRow.ascx", story); 
-                       %>
+                            <% Html.RenderPartial("~/Views/Story/ReadOnlyRow.ascx", story); %>
                        </tr>
                        <%
                         index++;

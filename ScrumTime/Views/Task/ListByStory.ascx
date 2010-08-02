@@ -30,14 +30,8 @@
                                     foreach (ScrumTime.Models.Task task in Model.Tasks)
                                     {
                                 %>
-                                        <tr id="task_<%= task.TaskId %>" class="taskRow">
-                                            <td style="vertical-align:middle;text-align:center;width:80px;border:0px;"><%= task.TaskId %></td>
-                                            <td style="border:0px;"><%= task.Description %></td>
-                                            <td style="vertical-align:middle;text-align:center;width:80px;border:0px;"><%= task.Hours %></td>
-                                            <td style="vertical-align:middle;text-align:center;width:194px;border:0px;">Delete</td>
-                                            <script type="text/javascript">           
-                                                setupReadOnlyTaskRow(<%= task.TaskId %>);
-                                            </script>
+                                        <tr id="taskRow_<%= task.TaskId %>" class="taskRow">
+                                            <% Html.RenderPartial("~/Views/Task/ReadOnlyRow.ascx", task); %>
                                         </tr>
                                         
                                 <%

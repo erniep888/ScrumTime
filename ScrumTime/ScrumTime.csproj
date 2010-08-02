@@ -157,6 +157,7 @@
     <Content Include="Views\Story\ReadOnlyRow.ascx" />
     <Content Include="Views\Task\EditRow.ascx" />
     <Content Include="Views\Task\ListByStory.ascx" />
+    <Content Include="Views\Task\ReadOnlyRow.ascx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
