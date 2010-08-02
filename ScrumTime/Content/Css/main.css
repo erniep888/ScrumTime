@@ -117,7 +117,14 @@ body{
     background-color: #fff;
 }
 
-.storyAltRows
-{
+.storyAltRows{
     background-color: #ddd;
+}
+
+.taskTable{
+    background-color: #ffffff;  
+}
+
+.taskAltRows{
+    background-color: #F4F0EC;
 }

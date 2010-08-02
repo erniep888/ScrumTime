@@ -6,6 +6,7 @@
 
 <asp:Content ID="StoryBacklogHeadContent" ContentPlaceHolderID="HeadContent" runat="server">
     <script src="<%= Url.Content("~/Scripts/Story.js") %>" type="text/javascript"></script>   
+    <script src="<%= Url.Content("~/Scripts/Task.js") %>" type="text/javascript"></script>   
     <style type="text/css">
         td {padding-top:4px;padding-bottom:4px}
     </style>
@@ -40,7 +41,7 @@
                     foreach (ScrumTime.Models.Story story in Model.Stories)
                     {
                        %>
-                       <tr id="storyRow_<%= index %>" class="storyRow" >
+                       <tr id="storyRow_<%= index %>" class="storyRow" style="border:0px" >
                        <%
                             Html.RenderPartial("~/Views/Story/ReadOnlyRow.ascx", story); 
                        %>

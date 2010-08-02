@@ -1,5 +1,5 @@
 ﻿
-function setupReadOnlyStoryRow(storyId, priority) {
+function setupReadOnlyStoryRow(storyId) {
 
     $(".story_" + storyId).click(function () {
         $(this).parent().load('/Story/EditRow', { id: storyId });
@@ -15,7 +15,7 @@ function setupReadOnlyStoryRow(storyId, priority) {
     return;
 }
 
-function cancelStoryRowEdit(parentTagId, storyId, priority) {
+function cancelStoryRowEdit(parentTagId, storyId) {
     $(parentTagId).load('/Story/ReadOnlyRow', { id: storyId });
     return;
 }
