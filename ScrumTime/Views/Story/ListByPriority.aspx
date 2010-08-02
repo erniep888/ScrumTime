@@ -34,18 +34,13 @@
         </table>
         <div style="width:960px;height:386px;border-left:2px solid #999;border-right:2px solid #aaa;
             border-bottom:2px solid #999;overflow:scroll;">
-            <table style="width:943px;font-family:Verdana;padding:0" cellpadding="0" cellspacing="0">                
+            <table class="storyTable" style="width:943px;font-family:Verdana;padding:0" cellpadding="0" cellspacing="0">                
                 <tbody style="font-size:12px;">
                 <%  int index = 1;
-                    string rowBackgroundColor = "#eee";
                     foreach (ScrumTime.Models.Story story in Model.Stories)
                     {
-                        if (index % 1 == 0)
-                            rowBackgroundColor = "#fff";
-                        else
-                            rowBackgroundColor = "#eee";
                        %>
-                       <tr id="storyRow_<%= index %>" style="background-color:<%= rowBackgroundColor %>";>
+                       <tr id="storyRow_<%= index %>" class="storyRow" >
                        <%
                             Html.RenderPartial("~/Views/Story/ReadOnlyRow.ascx", story); 
                        %>

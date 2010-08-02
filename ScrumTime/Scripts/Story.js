@@ -1,6 +1,6 @@
 ﻿
 function setupReadOnlyStoryRow(storyId, priority) {
-    var bgColor = getBackgroundColor(priority);
+    var bgColor = getStoryBackgroundColor(priority);
     $("#storyRow_" + storyId).css("background-color", bgColor);
 
     $(".story_" + storyId).click(function () {
@@ -9,11 +9,15 @@ function setupReadOnlyStoryRow(storyId, priority) {
     $("#storyTasks_" + storyId).click(function () {
         $(this).parent().parent().load('/Task/ListByStory', {storyId: storyId});
     });
+
+    $(document).ready(function () {
+        $(".storyTable .storyRow:even").addClass("storyAltRows");
+    });
     return;
 }
 
-function cancelRowEdit(parentTagId, storyId, priority) {
-    var bgColor = getBackgroundColor(priority);
+function cancelStoryRowEdit(parentTagId, storyId, priority) {
+    var bgColor = getStoryBackgroundColor(priority);
     $("#storyRow_" + storyId).css("background-color", bgColor);
 
     $(parentTagId).load('/Story/ReadOnlyRow', { id: storyId });
@@ -21,7 +25,7 @@ function cancelRowEdit(parentTagId, storyId, priority) {
 }
 
 // returns the alternating color for the row
-function getBackgroundColor(storyPriority) {
+function getStoryBackgroundColor(storyPriority) {
     if (storyPriority % 2 == 0)
         return '#ddd';
     else {

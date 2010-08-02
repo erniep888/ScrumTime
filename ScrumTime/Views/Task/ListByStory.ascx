@@ -2,12 +2,12 @@
     
    <td style="padding:0px;margin:0px;border:0px;" colspan="5">
         <table style="width:941px;font-family:Verdana;padding:0px;margin:0px;" cellpadding="0" cellspacing="0">
-            <tr style="background-color:#eee;padding:0px;margin:0px;">
-                <td class="story_<%= Model.StoryId %>" style="vertical-align:middle;text-align:center;width:78px;border:0px;"><%= Model.StoryId %></td>
-                <td style="vertical-align:middle;text-align:center;width:78px;border:0px;"><%= Model.UserDefinedId %></td>
-                <td class="story_<%= Model.StoryId %>" style="border:0px;width:530px;"><%= Model.Narrative %></td>
+            <tr class="storyRow" style="padding:0px;margin:0px;">
+                <td class="story_<%= Model.StoryId %>" style="vertical-align:middle;text-align:center;width:68px;border:0px;"><%= Model.StoryId %></td>
+                <td style="vertical-align:middle;text-align:center;width:108px;border:0px;"><%= Model.UserDefinedId %></td>
+                <td class="story_<%= Model.StoryId %>" style="border:0px;width:510px;"><%= Model.Narrative %></td>
                 <td class="story_<%= Model.StoryId %>" style="vertical-align:middle;text-align:center;width:80px;border:0px;"><%= Model.Points %></td>
-                <td style="vertical-align:middle;text-align:center;width:192px;border:0px;"><a id="closeStoryTasks_<%= Model.StoryId %>" class="simpleLink" href="#" style="font-size:12px;font-weight:bold;color:#0035a0" onclick="cancelRowEdit('#storyRow_<%= Model.StoryId %>', <%= Model.StoryId %>, <%= Model.Priority %>)">Close Tasks</a></td>
+                <td style="vertical-align:middle;text-align:center;width:194px;border:0px;"><a id="closeStoryTasks_<%= Model.StoryId %>" class="simpleLink" href="#" style="font-size:12px;font-weight:bold;color:#0035a0" onclick="cancelStoryRowEdit('#storyRow_<%= Model.StoryId %>', <%= Model.StoryId %>, <%= Model.Priority %>)">Close Tasks</a></td>
             </tr>
             <tr>
                 <td colspan="5">

@@ -113,5 +113,11 @@ body{
     color:#0035a0;
 }
 
+.storyTable{
+    background-color: #fff;
+}
 
-
+.storyAltRows
+{
+    background-color: #ddd;
+}
