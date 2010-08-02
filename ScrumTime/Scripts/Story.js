@@ -1,12 +1,12 @@
 ﻿
 function setupReadOnlyStoryRow(storyId, priority) {
     var bgColor = getBackgroundColor(priority);
-    $("#row_" + storyId).css("background-color", bgColor);
+    $("#storyRow_" + storyId).css("background-color", bgColor);
 
     $(".story_" + storyId).click(function () {
         $(this).parent().load('/Story/EditRow', { id: storyId });
     });
-    $("#task_" + storyId).click(function () {
+    $("#storyTasks_" + storyId).click(function () {
         $(this).parent().parent().load('/Task/ListByStory', {storyId: storyId});
     });
     return;
@@ -14,7 +14,7 @@ function setupReadOnlyStoryRow(storyId, priority) {
 
 function cancelRowEdit(parentTagId, storyId, priority) {
     var bgColor = getBackgroundColor(priority);
-    $("#row_" + storyId).css("background-color", bgColor);
+    $("#storyRow_" + storyId).css("background-color", bgColor);
 
     $(parentTagId).load('/Story/ReadOnlyRow', { id: storyId });
     return;

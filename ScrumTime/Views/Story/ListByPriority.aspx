@@ -45,7 +45,7 @@
                         else
                             rowBackgroundColor = "#eee";
                        %>
-                       <tr id="row_<%= index %>" style="background-color:<%= rowBackgroundColor %>";>
+                       <tr id="storyRow_<%= index %>" style="background-color:<%= rowBackgroundColor %>";>
                        <%
                             Html.RenderPartial("~/Views/Story/ReadOnlyRow.ascx", story); 
                        %>
