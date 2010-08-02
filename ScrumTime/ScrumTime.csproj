@@ -87,6 +87,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\StoryService.cs" />
+    <Compile Include="Services\TaskService.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\CommunityViewModel.cs" />
     <Compile Include="ViewModels\ProjectCollectionViewModel.cs" />
@@ -154,6 +155,7 @@
     <Content Include="Views\Story\ListByPriority.aspx" />
     <Content Include="Views\Story\EditRow.ascx" />
     <Content Include="Views\Story\ReadOnlyRow.ascx" />
+    <Content Include="Views\Task\EditRow.ascx" />
     <Content Include="Views\Task\ListByStory.ascx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

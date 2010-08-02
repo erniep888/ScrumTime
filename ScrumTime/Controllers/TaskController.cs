@@ -15,11 +15,13 @@ namespace ScrumTime.Controllers
 
         ScrumTimeEntities _ScrumTimeEntities;
         StoryService _StoryService;
+        TaskService _TaskService;        
 
         public TaskController()
         {
             _ScrumTimeEntities = new ScrumTimeEntities();
             _StoryService = new StoryService(_ScrumTimeEntities);
+            _TaskService = new TaskService(_ScrumTimeEntities);
         }
 
         public ActionResult ListByStory(int storyId)
@@ -27,6 +29,12 @@ namespace ScrumTime.Controllers
             ScrumTimeEntities entities = new ScrumTimeEntities();
             Story story = _StoryService.GetStoryById(storyId);
             return PartialView(story);
+        }
+
+        public ActionResult EditRow(int id)
+        {
+            Task task = _TaskService.GetTaskById(id);            
+            return PartialView(task);
         }
 
     }

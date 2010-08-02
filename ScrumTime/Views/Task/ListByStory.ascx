@@ -30,7 +30,7 @@
                                     foreach (ScrumTime.Models.Task task in Model.Tasks)
                                     {
                                 %>
-                                        <tr style="background-color:#ffffe0;">
+                                        <tr id="task_<%= task.TaskId %>" style="background-color:#ffffe0;">
                                             <td style="vertical-align:middle;text-align:center;width:80px;"><%= task.TaskId %></td>
                                             <td><%= task.Description %></td>
                                             <td style="vertical-align:middle;text-align:center;width:80px"><%= task.Hours %></td>
