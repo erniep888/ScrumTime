@@ -20,6 +20,12 @@ function cancelStoryRowEdit(parentTagId, storyId) {
     return;
 }
 
+function addStoryRow() {    
+    $('.storyTable  tr:first').after('<tr id="storyRow_0" class="storyRow" style="border:0px" ></tr>');
+    $('#storyRow_0').load('/Story/AddStoryRow');
+    return;
+}
+
 
 // loadJSON is not currently used...but do not delete just yet
 function loadJSON() {

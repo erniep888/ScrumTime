@@ -8,6 +8,7 @@ namespace ScrumTime.ViewModels
 {
     public class StoryCollectionViewModel : ProjectViewModel
     {
+        public bool AddStory { get; set; }
         public StoryCollectionViewModel()
         {
             SelectedMenuName = "Project";

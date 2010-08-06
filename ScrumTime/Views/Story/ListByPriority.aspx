@@ -19,7 +19,7 @@
     <div style="margin-top:32px">
         <div id="Div3" style="height:24px;width:960px;background-color:white;
             font-family:Verdana;font-size:12px;padding-top:6px;border-top:2px solid #999;border-left:2px solid #999;border-right:2px solid #999;">
-            <div style="position:absolute;left:16px;width:115px;color:#00a;margin-top:0px">Add Story</div>
+            <div style="position:absolute;left:16px;width:115px;margin-top:0px"><a class="simpleLink" style="color:#00a;" href="#" onclick="addStoryRow();">Add Story</a></div>
             <div style="position:absolute;left:918px;width:50px;margin-top:0px;color:#00a;">Filter</div>
         </div>       
         <table style="width:964px;font-family:Verdana;padding:0;border:2px solid #999;height:30px;margin-left:0px;
@@ -37,7 +37,9 @@
             border-bottom:2px solid #999;overflow:scroll;">
             <table class="storyTable" style="width:943px;font-family:Verdana;padding:0" cellpadding="0" cellspacing="0">                
                 <tbody style="font-size:12px;">
-                <%  int index = 1;
+                <%  
+                    int index = 1;                     
+                                       
                     foreach (ScrumTime.Models.Story story in Model.Stories)
                     {
                        %>

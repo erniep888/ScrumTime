@@ -52,6 +52,38 @@ namespace ScrumTime.Controllers
             return PartialView(storyViewModel);
         }
 
+        // GET: /Story/Add
+        public ActionResult AddStoryRow()
+        {
+            
+            StoryViewModel storyViewModel = new StoryViewModel();
+            Story story = new Story()
+            {
+                Narrative = "",
+                Points = 0,
+                ProjectId = 1,
+                UserDefinedId = _ScrumTimeEntities.Stories.Count().ToString()
+            };
+            storyViewModel.StoryModel = story;
+            return PartialView(storyViewModel);
+        }
+
+        // POST: /Story/Add
+        [HttpPost]
+        public ActionResult Add(FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+
+                return RedirectToAction("ListByPriority");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
         /************* /\ *********************** Alizarin */
 
 
@@ -103,24 +135,7 @@ namespace ScrumTime.Controllers
             return View();
         }
 
-        //
-        // POST: /Story/Create
-
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
+        
         //
         // GET: /Story/Delete/5
 
