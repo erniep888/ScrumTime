@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<ScrumTime.ViewModels.ProjectViewModel>" %>
 <div id="projectControlMenu">
     <div style="position:absolute;left:0px;top:5px;">
-        <a href="#"><%= Model.Name %></a>
+        <a href="#"><%: Model.Name %></a>
     </div>
     <div style="position:absolute;left:780px;top:5px;text-align:right">            
         <a href="#" style="text-align:right;">List Projects</a>
