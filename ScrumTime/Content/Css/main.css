@@ -118,7 +118,7 @@ body{
 }
 
 .storyAltRows{
-    background-color: #ddd;
+    background-color: #def1f8;
 }
 
 .taskTable{
@@ -126,5 +126,5 @@ body{
 }
 
 .taskAltRows{
-    background-color: #F4F0EC;
+    background-color: #def1f8;
 }
