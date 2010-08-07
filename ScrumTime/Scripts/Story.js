@@ -58,6 +58,20 @@ function saveStoryRowEdit(parentTagId, storyId) {
     // TODO: Implement save failure GUI
 }
 
+function deleteStory(storyId) {
+    $.post('/Story/Delete',
+        {
+            id: storyId,
+            storyId: storyId
+        },
+        function (data) {
+            $('#storyContentListId').html(data);
+        }
+    );
+    
+    // TODO: Implement delete failure GUI
+}
+
 function addStoryRow() {    
     $('.storyTable  tr:first').after('<tr id="storyRow_0" class="storyRow" style="border:0px" ></tr>');
     $('#storyRow_0').load('/Story/AddStoryRow');

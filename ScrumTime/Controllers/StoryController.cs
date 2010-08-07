@@ -22,7 +22,6 @@ namespace ScrumTime.Controllers
         }
 
 
-
         /************* \/ *********************** Alizarin */
 
         public ActionResult ListByPriority()
@@ -120,6 +119,33 @@ namespace ScrumTime.Controllers
             }
         }
 
+        //
+        // GET: /Story/Delete/5
+
+        public ActionResult Delete(int id)
+        {
+            // TODO: Provide a caution prior to delete...use this GET delete to display a warning.
+            return View();
+        }
+
+        //
+        // POST: /Story/Delete/5
+
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            try
+            {
+                string idAsString = collection.Get("storyId");
+                _StoryService.DeleteStory(Int32.Parse(idAsString));
+                return RedirectToAction("ListByPriority", new { displayPartial = true });
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
         /************* /\ *********************** Alizarin */
 
 
@@ -172,30 +198,6 @@ namespace ScrumTime.Controllers
         }
 
         
-        //
-        // GET: /Story/Delete/5
-
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /Story/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
     }
 }
