@@ -42,41 +42,9 @@
                 <th style="width:11px;border:0px;background-color:#f3f3f3;"></th>
             </tr>
         </table>
-        <div style="width:960px;height:386px;border-left:2px solid #999;border-right:2px solid #aaa;
+        <div id="storyContentListId" style="width:960px;height:386px;border-left:2px solid #999;border-right:2px solid #aaa;
             border-bottom:2px solid #999;overflow:scroll;">
-            <table class="storyTable" style="width:943px;font-family:Verdana;padding:0" cellpadding="0" cellspacing="0">                
-                <tbody style="font-size:12px;">
-                <%  
-                    if (Model.AddStory)
-                    {
-                        ScrumTime.Models.Story newStory = new ScrumTime.Models.Story()
-                        {
-                            Points = 0, Priority = 0, ProjectId = Model.ProjectId, 
-                            UserDefinedId = (Model.Stories.Count() + 1).ToString(),
-                            Narrative = "As a ..."
-                        };
-                        ScrumTime.ViewModels.StoryViewModel newStoryViewModel = new ScrumTime.ViewModels.StoryViewModel()
-                        {
-                            StoryModel = newStory
-                        };
-                %>
-                       <tr id="storyRow_0" class="storyRow" style="border:0px" >
-                            <% Html.RenderPartial("~/Views/Story/AddStoryRow.ascx", newStoryViewModel); %>
-                       </tr>                                             
-                <%
-                    }
-                    
-                    foreach (ScrumTime.Models.Story story in Model.Stories)
-                    {
-                       %>
-                       <tr id="storyRow_<%: story.StoryId %>" class="storyRow" style="border:0px" >
-                            <% Html.RenderPartial("~/Views/Story/ReadOnlyRow.ascx", story); %>
-                       </tr>
-                       <%
-                    }                               
-                %>                      
-                </tbody>
-            </table>
+            <% Html.RenderPartial("~/Views/Story/ListContents.ascx", Model); %>    
         </div>        
     </div>
 </asp:Content>

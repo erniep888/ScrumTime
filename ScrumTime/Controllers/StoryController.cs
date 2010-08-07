@@ -37,7 +37,10 @@ namespace ScrumTime.Controllers
                           select s;
             List<Story> stories = results.ToList<Story>();
             storyCollectionViewModel.Stories = stories;
-            return View(storyCollectionViewModel);
+            if (Request.Params["displayPartial"] != null)
+                return PartialView("ListContents", storyCollectionViewModel);
+            else
+                return View(storyCollectionViewModel);
         }
 
         public ActionResult ReadOnlyRow(int id)
@@ -87,6 +90,7 @@ namespace ScrumTime.Controllers
                     newStory = true;
                 }
                 string priority = collection.Get("priority");
+                string originalPriority = collection.Get("originalPriority");
                 string userDefinedId = collection.Get("userDefinedId");
                 string narrative = collection.Get("narrative");
                 string points = collection.Get("points");
@@ -105,6 +109,8 @@ namespace ScrumTime.Controllers
 
                 if (newStory)
                     return RedirectToAction("ListByPriority");
+                else if (originalPriority != null && priority != originalPriority)
+                    return RedirectToAction("ListByPriority", new { displayPartial = true });
                 else
                     return RedirectToAction("ReadOnlyRow", new { id = Int32.Parse(id) });
             }

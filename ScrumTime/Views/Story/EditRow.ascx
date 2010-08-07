@@ -25,3 +25,7 @@
         %>            
         </select></td>
     <td style="vertical-align:middle;text-align:center;width:194px;font-weight:bold;color:#0035a0;border:0px;"><a href="#" class="noticableLink" onclick="saveStoryRowEdit('#storyRow_<%: Model.StoryModel.StoryId %>', <%: Model.StoryModel.StoryId %>);">Save</a> | <a href="#" class="noticableLink" onclick="cancelStoryRowEdit('#storyRow_<%: Model.StoryModel.StoryId %>', <%: Model.StoryModel.StoryId %>);">Cancel</a></td>
+
+    <script type="text/javascript">           
+        setupEditStoryRow(<%: Model.StoryModel.StoryId %>, <%: Model.StoryModel.Priority %> );
+    </script>

@@ -156,6 +156,7 @@
     <Content Include="Views\Story\ListByPriority.aspx" />
     <Content Include="Views\Story\EditRow.ascx" />
     <Content Include="Views\Story\ReadOnlyRow.ascx" />
+    <Content Include="Views\Story\ListContents.ascx" />
     <Content Include="Views\Task\EditRow.ascx" />
     <Content Include="Views\Task\ListByStory.ascx" />
     <Content Include="Views\Task\ReadOnlyRow.ascx" />
