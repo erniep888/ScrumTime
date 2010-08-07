@@ -115,7 +115,7 @@ namespace ScrumTime.Controllers
             }
             catch
             {
-                return View();
+                return View();  // TODO:  Handle displaying the exception condition
             }
         }
 
