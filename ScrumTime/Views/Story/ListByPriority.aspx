@@ -19,7 +19,16 @@
     <div style="margin-top:32px">
         <div id="Div3" style="height:24px;width:960px;background-color:white;
             font-family:Verdana;font-size:12px;padding-top:6px;border-top:2px solid #999;border-left:2px solid #999;border-right:2px solid #999;">
-            <div style="position:absolute;left:16px;width:115px;margin-top:0px"><a class="simpleLink" style="color:#00a;" href="#" onclick="addStoryRow();">Add Story</a></div>
+            <div style="position:absolute;left:16px;width:115px;margin-top:0px">
+            <% if (Model.AddStory)
+               { %>
+                    <span style="color:#f22;font-size:12px;font-weight:bold;text-decoration:overline underline;">Add Story</span>
+            <% }
+               else
+               { %>
+                    <%: Html.ActionLink("Add Story", "AddStoryRow", "Story", null, new {@class="simpleLink"}) %>
+            <% } %>
+            </div>
             <div style="position:absolute;left:918px;width:50px;margin-top:0px;color:#00a;">Filter</div>
         </div>       
         <table style="width:964px;font-family:Verdana;padding:0;border:2px solid #999;height:30px;margin-left:0px;
@@ -38,6 +47,26 @@
             <table class="storyTable" style="width:943px;font-family:Verdana;padding:0" cellpadding="0" cellspacing="0">                
                 <tbody style="font-size:12px;">
                 <%  
+                    if (Model.AddStory)
+                    {
+                        ScrumTime.Models.Story newStory = new ScrumTime.Models.Story()
+                        {
+                            Points = 0, Priority = 0, ProjectId = Model.ProjectId, 
+                            UserDefinedId = (Model.Stories.Count() + 1).ToString(),
+                            Narrative = "As a ..."
+                        };
+                        ScrumTime.ViewModels.StoryViewModel newStoryViewModel = new ScrumTime.ViewModels.StoryViewModel()
+                        {
+                            StoryModel = newStory
+                        };
+                %>
+                       <tr id="storyRow_0" class="storyRow" style="border:0px" >
+                            <% Html.RenderPartial("~/Views/Story/AddStoryRow.ascx", newStoryViewModel); %>
+                       </tr>
+
+                <%
+                    }
+                    
                     int index = 1;                     
                                        
                     foreach (ScrumTime.Models.Story story in Model.Stories)

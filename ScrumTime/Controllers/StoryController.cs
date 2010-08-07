@@ -28,6 +28,7 @@ namespace ScrumTime.Controllers
         public ActionResult ListByPriority()
         {
             StoryCollectionViewModel storyCollectionViewModel = new StoryCollectionViewModel();
+            storyCollectionViewModel.ProjectId = 1;
             storyCollectionViewModel.SelectedSubMenuName = "Backlog";
             storyCollectionViewModel.Name = "Acme";  // TODO: Get this from current project
             ScrumTimeEntities entities = new ScrumTimeEntities();
@@ -55,17 +56,15 @@ namespace ScrumTime.Controllers
         // GET: /Story/Add
         public ActionResult AddStoryRow()
         {
-            
-            StoryViewModel storyViewModel = new StoryViewModel();
-            Story story = new Story()
-            {
-                Narrative = "",
-                Points = 0,
-                ProjectId = 1,
-                UserDefinedId = _ScrumTimeEntities.Stories.Count().ToString()
-            };
-            storyViewModel.StoryModel = story;
-            return PartialView(storyViewModel);
+            StoryCollectionViewModel storyCollectionViewModel = new StoryCollectionViewModel();
+            storyCollectionViewModel.ProjectId = 1;
+            storyCollectionViewModel.AddStory = true;
+            storyCollectionViewModel.SelectedSubMenuName = "Backlog";
+            storyCollectionViewModel.Name = "Acme";  // TODO: Get this from current project
+            ScrumTimeEntities entities = new ScrumTimeEntities();
+            List<Story> stories = entities.Stories.ToList<Story>();
+            storyCollectionViewModel.Stories = stories;
+            return View("ListByPriority", storyCollectionViewModel);
         }
 
         // POST: /Story/Add
