@@ -62,21 +62,17 @@
                 %>
                        <tr id="storyRow_0" class="storyRow" style="border:0px" >
                             <% Html.RenderPartial("~/Views/Story/AddStoryRow.ascx", newStoryViewModel); %>
-                       </tr>
-
+                       </tr>                                             
                 <%
                     }
                     
-                    int index = 1;                     
-                                       
                     foreach (ScrumTime.Models.Story story in Model.Stories)
                     {
                        %>
-                       <tr id="storyRow_<%: index %>" class="storyRow" style="border:0px" >
+                       <tr id="storyRow_<%: story.StoryId %>" class="storyRow" style="border:0px" >
                             <% Html.RenderPartial("~/Views/Story/ReadOnlyRow.ascx", story); %>
                        </tr>
                        <%
-                        index++;
                     }                               
                 %>                      
                 </tbody>

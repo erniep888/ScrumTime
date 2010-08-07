@@ -32,7 +32,10 @@ namespace ScrumTime.Controllers
             storyCollectionViewModel.SelectedSubMenuName = "Backlog";
             storyCollectionViewModel.Name = "Acme";  // TODO: Get this from current project
             ScrumTimeEntities entities = new ScrumTimeEntities();
-            List<Story> stories = entities.Stories.ToList<Story>();
+            var results = from s in entities.Stories
+                          orderby s.Priority ascending
+                          select s;
+            List<Story> stories = results.ToList<Story>();
             storyCollectionViewModel.Stories = stories;
             return View(storyCollectionViewModel);
         }
@@ -62,20 +65,48 @@ namespace ScrumTime.Controllers
             storyCollectionViewModel.SelectedSubMenuName = "Backlog";
             storyCollectionViewModel.Name = "Acme";  // TODO: Get this from current project
             ScrumTimeEntities entities = new ScrumTimeEntities();
-            List<Story> stories = entities.Stories.ToList<Story>();
+            var results = from s in entities.Stories
+                          orderby s.Priority ascending
+                          select s;
+            List<Story> stories = results.ToList<Story>();
             storyCollectionViewModel.Stories = stories;
             return View("ListByPriority", storyCollectionViewModel);
         }
 
-        // POST: /Story/Add
+        // POST: /Story/Save
         [HttpPost]
-        public ActionResult Add(FormCollection collection)
+        public ActionResult Save(FormCollection collection)
         {
             try
             {
-                // TODO: Add insert logic here
+                string id = collection.Get("storyId");
+                bool newStory = false;
+                if (id == null)
+                {
+                    id = "0";
+                    newStory = true;
+                }
+                string priority = collection.Get("priority");
+                string userDefinedId = collection.Get("userDefinedId");
+                string narrative = collection.Get("narrative");
+                string points = collection.Get("points");
+                // TODO:  Validate the story data before saving
+                // TODO:  Set the correct project id
+                Story story = new Story()
+                {
+                    StoryId = Int32.Parse(id),
+                    Narrative = narrative,
+                    Points = Int32.Parse(points),
+                    Priority = Int32.Parse(priority),
+                    ProjectId = 1,
+                    UserDefinedId = userDefinedId 
+                };
+                _StoryService.SaveStory(story);
 
-                return RedirectToAction("ListByPriority");
+                if (newStory)
+                    return RedirectToAction("ListByPriority");
+                else
+                    return RedirectToAction("ReadOnlyRow", new { id = Int32.Parse(id) });
             }
             catch
             {

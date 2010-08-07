@@ -20,11 +20,38 @@ function cancelStoryRowEdit(parentTagId, storyId) {
     return;
 }
 
+function saveStoryRowEdit(parentTagId, storyId) {
+    var priority = $('#storyPriority_' + storyId).val();
+    var userDefinedId = $('#storyUserDefinedId_' + storyId).val();
+    var narrative = $('#storyNarrative_' + storyId).val();
+    var points = $('#storyPoints_' + storyId).val();
+    $.post('/Story/Save', 
+        {
+            storyId: storyId, priority: priority,
+            userDefinedId: userDefinedId, narrative: narrative,
+            points: points
+        },
+        function (data) {
+            $(parentTagId).html(data);
+        }
+    );
+
+    // TODO: Implement save failure GUI
+}
+
 function addStoryRow() {    
     $('.storyTable  tr:first').after('<tr id="storyRow_0" class="storyRow" style="border:0px" ></tr>');
     $('#storyRow_0').load('/Story/AddStoryRow');
     return;
 }
+
+function setupAddStoryFormSubmit() {
+    $('#addStorySaveLinkId').click(function () {
+        $('#addStoryFormId').submit();
+    });
+}
+
+
 
 
 // loadJSON is not currently used...but do not delete just yet

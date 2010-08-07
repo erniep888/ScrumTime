@@ -45,6 +45,8 @@ namespace ScrumTime.Services
                 }
                 else  // the story exists
                 {
+                    _ScrumTimeEntities.AttachTo("Stories", story);
+                    
                     ScrumTimeEntities freshScrumTimeEntities =
                         new ScrumTimeEntities(_ScrumTimeEntities.Connection.ConnectionString);
                     Story existingStory = GetStoryById(freshScrumTimeEntities, story.StoryId);
@@ -56,6 +58,7 @@ namespace ScrumTime.Services
                     {
                         throw new Exception("The story no longer exists.");
                     }
+                    _ScrumTimeEntities.ObjectStateManager.ChangeObjectState(story, System.Data.EntityState.Modified);
                 }
                 _ScrumTimeEntities.SaveChanges();
             }

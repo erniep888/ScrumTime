@@ -14,7 +14,7 @@
             taskHourString = "1 hr";
      %>
 
-    <td class="story_<%: Model.StoryId %>" style="vertical-align:middle;text-align:center;width:68px;border:0px;font-size:11px;"><a class="simpleLink" href="#"><%: Model.StoryId %></a></td>
+    <td class="story_<%: Model.StoryId %>" style="vertical-align:middle;text-align:center;width:68px;border:0px;font-size:11px;"><a class="simpleLink" href="#"><%: Model.Priority %></a></td>
     <td class="story_<%: Model.StoryId %>" style="vertical-align:middle;text-align:center;width:108px;border:0px;font-size:11px;"><a class="simpleLink" href="#" style="font-style:italic;"><%: Model.UserDefinedId %></a></td>
     <td class="story_<%: Model.StoryId %>" style="border:0px;width:510px"><a class="simpleLink" href="#"><%: Model.Narrative %></a></td>
     <td class="story_<%: Model.StoryId %>" style="vertical-align:middle;text-align:center;width:80px;border:0px;font-size:11px;"><a class="simpleLink" href="#"><%: Model.Points %></a></td>

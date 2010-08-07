@@ -3,7 +3,7 @@
    <td style="padding:0px;margin:0px;border:0px;" colspan="5">
         <table style="width:941px;font-family:Verdana;padding:0px;margin:0px;border:0px" cellpadding="0" cellspacing="0">
             <tr style="padding:0px;margin:0px;border:0px;">
-                <td class="story_<%: Model.StoryId %>" style="vertical-align:middle;text-align:center;width:68px;border:0px;font-size:11px;"><%: Model.StoryId %></td>
+                <td class="story_<%: Model.StoryId %>" style="vertical-align:middle;text-align:center;width:68px;border:0px;font-size:11px;"><%: Model.Priority %></td>
                 <td style="vertical-align:middle;text-align:center;width:108px;border:0px;font-style:italic;font-size:11px;"><%: Model.UserDefinedId %></td>
                 <td class="story_<%: Model.StoryId %>" style="border:0px;width:510px;"><%: Model.Narrative %></td>
                 <td class="story_<%: Model.StoryId %>" style="vertical-align:middle;text-align:center;width:80px;border:0px;font-size:11px;"><%: Model.Points %></td>
