@@ -44,7 +44,7 @@
     </div>
     <div id="pageCenterFooterDiv">
         <div style="position:absolute;top:0px;font-size:smaller;left:4px">ScrumTime</div>
-        <div style="position:absolute;top:0px;font-size:smaller;right:4px">Release 0.9 Alizarin (Development)</div>
+        <div style="position:absolute;top:0px;font-size:smaller;right:4px">Release 0.9 Bistre (Development)</div>
     </div>
 </body>
 
