@@ -96,6 +96,7 @@
     <Compile Include="ViewModels\ProjectViewModel.cs" />
     <Compile Include="ViewModels\StoryViewModel.cs" />
     <Compile Include="ViewModels\StoryCollectionViewModel.cs" />
+    <Compile Include="ViewModels\TaskCollectionViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="ViewModels\ViewModelComposite.cs" />
     <Compile Include="Views\Shared\Authenticating.Master.cs">
