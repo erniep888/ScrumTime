@@ -5,7 +5,7 @@ function setupReadOnlyStoryRow(storyId) {
         $(this).parent().load('/Story/EditRow', { id: storyId });
     });
     $("#storyTasks_" + storyId).click(function () {
-        $(this).parent().parent().load('/Task/StoryRowWithTasks', { storyId: storyId });
+        $("#storyRow_" + storyId).load('/Task/StoryRowWithTasks', { storyId: storyId });
     });
 
     $(document).ready(function () {

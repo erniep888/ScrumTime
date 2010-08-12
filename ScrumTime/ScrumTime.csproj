@@ -126,6 +126,11 @@
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Images\Logos\logo_graph_48x48.png" />
     <Content Include="Content\Images\Logos\ScrumTimeLogo.png" />
+    <Content Include="Content\Images\Menu\calendar.png" />
+    <Content Include="Content\Images\Menu\cancel24x24.png" />
+    <Content Include="Content\Images\Menu\note_accept.png" />
+    <Content Include="Content\Images\Menu\save24x24.png" />
+    <Content Include="Content\Images\Menu\trash.png" />
     <Content Include="Content\Images\MessageTypes\exclamation.png" />
     <Content Include="Content\Images\MessageTypes\information.png" />
     <Content Include="Content\Images\MessageTypes\spinner.gif" />
@@ -176,9 +181,7 @@
     <Content Include="Views\Shared\LogOnUserControl.ascx" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\Images\Menu\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Views\Shared\Authenticating.Master" />
   </ItemGroup>
