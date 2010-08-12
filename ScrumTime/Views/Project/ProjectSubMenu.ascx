@@ -14,10 +14,9 @@
     <div class="submenu">
         <ul>
             <li><a href="#">Scrum</a></li>
-            <li><a href="#">Chart</a></li>
-            <li><a href="#" style="margin-right:20px;">Features</a></li>
             <li><a href="#" style="margin-right:20px;" class="current">Backlog</a></li>
             <li><a href="#" style="margin-right:26px;">Schedule</a></li>
+            <li><a href="#">Chart</a></li>                        
             <li><a href="#">Members</a></li>
         </ul>
     </div>
@@ -28,8 +27,8 @@
     <div class="submenu">
         <ul>
             <li><a href="#" class="current" style="padding-left:16px;padding-top:6px;">Stories</a></li>
-            <li><a href="#" style="padding-left:25px;padding-top:6px;">Tasks</a></li>                
-            <li><a href="#" style="padding-left:25px;padding-top:6px;">Bugs</a></li>                
+            <li><div style="padding-top:6px;color:#ccc;">Tasks</div></li>                
+            <li><div style="padding-left:25px;padding-top:6px;color:#ccc;">Bugs</div></li>                
         </ul>
     </div>
 </div>
