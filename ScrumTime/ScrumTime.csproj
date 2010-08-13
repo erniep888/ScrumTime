@@ -125,12 +125,12 @@
     <Content Include="Content\Images\disk.png" />
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Images\Logos\logo_graph_48x48.png" />
-    <Content Include="Content\Images\Logos\ScrumTime.com.Title.png" />
-    <Content Include="Content\Images\Logos\ScrumTime.com.Title_118x19.png" />
-    <Content Include="Content\Images\Logos\ScrumTime.com.Title_157x25.png" />
-    <Content Include="Content\Images\Logos\ScrumTime.com.Title_209x33.png" />
-    <Content Include="Content\Images\Logos\ScrumTime.com.Title_279x43.png" />
-    <Content Include="Content\Images\Logos\ScrumTime.com.Title_372x57.png" />
+    <Content Include="Content\Images\Logos\ScrumTimeLogo.png" />
+    <Content Include="Content\Images\Menu\calendar.png" />
+    <Content Include="Content\Images\Menu\cancel24x24.png" />
+    <Content Include="Content\Images\Menu\note_accept.png" />
+    <Content Include="Content\Images\Menu\save24x24.png" />
+    <Content Include="Content\Images\Menu\trash.png" />
     <Content Include="Content\Images\MessageTypes\exclamation.png" />
     <Content Include="Content\Images\MessageTypes\information.png" />
     <Content Include="Content\Images\MessageTypes\spinner.gif" />
@@ -181,9 +181,7 @@
     <Content Include="Views\Shared\LogOnUserControl.ascx" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\Images\Menu\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Views\Shared\Authenticating.Master" />
   </ItemGroup>
@@ -195,6 +193,9 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ScrumTime.Designer.cs</LastGenOutput>
     </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Images\Logos\ScrumTimeLogo.design" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

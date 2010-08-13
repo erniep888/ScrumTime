@@ -36,9 +36,10 @@
             <tr>
                 <th style="text-align:center;width:68px;border:0px;background-color:#f3f3f3;">Priority</th>
                 <th style="text-align:center;width:106px;border:0px;background-color:#f3f3f3;">Id/Name</th>
-                <th style="border:0px;width:528px;background-color:#f3f3f3;">Narrative</th>                    
+                <th style="border:0px;width:528px;background-color:#f3f3f3;">Narrative</th>    
+                <th style="text-align:center;width:80px;border:0px;background-color:#f3f3f3;">Duration</th>                
                 <th style="text-align:center;width:80px;border:0px;background-color:#f3f3f3;">Points</th>
-                <th style="text-align:center;width:194px;border:0px;background-color:#f3f3f3;">Actions</th>
+                <th style="text-align:center;width:114px;border:0px;background-color:#f3f3f3;">Actions</th>
                 <th style="width:11px;border:0px;background-color:#f3f3f3;"></th>
             </tr>
         </table>

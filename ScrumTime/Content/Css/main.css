@@ -94,6 +94,22 @@ body{
     color:#222;
 }
 
+.simpleLink:active img{
+    border:0;
+}
+
+.simpleLink:visited img{
+    border:0;
+}
+
+.simpleLink:link img{
+    border:0;
+}
+
+.simpleLink:hover img{
+    border:0;
+}
+
 .noticableLink:active{
     text-decoration:none; 
     color:#0035a0;
