@@ -14,18 +14,7 @@
 
 
 <asp:Content ID="StoryBacklogMainContent" ContentPlaceHolderID="MainContent" runat="server">
-
-<script type="text/javascript">
-    $(function () {
-        $('#datepicker').datepicker({ gotoCurrent: true });
-
-
-    });
-</script>
-
-<div><input type="text" id="datepicker" value="04/12/2010"/></div>
-<div style="border:1px dotted gray;width:20px;height:100px;" onclick="$('#datepicker').datepicker('show')" ></div>
-
+    <% Html.RenderPartial("~/Views/Project/ProjectSubMenu.ascx", Model); %>    
 
     <div style="margin-top:32px">
         <div id="Div3" style="height:24px;width:960px;background-color:white;
