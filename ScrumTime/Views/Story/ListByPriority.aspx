@@ -1,33 +1,36 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Authenticating.Master" Inherits="System.Web.Mvc.ViewPage<ScrumTime.ViewModels.StoryCollectionViewModel>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/ScrumTime.Master" Inherits="System.Web.Mvc.ViewPage<ScrumTime.ViewModels.StoryCollectionViewModel>" %>
 
 <asp:Content ID="StoryBacklogTitle" ContentPlaceHolderID="TitleContent" runat="server">
 	Story Backlog
 </asp:Content>
 
-<asp:Content ID="StoryBacklogHeadContent" ContentPlaceHolderID="HeadContent" runat="server">
+<%--<asp:Content ID="StoryBacklogHeadContent" ContentPlaceHolderID="HeadContent" runat="server">
     <script src="<%: Url.Content("~/Scripts/Story.js") %>" type="text/javascript"></script>   
     <script src="<%: Url.Content("~/Scripts/Task.js") %>" type="text/javascript"></script>   
     <style type="text/css">
         td {padding-top:4px;padding-bottom:4px}
+        
+        .ui-tabs .ui-tabs-hide 
+        {
+	        display: none; 
+        }
+        .table_nopadding 
+        {
+            border:0; 
+            padding:0; 
+            border:0; 
+        }
+
     </style>
-</asp:Content>
+</asp:Content>--%>
 
 
 <asp:Content ID="StoryBacklogMainContent" ContentPlaceHolderID="MainContent" runat="server">
 
-<script type="text/javascript">
-    $(function () {
-        $('#datepicker').datepicker({ gotoCurrent: true });
+    
 
-
-    });
-</script>
-
-<div><input type="text" id="datepicker" value="04/12/2010"/></div>
-<div style="border:1px dotted gray;width:20px;height:100px;" onclick="$('#datepicker').datepicker('show')" ></div>
-
-
-    <div style="margin-top:32px">
+    
+    <%--<div style="margin-top:32px">
         <div id="Div3" style="height:24px;width:960px;background-color:white;
             font-family:Verdana;font-size:12px;padding-top:6px;border-top:2px solid #999;border-left:2px solid #999;border-right:2px solid #999;">
             <div style="position:absolute;left:16px;width:115px;margin-top:0px">
@@ -58,6 +61,6 @@
             border-bottom:2px solid #999;overflow:scroll;">
             <% Html.RenderPartial("~/Views/Story/ListContents.ascx", Model); %>    
         </div>        
-    </div>
+    </div>--%>
 </asp:Content>
 
