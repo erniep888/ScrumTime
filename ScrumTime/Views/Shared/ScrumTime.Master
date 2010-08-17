@@ -49,14 +49,7 @@
             </div>
         </div>        
     </div>
-
-    
-	<div id="footerBackgroundDiv">        
-    </div>
-    <div id="pageCenterFooterDiv">
-        <div style="position:absolute;top:2px;left:4px">ScrumTime</div>
-        <div style="position:absolute;top:2px;right:4px">Release 0.9 Bistre (Development)</div>
-    </div>
+    <% Html.RenderPartial("~/Views/Shared/FooterControl.ascx"); %>
 </body>
 
 </html>

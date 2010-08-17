@@ -180,6 +180,7 @@
     <Content Include="Views\Project\Index.aspx" />
     <Content Include="Views\Project\List.aspx" />
     <Content Include="Views\Project\ProjectSubMenu.ascx" />
+    <Content Include="Views\Shared\FooterControl.ascx" />
     <Content Include="Views\Shared\MainMenu.ascx" />
     <Content Include="Views\Shared\ProjectSubMenu.ascx.ascx" />
     <Content Include="Views\Story\AddStoryRow.ascx" />
