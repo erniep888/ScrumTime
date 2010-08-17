@@ -2,7 +2,7 @@
 function setupReadOnlyStoryRow(storyId) {
 
     $(".story_" + storyId).click(function () {
-        $(this).parent().load('/Story/EditRow', { id: storyId });
+        $(this).parent().load('/Story/Edit', { id: storyId });
     });
     $("#storyTasks_" + storyId).click(function () {
         $("#storyRow_" + storyId).load('/Task/StoryRowWithTasks', { storyId: storyId });
@@ -16,7 +16,7 @@ function setupReadOnlyStoryRow(storyId) {
 }
 
 function cancelStoryRowEdit(parentTagId, storyId) {
-    $(parentTagId).load('/Story/ReadOnlyRow', { id: storyId });
+    $(parentTagId).load('/Story/ReadOnly', { id: storyId });
     return;
 }
 
@@ -27,11 +27,13 @@ function setupEditStoryRow(storyId, originalStoryPriority) {
 
 function saveStoryRowEdit(parentTagId, storyId) {
     var originalPriority = $('#storyPriority_' + storyId).data('originalValue');
+    if (originalPriority == 0) // handle the nulled/nonexisting originalValue
+        originalPriority = -9;
     var priority = $('#storyPriority_' + storyId).val();
     var userDefinedId = $('#storyUserDefinedId_' + storyId).val();
     var narrative = $('#storyNarrative_' + storyId).val();
     var points = $('#storyPoints_' + storyId).val();
-    if (originalPriority != priority) {
+    if (originalPriority != priority ) {
         $.post('/Story/Save',
             {
                 storyId: storyId, priority: priority,
@@ -48,7 +50,7 @@ function saveStoryRowEdit(parentTagId, storyId) {
             {
                 storyId: storyId, priority: priority,
                 userDefinedId: userDefinedId, narrative: narrative,
-                points: points
+                originalPriority: originalPriority, points: points
             },
             function (data) {
                 $(parentTagId).html(data);
@@ -72,9 +74,18 @@ function deleteStory(storyId) {
     // TODO: Implement delete failure GUI
 }
 
-function addStoryRow() {    
-    $('.storyTable  tr:first').after('<tr id="storyRow_0" class="storyRow" style="border:0px" ></tr>');
-    $('#storyRow_0').load('/Story/AddStoryRow');
+function addStoryRow() {
+    $(".storyTable .storyRow:odd").removeClass("storyAltRows");
+
+    $.post('/Story/New',
+        {            
+        },
+        function (data) {
+            $('.storyTable  tr:first').before(data);
+        }
+    );
+
+    $(".storyTable .storyRow:odd").addClass("storyAltRows");
     return;
 }
 
@@ -84,21 +95,3 @@ function setupAddStoryFormSubmit() {
     });
 }
 
-
-
-
-// loadJSON is not currently used...but do not delete just yet
-function loadJSON() {
-    $(document).ready(function () {
-        $("#task_1").click(function () {
-            //            $.getJSON('Home/StoryJson',{'test' : "test1"}, function (data) {
-            //                alert(data.d);
-            //             });
-            //$('#storyId_1').load('Home/Story');
-            $(this).parent().parent().load('/Story/StoryTasks');
-            //            var obj = $(this).parent().parent();
-            //            alert(obj.get(0).tagName);
-        });
-    });
-    return;
-}

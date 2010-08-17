@@ -21,34 +21,31 @@ namespace ScrumTime.Controllers
             _StoryService = new StoryService(_ScrumTimeEntities);
         }
 
-
-        /************* \/ *********************** Alizarin */
-
-        public ActionResult ListByPriority()
+        // The backlog is the entire html page
+        public ActionResult BacklogByPriority()
         {
-            StoryCollectionViewModel storyCollectionViewModel = new StoryCollectionViewModel();
-            storyCollectionViewModel.ProjectId = 1;
-            storyCollectionViewModel.SelectedSubMenuName = "Backlog";
-            storyCollectionViewModel.Name = "Acme";  // TODO: Get this from current project
-            ScrumTimeEntities entities = new ScrumTimeEntities();
-            var results = from s in entities.Stories
-                          orderby s.Priority ascending
-                          select s;
-            List<Story> stories = results.ToList<Story>();
-            storyCollectionViewModel.Stories = stories;
-            if (Request.Params["displayPartial"] != null)
-                return PartialView("ListContents", storyCollectionViewModel);
-            else
-                return View(storyCollectionViewModel);
+            // TODO: Pull the actual project information from session before 0.9 release
+            StoryCollectionViewModel storyCollectionViewModel = StoryCollectionViewModel.BuildByPriorityAsc(1);
+            return View("Backlog", storyCollectionViewModel);
         }
 
-        public ActionResult ReadOnlyRow(int id)
+        // The list is the sub-section of the page that contains only the table of story read only rows
+        public ActionResult ListByPriority()
+        {
+            // TODO: Pull the actual project information from session before 0.9 release
+            StoryCollectionViewModel storyCollectionViewModel = StoryCollectionViewModel.BuildByPriorityAsc(1);           
+            return PartialView("List", storyCollectionViewModel);
+        }
+
+        // Returns only one read only row
+        public ActionResult ReadOnly(int id)
         {
             Story story = _StoryService.GetStoryById(id);
             return PartialView(story);
         }
 
-        public ActionResult EditRow(int id)
+        // Returns only one edit row
+        public ActionResult Edit(int id)
         {
             Story story = _StoryService.GetStoryById(id);
             StoryViewModel storyViewModel = new StoryViewModel()
@@ -58,21 +55,23 @@ namespace ScrumTime.Controllers
             return PartialView(storyViewModel);
         }
 
-        // GET: /Story/Add
-        public ActionResult AddStoryRow()
+        // Returns only one new row
+        public ActionResult New()
         {
-            StoryCollectionViewModel storyCollectionViewModel = new StoryCollectionViewModel();
-            storyCollectionViewModel.ProjectId = 1;
-            storyCollectionViewModel.AddStory = true;
-            storyCollectionViewModel.SelectedSubMenuName = "Backlog";
-            storyCollectionViewModel.Name = "Acme";  // TODO: Get this from current project
-            ScrumTimeEntities entities = new ScrumTimeEntities();
-            var results = from s in entities.Stories
-                          orderby s.Priority ascending
-                          select s;
-            List<Story> stories = results.ToList<Story>();
-            storyCollectionViewModel.Stories = stories;
-            return View("ListByPriority", storyCollectionViewModel);
+            // TODO: Pull the actual project information from session before 0.9 release
+            Project project = _ScrumTimeEntities.Projects.First<Project>(p => p.ProjectId == 1);
+            StoryViewModel storyViewModel = new StoryViewModel()
+            {
+                StoryModel = new Story()
+                {
+                    StoryId = 0,
+                    Narrative = "As a ...",
+                    Points = 0,
+                    Priority = 0,
+                    UserDefinedId = (project.Stories.Count() + 1).ToString()
+                }
+            };
+            return PartialView("Edit", storyViewModel);
         }
 
         // POST: /Story/Save
@@ -83,7 +82,7 @@ namespace ScrumTime.Controllers
             {
                 string id = collection.Get("storyId");
                 bool newStory = false;
-                if (id == null)
+                if (id == null || id == "0")
                 {
                     id = "0";
                     newStory = true;
@@ -106,12 +105,10 @@ namespace ScrumTime.Controllers
                 };
                 _StoryService.SaveStory(story);
 
-                if (newStory)
+                if (newStory || (priority != originalPriority))
                     return RedirectToAction("ListByPriority");
-                else if (originalPriority != null && priority != originalPriority)
-                    return RedirectToAction("ListByPriority", new { displayPartial = true });
                 else
-                    return RedirectToAction("ReadOnlyRow", new { id = Int32.Parse(id) });
+                    return RedirectToAction("ReadOnly", new { id = Int32.Parse(id) });
             }
             catch
             {
@@ -146,58 +143,12 @@ namespace ScrumTime.Controllers
             }
         }
 
-        /************* /\ *********************** Alizarin */
-
-
-
-        public ActionResult StoryJson(string test)
-        {
-            string[] acceptTypes = Request.AcceptTypes;
-
-            var eval = test;
-            ScrumTimeEntities entities = new ScrumTimeEntities();
-            Story story = entities.Stories.First<Story>();
-            if (acceptTypes.Any(v => v.Contains("json")))
-            {
-                List<object> stories = new List<object>();
-                stories.Add(new { Narrative = story.Narrative, Points = story.Points, StoryId = story.StoryId });
-                return new SecureJsonResult(stories);
-            }
-            else
-                return PartialView("StoryControl", story);
-        }
-
-        
-
-        
-
-        //
-        // GET: /Story/
-
+   
+        // Returns the entire Backlog html page
         public ActionResult Index()
         {
-            //var results = from s in _ScrumTimeEntities.Stories
-            //              select s;
-            return View(new ProjectViewModel());
+            return RedirectToAction("BacklogByPriority");
         }
 
-        //
-        // GET: /Story/Details/5
-
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        //
-        // GET: /Story/Create
-
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        
-        
     }
 }
