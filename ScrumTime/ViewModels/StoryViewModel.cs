@@ -14,9 +14,9 @@ namespace ScrumTime.ViewModels
 
         public StoryViewModel()
         {
-            SelectedMenuName = "Project";
-            SelectedSubMenuName = "Scrum";
             Points = StoryPoints.All();
         }
     }
+
+
 }

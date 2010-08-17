@@ -89,13 +89,6 @@
     <Compile Include="ViewModels\StoryViewModel.cs" />
     <Compile Include="ViewModels\StoryCollectionViewModel.cs" />
     <Compile Include="ViewModels\TaskCollectionViewModel.cs" />
-    <Compile Include="Views\Shared\Authenticating.Master.cs">
-      <DependentUpon>Authenticating.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Shared\Authenticating.Master.designer.cs">
-      <DependentUpon>Authenticating.Master</DependentUpon>
-    </Compile>
     <Compile Include="Views\Shared\NonAuthenticating.Master.cs">
       <DependentUpon>NonAuthenticating.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -170,17 +163,15 @@
     <Content Include="Views\Project\List.aspx" />
     <Content Include="Views\Project\ProjectSubMenu.ascx" />
     <Content Include="Views\Shared\FooterControl.ascx" />
-    <Content Include="Views\Shared\MainMenu.ascx" />
-    <Content Include="Views\Shared\ProjectSubMenu.ascx.ascx" />
     <Content Include="Views\Story\New.ascx" />
     <Content Include="Views\Story\Backlog.aspx" />
     <Content Include="Views\Story\Edit.ascx" />
     <Content Include="Views\Story\ReadOnly.ascx" />
     <Content Include="Views\Story\List.ascx" />
-    <Content Include="Views\Task\EditRow.ascx" />
+    <Content Include="Views\Task\Edit.ascx" />
     <Content Include="Views\Task\StoryRowWithTasks.ascx" />
-    <Content Include="Views\Task\ListContents.ascx" />
-    <Content Include="Views\Task\ReadOnlyRow.ascx" />
+    <Content Include="Views\Task\List.ascx" />
+    <Content Include="Views\Task\ReadOnly.ascx" />
     <Content Include="Views\Task\ListById.ascx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -198,9 +189,6 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Content Include="Views\Shared\Authenticating.Master" />
-  </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\NonAuthenticating.Master" />
   </ItemGroup>

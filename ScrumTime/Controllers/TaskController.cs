@@ -46,13 +46,13 @@ namespace ScrumTime.Controllers
             return PartialView(taskCollectionViewModel);
         }
 
-        public ActionResult EditRow(int id)
+        public ActionResult Edit(int id)
         {
             Task task = _TaskService.GetTaskById(id);
             return PartialView(task);
         }
 
-        public ActionResult ReadOnlyRow(int id)
+        public ActionResult ReadOnly(int id)
         {
             Task task = _TaskService.GetTaskById(id);
             return PartialView(task);

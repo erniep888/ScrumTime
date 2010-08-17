@@ -2,21 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ScrumTime.Models;
 
 namespace ScrumTime.ViewModels
 {
-    public class ProjectViewModel: MenuViewModel
+    public class ProjectViewModel
     {
+        public Project ProjectModel { get; set; }
         public ProjectViewModel()
         {
-            SelectedMenuName = "Project";
         }
-        public int ProjectId { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime DateCreated { get; set; }
-        public string SelectedSubMenuName { get; set; }      
 
     }
 }
