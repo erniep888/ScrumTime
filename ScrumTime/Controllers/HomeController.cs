@@ -11,8 +11,8 @@ namespace ScrumTime.Controllers
     public class HomeController : Controller
     {
         public ActionResult Index()
-        {           
-            return View(new HomeViewModel());
+        {
+            return RedirectToAction("ListByPriority", "Story");
         }
 
         public ActionResult About()

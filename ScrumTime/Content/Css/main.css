@@ -1,12 +1,33 @@
 /* Common */
-body{
+html
+{
+    font-family:Verdana;
+    font-size:12px;
+}
+body
+{
 	padding: 0; 
 	margin: 0; 
-	font: 0.7em Tahoma, Arial, sans-serif; 
+	/*font: 0.7em Tahoma, Arial, sans-serif; */
 	line-height: 1.6em; 
 	background: #d1d1d1; 
 	color: #454545;
 }
+.ui-tabs .ui-tabs-hide 
+{
+    display: none;
+}
+.table_nopadding
+{
+    border:0;
+    padding:0;
+    border:0;
+}
+.linkAsButton a
+{
+    width:75px;
+    margin-bottom:4px;
+}        
 #pageHeader {	
 	height:124px;
 	background-color:#fff;
@@ -137,4 +158,23 @@ body{
 
 .taskAltRows{
     background-color: #def1f8;
+}
+
+.loginLink a:active{
+    text-decoration:none; 
+    color:#666;
+}
+
+.loginLink a:visited{
+    text-decoration:none; 
+    color:#666;
+}
+.loginLink a:link{
+    text-decoration:none; 
+    color:#666;
+}
+
+.loginLink a:hover{
+    text-decoration:underline;
+    color:#222;
 }

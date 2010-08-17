@@ -5,8 +5,8 @@
 </asp:Content>
 
 <asp:Content ID="StoryBacklogHeadContent" ContentPlaceHolderID="HeadContent" runat="server">
-    <script src="<%: Url.Content("~/Scripts/Story.js") %>" type="text/javascript"></script>   
-    <script src="<%: Url.Content("~/Scripts/Task.js") %>" type="text/javascript"></script>   
+    <script src="<%: Url.Content("~/Scripts/scrumtime-story-1.0.js") %>" type="text/javascript"></script>   
+    <script src="<%: Url.Content("~/Scripts/scrumtime-task-1.0.js") %>" type="text/javascript"></script>   
     <style type="text/css">
         td {padding-top:4px;padding-bottom:4px}
     </style>

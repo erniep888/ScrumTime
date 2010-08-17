@@ -9,66 +9,15 @@
     <meta http-equiv="CACHE-CONTROL" content="NO-CACHE"/>
 
     <link rel="stylesheet" href="<%: Url.Content("~/Content/Css/main.css") %>" type="text/css" />
-    <link rel="stylesheet" href="<%: Url.Content("~/Content/Css/smoothness/jquery-ui-1.8.4.custom.css") %>" type="text/css" />
+    <link rel="stylesheet" href="<%: Url.Content("~/Content/Css/smooth_withgreen/jquery-ui-1.8.4.custom.css") %>" type="text/css" />
     <script src="<%: Url.Content("~/Scripts/jquery-1.4.2.min.js") %>" type="text/javascript" ></script>
     <script src="<%: Url.Content("~/Scripts/jquery-ui-1.8.4.custom.min.js") %>" type="text/javascript" ></script>
+    <script src="<%: Url.Content("~/Scripts/scrumtime-main-1.0.js") %>" type="text/javascript" ></script>
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
-
-    <style type="text/css">
-        html
-        {
-            font-family:Verdana;
-            font-size:12px;
-        }
-        .ui-tabs .ui-tabs-hide 
-        {
-            display: none;
-        }
-        .table_nopadding
-        {
-            border:0;
-            padding:0;
-            border:0;
-        }
-        .linkAsButton a
-        {
-            width:75px;
-            margin-bottom:4px;
-        }        
-        .logTableRow
-        {
-            padding:0;
-            margin:0;
-            border:1px solid #aed0ea;
-            padding-left:4px;
-        }
-        .logTableHeader
-        {
-            background-color:#40ace4;
-            color:#fffff7;
-            font-weight:bold;
-        }
-        #logContainer
-        {
-            border:1px dotted #aed0ea;
-            background-color:#e6f1f9;
-            padding:4px;
-            height:450px;
-            overflow:visible;
-        }
-    </style>
 </head>
 
-<body>
-    <script type="text/javascript">
-    $(function () {
-        $("#mainMenu").tabs();
-        $("#mainMenu").tabs("option", "cache", false);
-        $("#mainMenu").tabs("option", "ajaxOptions", { cache: false });
-    });
-    </script>
-
+<body>   
     <div id="pageHeader"></div>
 	<div id="menuBackgroundDiv"></div>
 	<div id="pageCenterDiv">
@@ -77,10 +26,9 @@
             <img id="pageLogo" src="/Content/Images/Logos/ScrumTimeLogo.png" alt="ScrumTime"/>		           	
 			<div id="pageTagline">scrum project management tool</div>
 		</div>
-		<%--<% Html.RenderPartial("MainMenu"); %>--%>
-        <%--<div id="logindisplay">
+        <div class="loginLink" style="z-index:100;position:absolute;right:30px;top:96px;font-size:12px;">
             <% Html.RenderPartial("LogOnUserControl"); %>
-        </div>--%>
+        </div>
 	
         <div id="main" style="position:absolute;top:88px;margin:0px;left:0px;">
             <div id="mainMenu" style="width:990px;height:580px;padding:0;margin:0">            

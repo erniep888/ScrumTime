@@ -120,8 +120,6 @@
       <DependentUpon>ScrumTime.mdf</DependentUpon>
     </Content>
     <Content Include="Content\Css\main.css" />
-    <Content Include="Content\Css\menu.css" />
-    <Content Include="Content\Css\Site.css" />
     <Content Include="Content\Css\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\Css\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\Css\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -136,6 +134,22 @@
     <Content Include="Content\Css\smoothness\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\Css\smoothness\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\Css\smoothness\jquery-ui-1.8.4.custom.css" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-bg_diagonals-medium_95_f8dde1_40x40.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-bg_diagonals-small_90_2d3a18_40x40.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-bg_flat_0_8dd864_40x100.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-bg_hexagon_55_e2e6d6_12x10.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-icons_44c318_256x240.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-icons_ee9e11_256x240.png" />
+    <Content Include="Content\Css\smooth_withgreen\jquery-ui-1.8.4.custom.css" />
     <Content Include="Content\Images\asterisk.gif" />
     <Content Include="Content\Images\disk.png" />
     <Content Include="Content\Images\favicon.ico" />
@@ -155,14 +169,12 @@
     <Content Include="Content\Images\screen.png" />
     <Content Include="Content\Images\scrumtime_logo.jpg" />
     <Content Include="Content\Images\scrumtime_tagline.jpg" />
-    <Content Include="Content\Images\Tabs\MenuBaseBg.png" />
-    <Content Include="Content\Images\Tabs\SelectedTabBg.png" />
-    <Content Include="Content\Images\Tabs\UnselectedTabBg.png" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\scrumtime-main-1.0.js" />
     <Content Include="Scripts\jquery-1.4.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.4.custom.min.js" />
-    <Content Include="Scripts\Task.js" />
-    <Content Include="Scripts\Story.js" />
+    <Content Include="Scripts\scrumtime-task-1.0.js" />
+    <Content Include="Scripts\scrumtime-story-1.0.js" />
     <Content Include="Views\Community\Index.aspx" />
     <Content Include="Views\Project\Create.aspx" />
     <Content Include="Views\Project\Index.aspx" />
@@ -171,7 +183,6 @@
     <Content Include="Views\Shared\MainMenu.ascx" />
     <Content Include="Views\Shared\ProjectSubMenu.ascx.ascx" />
     <Content Include="Views\Story\AddStoryRow.ascx" />
-    <Content Include="Views\Story\Copy of ListByPriority.aspx" />
     <Content Include="Views\Story\ListByPriority.aspx" />
     <Content Include="Views\Story\EditRow.ascx" />
     <Content Include="Views\Story\ReadOnlyRow.ascx" />
