@@ -4,7 +4,7 @@
        { %>
         <td style="vertical-align:middle;text-align:center;width:68px;border:0px;"><input name="priority" style="width:30px;text-align:center" type="text" value="<%: Model.StoryModel.Priority %>" /></td>
         <td style="vertical-align:middle;text-align:center;width:108px;border:0px;"><textarea name="userDefinedId" rows="3" style="width:100%;font-family:Verdana;font-style:italic;vertical-align:middle;text-align:center;"><%: Model.StoryModel.UserDefinedId%></textarea></td>
-        <td style="width:520px;border:0px"><textarea name="narrative" rows="3" style="width:100%;font-family:Verdana;"><%: Model.StoryModel.Narrative%></textarea></td>
+        <td style="width:510px;border:0px"><textarea name="narrative" rows="3" style="width:100%;font-family:Verdana;"><%: Model.StoryModel.Narrative%></textarea></td>
         <td style="vertical-align:middle;text-align:center;width:80px;border:0px;">
             <select name="points" style="text-align:center;width:50px;font-family:Verdana">
             <%

@@ -20,7 +20,7 @@
     <div style="margin-top:22px">
         <div id="Div3" style="height:24px;width:960px;background-color:white;
             font-family:Verdana;font-size:12px;padding-top:6px;border-top:2px solid #999;border-left:2px solid #999;border-right:2px solid #999;">
-            <div style="position:absolute;left:16px;width:115px;margin-top:0px">
+            <div style="position:absolute;left:30px;width:115px;margin-top:0px">
             <% if (Model.AddStory)
                { %>
                     <span style="color:#f22;font-size:12px;font-weight:bold;text-decoration:overline underline;">Add Story</span>
@@ -37,11 +37,11 @@
             <tr>
                 <th style="text-align:center;width:68px;border:0px;background-color:#f3f3f3;">Priority</th>
                 <th style="text-align:center;width:106px;border:0px;background-color:#f3f3f3;">Id/Name</th>
-                <th style="border:0px;width:528px;background-color:#f3f3f3;">Narrative</th>    
+                <th style="border:0px;width:490px;background-color:#f3f3f3;">Narrative</th>    
                 <th style="text-align:center;width:80px;border:0px;background-color:#f3f3f3;">Duration</th>                
                 <th style="text-align:center;width:80px;border:0px;background-color:#f3f3f3;">Points</th>
-                <th style="text-align:center;width:114px;border:0px;background-color:#f3f3f3;">Actions</th>
-                <th style="width:11px;border:0px;background-color:#f3f3f3;"></th>
+                <th style="text-align:center;width:97px;border:0px;background-color:#f3f3f3;">Actions</th>
+                <th style="width:30px;border:0px;background-color:#f3f3f3;"></th>
             </tr>
         </table>
         <div id="storyContentListId" style="width:960px;height:386px;border-left:2px solid #999;border-right:2px solid #aaa;
