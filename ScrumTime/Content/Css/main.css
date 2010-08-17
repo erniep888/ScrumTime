@@ -10,7 +10,7 @@ body
 	margin: 0; 
 	/*font: 0.7em Tahoma, Arial, sans-serif; */
 	line-height: 1.6em; 
-	background: #d1d1d1; 
+	background: #eee; 
 	color: #454545;
 }
 .ui-tabs .ui-tabs-hide 
@@ -29,8 +29,9 @@ body
     margin-bottom:4px;
 }        
 #pageHeader {	
-	height:124px;
+	height:121px;
 	background-color:#fff;
+	border-bottom:2px solid #aaaaaa;
 	position:absolute;
 	width:100%;
 	z-index:1;

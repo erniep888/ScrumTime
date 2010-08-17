@@ -17,7 +17,7 @@
 
 
 
-    <div style="margin-top:22px">
+    <div style="margin-top:22px;margin-left:13px;">
         <div id="Div3" style="height:24px;width:960px;background-color:white;
             font-family:Verdana;font-size:12px;padding-top:6px;border-top:2px solid #999;border-left:2px solid #999;border-right:2px solid #999;">
             <div style="position:absolute;left:30px;width:115px;margin-top:0px">
@@ -44,7 +44,7 @@
                 <th style="width:30px;border:0px;background-color:#f3f3f3;"></th>
             </tr>
         </table>
-        <div id="storyContentListId" style="width:960px;height:386px;border-left:2px solid #999;border-right:2px solid #aaa;
+        <div id="storyContentListId" style="width:960px;height:448px;border-left:2px solid #999;border-right:2px solid #aaa;
             border-bottom:2px solid #999;overflow:scroll;">
             <% Html.RenderPartial("~/Views/Story/ListContents.ascx", Model); %>    
         </div>        

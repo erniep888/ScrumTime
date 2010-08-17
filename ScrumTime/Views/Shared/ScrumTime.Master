@@ -43,7 +43,7 @@
                 <div id="mainTab-1">
                     <p>Product</p>
                 </div>         
-                <div id="mainTab-2">
+                <div id="mainTab-2" style="padding:0">
                     <asp:ContentPlaceHolder ID="MainContent" runat="server" />
                 </div>        
             </div>
