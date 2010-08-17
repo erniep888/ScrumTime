@@ -4,12 +4,12 @@ body{
 	margin: 0; 
 	font: 0.7em Tahoma, Arial, sans-serif; 
 	line-height: 1.6em; 
-	background: #fff; 
+	background: #d1d1d1; 
 	color: #454545;
 }
 #pageHeader {	
-	height:114px;
-	background-color:white;
+	height:124px;
+	background-color:#fff;
 	position:absolute;
 	width:100%;
 	z-index:1;
@@ -17,13 +17,13 @@ body{
 
 #pageCenterDiv{
 	margin: 0px auto;
-	width:960px;
+	width:992px;
 	background:#fff;
-	height:700px;
+	height:670px;
 	position:absolute;
 	z-index:2;
 	left:50%;
-	margin-left:-480px;
+	margin-left:-496px;
 }
 
 #pageTitleDiv{	
@@ -52,27 +52,21 @@ body{
 	padding-top:30px;
 }
 
-#footerBackgroundDiv {
-	background: #fff url('../Images/Tabs/MenuBaseBg.png') repeat-x;
-	height:25px;
-	position:absolute;
-	width:100%;
-	z-index:1;
-	top:670px;		
-}
 
-#pageCenterFooterDiv{
+#pageCenterFooterDiv
+{
+    font-size:12px;
 	margin: 0px auto;
-	width:960px;
+	width:988px;
 	background:#eee;
 	height:20px;
 	position:absolute;
 	z-index:20;
 	left:50%;
-	margin-left:-480px;
-	border: 2px solid gray;
-	top:693px;
-	color:#222;
+	margin-left:-496px;
+	border: 2px solid #aaaaaa;
+	top:675px;
+	color:#666;
 }
 
 .simpleLink:active{
