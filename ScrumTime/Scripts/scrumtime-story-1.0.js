@@ -6,7 +6,9 @@ function setupReadOnlyStoryRow(storyId) {
                 id: storyId
             },
             function (data) {
+                $(".storyTable .storyRow:odd").removeClass("storyAltRows");
                 $('#storyRow_' + storyId).replaceWith(data);
+                $(".storyTable .storyRow:odd").addClass("storyAltRows");
             }
         );
     });
