@@ -1,9 +1,9 @@
-﻿function setupReadOnlyTaskRow(taskId) {
+﻿function setupReadOnlyTaskRow(taskId, storyId) {
     $(".task_" + taskId).click(function () {
         $(this).parent().load('/Task/Edit', { id: taskId });
     });
     $(document).ready(function () {
-        $(".taskTable .taskRow:odd").addClass("taskAltRows");
+        $("#taskTableBody_" + storyId + " .taskRow:odd").addClass("taskAltRows");
     });
 
     return;
@@ -11,14 +11,39 @@
 
 function cancelTaskRowEdit(parentTagId, taskId, storyId) {
     if (taskId > 0)
-        $(parentTagId).load('/Task/ReadOnlyRow', { id: taskId });
-    else
-        $('#taskContentListId_' + storyId).load('/Task/ListById', { storyId: storyId });
+        $(parentTagId).load('/Task/ReadOnly', { id: taskId });
+    else {
+        $.post('/Task/ListById',
+            {
+                storyId: storyId
+            },
+            function (data) {
+                $("#taskTableBody_" + storyId + " .taskRow:odd").removeClass("taskAltRows");
+                $('#taskTableBody_' + storyId).replaceWith(data);
+                $("#taskTableBody_" + storyId + " .taskRow:odd").addClass("taskAltRows");
+            }
+        );
+    }
     return;
 }
 
 function addTaskRow(storyId) {
-    $('#taskContentListId_' + storyId).load('/Task/AddTaskRow', { storyId: storyId });
+    $("#taskTableBody_" + storyId + " .taskRow:odd").removeClass("taskAltRows");
+
+    $.post('/Task/New',
+        {
+            storyId: storyId
+        },
+        function (data) {
+            var target = $('#taskTable_' + storyId + ' tbody tr:first');
+            if (target.length > 0)
+                $('#taskTable_' + storyId + ' tbody tr:first').before(data);
+            else
+                $('#taskTable_' + storyId + ' tbody').after(data);
+        }
+    );
+
+    $("#taskTableBody_" + storyId + " .taskRow:odd").addClass("taskAltRows");
     return;
 }
 
@@ -56,7 +81,9 @@ function saveTaskRowEdit(parentTagId, taskId, storyId) {
                 description: description, hours: hours
             },
             function (data) {
-                $('#taskContentListId_' + storyId).html(data);
+                $("#taskTableBody_" + storyId + " .taskRow:odd").removeClass("taskAltRows");
+                $('#taskTableBody_' + storyId).replaceWith(data);
+                $("#taskTableBody_" + storyId + " .taskRow:odd").addClass("taskAltRows");
             }
         );
     }
@@ -71,7 +98,9 @@ function deleteTask(storyId, taskId) {
         storyId: storyId
     },
     function (data) {
-        $('#taskContentListId_' + storyId).html(data);
+        $("#taskTableBody_" + storyId + " .taskRow:odd").removeClass("taskAltRows");
+        $('#taskTableBody_' + storyId).replaceWith(data);
+        $("#taskTableBody_" + storyId + " .taskRow:odd").addClass("taskAltRows");
     });
 
     // TODO: Implement delete failure GUI

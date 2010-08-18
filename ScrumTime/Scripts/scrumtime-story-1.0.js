@@ -5,7 +5,7 @@ function setupReadOnlyStoryRow(storyId) {
         $(this).parent().load('/Story/Edit', { id: storyId });
     });
     $("#storyTasks_" + storyId).click(function () {
-        $("#storyRow_" + storyId).load('/Task/StoryRowWithTasks', { storyId: storyId });
+        $("#storyRow_" + storyId).load('/Task/StoryTaskBacklog', { storyId: storyId });
     });
 
     $(document).ready(function () {
@@ -16,7 +16,17 @@ function setupReadOnlyStoryRow(storyId) {
 }
 
 function cancelStoryRowEdit(parentTagId, storyId) {
-    $(parentTagId).load('/Story/ReadOnly', { id: storyId });
+    if (storyId > 0)
+        $(parentTagId).load('/Story/ReadOnly', { id: storyId });
+    else {
+        $.post('/Story/ListByPriority',
+            {
+        },
+            function (data) {
+                $('#storyContentListId').html(data);
+            }
+       );
+    }
     return;
 }
 

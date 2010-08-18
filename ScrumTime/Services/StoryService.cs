@@ -16,7 +16,7 @@ namespace ScrumTime.Services
         }
 
 
-        public Story GetStoryById(ScrumTimeEntities scrumTimeEntities, int id)
+        public static Story GetStoryById(ScrumTimeEntities scrumTimeEntities, int id)
         {            
             Story story = null;
             var results = from s in scrumTimeEntities.Stories

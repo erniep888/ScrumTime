@@ -22,52 +22,47 @@ namespace ScrumTime.Controllers
             _ScrumTimeEntities = new ScrumTimeEntities();
             _StoryService = new StoryService(_ScrumTimeEntities);
             _TaskService = new TaskService(_ScrumTimeEntities);
+        }        
+
+        // An AJAX driven result that replaces the story row with a story row + task backlog
+        public ActionResult StoryTaskBacklog(int storyId)
+        {
+            TaskCollectionViewModel taskCollectionViewModel = TaskCollectionViewModel.BuildByIdAsc(storyId);
+            return PartialView(taskCollectionViewModel);
         }
 
+        // An AJAX driven result that returns just the tbody of the task backlog for the given story
         public ActionResult ListById(int storyId)
         {
-            ScrumTimeEntities entities = new ScrumTimeEntities();
-            Story story = _StoryService.GetStoryById(storyId);
-            TaskCollectionViewModel taskCollectionViewModel = new TaskCollectionViewModel()
-            {
-                ParentStoryModel = story
-            };
-            return PartialView(taskCollectionViewModel);
+            TaskCollectionViewModel taskCollectionViewModel = TaskCollectionViewModel.BuildByIdAsc(storyId);
+            return PartialView("List", taskCollectionViewModel);
         }
 
-        public ActionResult StoryRowWithTasks(int storyId)
-        {
-            ScrumTimeEntities entities = new ScrumTimeEntities();
-            Story story = _StoryService.GetStoryById(storyId);
-            TaskCollectionViewModel taskCollectionViewModel = new TaskCollectionViewModel()
-            {
-                ParentStoryModel = story
-            };
-            return PartialView(taskCollectionViewModel);
-        }
-
+        // An AJAX driven result that returns just the td's of the editable task...replaces read only
         public ActionResult Edit(int id)
         {
             Task task = _TaskService.GetTaskById(id);
             return PartialView(task);
         }
 
+        // An AJAX driven result that returns just the td's of the read only task...replaces any other
         public ActionResult ReadOnly(int id)
         {
             Task task = _TaskService.GetTaskById(id);
             return PartialView(task);
         }
 
-        // GET: /Task/AddTaskRow
-        public ActionResult AddTaskRow(int storyId)
+        // An AJAX driven result that returns just the td's of the editable "new" task...appends to list
+        public ActionResult New(int storyId)
         {
-            ScrumTimeEntities entities = new ScrumTimeEntities();
             Story story = _StoryService.GetStoryById(storyId);
-            TaskCollectionViewModel taskCollectionViewModel = new TaskCollectionViewModel()
+            Task task = new Task()
             {
-                ParentStoryModel = story, AddTask = true
+                Hours = 0,
+                StoryId = storyId,
+                TaskId = 0
             };
-            return PartialView("ListById", taskCollectionViewModel);
+            return PartialView("Edit", task);
         }
 
         // POST: /Task/Save
@@ -100,7 +95,7 @@ namespace ScrumTime.Controllers
                 if (newTask)
                     return RedirectToAction("ListById", new { storyId = storyId });
                 else
-                    return RedirectToAction("ReadOnlyRow", new { id = Int32.Parse(id) });
+                    return RedirectToAction("ReadOnly", new { id = Int32.Parse(id) });
             }
             catch
             {

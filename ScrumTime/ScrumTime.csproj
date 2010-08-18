@@ -164,16 +164,14 @@
     <Content Include="Views\Project\ProjectSubMenu.ascx" />
     <Content Include="Views\Shared\FooterControl.ascx" />
     <Content Include="Views\Story\StoryActionCancelOnly.ascx" />
-    <Content Include="Views\Story\New.ascx" />
     <Content Include="Views\Story\Backlog.aspx" />
     <Content Include="Views\Story\Edit.ascx" />
     <Content Include="Views\Story\ReadOnly.ascx" />
     <Content Include="Views\Story\List.ascx" />
     <Content Include="Views\Task\Edit.ascx" />
-    <Content Include="Views\Task\StoryRowWithTasks.ascx" />
+    <Content Include="Views\Task\StoryTaskBacklog.ascx" />
     <Content Include="Views\Task\List.ascx" />
     <Content Include="Views\Task\ReadOnly.ascx" />
-    <Content Include="Views\Task\ListById.ascx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

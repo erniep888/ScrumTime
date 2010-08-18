@@ -16,7 +16,7 @@ namespace ScrumTime.Services
         }
 
 
-        public Task GetTaskById(ScrumTimeEntities scrumTimeEntities, int id)
+        public static Task GetTaskById(ScrumTimeEntities scrumTimeEntities, int id)
         {            
             Task task = null;
             var results = from t in scrumTimeEntities.Tasks
