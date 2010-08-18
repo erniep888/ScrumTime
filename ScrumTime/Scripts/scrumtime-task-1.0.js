@@ -4,8 +4,10 @@
             {
                 id: taskId
             },
-            function (data) {                
+            function (data) {
+                $("#taskTableBody_" + storyId + " .taskRow").removeClass("taskAltRows");
                 $('#taskRow_' + taskId).replaceWith(data);
+                $("#taskTableBody_" + storyId + " .taskRow:odd").addClass("taskAltRows");
             }
         );
     });
@@ -34,7 +36,7 @@ function cancelTaskRowEdit(taskId, storyId) {
                 storyId: storyId
             },
             function (data) {
-                $("#taskTableBody_" + storyId + " .taskRow:odd").removeClass("taskAltRows");
+                $("#taskTableBody_" + storyId + " .taskRow").removeClass("taskAltRows");
                 $('#taskTableBody_' + storyId).replaceWith(data);
                 $("#taskTableBody_" + storyId + " .taskRow:odd").addClass("taskAltRows");
             }
@@ -44,7 +46,7 @@ function cancelTaskRowEdit(taskId, storyId) {
 }
 
 function addTaskRow(storyId) {
-    $("#taskTableBody_" + storyId + " .taskRow:odd").removeClass("taskAltRows");
+    $("#taskTableBody_" + storyId + " .taskRow").removeClass("taskAltRows");
 
     $.post('/Task/New',
         {
@@ -100,7 +102,7 @@ function saveTaskRowEdit(taskId, storyId) {
                 description: description, hours: hours
             },
             function (data) {
-                $("#taskTableBody_" + storyId + " .taskRow:odd").removeClass("taskAltRows");
+                $("#taskTableBody_" + storyId + " .taskRow").removeClass("taskAltRows");
                 $('#taskTableBody_' + storyId).replaceWith(data);
                 $("#taskTableBody_" + storyId + " .taskRow:odd").addClass("taskAltRows");
             }
@@ -140,7 +142,7 @@ function deleteTask(storyId, taskId) {
         storyId: storyId
     },
     function (data) {
-        $("#taskTableBody_" + storyId + " .taskRow:odd").removeClass("taskAltRows");
+        $("#taskTableBody_" + storyId + " .taskRow").removeClass("taskAltRows");
         $('#taskTableBody_' + storyId).replaceWith(data);
         $("#taskTableBody_" + storyId + " .taskRow:odd").addClass("taskAltRows");
     });

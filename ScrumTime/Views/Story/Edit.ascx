@@ -55,5 +55,9 @@
 
         <script type="text/javascript">           
             setupEditStoryRow(<%: Model.StoryModel.StoryId %>, <%: Model.StoryModel.Priority %> );
+
+            $('storyRow_<%: Model.StoryModel.StoryId %>').ready(function () {
+                setAlternatingStoryBackgroundColors();
+            });
         </script>
     </tr>

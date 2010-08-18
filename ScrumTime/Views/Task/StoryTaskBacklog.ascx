@@ -1,10 +1,10 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<ScrumTime.ViewModels.TaskCollectionViewModel>" %>
-                
+<tr id="storyRow_<%: Model.ParentStoryModel.StoryId %>" class="storyRow" style="border:0px" >                
    <td style="padding:0px;margin:0px;border:0px;" colspan="6">           
      <table style="width:940px;font-family:Verdana;padding:0px;margin:0px;border:0px" cellpadding="0" cellspacing="0">
             <tr style="padding:0px;margin:0px;border:0px;">
                 <%
-                    Html.RenderPartial("~/Views/Story/ReadOnly.ascx", Model.ParentStoryModel);
+                    Html.RenderPartial("~/Views/Story/ReadOnlyColumns.ascx", Model.ParentStoryModel);
                 %>
             </tr>
             <tr style="padding:0px;margin:0px;border:0px;">
@@ -36,7 +36,11 @@
    <script type="text/javascript" language="javascript">
        setupTaskEditorCancelButton(<%: Model.ParentStoryModel.StoryId %>);  
        hideBottomContainerBorderIfNeeded(<%: Model.ParentStoryModel.StoryId %>);   
+       $('storyRow_<%: Model.ParentStoryModel.StoryId %>').ready(function () {
+            setAlternatingStoryBackgroundColors();
+        });
    </script>
+</tr>
         
         
     

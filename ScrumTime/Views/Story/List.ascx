@@ -10,3 +10,9 @@
             %>                      
         </tbody>
     </table>
+
+    <script type="text/javascript">
+        $('.storyTable').ready(function () {
+            setAlternatingStoryBackgroundColors();
+        });
+    </script>

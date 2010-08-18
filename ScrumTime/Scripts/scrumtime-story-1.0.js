@@ -6,9 +6,7 @@ function setupReadOnlyStoryRow(storyId) {
                 id: storyId
             },
             function (data) {
-                $(".storyTable .storyRow:odd").removeClass("storyAltRows");
                 $('#storyRow_' + storyId).replaceWith(data);
-                $(".storyTable .storyRow:odd").addClass("storyAltRows");
             }
         );
     });
@@ -18,16 +16,12 @@ function setupReadOnlyStoryRow(storyId) {
             {
                 storyId: storyId
             },
-            function (data) {
-                $('#storyRow_' + storyId).replaceWith(data);
+            function (data) {                
+                $('#storyRow_' + storyId).replaceWith(data);                
             }
         );
     });
-
-    $(document).ready(function () {
-        $(".storyTable .storyRow:odd").addClass("storyAltRows");
-    });
-
+    
     return;
 }
 
@@ -39,6 +33,9 @@ function cancelStoryRowEdit(storyId) {
             },
             function (data) {
                 $('#storyRow_' + storyId).replaceWith(data);
+                $('#storyRow_' + storyId).ready(function () {
+                    setAlternatingStoryBackgroundColors();
+                });
             }
         );
     }
@@ -109,8 +106,6 @@ function deleteStory(storyId) {
 }
 
 function addStoryRow() {
-    $(".storyTable .storyRow:odd").removeClass("storyAltRows");
-
     $.post('/Story/New',
         {            
         },
@@ -118,8 +113,6 @@ function addStoryRow() {
             $('.storyTable  tr:first').before(data);
         }
     );
-
-    $(".storyTable .storyRow:odd").addClass("storyAltRows");
     return;
 }
 
@@ -129,3 +122,7 @@ function setupAddStoryFormSubmit() {
     });
 }
 
+function setAlternatingStoryBackgroundColors() {
+    $(".storyTable .storyRow").removeClass("storyAltRows");
+    $(".storyTable .storyRow:odd").addClass("storyAltRows");    
+}

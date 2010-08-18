@@ -6,7 +6,7 @@
             <td style="border:0px">
                 <a href="#" id="closeStoryTasks_<%: Model.StoryId %>" class="simpleLink"
                     style="font-size:12px;font-weight:bold;color:#0035a0;"
-                    onclick="cancelStoryRowEdit('#storyRow_<%: Model.StoryId %>', <%: Model.StoryId %>);">
+                    onclick="cancelStoryRowEdit(<%: Model.StoryId %>);">
                     <img alt="Cancel" src="../../Content/Images/Menu/cancel24x24.png" /></a>
             </td>
         </tr>

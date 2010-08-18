@@ -41,7 +41,7 @@
         </div>        
     </div>
     <script type="text/javascript">
-        loadBacklogTab();
+        loadBacklogTab();        
     </script>
 </asp:Content>
 
