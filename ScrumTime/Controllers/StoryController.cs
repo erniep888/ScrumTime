@@ -143,6 +143,13 @@ namespace ScrumTime.Controllers
             }
         }
 
+        // Returns only a small table for the story actions
+        public ActionResult StoryActionCancelOnly(int storyId)
+        {
+            Story story = _StoryService.GetStoryById(storyId);
+            return PartialView(story);
+        }
+
    
         // Returns the entire Backlog html page
         public ActionResult Index()

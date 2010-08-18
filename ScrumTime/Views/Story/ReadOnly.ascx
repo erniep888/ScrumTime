@@ -19,7 +19,7 @@
     <td class="story_<%: Model.StoryId %>" style="border:0px;width:510px"><a class="simpleLink" href="#"><%: Model.Narrative %></a></td>
     <td class="story_<%: Model.StoryId %>" style="vertical-align:middle;text-align:center;width:80px;border:0px;font-size:11px;"><a class="simpleLink" href="#"><%: taskHourString %></a></td>
     <td class="story_<%: Model.StoryId %>" style="vertical-align:middle;text-align:center;width:80px;border:0px;font-size:11px;"><a class="simpleLink" href="#"><%: Model.Points %></a></td>
-    <td style="vertical-align:middle;text-align:left;width:114px;border:0;font-size:11px;padding:0;">
+    <td class="story_<%: Model.StoryId %>_Actions" style="vertical-align:middle;text-align:left;width:114px;border:0;font-size:11px;padding:0;">
         <table border="1" cellpadding="0" cellspacing="0" style="padding:0;border:0;" width="100%">
             <tr>
                 <td style="border:0px;">

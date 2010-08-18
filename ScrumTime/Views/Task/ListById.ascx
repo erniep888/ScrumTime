@@ -34,7 +34,7 @@
     </table>
 
     <script type="text/javascript">
-        hideBottomContainerBorderIfNeeded(<%: Model.ParentStoryModel.StoryId %>);
+        hideBottomContainerBorderIfNeeded(<%: Model.ParentStoryModel.StoryId %>);        
     </script>
 
 

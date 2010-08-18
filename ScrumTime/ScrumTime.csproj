@@ -163,6 +163,7 @@
     <Content Include="Views\Project\List.aspx" />
     <Content Include="Views\Project\ProjectSubMenu.ascx" />
     <Content Include="Views\Shared\FooterControl.ascx" />
+    <Content Include="Views\Story\StoryActionCancelOnly.ascx" />
     <Content Include="Views\Story\New.ascx" />
     <Content Include="Views\Story\Backlog.aspx" />
     <Content Include="Views\Story\Edit.ascx" />

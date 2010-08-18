@@ -77,21 +77,12 @@ function deleteTask(storyId, taskId) {
     // TODO: Implement delete failure GUI
 }
 
-function setupTaskEditorCancelButton(storyId) {
-    $(function () {
-    var newActionHtml = 
-        '<td class="story_' + storyId + '_Actions" style="vertical-align:middle;text-align:center;width:114px;border:0px;">' +
-        '            <table border="1" cellpadding="0" cellspacing="0" style="padding:0;border:0;" width="100%">' +
-        '                <tr>' +
-        '                   <td style="border:0px">' +
-        '                        <a href="#" id="closeStoryTasks_' + storyId + '" class="simpleLink" ' +
-        '                            style="font-size:12px;font-weight:bold;color:#0035a0;" ' +
-        '                            onclick="cancelStoryRowEdit(\'#storyRow_' + storyId + '\', \'' + storyId + '\');">' +
-        '                            <img alt="Cancel" src="../../Content/Images/Menu/cancel24x24.png" /></a>' +
-        '                    </td>' +
-        '                </tr>' +
-        '            </table>    ' +
-        '        </td>';
-    $('.story_' + storyId + '_Actions').replaceWith(newActionHtml);
-    });
+function setupTaskEditorCancelButton(storyId) {    
+    $.ajax({
+        url: '/Story/StoryActionCancelOnly',
+        data: ({ storyId: storyId }),
+        success: function (data) {
+            $('.story_' + storyId + '_Actions').replaceWith(data);
+        }
+    });    
 }
