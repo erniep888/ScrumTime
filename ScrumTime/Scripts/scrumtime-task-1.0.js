@@ -118,7 +118,7 @@ function saveTaskRowEdit(taskId, storyId) {
 function setTaskTotalHours(storyId) {
     var total = 0;
     $('.storyTaskHours_' + storyId).each(function (index) {
-        total = total + $(this).text();
+        total = total + Number( $(this).text() );
     });
     $('#storyTotalHours_' + storyId).text(total);  
 }
