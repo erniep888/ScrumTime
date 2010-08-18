@@ -31,16 +31,9 @@ function cancelTaskRowEdit(taskId, storyId) {
         );
     }
     else {
-        $.post('/Task/ListById',
-            {
-                storyId: storyId
-            },
-            function (data) {
-                $("#taskTableBody_" + storyId + " .taskRow").removeClass("taskAltRows");
-                $('#taskTableBody_' + storyId).replaceWith(data);
-                $("#taskTableBody_" + storyId + " .taskRow:odd").addClass("taskAltRows");
-            }
-        );
+        var target = $('#taskTable_' + storyId + ' tbody tr:first');
+        if (target.length > 0)
+            $('#taskTable_' + storyId + ' tbody tr:first').remove();
     }
     return;
 }
@@ -57,7 +50,7 @@ function addTaskRow(storyId) {
             if (target.length > 0)
                 $('#taskTable_' + storyId + ' tbody tr:first').before(data);
             else
-                $('#taskTable_' + storyId + ' tbody').after(data);
+                $('#taskTable_' + storyId + ' tbody').prepend(data);
         }
     );
 
