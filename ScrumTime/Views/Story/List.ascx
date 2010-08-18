@@ -5,11 +5,7 @@
             <%  
             foreach (ScrumTime.Models.Story story in Model.Stories)
             {
-                %>
-                <tr id="storyRow_<%: story.StoryId %>" class="storyRow" style="border:0px" >
-                    <% Html.RenderPartial("~/Views/Story/ReadOnly.ascx", story); %>
-                </tr>
-                <%
+                Html.RenderPartial("~/Views/Story/ReadOnly.ascx", story); 
             }                               
             %>                      
         </tbody>

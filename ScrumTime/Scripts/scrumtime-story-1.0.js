@@ -1,11 +1,25 @@
 ﻿
 function setupReadOnlyStoryRow(storyId) {
-
     $(".story_" + storyId).click(function () {
-        $(this).parent().load('/Story/Edit', { id: storyId });
+        $.post('/Story/Edit',
+            {
+                id: storyId
+            },
+            function (data) {
+                $('#storyRow_' + storyId).replaceWith(data);
+            }
+        );
     });
+
     $("#storyTasks_" + storyId).click(function () {
-        $("#storyRow_" + storyId).load('/Task/StoryTaskBacklog', { storyId: storyId });
+        $.post('/Task/StoryTaskBacklog',
+            {
+                storyId: storyId
+            },
+            function (data) {
+                $('#storyRow_' + storyId).replaceWith(data);
+            }
+        );
     });
 
     $(document).ready(function () {
@@ -15,15 +29,23 @@ function setupReadOnlyStoryRow(storyId) {
     return;
 }
 
-function cancelStoryRowEdit(parentTagId, storyId) {
-    if (storyId > 0)
-        $(parentTagId).load('/Story/ReadOnly', { id: storyId });
+function cancelStoryRowEdit(storyId) {
+    if (storyId > 0) {
+        $.post('/Story/ReadOnly',
+            {
+                id: storyId
+            },
+            function (data) {
+                $('#storyRow_' + storyId).replaceWith(data);
+            }
+        );
+    }
     else {
         $.post('/Story/ListByPriority',
             {
-        },
+            },
             function (data) {
-                $('#storyContentListId').html(data);
+                $('.storyTable').replaceWith(data);
             }
        );
     }
@@ -35,7 +57,7 @@ function setupEditStoryRow(storyId, originalStoryPriority) {
     return;
 }
 
-function saveStoryRowEdit(parentTagId, storyId) {
+function saveStoryRowEdit(storyId) {
     var originalPriority = $('#storyPriority_' + storyId).data('originalValue');
     if (originalPriority == 0) // handle the nulled/nonexisting originalValue
         originalPriority = -9;
@@ -51,7 +73,7 @@ function saveStoryRowEdit(parentTagId, storyId) {
                 originalPriority: originalPriority, points: points
             },
             function (data) {
-                $('#storyContentListId').html(data);
+                $('.storyTable').replaceWith(data);
             }
         );
     }
@@ -63,7 +85,7 @@ function saveStoryRowEdit(parentTagId, storyId) {
                 originalPriority: originalPriority, points: points
             },
             function (data) {
-                $(parentTagId).html(data);
+                $('#storyRow_' + storyId).replaceWith(data);
             }
         );
     }
@@ -77,7 +99,7 @@ function deleteStory(storyId) {
             storyId: storyId
         },
         function (data) {
-            $('#storyContentListId').html(data);
+            $('.storyTable').replaceWith(data);
         }
     );
     

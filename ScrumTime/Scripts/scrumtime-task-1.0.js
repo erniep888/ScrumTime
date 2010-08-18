@@ -1,7 +1,15 @@
 ﻿function setupReadOnlyTaskRow(taskId, storyId) {
     $(".task_" + taskId).click(function () {
-        $(this).parent().load('/Task/Edit', { id: taskId });
+        $.post('/Task/Edit',
+            {
+                id: taskId
+            },
+            function (data) {                
+                $('#taskRow_' + taskId).replaceWith(data);
+            }
+        );
     });
+
     $(document).ready(function () {
         $("#taskTableBody_" + storyId + " .taskRow:odd").addClass("taskAltRows");
     });
@@ -9,9 +17,17 @@
     return;
 }
 
-function cancelTaskRowEdit(parentTagId, taskId, storyId) {
-    if (taskId > 0)
-        $(parentTagId).load('/Task/ReadOnly', { id: taskId });
+function cancelTaskRowEdit(taskId, storyId) {
+    if (taskId > 0) {
+        $.post('/Task/ReadOnly',
+            {
+                id: taskId
+            },
+            function (data) {
+                $('#taskRow_' + taskId).replaceWith(data);
+            }
+        );
+    }
     else {
         $.post('/Task/ListById',
             {
@@ -57,7 +73,7 @@ function hideBottomContainerBorderIfNeeded(storyId) {
     return;
 }
 
-function saveTaskRowEdit(parentTagId, taskId, storyId) {
+function saveTaskRowEdit(taskId, storyId) {
     var description = $('#taskDescription_' + taskId).val();
     var hours = $('#taskHours_' + taskId).val();
 
@@ -70,9 +86,12 @@ function saveTaskRowEdit(parentTagId, taskId, storyId) {
                 description: description, hours: hours
             },
             function (data) {
-                $(parentTagId).html(data);
+                $('#taskRow_' + taskId).replaceWith(data);
             }
         );
+       
+        setTaskTotalHours(storyId);
+        
     }
     else {
         $.post('/Task/Save',
@@ -89,6 +108,29 @@ function saveTaskRowEdit(parentTagId, taskId, storyId) {
     }
         // TODO: Implement save failure GUI
 }
+
+
+
+
+
+// TODO: ************  Turn total into a number
+
+function setTaskTotalHours(storyId) {
+    var total = 0;
+    $('.storyTaskHours_' + storyId).each(function (index) {
+        total = total + $(this).text();
+    });
+    $('#storyTotalHours_' + storyId).text(total);  
+}
+
+
+
+
+
+
+
+
+
 
 function deleteTask(storyId, taskId) {
     $.post('/Task/Delete',
