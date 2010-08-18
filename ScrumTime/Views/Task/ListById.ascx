@@ -28,7 +28,7 @@
                     tasks.Add(newTask);          
                 }
 
-                Html.RenderPartial("~/Views/Task/ListContents.ascx", tasks);
+                Html.RenderPartial("~/Views/Task/List.ascx", tasks);
             %>  
         </tbody>
     </table>
