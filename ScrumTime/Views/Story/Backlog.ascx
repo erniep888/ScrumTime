@@ -1,8 +1,11 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<ScrumTime.ViewModels.StoryCollectionViewModel>" %>
        
-    <style type="text/css">
-        
-    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            document.title = 'ScrumTime 0.9 - Backlog';
+        }); 
+    </script> 
+
 
     <div style="margin-top:0px;margin-left:0px;">
         <div id="Div3" style="height:34px;width:960px;background-color:#fff;
