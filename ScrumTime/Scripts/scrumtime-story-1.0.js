@@ -85,9 +85,13 @@ function saveStoryRowEdit(storyId) {
             },
             function (data) {
                 $('#storyRow_' + storyId).replaceWith(data);
+                $('#storyRow_' + storyId).ready(function () {
+                    setAlternatingStoryBackgroundColors();
+                });
             }
         );
     }
+
     // TODO: Implement save failure GUI
 }
 
