@@ -30,7 +30,4 @@
             border-bottom:2px solid #999;overflow:scroll;">
             <% Html.RenderPartial("~/Views/Story/List.ascx", Model); %>    
         </div>        
-    </div>
-    <script type="text/javascript">
-        loadBacklogTab();        
-    </script>
+    </div>    

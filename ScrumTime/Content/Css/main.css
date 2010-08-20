@@ -43,13 +43,13 @@ td
 
 #pageCenterDiv{
 	margin: 0px auto;
-	width:992px;
+	width:1001px;
 	background:#fff;
-	height:670px;
+	height:666px;
 	position:absolute;
 	z-index:2;
 	left:50%;
-	margin-left:-496px;
+	margin-left:-501px;
 }
 
 #pageTitleDiv{	
@@ -83,15 +83,15 @@ td
 {
     font-size:12px;
 	margin: 0px auto;
-	width:988px;
+	width:998px;
 	background:#eee;
 	height:20px;
 	position:absolute;
 	z-index:20;
 	left:50%;
-	margin-left:-496px;
+	margin-left:-501px;
 	border: 2px solid #aaaaaa;
-	top:675px;
+	top:672px;
 	color:#666;
 }
 
