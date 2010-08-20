@@ -34,6 +34,20 @@ namespace ScrumTime.Services
             return GetTaskById(_ScrumTimeEntities, id);
         }
 
+        public static List<Task> GetTasksByStoryIdOrderbyIdAsc(ScrumTimeEntities scrumTimeEntities, int storyId)
+        {
+            var results = from t in scrumTimeEntities.Tasks
+                          where t.StoryId == storyId
+                          orderby t.TaskId ascending
+                          select t;            
+            return results.ToList<Task>();
+        }
+
+        public List<Task> GetTasksByStoryIdOrderbyIdAsc(int storyId)
+        {
+            return GetTasksByStoryIdOrderbyIdAsc(_ScrumTimeEntities, storyId);
+        }
+
         public Task SaveTask(Task task)
         {
             if (task != null)

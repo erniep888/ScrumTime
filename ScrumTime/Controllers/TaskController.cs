@@ -65,6 +65,13 @@ namespace ScrumTime.Controllers
             return PartialView("Edit", task);
         }
 
+        [HttpPost]
+        public ActionResult TotalTaskHours(int storyId)
+        {
+            var tasks = _TaskService.GetTasksByStoryIdOrderbyIdAsc(storyId);
+            return Json(tasks.Sum(t => t.Hours));
+        }
+
         // POST: /Task/Save
         [HttpPost]
         public ActionResult Save(FormCollection collection)

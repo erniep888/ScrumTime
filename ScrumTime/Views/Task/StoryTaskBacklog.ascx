@@ -20,7 +20,7 @@
                                     <tr>
                                         <th style="text-align:center;width:80px;padding-top:3px;padding-bottom:3px;border:0px;border-top:1px dotted #777;border-bottom:1px dotted #777;background-color:#f3f3f3;">ID</th>
                                         <th style="border:0px;border-top:1px dotted #777;border-bottom:1px dotted #777;background-color:#f3f3f3;text-align:left;" >Description</th>
-                                        <th style="text-align:center;width:80px;border:0px;border-top:1px dotted #777;border-bottom:1px dotted #777;background-color:#f3f3f3;">Hours <span style="font-size:10px;color:#666">(<%: Model.ParentStoryModel.Tasks.Sum(t => t.Hours)%>)</span></th>
+                                        <th style="text-align:center;width:80px;border:0px;border-top:1px dotted #777;border-bottom:1px dotted #777;background-color:#f3f3f3;">Hours <span id="totalTaskHoursTaskHeader_<%: Model.ParentStoryModel.StoryId %>" style="font-size:10px;color:#666">(<%: Model.ParentStoryModel.Tasks.Sum(t => t.Hours)%>)</span></th>
                                         <th style="text-align:center;width:194px;border:0px;border-top:1px dotted #777;border-bottom:1px dotted #777;background-color:#f3f3f3;">Actions</th>
                                     </tr>
                                 </thead>

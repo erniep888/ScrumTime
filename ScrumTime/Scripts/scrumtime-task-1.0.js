@@ -82,10 +82,9 @@ function saveTaskRowEdit(taskId, storyId) {
             },
             function (data) {
                 $('#taskRow_' + taskId).replaceWith(data);
+                setTaskTotalHours(storyId);
             }
-        );
-       
-        setTaskTotalHours(storyId);
+        );              
         
     }
     else {
@@ -101,7 +100,8 @@ function saveTaskRowEdit(taskId, storyId) {
             }
         );
     }
-        // TODO: Implement save failure GUI
+    
+    // TODO: Implement save failure GUI
 }
 
 
@@ -111,13 +111,27 @@ function saveTaskRowEdit(taskId, storyId) {
 // TODO: ************  Turn total into a number
 
 function setTaskTotalHours(storyId) {
-    var total = 0;
-    $('.storyTaskHours_' + storyId).each(function (index) {
-        total = total + Number( $(this).text() );
-    });
-    $('#storyTotalHours_' + storyId).text(total);  
+
+    $.post('/Task/TotalTaskHours',
+        {
+            storyId: storyId
+        },
+        function (data) {
+
+            $('#storyTotalHours_' + storyId).text(getTaskHourString(Number(data)));
+            $('#totalTaskHoursTaskHeader_' + storyId).text('(' + data + ')');
+        }
+    );
 }
 
+function getTaskHourString(taskHours){
+    var taskHourString = "";
+    if (taskHours > 1 || taskHours == 0 || taskHours < 0)
+        taskHourString = taskHours + " hrs";
+    else
+        taskHourString = "1 hr";
+    return taskHourString;
+}
 
 
 
