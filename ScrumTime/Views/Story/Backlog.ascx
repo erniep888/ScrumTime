@@ -1,22 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/ScrumTime.Master" Inherits="System.Web.Mvc.ViewPage<ScrumTime.ViewModels.StoryCollectionViewModel>" %>
-
-<asp:Content ID="StoryBacklogTitle" ContentPlaceHolderID="TitleContent" runat="server">
-	Story Backlog
-</asp:Content>
-
-<asp:Content ID="StoryBacklogHeadContent" ContentPlaceHolderID="HeadContent" runat="server">
-    <script src="<%: Url.Content("~/Scripts/scrumtime-story-1.0.js") %>" type="text/javascript"></script>   
-    <script src="<%: Url.Content("~/Scripts/scrumtime-task-1.0.js") %>" type="text/javascript"></script>   
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<ScrumTime.ViewModels.StoryCollectionViewModel>" %>
+       
     <style type="text/css">
-        td {padding-top:4px;padding-bottom:4px}
+        
     </style>
-</asp:Content>
 
-<asp:Content ID="StoryBacklogMainContent" ContentPlaceHolderID="MainContent" runat="server">    
-    <div style="margin-top:22px;margin-left:13px;">
+    <div style="margin-top:0px;margin-left:0px;">
         <div id="Div3" style="height:34px;width:960px;background-color:#fff;
             font-family:Verdana;font-size:12px;padding-top:6px;border-top:2px solid #999;border-left:2px solid #999;border-right:2px solid #999;">
-            <div style="position:absolute;left:24px;width:115px;margin-top:10px">
+            <div style="position:absolute;left:30px;width:115px;margin-top:10px">
                   <a href="#" class="simpleLink newStoryLink" onclick="addStoryRow();">Add Story</a>
             </div>            
             <div style="position:absolute;left:450px;width:80px;margin-top:0px;color:#79a52c;font-weight:bold;
@@ -43,5 +34,3 @@
     <script type="text/javascript">
         loadBacklogTab();        
     </script>
-</asp:Content>
-

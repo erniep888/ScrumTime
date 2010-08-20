@@ -13,6 +13,10 @@ body
 	background: #eee; 
 	color: #454545;
 }
+td 
+{
+    padding-top:4px;padding-bottom:4px;
+}
 .ui-tabs .ui-tabs-hide 
 {
     display: none;

@@ -97,6 +97,7 @@ function saveTaskRowEdit(taskId, storyId) {
                 $("#taskTableBody_" + storyId + " .taskRow").removeClass("taskAltRows");
                 $('#taskTableBody_' + storyId).replaceWith(data);
                 $("#taskTableBody_" + storyId + " .taskRow:odd").addClass("taskAltRows");
+                setTaskTotalHours(storyId);
             }
         );
     }
@@ -152,6 +153,7 @@ function deleteTask(storyId, taskId) {
         $("#taskTableBody_" + storyId + " .taskRow").removeClass("taskAltRows");
         $('#taskTableBody_' + storyId).replaceWith(data);
         $("#taskTableBody_" + storyId + " .taskRow:odd").addClass("taskAltRows");
+        setTaskTotalHours(storyId);
     });
 
     // TODO: Implement delete failure GUI

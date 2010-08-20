@@ -26,7 +26,7 @@ namespace ScrumTime.Controllers
         {
             // TODO: Pull the actual project information from session before 0.9 release
             StoryCollectionViewModel storyCollectionViewModel = StoryCollectionViewModel.BuildByPriorityAsc(1);
-            return View("Backlog", storyCollectionViewModel);
+            return PartialView("Backlog", storyCollectionViewModel);
         }
 
         // The list is the sub-section of the page that contains only the table of story read only rows

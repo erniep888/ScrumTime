@@ -35,7 +35,7 @@
 
    <script type="text/javascript" language="javascript">
        setupTaskEditorCancelButton(<%: Model.ParentStoryModel.StoryId %>);  
-       hideBottomContainerBorderIfNeeded(<%: Model.ParentStoryModel.StoryId %>);   
+       //hideBottomContainerBorderIfNeeded(<%: Model.ParentStoryModel.StoryId %>);   
        $('storyRow_<%: Model.ParentStoryModel.StoryId %>').ready(function () {
             setAlternatingStoryBackgroundColors();
         });

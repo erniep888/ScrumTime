@@ -1,10 +1,10 @@
-﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+    <title>ScrumTime 0.9 Bistre (Development)</title>
     <link rel="shortcut icon" href="/Content/Images/favicon.ico" type="image/x-icon"/>
     <meta http-equiv="CACHE-CONTROL" content="NO-CACHE"/>
 
@@ -13,8 +13,8 @@
     <script src="<%: Url.Content("~/Scripts/jquery-1.4.2.min.js") %>" type="text/javascript" ></script>
     <script src="<%: Url.Content("~/Scripts/jquery-ui-1.8.4.custom.min.js") %>" type="text/javascript" ></script>
     <script src="<%: Url.Content("~/Scripts/scrumtime-main-1.0.js") %>" type="text/javascript" ></script>
-    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
-    </asp:ContentPlaceHolder>
+    <script src="<%: Url.Content("~/Scripts/scrumtime-story-1.0.js") %>" type="text/javascript"></script>   
+    <script src="<%: Url.Content("~/Scripts/scrumtime-task-1.0.js") %>" type="text/javascript"></script>
 </head>
 
 <body>   
@@ -31,11 +31,11 @@
         </div>
 	
         <div id="main" style="position:absolute;top:88px;margin:0px;left:0px;">
-            <div id="mainMenu" style="width:990px;height:580px;padding:0;margin:0">            
+            <div id="mainMenu" style="width:1000px;height:576px;padding:0;margin:0">            
                 <ul style="font-size:12px">              
                     <li><a href="Dashboard/Index">Dashboard</a></li>
                     <li><a href="Product/Index">Product</a></li>
-                    <li><a href="Story/Backlog">Backlog</a></li>
+                    <li><a href="Story/BacklogByPriority">Backlog</a></li>
                 </ul>                
             </div>
         </div>        
