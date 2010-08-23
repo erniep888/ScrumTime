@@ -157,6 +157,8 @@
     <Content Include="Content\Images\scrumtime_logo.jpg" />
     <Content Include="Content\Images\scrumtime_tagline.jpg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery.flot.js" />
+    <Content Include="Scripts\jquery.flot.selection.js" />
     <Content Include="Scripts\scrumtime-main-1.0.js" />
     <Content Include="Scripts\jquery-1.4.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.4.custom.min.js" />
