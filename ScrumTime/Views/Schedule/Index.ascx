@@ -8,8 +8,8 @@
 
 <div class="nopadding" style="border:2px solid #999;height:34px;width:947px;margin-left:6px;
     margin-bottom:-8px;text-align:center;font-family:Verdana;font-size:12px;">
-    <div style="position:absolute;left:10px;width:115px;margin-top:10px">
-        <a href="#" class="simpleLink newStoryLink" onclick="addStoryRow();">Add Story</a>
+    <div style="position:absolute;left:16px;width:115px;margin-top:10px">
+        <a href="#" class="simpleLink newStoryLink" onclick="addStoryRow();">Add Release</a>
     </div>   
     <div class="nopadding" style="color:#79a52c;font-weight:bold;letter-spacing:1px;font-size:13px;margin-top:3px;">Releases</div>
 </div>

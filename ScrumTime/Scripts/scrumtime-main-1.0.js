@@ -39,6 +39,8 @@ function loadSchedule() {
                 i += 7 * 24 * 60 * 60 * 1000;
             } while (i < axes.xaxis.max);
 
+            markings.push({ color: '#d00', lineWidth: 3, xaxis: { from: 1198980000000, to: 1198980000000} });
+
             return markings;
         }
 
@@ -47,9 +49,9 @@ function loadSchedule() {
             yaxis: { min: 0, max: 3, ticks: [], autoscaleMargin: 0.1 },
             grid: { markings: weekendAreas, clickable: true, borderColor: "#999" },
             series: {
-                lines: { show: true, lineWidth: 14 },
-                points: { show: true},
-                shadowSize: 3
+                lines: { show: true, lineWidth: 4 },
+                points: { show: true },
+                shadowSize: 1
             },
             legend: { show: true }
         };
