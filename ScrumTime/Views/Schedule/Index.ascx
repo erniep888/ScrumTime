@@ -6,16 +6,22 @@
     }); 
 </script> 
 
-<div class="nopadding" style="border:2px solid #999;height:34px;width:947px;margin-left:6px;
-    margin-bottom:-8px;text-align:center;font-family:Verdana;font-size:12px;">
-    <div style="position:absolute;left:16px;width:115px;margin-top:10px">
-        <a href="#" class="simpleLink newStoryLink" onclick="addStoryRow();">Add Release</a>
-    </div>   
-    <div class="nopadding" style="color:#79a52c;font-weight:bold;letter-spacing:1px;font-size:13px;margin-top:3px;">Releases</div>
+<div id="scheduleAccordion" style="padding-bottom:10px;">
+    <h3><a href="#">Releases</a></h3>
+    <div>
+        <% Html.RenderPartial("~/Views/Schedule/ReleaseList.ascx"); %>
+    </div>
+    <h3><a href="#">Sprints</a></h3>
+    <div>
+        <% Html.RenderPartial("~/Views/Schedule/SprintList.ascx"); %>
+    </div>
 </div>
-<div id="releaseSchedule" style="width:963px;height:200px;"></div>
 
-<span id="clickdata"></span>
+<div class="nopadding" style="border:1px solid #999;text-align:center;font-family:Verdana;font-size:12px;margin-bottom:15px;padding-left:6px;">
+    <div class="nopadding" style="color:#79a52c;font-weight:bold;letter-spacing:1px;font-size:13px;margin-top:3px;">Calendar</div>
+    <div id="releaseSchedule" style="width:948px;height:290px;"></div>
+</div>
+
 
 <script type="text/javascript">
     loadSchedule();

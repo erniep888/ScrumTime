@@ -169,6 +169,8 @@
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Product\Index.ascx" />
     <Content Include="Views\Schedule\Index.ascx" />
+    <Content Include="Views\Schedule\ReleaseList.ascx" />
+    <Content Include="Views\Schedule\SprintList.ascx" />
     <Content Include="Views\Shared\FooterControl.ascx" />
     <Content Include="Views\Story\Backlog.ascx" />
     <Content Include="Views\Story\ReadOnlyColumns.ascx" />

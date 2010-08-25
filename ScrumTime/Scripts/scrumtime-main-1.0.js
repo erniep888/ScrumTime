@@ -47,7 +47,7 @@ function loadSchedule() {
         var options = {
             xaxis: { mode: "time", min: 1196393600000, max: 1200630000000, timeformat: "%m/%d/%y", tickSize: [7, "day"] },
             yaxis: { min: 0, max: 3, ticks: [], autoscaleMargin: 0.1 },
-            grid: { markings: weekendAreas, clickable: true, borderColor: "#999" },
+            grid: { markings: weekendAreas, clickable: true, borderColor: "#999", borderWidth: 1 },
             series: {
                 lines: { show: true, lineWidth: 4 },
                 points: { show: true },
@@ -65,9 +65,11 @@ function loadSchedule() {
             }
         });
 
-        var plot = $.plot($("#releaseSchedule"), [{ label: "Release 0.6", data: d }, { label: "Release 0.9", data: d2}], options);
+        var plot = $.plot($("#releaseSchedule"), [{ label: "Sprint Alpha", data: d }, { label: "Sprint Bistre", data: d2}], options);
 
-        //yaxis: { ticks: [], min: 0, autoscaleMargin: 0.1 },        
+        //yaxis: { ticks: [], min: 0, autoscaleMargin: 0.1 },  
+
+        $("#scheduleAccordion").accordion({  });            
     });
 
 }
