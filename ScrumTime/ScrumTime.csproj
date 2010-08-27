@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\SprintController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -172,9 +173,9 @@
     <Content Include="Views\Release\List.ascx" />
     <Content Include="Views\Release\ReadOnly.ascx" />
     <Content Include="Views\Schedule\Index.ascx" />
-    <Content Include="Views\Schedule\ReleaseList.ascx" />
-    <Content Include="Views\Schedule\SprintList.ascx" />
     <Content Include="Views\Shared\FooterControl.ascx" />
+    <Content Include="Views\Sprint\List.ascx" />
+    <Content Include="Views\Sprint\ReadOnly.ascx" />
     <Content Include="Views\Story\Backlog.ascx" />
     <Content Include="Views\Story\ReadOnlyColumns.ascx" />
     <Content Include="Views\Story\StoryActionCancelOnly.ascx" />
