@@ -6,22 +6,17 @@ using System.Web.Mvc;
 
 namespace ScrumTime.Controllers
 {
-    public class ScheduleController : Controller
+    public class ReleaseController : Controller
     {
         //
-        // GET: /Schedule/
+        // GET: /Release/
 
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult ReleaseList()
-        {
-            return PartialView();
-        }
-
-        public ActionResult SprintList()
+        public ActionResult List()
         {
             return PartialView();
         }

@@ -72,6 +72,7 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ReleaseController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\StoryController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
@@ -168,6 +169,8 @@
     <Content Include="Views\Dashboard\Index.ascx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Product\Index.ascx" />
+    <Content Include="Views\Release\List.ascx" />
+    <Content Include="Views\Release\ReadOnly.ascx" />
     <Content Include="Views\Schedule\Index.ascx" />
     <Content Include="Views\Schedule\ReleaseList.ascx" />
     <Content Include="Views\Schedule\SprintList.ascx" />
