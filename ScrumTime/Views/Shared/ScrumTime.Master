@@ -10,11 +10,13 @@
 
     <link rel="stylesheet" href="<%: Url.Content("~/Content/Css/main.css") %>" type="text/css" />
     <link rel="stylesheet" href="<%: Url.Content("~/Content/Css/smooth_withgreen/jquery-ui-1.8.4.custom.css") %>" type="text/css" />
+    <link rel="stylesheet" href="<%: Url.Content("~/Content/Css/jquery.jqplot.min.css") %>" type="text/css" />
     <!--[if IE]><script language="javascript" type="text/javascript" src="<%: Url.Content("~/Scripts/excanvas.min.js") %>"></script><![endif]-->
     <script src="<%: Url.Content("~/Scripts/jquery-1.4.2.min.js") %>" type="text/javascript" ></script>
     <script src="<%: Url.Content("~/Scripts/jquery-ui-1.8.4.custom.min.js") %>" type="text/javascript" ></script>
     <script src="<%: Url.Content("~/Scripts/jquery.flot.min.js") %>" type="text/javascript" ></script>
     <script src="<%: Url.Content("~/Scripts/jquery.flot.selection.min.js") %>" type="text/javascript" ></script>
+    <script src="<%: Url.Content("~/Scripts/jquery.jqplot.min.js") %>" type="text/javascript" ></script>
     <script src="<%: Url.Content("~/Scripts/scrumtime-main-1.0.js") %>" type="text/javascript" ></script>
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>

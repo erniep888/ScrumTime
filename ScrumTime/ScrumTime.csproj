@@ -108,6 +108,7 @@
     <Content Include="App_Data\ScrumTime_log.ldf">
       <DependentUpon>ScrumTime.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\Css\jquery.jqplot.min.css" />
     <Content Include="Content\Css\main.css" />
     <Content Include="Content\Css\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\Css\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -163,6 +164,7 @@
     <Content Include="Scripts\jquery-1.4.2.min.js" />
     <Content Include="Scripts\jquery.flot.min.js" />
     <Content Include="Scripts\jquery.flot.selection.min.js" />
+    <Content Include="Scripts\jquery.jqplot.min.js" />
     <Content Include="Scripts\scrumtime-main-1.0.js" />
     <Content Include="Scripts\jquery-ui-1.8.4.custom.min.js" />
     <Content Include="Scripts\scrumtime-task-1.0.js" />
