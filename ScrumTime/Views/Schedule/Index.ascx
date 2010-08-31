@@ -23,6 +23,6 @@
 
 
 
-<script type="text/javascript">
+<script type="text/javascript" language="javascript">
     loadSchedule();
 </script>
