@@ -17,9 +17,15 @@
     <script src="<%: Url.Content("~/Scripts/jquery.flot.min.js") %>" type="text/javascript" ></script>
     <script src="<%: Url.Content("~/Scripts/jquery.flot.selection.min.js") %>" type="text/javascript" ></script>
     <script src="<%: Url.Content("~/Scripts/jquery.jqplot.min.js") %>" type="text/javascript" ></script>
+    <script src="<%: Url.Content("~/Scripts/Plugins/jqplot.logAxisRenderer.min.js") %>" type="text/javascript" ></script>
+    <script src="<%: Url.Content("~/Scripts/Plugins/jqplot.canvasTextRenderer.min.js") %>" type="text/javascript" ></script>
+    <script src="<%: Url.Content("~/Scripts/Plugins/jqplot.canvasAxisLabelRenderer.min.js") %>" type="text/javascript" ></script>
+    <script src="<%: Url.Content("~/Scripts/Plugins/jqplot.canvasAxisTickRenderer.min.js") %>" type="text/javascript" ></script>
     <script src="<%: Url.Content("~/Scripts/Plugins/jqplot.dateAxisRenderer.min.js") %>" type="text/javascript" ></script>
-    <script src="<%: Url.Content("~/Scripts/Plugins/jqplot.barRenderer.min.js") %>" type="text/javascript" ></script>
-    <script src="<%: Url.Content("~/Scripts/Plugins/jqplot.categoryAxisRenderer.min.js") %>" type="text/javascript" ></script>
+    <script src="<%: Url.Content("~/Scripts/Plugins/jqplot.categoryAxisRenderer.min.js") %>" type="text/javascript" ></script>    
+    <script src="<%: Url.Content("~/Scripts/Plugins/jqplot.enhancedLegendRenderer.min.js") %>" type="text/javascript" ></script>  
+    <script src="<%: Url.Content("~/Scripts/Plugins/jqplot.barRenderer.min.js") %>" type="text/javascript" ></script>    
+    <script src="<%: Url.Content("~/Scripts/Plugins/jqplot.pointLabels.min.js") %>" type="text/javascript" ></script>  
     <script src="<%: Url.Content("~/Scripts/scrumtime-main-1.0.js") %>" type="text/javascript" ></script>
 </head>
 

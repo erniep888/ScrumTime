@@ -166,8 +166,14 @@
     <Content Include="Scripts\jquery.flot.selection.min.js" />
     <Content Include="Scripts\jquery.jqplot.min.js" />
     <Content Include="Scripts\Plugins\jqplot.barRenderer.min.js" />
+    <Content Include="Scripts\Plugins\jqplot.canvasAxisLabelRenderer.min.js" />
+    <Content Include="Scripts\Plugins\jqplot.canvasAxisTickRenderer.min.js" />
+    <Content Include="Scripts\Plugins\jqplot.canvasTextRenderer.min.js" />
     <Content Include="Scripts\Plugins\jqplot.categoryAxisRenderer.min.js" />
     <Content Include="Scripts\Plugins\jqplot.dateAxisRenderer.min.js" />
+    <Content Include="Scripts\Plugins\jqplot.enhancedLegendRenderer.min.js" />
+    <Content Include="Scripts\Plugins\jqplot.logAxisRenderer.min.js" />
+    <Content Include="Scripts\Plugins\jqplot.pointLabels.min.js" />
     <Content Include="Scripts\scrumtime-main-1.0.js" />
     <Content Include="Scripts\jquery-ui-1.8.4.custom.min.js" />
     <Content Include="Scripts\scrumtime-task-1.0.js" />
