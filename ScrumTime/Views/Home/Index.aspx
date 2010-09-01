@@ -27,6 +27,8 @@
     <script src="<%: Url.Content("~/Scripts/Plugins/jqplot.barRenderer.min.js") %>" type="text/javascript" ></script>    
     <script src="<%: Url.Content("~/Scripts/Plugins/jqplot.pointLabels.min.js") %>" type="text/javascript" ></script>  
     <script src="<%: Url.Content("~/Scripts/scrumtime-main-1.0.js") %>" type="text/javascript" ></script>
+    <script src="<%: Url.Content("~/Scripts/scrumtime-story-1.0.js") %>" type="text/javascript" ></script>
+    <script src="<%: Url.Content("~/Scripts/scrumtime-task-1.0.js") %>" type="text/javascript" ></script>
 </head>
 
 <body>   
