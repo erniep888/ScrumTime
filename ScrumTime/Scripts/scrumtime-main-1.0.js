@@ -63,6 +63,10 @@ function loadSchedule() {
         });
 
 
+        $("#fromDatePicker").datepicker();
+        $("#toDatePicker").datepicker();
+
+
         $("#scheduleMenu").tabs();
         $("#scheduleMenu").tabs("option", "cache", false);
         $("#scheduleMenu").tabs("option", "ajaxOptions", { cache: false });
