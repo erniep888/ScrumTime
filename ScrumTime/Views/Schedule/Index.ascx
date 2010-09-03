@@ -9,8 +9,8 @@
 
 <div class="nopadding" style="border:1px solid #999;text-align:center;font-family:Verdana;font-size:12px;
         margin-bottom:10px;padding:6px;padding-left:12px;padding-right:11px;">
-    <div style="position:absolute;left:30px;font-size:10px;font-family:Verdana;top:48px"><p style="color:#666">From: <input type="text" id="fromDatePicker" size="18"/></p></div>
-    <div style="position:absolute;right:57px;font-size:10px;font-family:Verdana;top:48px"><p style="color:#666">To: <input type="text" id="toDatePicker" size="18" style="text-align:right"/></p></div>
+    <div style="position:absolute;left:30px;font-size:10px;font-family:Verdana;top:48px"><p style="color:#666">From: <input type="text" id="fromDatePicker" size="11" style="text-align:center"/></p></div>
+    <div style="position:absolute;right:57px;font-size:10px;font-family:Verdana;top:48px"><p style="color:#666">To: <input type="text" id="toDatePicker" size="11" style="text-align:center"/></p></div>
     <div class="nopadding" style="color:#79a52c;font-weight:bold;letter-spacing:1px;font-size:13px;">Calendar</div>    
     <div id="releaseSchedule" style="width:920px;height:260px;"></div>
 </div>
