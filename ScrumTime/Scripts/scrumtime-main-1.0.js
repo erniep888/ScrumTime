@@ -18,6 +18,7 @@ function loadSchedule() {
         sprint2 = [['03/18/2010', 2, '03/18/2010'], ['08/01/2010', 2, '08/01/2010']];
         sprint1 = [['01/01/2010', 3, '01/01/2010'], ['03/15/2010', 3, '03/15/2010']];
         release1 = [['09/20/2010', 0, 'Release 0.6'], ['09/20/2010', 3, 'Release 0.6']];
+
         plot2 = $.jqplot('releaseSchedule', [sprint3, sprint2, sprint1, release1], {
             //            legend: {
             //                renderer: $.jqplot.EnhancedLegendRenderer,
@@ -62,10 +63,24 @@ function loadSchedule() {
             /*seriesDefaults: { fill: true, fillAndStroke: true, fillAlpha: 0.5, shadow: false }*/
         });
 
+        $("#fromDatePicker").datepicker({
+            onSelect: function (dateText, inst) {
+                plot2.axes.xaxis.min = dateText;
+                plot2.redraw();
+                plot2.drawSeries();
+            },
+            onClose: function (dateText, inst) { alert(dateText); },
+            changeMonth: true,
+            changeYear: true
+        });
 
-        $("#fromDatePicker").datepicker();
-        $("#toDatePicker").datepicker();
+        $("#toDatePicker").datepicker({
+            defaultDate: +30,
+            onClose: function (dateText, inst) { alert($("#fromDatePicker").datepicker("getDate")); }
+        });
 
+        $("#fromDatePicker").datepicker("setDate", "09/02/2010");
+        $("#toDatePicker").datepicker("setDate", "11/02/2010");
 
         $("#scheduleMenu").tabs();
         $("#scheduleMenu").tabs("option", "cache", false);
