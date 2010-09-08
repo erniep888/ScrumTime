@@ -66,12 +66,16 @@ function loadSchedule() {
         $("#fromDatePicker").datepicker({
             onSelect: function (dateText, inst) {
                 plot2.axes.xaxis.min = dateText;
-                plot2.redraw();
-                plot2.drawSeries();
+                plot2.replot();
+                plot2.draw();
             },
-            onClose: function (dateText, inst) { alert(dateText); },
+            onClose: function (dateText, inst) { },
             changeMonth: true,
-            changeYear: true
+            changeYear: true,
+            gotoCurrent: true,
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            yearRange:'c-4:c+4'
         });
 
         $("#toDatePicker").datepicker({
