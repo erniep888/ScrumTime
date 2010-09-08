@@ -1,4 +1,6 @@
 ﻿function loadSchedule() {
+    // Get
+
     $(function () {
         $.jqplot.config.enablePlugins = true;
         sprint3 = [['08/04/2010', 1, '08/04/2010'], ['09/15/2010', 1, '09/15/2010']];

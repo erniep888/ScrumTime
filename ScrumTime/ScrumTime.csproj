@@ -89,6 +89,8 @@
       <DependentUpon>ScrumTime.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\SprintService.cs" />
+    <Compile Include="Services\ReleaseService.cs" />
     <Compile Include="Services\StoryService.cs" />
     <Compile Include="Services\TaskService.cs" />
     <Compile Include="ViewModels\ProjectViewModel.cs" />
@@ -163,8 +165,6 @@
     <Content Include="Scripts\scrumtime-schedule-1.0.js" />
     <Content Include="Scripts\excanvas.min.js" />
     <Content Include="Scripts\jquery-1.4.2.min.js" />
-    <Content Include="Scripts\jquery.flot.min.js" />
-    <Content Include="Scripts\jquery.flot.selection.min.js" />
     <Content Include="Scripts\jquery.jqplot.min.js" />
     <Content Include="Scripts\Plugins\jqplot.barRenderer.min.js" />
     <Content Include="Scripts\Plugins\jqplot.canvasAxisLabelRenderer.min.js" />
