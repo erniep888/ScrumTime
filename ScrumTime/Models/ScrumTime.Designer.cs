@@ -20,6 +20,8 @@ using System.Runtime.Serialization;
 
 [assembly: EdmRelationshipAttribute("ScrumTime.Models", "FK_Stories_Projects", "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ScrumTime.Models.Project), "Story", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScrumTime.Models.Story), true)]
 [assembly: EdmRelationshipAttribute("ScrumTime.Models", "FK_Tasks_Stories", "Story", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ScrumTime.Models.Story), "Task", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScrumTime.Models.Task), true)]
+[assembly: EdmRelationshipAttribute("ScrumTime.Models", "FK_Releases_Projects", "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ScrumTime.Models.Project), "Release", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScrumTime.Models.Release), true)]
+[assembly: EdmRelationshipAttribute("ScrumTime.Models", "FK_Sprints_Projects", "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ScrumTime.Models.Project), "Sprint", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScrumTime.Models.Sprint), true)]
 
 #endregion
 
@@ -118,6 +120,38 @@ namespace ScrumTime.Models
             }
         }
         private ObjectSet<Task> _Tasks;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Release> Releases
+        {
+            get
+            {
+                if ((_Releases == null))
+                {
+                    _Releases = base.CreateObjectSet<Release>("Releases");
+                }
+                return _Releases;
+            }
+        }
+        private ObjectSet<Release> _Releases;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Sprint> Sprints
+        {
+            get
+            {
+                if ((_Sprints == null))
+                {
+                    _Sprints = base.CreateObjectSet<Sprint>("Sprints");
+                }
+                return _Sprints;
+            }
+        }
+        private ObjectSet<Sprint> _Sprints;
 
         #endregion
         #region AddTo Methods
@@ -144,6 +178,22 @@ namespace ScrumTime.Models
         public void AddToTasks(Task task)
         {
             base.AddObject("Tasks", task);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Releases EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToReleases(Release release)
+        {
+            base.AddObject("Releases", release);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Sprints EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSprints(Sprint sprint)
+        {
+            base.AddObject("Sprints", sprint);
         }
 
         #endregion
@@ -277,6 +327,472 @@ namespace ScrumTime.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Story>("ScrumTime.Models.FK_Stories_Projects", "Story", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("ScrumTime.Models", "FK_Releases_Projects", "Release")]
+        public EntityCollection<Release> Releases
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Release>("ScrumTime.Models.FK_Releases_Projects", "Release");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Release>("ScrumTime.Models.FK_Releases_Projects", "Release", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("ScrumTime.Models", "FK_Sprints_Projects", "Sprint")]
+        public EntityCollection<Sprint> Sprints
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Sprint>("ScrumTime.Models.FK_Sprints_Projects", "Sprint");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Sprint>("ScrumTime.Models.FK_Sprints_Projects", "Sprint", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="ScrumTime.Models", Name="Release")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Release : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Release object.
+        /// </summary>
+        /// <param name="releaseId">Initial value of the ReleaseId property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="target">Initial value of the Target property.</param>
+        /// <param name="projectId">Initial value of the ProjectId property.</param>
+        public static Release CreateRelease(global::System.Int32 releaseId, global::System.String name, global::System.DateTime target, global::System.Int32 projectId)
+        {
+            Release release = new Release();
+            release.ReleaseId = releaseId;
+            release.Name = name;
+            release.Target = target;
+            release.ProjectId = projectId;
+            return release;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ReleaseId
+        {
+            get
+            {
+                return _ReleaseId;
+            }
+            set
+            {
+                if (_ReleaseId != value)
+                {
+                    OnReleaseIdChanging(value);
+                    ReportPropertyChanging("ReleaseId");
+                    _ReleaseId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ReleaseId");
+                    OnReleaseIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ReleaseId;
+        partial void OnReleaseIdChanging(global::System.Int32 value);
+        partial void OnReleaseIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Target
+        {
+            get
+            {
+                return _Target;
+            }
+            set
+            {
+                OnTargetChanging(value);
+                ReportPropertyChanging("Target");
+                _Target = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Target");
+                OnTargetChanged();
+            }
+        }
+        private global::System.DateTime _Target;
+        partial void OnTargetChanging(global::System.DateTime value);
+        partial void OnTargetChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ProjectId
+        {
+            get
+            {
+                return _ProjectId;
+            }
+            set
+            {
+                OnProjectIdChanging(value);
+                ReportPropertyChanging("ProjectId");
+                _ProjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ProjectId");
+                OnProjectIdChanged();
+            }
+        }
+        private global::System.Int32 _ProjectId;
+        partial void OnProjectIdChanging(global::System.Int32 value);
+        partial void OnProjectIdChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("ScrumTime.Models", "FK_Releases_Projects", "Project")]
+        public Project Project
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("ScrumTime.Models.FK_Releases_Projects", "Project").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("ScrumTime.Models.FK_Releases_Projects", "Project").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Project> ProjectReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("ScrumTime.Models.FK_Releases_Projects", "Project");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Project>("ScrumTime.Models.FK_Releases_Projects", "Project", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="ScrumTime.Models", Name="Sprint")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Sprint : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Sprint object.
+        /// </summary>
+        /// <param name="sprintId">Initial value of the SprintId property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="startDate">Initial value of the StartDate property.</param>
+        /// <param name="finishDate">Initial value of the FinishDate property.</param>
+        /// <param name="projectId">Initial value of the ProjectId property.</param>
+        public static Sprint CreateSprint(global::System.Int32 sprintId, global::System.String name, global::System.DateTime startDate, global::System.DateTime finishDate, global::System.Int32 projectId)
+        {
+            Sprint sprint = new Sprint();
+            sprint.SprintId = sprintId;
+            sprint.Name = name;
+            sprint.StartDate = startDate;
+            sprint.FinishDate = finishDate;
+            sprint.ProjectId = projectId;
+            return sprint;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 SprintId
+        {
+            get
+            {
+                return _SprintId;
+            }
+            set
+            {
+                if (_SprintId != value)
+                {
+                    OnSprintIdChanging(value);
+                    ReportPropertyChanging("SprintId");
+                    _SprintId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("SprintId");
+                    OnSprintIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _SprintId;
+        partial void OnSprintIdChanging(global::System.Int32 value);
+        partial void OnSprintIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime StartDate
+        {
+            get
+            {
+                return _StartDate;
+            }
+            set
+            {
+                OnStartDateChanging(value);
+                ReportPropertyChanging("StartDate");
+                _StartDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("StartDate");
+                OnStartDateChanged();
+            }
+        }
+        private global::System.DateTime _StartDate;
+        partial void OnStartDateChanging(global::System.DateTime value);
+        partial void OnStartDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime FinishDate
+        {
+            get
+            {
+                return _FinishDate;
+            }
+            set
+            {
+                OnFinishDateChanging(value);
+                ReportPropertyChanging("FinishDate");
+                _FinishDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FinishDate");
+                OnFinishDateChanged();
+            }
+        }
+        private global::System.DateTime _FinishDate;
+        partial void OnFinishDateChanging(global::System.DateTime value);
+        partial void OnFinishDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ProjectId
+        {
+            get
+            {
+                return _ProjectId;
+            }
+            set
+            {
+                OnProjectIdChanging(value);
+                ReportPropertyChanging("ProjectId");
+                _ProjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ProjectId");
+                OnProjectIdChanged();
+            }
+        }
+        private global::System.Int32 _ProjectId;
+        partial void OnProjectIdChanging(global::System.Int32 value);
+        partial void OnProjectIdChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("ScrumTime.Models", "FK_Sprints_Projects", "Project")]
+        public Project Project
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("ScrumTime.Models.FK_Sprints_Projects", "Project").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("ScrumTime.Models.FK_Sprints_Projects", "Project").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Project> ProjectReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("ScrumTime.Models.FK_Sprints_Projects", "Project");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Project>("ScrumTime.Models.FK_Sprints_Projects", "Project", value);
                 }
             }
         }
