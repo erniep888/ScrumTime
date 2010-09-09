@@ -14,7 +14,7 @@
             <tr>
                 <th style="text-align:center;width:150px;border:0px;background-color:#f3f3f3;">Name</th>
                 <th style="text-align:left;border:0px;background-color:#f3f3f3;">Description</th>
-                <th style="text-align:center;width:200px;border:0px;background-color:#f3f3f3;">Target</th>    
+                <th style="text-align:center;width:300px;border:0px;background-color:#f3f3f3;">Target</th>    
                 <th style="text-align:center;width:140px;border:0px;background-color:#f3f3f3;">Actions</th>
                 <th style="width:30px;border:0px;background-color:#f3f3f3;"></th>
             </tr>
