@@ -163,6 +163,7 @@
     <Content Include="Content\Images\scrumtime_logo.jpg" />
     <Content Include="Content\Images\scrumtime_tagline.jpg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\scrumtime-release-1.0.js" />
     <Content Include="Scripts\scrumtime-schedule-1.0.js" />
     <Content Include="Scripts\excanvas.min.js" />
     <Content Include="Scripts\jquery-1.4.2.min.js" />
@@ -183,6 +184,7 @@
     <Content Include="Views\Dashboard\Index.ascx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Product\Index.ascx" />
+    <Content Include="Views\Release\Edit.ascx" />
     <Content Include="Views\Release\List.ascx" />
     <Content Include="Views\Release\ReadOnly.ascx" />
     <Content Include="Views\Schedule\Index.ascx" />

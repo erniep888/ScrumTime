@@ -15,18 +15,20 @@
                 <th style="text-align:center;width:150px;border:0px;background-color:#eee;border-bottom:1px solid #999">Name</th>
                 <th style="text-align:left;border:0px;background-color:#eee;border-bottom:1px solid #999">Description</th>
                 <th style="text-align:center;width:300px;border:0px;background-color:#eee;border-bottom:1px solid #999">Target</th>    
-                <th style="text-align:center;width:140px;border:0px;background-color:#eee;border-bottom:1px solid #999">Actions</th>
+                <th style="text-align:center;width:180px;border:0px;background-color:#eee;border-bottom:1px solid #999">Actions</th>
                 <th style="width:30px;border:0px;background-color:#eee;border-bottom:1px solid #999"></th>
             </tr>
         </table>
         <div id="releaseContentListId" style="width:100%;height:94px;overflow:scroll;">
             <table class="nopadding" style="width:100%;" cellpadding="0" cellspacing="0">
+                <tbody id="releaseTableBody_<%: Model.ProductId %>" style="font-size:12px;">
                 <%
                     foreach (ScrumTime.Models.Release release in Model.Releases)
                     {
                         Html.RenderPartial("~/Views/Release/ReadOnly.ascx", release);
                     }
-                %>                
+                %>      
+                </tbody>          
             </table>
         </div>        
     </div>       

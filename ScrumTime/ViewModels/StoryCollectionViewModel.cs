@@ -19,8 +19,8 @@ namespace ScrumTime.ViewModels
         {
             ScrumTimeEntities scrumTimeEntities = new ScrumTimeEntities();
             StoryCollectionViewModel storyCollectionViewModel = new StoryCollectionViewModel();
-            Project project = scrumTimeEntities.Projects.First<Project>(p => p.ProjectId == 1);
-            var results = from s in project.Stories
+            Product product = scrumTimeEntities.Products.First<Product>(p => p.ProductId == 1);
+            var results = from s in product.Stories
                           orderby s.Priority ascending
                           select s;
             List<Story> stories = results.ToList<Story>();

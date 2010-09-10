@@ -6,21 +6,21 @@
     <edmx:StorageModels>
     <Schema Namespace="ScrumTime.Models.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="ScrumTimeModelsStoreContainer">
-          <EntitySet Name="Projects" EntityType="ScrumTime.Models.Store.Projects" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Products" EntityType="ScrumTime.Models.Store.Products" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Releases" EntityType="ScrumTime.Models.Store.Releases" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Sprints" EntityType="ScrumTime.Models.Store.Sprints" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Stories" EntityType="ScrumTime.Models.Store.Stories" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tasks" EntityType="ScrumTime.Models.Store.Tasks" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_Releases_Projects" Association="ScrumTime.Models.Store.FK_Releases_Projects">
-            <End Role="Projects" EntitySet="Projects" />
+          <AssociationSet Name="FK_Releases_Products" Association="ScrumTime.Models.Store.FK_Releases_Products">
+            <End Role="Products" EntitySet="Products" />
             <End Role="Releases" EntitySet="Releases" />
           </AssociationSet>
-          <AssociationSet Name="FK_Sprints_Projects" Association="ScrumTime.Models.Store.FK_Sprints_Projects">
-            <End Role="Projects" EntitySet="Projects" />
+          <AssociationSet Name="FK_Sprints_Products" Association="ScrumTime.Models.Store.FK_Sprints_Products">
+            <End Role="Products" EntitySet="Products" />
             <End Role="Sprints" EntitySet="Sprints" />
           </AssociationSet>
-          <AssociationSet Name="FK_Stories_Projects" Association="ScrumTime.Models.Store.FK_Stories_Projects">
-            <End Role="Projects" EntitySet="Projects" />
+          <AssociationSet Name="FK_Stories_Products" Association="ScrumTime.Models.Store.FK_Stories_Products">
+            <End Role="Products" EntitySet="Products" />
             <End Role="Stories" EntitySet="Stories" />
           </AssociationSet>
           <AssociationSet Name="FK_Tasks_Stories" Association="ScrumTime.Models.Store.FK_Tasks_Stories">
@@ -28,11 +28,11 @@
             <End Role="Tasks" EntitySet="Tasks" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Projects">
+        <EntityType Name="Products">
           <Key>
-            <PropertyRef Name="ProjectId" />
+            <PropertyRef Name="ProductId" />
           </Key>
-          <Property Name="ProjectId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
           <Property Name="Description" Type="nvarchar" MaxLength="1024" />
         </EntityType>
@@ -44,7 +44,7 @@
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="1024" />
           <Property Name="Target" Type="date" Nullable="false" />
-          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Sprints">
           <Key>
@@ -55,7 +55,7 @@
           <Property Name="Description" Type="nvarchar" MaxLength="1024" />
           <Property Name="StartDate" Type="date" Nullable="false" />
           <Property Name="FinishDate" Type="date" Nullable="false" />
-          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Stories">
           <Key>
@@ -66,7 +66,7 @@
           <Property Name="Points" Type="int" Nullable="false" />
           <Property Name="UserDefinedId" Type="nvarchar" MaxLength="250" />
           <Property Name="Priority" Type="int" Nullable="false" />
-          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Tasks">
           <Key>
@@ -78,39 +78,39 @@
           <Property Name="StoryId" Type="int" Nullable="false" />
           <Property Name="AssignedTo" Type="nvarchar" MaxLength="250" />
         </EntityType>
-        <Association Name="FK_Releases_Projects">
-          <End Role="Projects" Type="ScrumTime.Models.Store.Projects" Multiplicity="1" />
+        <Association Name="FK_Releases_Products">
+          <End Role="Products" Type="ScrumTime.Models.Store.Products" Multiplicity="1" />
           <End Role="Releases" Type="ScrumTime.Models.Store.Releases" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Projects">
-              <PropertyRef Name="ProjectId" />
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
             </Principal>
             <Dependent Role="Releases">
-              <PropertyRef Name="ProjectId" />
+              <PropertyRef Name="ProductId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Sprints_Projects">
-          <End Role="Projects" Type="ScrumTime.Models.Store.Projects" Multiplicity="1" />
+        <Association Name="FK_Sprints_Products">
+          <End Role="Products" Type="ScrumTime.Models.Store.Products" Multiplicity="1" />
           <End Role="Sprints" Type="ScrumTime.Models.Store.Sprints" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Projects">
-              <PropertyRef Name="ProjectId" />
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
             </Principal>
             <Dependent Role="Sprints">
-              <PropertyRef Name="ProjectId" />
+              <PropertyRef Name="ProductId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Stories_Projects">
-          <End Role="Projects" Type="ScrumTime.Models.Store.Projects" Multiplicity="1" />
+        <Association Name="FK_Stories_Products">
+          <End Role="Products" Type="ScrumTime.Models.Store.Products" Multiplicity="1" />
           <End Role="Stories" Type="ScrumTime.Models.Store.Stories" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Projects">
-              <PropertyRef Name="ProjectId" />
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
             </Principal>
             <Dependent Role="Stories">
-              <PropertyRef Name="ProjectId" />
+              <PropertyRef Name="ProductId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -131,38 +131,61 @@
     <edmx:ConceptualModels>
       <Schema Namespace="ScrumTime.Models" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="ScrumTimeEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Projects" EntityType="ScrumTime.Models.Project" />
+          <EntitySet Name="Products" EntityType="ScrumTime.Models.Product" />
+          <EntitySet Name="Releases" EntityType="ScrumTime.Models.Release" />
+          <EntitySet Name="Sprints" EntityType="ScrumTime.Models.Sprint" />
           <EntitySet Name="Stories" EntityType="ScrumTime.Models.Story" />
           <EntitySet Name="Tasks" EntityType="ScrumTime.Models.Task" />
-          <AssociationSet Name="FK_Stories_Projects" Association="ScrumTime.Models.FK_Stories_Projects">
-            <End Role="Project" EntitySet="Projects" />
+          <AssociationSet Name="FK_Releases_Products" Association="ScrumTime.Models.FK_Releases_Products">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Release" EntitySet="Releases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sprints_Products" Association="ScrumTime.Models.FK_Sprints_Products">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Sprint" EntitySet="Sprints" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stories_Products" Association="ScrumTime.Models.FK_Stories_Products">
+            <End Role="Product" EntitySet="Products" />
             <End Role="Story" EntitySet="Stories" />
           </AssociationSet>
           <AssociationSet Name="FK_Tasks_Stories" Association="ScrumTime.Models.FK_Tasks_Stories">
             <End Role="Story" EntitySet="Stories" />
             <End Role="Task" EntitySet="Tasks" />
           </AssociationSet>
-          <EntitySet Name="Releases" EntityType="ScrumTime.Models.Release" />
-          <EntitySet Name="Sprints" EntityType="ScrumTime.Models.Sprint" />
-          <AssociationSet Name="FK_Releases_Projects" Association="ScrumTime.Models.FK_Releases_Projects">
-            <End Role="Project" EntitySet="Projects" />
-            <End Role="Release" EntitySet="Releases" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Sprints_Projects" Association="ScrumTime.Models.FK_Sprints_Projects">
-            <End Role="Project" EntitySet="Projects" />
-            <End Role="Sprint" EntitySet="Sprints" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Project">
+        <EntityType Name="Product">
           <Key>
-            <PropertyRef Name="ProjectId" />
+            <PropertyRef Name="ProductId" />
           </Key>
-          <Property Type="Int32" Name="ProjectId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ProductId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Description" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Stories" Relationship="ScrumTime.Models.FK_Stories_Projects" FromRole="Project" ToRole="Story" />
-          <NavigationProperty Name="Releases" Relationship="ScrumTime.Models.FK_Releases_Projects" FromRole="Project" ToRole="Release" />
-          <NavigationProperty Name="Sprints" Relationship="ScrumTime.Models.FK_Sprints_Projects" FromRole="Project" ToRole="Sprint" />
+          <NavigationProperty Name="Releases" Relationship="ScrumTime.Models.FK_Releases_Products" FromRole="Product" ToRole="Release" />
+          <NavigationProperty Name="Sprints" Relationship="ScrumTime.Models.FK_Sprints_Products" FromRole="Product" ToRole="Sprint" />
+          <NavigationProperty Name="Stories" Relationship="ScrumTime.Models.FK_Stories_Products" FromRole="Product" ToRole="Story" />
+        </EntityType>
+        <EntityType Name="Release">
+          <Key>
+            <PropertyRef Name="ReleaseId" />
+          </Key>
+          <Property Type="Int32" Name="ReleaseId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Target" Nullable="false" />
+          <Property Type="Int32" Name="ProductId" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="ScrumTime.Models.FK_Releases_Products" FromRole="Release" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Sprint">
+          <Key>
+            <PropertyRef Name="SprintId" />
+          </Key>
+          <Property Type="Int32" Name="SprintId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="StartDate" Nullable="false" />
+          <Property Type="DateTime" Name="FinishDate" Nullable="false" />
+          <Property Type="Int32" Name="ProductId" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="ScrumTime.Models.FK_Sprints_Products" FromRole="Sprint" ToRole="Product" />
         </EntityType>
         <EntityType Name="Story">
           <Key>
@@ -173,8 +196,8 @@
           <Property Type="Int32" Name="Points" Nullable="false" />
           <Property Type="String" Name="UserDefinedId" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="Priority" Nullable="false" />
-          <Property Type="Int32" Name="ProjectId" Nullable="false" />
-          <NavigationProperty Name="Project" Relationship="ScrumTime.Models.FK_Stories_Projects" FromRole="Story" ToRole="Project" />
+          <Property Type="Int32" Name="ProductId" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="ScrumTime.Models.FK_Stories_Products" FromRole="Story" ToRole="Product" />
           <NavigationProperty Name="Tasks" Relationship="ScrumTime.Models.FK_Tasks_Stories" FromRole="Story" ToRole="Task" />
         </EntityType>
         <EntityType Name="Task">
@@ -188,15 +211,39 @@
           <Property Type="String" Name="AssignedTo" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Story" Relationship="ScrumTime.Models.FK_Tasks_Stories" FromRole="Task" ToRole="Story" />
         </EntityType>
-        <Association Name="FK_Stories_Projects">
-          <End Type="ScrumTime.Models.Project" Role="Project" Multiplicity="1" />
+        <Association Name="FK_Releases_Products">
+          <End Type="ScrumTime.Models.Product" Role="Product" Multiplicity="1" />
+          <End Type="ScrumTime.Models.Release" Role="Release" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Release">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sprints_Products">
+          <End Type="ScrumTime.Models.Product" Role="Product" Multiplicity="1" />
+          <End Type="ScrumTime.Models.Sprint" Role="Sprint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Sprint">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stories_Products">
+          <End Type="ScrumTime.Models.Product" Role="Product" Multiplicity="1" />
           <End Type="ScrumTime.Models.Story" Role="Story" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Project">
-              <PropertyRef Name="ProjectId" />
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
             </Principal>
             <Dependent Role="Story">
-              <PropertyRef Name="ProjectId" />
+              <PropertyRef Name="ProductId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -212,72 +259,48 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Release">
-          <Key>
-            <PropertyRef Name="ReleaseId" />
-          </Key>
-          <Property Type="Int32" Name="ReleaseId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Description" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="Target" Nullable="false" />
-          <Property Type="Int32" Name="ProjectId" Nullable="false" />
-          <NavigationProperty Name="Project" Relationship="ScrumTime.Models.FK_Releases_Projects" FromRole="Release" ToRole="Project" />
-        </EntityType>
-        <EntityType Name="Sprint">
-          <Key>
-            <PropertyRef Name="SprintId" />
-          </Key>
-          <Property Type="Int32" Name="SprintId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Description" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="StartDate" Nullable="false" />
-          <Property Type="DateTime" Name="FinishDate" Nullable="false" />
-          <Property Type="Int32" Name="ProjectId" Nullable="false" />
-          <NavigationProperty Name="Project" Relationship="ScrumTime.Models.FK_Sprints_Projects" FromRole="Sprint" ToRole="Project" />
-        </EntityType>
-        <Association Name="FK_Releases_Projects">
-          <End Type="ScrumTime.Models.Project" Role="Project" Multiplicity="1" />
-          <End Type="ScrumTime.Models.Release" Role="Release" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Project">
-              <PropertyRef Name="ProjectId" />
-            </Principal>
-            <Dependent Role="Release">
-              <PropertyRef Name="ProjectId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Sprints_Projects">
-          <End Type="ScrumTime.Models.Project" Role="Project" Multiplicity="1" />
-          <End Type="ScrumTime.Models.Sprint" Role="Sprint" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Project">
-              <PropertyRef Name="ProjectId" />
-            </Principal>
-            <Dependent Role="Sprint">
-              <PropertyRef Name="ProjectId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ScrumTimeModelsStoreContainer" CdmEntityContainer="ScrumTimeEntities">
-          <EntitySetMapping Name="Projects">
-            <EntityTypeMapping TypeName="ScrumTime.Models.Project">
-              <MappingFragment StoreEntitySet="Projects">
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="ScrumTime.Models.Product">
+              <MappingFragment StoreEntitySet="Products">
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Releases">
+            <EntityTypeMapping TypeName="ScrumTime.Models.Release">
+              <MappingFragment StoreEntitySet="Releases">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Target" ColumnName="Target" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ReleaseId" ColumnName="ReleaseId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sprints">
+            <EntityTypeMapping TypeName="ScrumTime.Models.Sprint">
+              <MappingFragment StoreEntitySet="Sprints">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SprintId" ColumnName="SprintId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Stories">
             <EntityTypeMapping TypeName="ScrumTime.Models.Story">
               <MappingFragment StoreEntitySet="Stories">
-                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="Priority" ColumnName="Priority" />
                 <ScalarProperty Name="UserDefinedId" ColumnName="UserDefinedId" />
                 <ScalarProperty Name="Points" ColumnName="Points" />
@@ -294,29 +317,6 @@
                 <ScalarProperty Name="Hours" ColumnName="Hours" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="TaskId" ColumnName="TaskId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Releases">
-            <EntityTypeMapping TypeName="ScrumTime.Models.Release">
-              <MappingFragment StoreEntitySet="Releases">
-                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
-                <ScalarProperty Name="Target" ColumnName="Target" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ReleaseId" ColumnName="ReleaseId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sprints">
-            <EntityTypeMapping TypeName="ScrumTime.Models.Sprint">
-              <MappingFragment StoreEntitySet="Sprints">
-                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
-                <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="SprintId" ColumnName="SprintId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -341,30 +341,28 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="ScrumTime" ZoomLevel="114">
-        <EntityTypeShape EntityType="ScrumTime.Models.Project" Width="1.5" PointX="0.75" PointY="1.375" Height="1.7879850260416657" />
-        <EntityTypeShape EntityType="ScrumTime.Models.Story" Width="1.5" PointX="3" PointY="1" Height="2.5571907552083335" />
-        <EntityTypeShape EntityType="ScrumTime.Models.Task" Width="1.5" PointX="5.25" PointY="1.125" Height="2.1725878906249996" />
-        <AssociationConnector Association="ScrumTime.Models.FK_Stories_Projects" >
-          <ConnectorPoint PointX="2.25" PointY="2.4612939453125" />
-          <ConnectorPoint PointX="3" PointY="2.4612939453125" />
+        <EntityTypeShape EntityType="ScrumTime.Models.Product" Width="1.5" PointX="0.75" PointY="4.5" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="ScrumTime.Models.Release" Width="1.5" PointX="3" PointY="1.25" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="ScrumTime.Models.Sprint" Width="1.5" PointX="3" PointY="4.125" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="ScrumTime.Models.Story" Width="1.5" PointX="3" PointY="7.25" Height="2.5571907552083317" />
+        <EntityTypeShape EntityType="ScrumTime.Models.Task" Width="1.5" PointX="5.25" PointY="7.5" Height="2.1725878906249996" />
+        <AssociationConnector Association="ScrumTime.Models.FK_Releases_Products" >
+          <ConnectorPoint PointX="1.5" PointY="4.5" />
+          <ConnectorPoint PointX="1.5" PointY="2.3362939453125" />
+          <ConnectorPoint PointX="3" PointY="2.3362939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="ScrumTime.Models.FK_Sprints_Products" >
+          <ConnectorPoint PointX="2.25" PointY="5.4949446614583337" />
+          <ConnectorPoint PointX="3" PointY="5.4949446614583337" />
+        </AssociationConnector>
+        <AssociationConnector Association="ScrumTime.Models.FK_Stories_Products" >
+          <ConnectorPoint PointX="1.5" PointY="6.672587890625" />
+          <ConnectorPoint PointX="1.5" PointY="8.5285953776041659" />
+          <ConnectorPoint PointX="3" PointY="8.5285953776041659" />
         </AssociationConnector>
         <AssociationConnector Association="ScrumTime.Models.FK_Tasks_Stories" >
-          <ConnectorPoint PointX="4.5" PointY="2.2112939453125" />
-          <ConnectorPoint PointX="5.25" PointY="2.2112939453125" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="ScrumTime.Models.Release" Width="1.5" PointX="3" PointY="5.75" Height="2.1725878906249996" />
-        <EntityTypeShape EntityType="ScrumTime.Models.Sprint" Width="1.5" PointX="3" PointY="8.75" Height="2.3648893229166674" />
-        <AssociationConnector Association="ScrumTime.Models.FK_Releases_Projects" >
-          <ConnectorPoint PointX="1.5" PointY="3.547587890625" />
-          <ConnectorPoint PointX="1.5" PointY="6.8362939453125" />
-          <ConnectorPoint PointX="1.8229191666666667" PointY="6.8362939453124989" />
-          <ConnectorPoint PointX="1.9895858333333332" PointY="6.8362939453125" />
-          <ConnectorPoint PointX="3" PointY="6.8362939453125" />
-        </AssociationConnector>
-        <AssociationConnector Association="ScrumTime.Models.FK_Sprints_Projects" >
-          <ConnectorPoint PointX="1.9062525" PointY="3.547587890625" />
-          <ConnectorPoint PointX="1.9062525" PointY="9.9324446614583337" />
-          <ConnectorPoint PointX="3" PointY="9.9324446614583337" />
+          <ConnectorPoint PointX="4.5" PointY="8.5862939453125" />
+          <ConnectorPoint PointX="5.25" PointY="8.5862939453125" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

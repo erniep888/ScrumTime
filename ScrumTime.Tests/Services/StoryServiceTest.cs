@@ -24,7 +24,7 @@ namespace ScrumTime.Tests.Services
                 Narrative = "Test story",
                 Points = 8,
                 Priority = 2,
-                ProjectId = 1,
+                ProductId = 1,
                 UserDefinedId = "not set"
             };
             storyService.SaveStory(story);
@@ -50,7 +50,7 @@ namespace ScrumTime.Tests.Services
                 Narrative = "Test story for deletion test.",
                 Points = 8,
                 Priority = 2,
-                ProjectId = 1,
+                ProductId = 1,
                 UserDefinedId = "not set"
             };
             storyService.SaveStory(story);

@@ -7,7 +7,7 @@ using ScrumTime.Helpers;
 
 namespace ScrumTime.ViewModels
 {
-    public class StoryViewModel : ProjectViewModel
+    public class StoryViewModel
     {
         public Story StoryModel { get; set; }
         public List<int> Points { get; private set; }

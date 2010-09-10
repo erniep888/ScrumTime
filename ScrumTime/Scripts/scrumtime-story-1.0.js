@@ -127,6 +127,6 @@ function setupAddStoryFormSubmit() {
 }
 
 function setAlternatingStoryBackgroundColors() {
-    $(".storyTable .storyRow").removeClass("storyAltRows");
-    $(".storyTable .storyRow:odd").addClass("storyAltRows");    
+    $(".storyTable .storyRow").removeClass("typicalAltRows");
+    $(".storyTable .storyRow:odd").addClass("typicalAltRows");    
 }

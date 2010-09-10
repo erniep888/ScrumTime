@@ -6,10 +6,10 @@ using ScrumTime.Models;
 
 namespace ScrumTime.ViewModels
 {
-    public class ProjectViewModel
+    public class ProductViewModel
     {
-        public Project ProjectModel { get; set; }
-        public ProjectViewModel()
+        public Product ProductModel { get; set; }
+        public ProductViewModel()
         {
         }
 

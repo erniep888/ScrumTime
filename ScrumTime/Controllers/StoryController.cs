@@ -59,7 +59,7 @@ namespace ScrumTime.Controllers
         public ActionResult New()
         {
             // TODO: Pull the actual project information from session before 0.9 release
-            Project project = _ScrumTimeEntities.Projects.First<Project>(p => p.ProjectId == 1);
+            Product product = _ScrumTimeEntities.Products.First<Product>(p => p.ProductId == 1);
             StoryViewModel storyViewModel = new StoryViewModel()
             {
                 StoryModel = new Story()
@@ -68,7 +68,7 @@ namespace ScrumTime.Controllers
                     Narrative = "As a ...",
                     Points = 0,
                     Priority = 0,
-                    UserDefinedId = (project.Stories.Count() + 1).ToString()
+                    UserDefinedId = (product.Stories.Count() + 1).ToString()
                 }
             };
             return PartialView("Edit", storyViewModel);
@@ -100,7 +100,7 @@ namespace ScrumTime.Controllers
                     Narrative = narrative,
                     Points = Int32.Parse(points),
                     Priority = Int32.Parse(priority),
-                    ProjectId = 1,
+                    ProductId = 1,
                     UserDefinedId = userDefinedId 
                 };
                 _StoryService.SaveStory(story);

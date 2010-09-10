@@ -8,6 +8,8 @@ namespace ScrumTime.ViewModels
 {
     public class ReleaseCollectionViewModel 
     {
+        public int ProductId { get; set; }
+
         public ReleaseCollectionViewModel()
         {
             
@@ -15,13 +17,13 @@ namespace ScrumTime.ViewModels
 
         public List<Release> Releases { get; set; }
 
-        public static ReleaseCollectionViewModel BuildByTargetDateAsc(int projectId)
+        public static ReleaseCollectionViewModel BuildByTargetDateDesc(int projectId)
         {
             ScrumTimeEntities scrumTimeEntities = new ScrumTimeEntities();
             ReleaseCollectionViewModel releaseCollectionViewModel = new ReleaseCollectionViewModel();
-            Project project = scrumTimeEntities.Projects.First<Project>(p => p.ProjectId == 1);
-            var results = from s in project.Releases
-                          orderby s.Target ascending
+            Product product = scrumTimeEntities.Products.First<Product>(p => p.ProductId == 1);
+            var results = from s in product.Releases
+                          orderby s.Target descending
                           select s;
             List<Release> releases = results.ToList<Release>();
             releaseCollectionViewModel.Releases = releases;
