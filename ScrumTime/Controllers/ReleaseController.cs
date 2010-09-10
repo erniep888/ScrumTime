@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ScrumTime.ViewModels;
 
 namespace ScrumTime.Controllers
 {
@@ -16,9 +17,10 @@ namespace ScrumTime.Controllers
             return View();
         }
 
-        public ActionResult List()
+        public ActionResult ListByTargetDateAsc()
         {
-            return PartialView();
+            ReleaseCollectionViewModel releaseCollectionViewModel = ReleaseCollectionViewModel.BuildByTargetDateAsc(1);
+            return PartialView("List", releaseCollectionViewModel);
         }
 
     }

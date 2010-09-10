@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<dynamic>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<ScrumTime.ViewModels.ReleaseCollectionViewModel>" %>
 
 <div class="nopadding">
     <div class="nopadding" style="width:100%;background-color:#fff;font-family:Verdana;font-size:12px;border:1px solid #999;">
@@ -12,16 +12,21 @@
         </div>               
         <table class="nopadding" style="width:100%;color:#666" cellpadding="0" cellspacing="0">
             <tr>
-                <th style="text-align:center;width:150px;border:0px;background-color:#f3f3f3;">Name</th>
-                <th style="text-align:left;border:0px;background-color:#f3f3f3;">Description</th>
-                <th style="text-align:center;width:300px;border:0px;background-color:#f3f3f3;">Target</th>    
-                <th style="text-align:center;width:140px;border:0px;background-color:#f3f3f3;">Actions</th>
-                <th style="width:30px;border:0px;background-color:#f3f3f3;"></th>
+                <th style="text-align:center;width:150px;border:0px;background-color:#eee;border-bottom:1px solid #999">Name</th>
+                <th style="text-align:left;border:0px;background-color:#eee;border-bottom:1px solid #999">Description</th>
+                <th style="text-align:center;width:300px;border:0px;background-color:#eee;border-bottom:1px solid #999">Target</th>    
+                <th style="text-align:center;width:140px;border:0px;background-color:#eee;border-bottom:1px solid #999">Actions</th>
+                <th style="width:30px;border:0px;background-color:#eee;border-bottom:1px solid #999"></th>
             </tr>
         </table>
         <div id="releaseContentListId" style="width:100%;height:94px;overflow:scroll;">
             <table class="nopadding" style="width:100%;" cellpadding="0" cellspacing="0">
-                <% Html.RenderPartial("~/Views/Release/ReadOnly.ascx"); %>
+                <%
+                    foreach (ScrumTime.Models.Release release in Model.Releases)
+                    {
+                        Html.RenderPartial("~/Views/Release/ReadOnly.ascx", release);
+                    }
+                %>                
             </table>
         </div>        
     </div>       
