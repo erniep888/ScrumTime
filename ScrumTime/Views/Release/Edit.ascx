@@ -18,4 +18,7 @@
             </table>
         </td>
     <td style="width:10px;border:0px;"></td>
+    <script type="text/javascript">           
+        setupCalendarControl(<%: Model.ReleaseId %>);
+    </script>
 </tr>

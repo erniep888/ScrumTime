@@ -110,3 +110,15 @@ function deleteRelease(productId, releaseId) {
 
     // TODO: Implement delete failure GUI
 }
+
+
+function setupCalendarControl(releaseId) {
+    $("#releaseTarget_" + releaseId).datepicker({        
+        changeMonth: true,
+        changeYear: true,
+        gotoCurrent: true,
+        showOtherMonths: true,
+        selectOtherMonths: true,
+        yearRange: 'c-4:c+4'
+    });
+}
