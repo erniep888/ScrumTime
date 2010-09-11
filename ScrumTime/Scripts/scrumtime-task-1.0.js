@@ -72,8 +72,6 @@ function saveTaskRowEdit(taskId, storyId) {
     var description = $('#taskDescription_' + taskId).val();
     var hours = $('#taskHours_' + taskId).val();
 
-    var tag = $('#taskContentListId_' + storyId);
-
     if (taskId > 0) {
         $.post('/Task/Save',
             {

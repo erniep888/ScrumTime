@@ -8,10 +8,10 @@
             <table border="1" cellpadding="0" cellspacing="0" style="padding:0;border:0;margin-left:40px" width="100px">
                 <tr>
                     <td style="border:0px;">
-                        <a href="#" class="simpleLink" onclick="saveStoryRowEdit(<%: Model.ReleaseId %>);"><img alt="Save" src="../../Content/Images/Menu/save24x24.png"  width="16" height="16"/></a>
+                        <a href="#" class="simpleLink" onclick="saveReleaseRowEdit(<%: Model.ProductId %>, <%: Model.ReleaseId %>);"><img alt="Save" src="../../Content/Images/Menu/save24x24.png"  width="16" height="16"/></a>
                     </td>
                     <td style="border:0px">
-                        <a href="#" class="simpleLink" onclick="cancelStoryRowEdit(<%: Model.ReleaseId %>);">
+                        <a href="#" class="simpleLink" onclick="cancelReleaseRowEdit(<%: Model.ProductId %>, <%: Model.ReleaseId %>);">
                             <img alt="Cancel" src="../../Content/Images/Menu/cancel24x24.png"  width="16" height="16"/></a>
                     </td>
                 </tr>

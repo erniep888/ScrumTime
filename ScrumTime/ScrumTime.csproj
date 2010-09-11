@@ -89,6 +89,7 @@
       <DependentUpon>ScrumTime.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\SprintService.cs" />
     <Compile Include="Services\ReleaseService.cs" />
     <Compile Include="Services\StoryService.cs" />
@@ -186,6 +187,7 @@
     <Content Include="Views\Product\Index.ascx" />
     <Content Include="Views\Release\Edit.ascx" />
     <Content Include="Views\Release\List.ascx" />
+    <Content Include="Views\Release\ListContainer.ascx" />
     <Content Include="Views\Release\ReadOnly.ascx" />
     <Content Include="Views\Schedule\Index.ascx" />
     <Content Include="Views\Shared\FooterControl.ascx" />

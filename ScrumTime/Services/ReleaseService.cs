@@ -33,6 +33,43 @@ namespace ScrumTime.Services
             return GetReleaseById(_ScrumTimeEntities, id);
         }
 
+        public Release SaveRelease(Release release)
+        {
+            if (release != null)
+            {
+                if (release.ReleaseId == 0)  // this is new
+                {
+                    _ScrumTimeEntities.AddToReleases(release);
+                }
+                else  // the release exists
+                {
+                    _ScrumTimeEntities.AttachTo("Releases", release);
 
+                    ScrumTimeEntities freshScrumTimeEntities =
+                        new ScrumTimeEntities(_ScrumTimeEntities.Connection.ConnectionString);
+                    Release existingRelease = GetReleaseById(freshScrumTimeEntities, release.ReleaseId);
+                    if (existingRelease == null)
+                    {
+                        throw new Exception("The task no longer exists.");
+                    }
+                    _ScrumTimeEntities.ObjectStateManager.ChangeObjectState(release, System.Data.EntityState.Modified);
+                }
+                _ScrumTimeEntities.SaveChanges();
+            }
+            return release;
+        }
+
+        public void DeleteRelease(int releaseId)
+        {
+            Release existingRelease = GetReleaseById(releaseId);
+
+            if (existingRelease != null && existingRelease.ReleaseId > 0)
+            {
+                _ScrumTimeEntities.DeleteObject(existingRelease);
+                _ScrumTimeEntities.SaveChanges();
+            }
+            else
+                throw new Exception("You have attempted to delete a release that does not exist.");
+        }
     }
 }
