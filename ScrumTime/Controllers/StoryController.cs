@@ -24,7 +24,7 @@ namespace ScrumTime.Controllers
         // The backlog is the entire html page
         public ActionResult BacklogByPriority()
         {
-            // TODO: Pull the actual project information from session before 0.9 release
+            // TODO: Pull the actual product information from session before 0.9 release
             StoryCollectionViewModel storyCollectionViewModel = StoryCollectionViewModel.BuildByPriorityAsc(1);
             return PartialView("Backlog", storyCollectionViewModel);
         }
@@ -32,7 +32,7 @@ namespace ScrumTime.Controllers
         // The list is the sub-section of the page that contains only the table of story read only rows
         public ActionResult ListByPriority()
         {
-            // TODO: Pull the actual project information from session before 0.9 release
+            // TODO: Pull the actual product information from session before 0.9 release
             StoryCollectionViewModel storyCollectionViewModel = StoryCollectionViewModel.BuildByPriorityAsc(1);           
             return PartialView("List", storyCollectionViewModel);
         }
@@ -58,7 +58,7 @@ namespace ScrumTime.Controllers
         // Returns only one new row
         public ActionResult New()
         {
-            // TODO: Pull the actual project information from session before 0.9 release
+            // TODO: Pull the actual product information from session before 0.9 release
             Product product = _ScrumTimeEntities.Products.First<Product>(p => p.ProductId == 1);
             StoryViewModel storyViewModel = new StoryViewModel()
             {
@@ -93,7 +93,7 @@ namespace ScrumTime.Controllers
                 string narrative = collection.Get("narrative");
                 string points = collection.Get("points");
                 // TODO:  Validate the story data before saving
-                // TODO:  Set the correct project id
+                // TODO:  Set the correct product id
                 Story story = new Story()
                 {
                     StoryId = Int32.Parse(id),

@@ -17,7 +17,7 @@ namespace ScrumTime.ViewModels
 
         public List<Release> Releases { get; set; }
 
-        public static ReleaseCollectionViewModel BuildByTargetDateDesc(int projectId)
+        public static ReleaseCollectionViewModel BuildByTargetDateDesc(int productId)
         {
             ScrumTimeEntities scrumTimeEntities = new ScrumTimeEntities();
             ReleaseCollectionViewModel releaseCollectionViewModel = new ReleaseCollectionViewModel();
@@ -27,6 +27,7 @@ namespace ScrumTime.ViewModels
                           select s;
             List<Release> releases = results.ToList<Release>();
             releaseCollectionViewModel.Releases = releases;
+            releaseCollectionViewModel.ProductId = productId;
 
             return releaseCollectionViewModel;
         }

@@ -89,7 +89,7 @@ namespace ScrumTime.Controllers
                 string description = collection.Get("description");
                 string hours = collection.Get("hours");
                 // TODO:  Validate the story data before saving
-                // TODO:  Set the correct project id
+                // TODO:  Set the correct product id
                 Task task = new Task()
                 {
                     TaskId = Int32.Parse(id),
