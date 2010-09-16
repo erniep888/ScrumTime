@@ -28,7 +28,7 @@ namespace ScrumTime.Services
                                     s.FinishDate.CompareTo(startDate) > 0 && s.FinishDate.CompareTo(endDate) < 0) || // finish in range
                                 (s.StartDate.CompareTo(startDate) > 0 &&
                                     s.StartDate.CompareTo(endDate) < 0 && s.FinishDate.CompareTo(endDate) > 0)  // start in range
-                          orderby s.StartDate
+                          orderby s.StartDate ascending
                           select s;
             return results.ToList<Sprint>();
         }

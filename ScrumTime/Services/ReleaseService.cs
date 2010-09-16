@@ -15,6 +15,18 @@ namespace ScrumTime.Services
             _ScrumTimeEntities = scrumTimeEntities;
         }
 
+        // if there are any releases that are targetted within the startDate
+        // to endDate range. include them
+        public List<Release> GetReleasesWithinDateRange(DateTime startDate, DateTime endDate)
+        {
+            var results = from s in _ScrumTimeEntities.Releases
+                          where s.Target.CompareTo(startDate) > 0 && s.Target.CompareTo(endDate) < 0
+                          orderby s.Target ascending
+                          select s;
+            return results.ToList<Release>();
+        }
+
+
         public static Release GetReleaseById(ScrumTimeEntities scrumTimeEntities, int id)
         {
             Release release = null;
