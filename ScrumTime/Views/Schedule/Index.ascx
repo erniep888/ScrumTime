@@ -18,8 +18,8 @@
 
 <div id="scheduleMenu" style="padding:0;margin:0;">            
     <ul style="font-size:12px">              
-        <li><a href="Release/ListContainerByTargetDateAsc">Releases</a></li>
-        <li><a href="Sprint/List">Sprints</a></li>
+        <li><a href="Release/ListContainerByTargetDateDesc">Releases</a></li>
+        <li><a href="Sprint/ListContainerByStartDateDesc">Sprints</a></li>
     </ul>                
 </div>
 

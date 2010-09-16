@@ -30,14 +30,14 @@ namespace ScrumTime.Controllers
             return View();
         }
 
-        public ActionResult ListContainerByTargetDateAsc()
+        public ActionResult ListContainerByTargetDateDesc()
         {
             ReleaseCollectionViewModel releaseCollectionViewModel = ReleaseCollectionViewModel.BuildByTargetDateDesc(1);
             return PartialView("ListContainer", releaseCollectionViewModel);
         }
 
         // An AJAX driven result that returns just the simple list of releases
-        public ActionResult ListByTargetDateAsc(int productId)
+        public ActionResult ListByTargetDateDesc(int productId)
         {
             ReleaseCollectionViewModel releaseCollectionViewModel = ReleaseCollectionViewModel.BuildByTargetDateDesc(productId);
             return PartialView("List", releaseCollectionViewModel);
@@ -100,7 +100,7 @@ namespace ScrumTime.Controllers
                 _ReleaseService.SaveRelease(release);
 
                 if (newRelease)
-                    return RedirectToAction("ListByTargetDateAsc", new { productId = Int32.Parse(productId) });
+                    return RedirectToAction("ListByTargetDateDesc", new { productId = Int32.Parse(productId) });
                 else
                     return RedirectToAction("ReadOnly", new { id = Int32.Parse(id) });
             }
@@ -118,7 +118,7 @@ namespace ScrumTime.Controllers
                 string productId = collection.Get("productId");
                 string idAsString = collection.Get("releaseId");
                 _ReleaseService.DeleteRelease(Int32.Parse(idAsString));
-                return RedirectToAction("ListByTargetDateAsc", new { productId = Int32.Parse(productId) });
+                return RedirectToAction("ListByTargetDateDesc", new { productId = Int32.Parse(productId) });
             }
             catch
             {

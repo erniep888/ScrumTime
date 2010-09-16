@@ -112,7 +112,7 @@ function deleteRelease(productId, releaseId) {
 }
 
 
-function setupCalendarControl(releaseId) {
+function setupReleaseCalendarControl(releaseId) {
     $("#releaseTarget_" + releaseId).datepicker({        
         changeMonth: true,
         changeYear: true,

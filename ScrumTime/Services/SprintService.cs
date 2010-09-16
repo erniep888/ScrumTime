@@ -33,5 +33,62 @@ namespace ScrumTime.Services
             return results.ToList<Sprint>();
         }
 
+        public static Sprint GetSprintById(ScrumTimeEntities scrumTimeEntities, int id)
+        {
+            Sprint sprint = null;
+            var results = from t in scrumTimeEntities.Sprints
+                          where t.SprintId == id
+                          select t;
+            if (results.Count() > 0)
+                sprint = results.First<Sprint>();
+            else
+                sprint = new Sprint();
+            return sprint;
+        }
+
+        public Sprint GetSprintById(int id)
+        {
+            return GetSprintById(_ScrumTimeEntities, id);
+        }
+
+        public Sprint SaveSprint(Sprint sprint)
+        {
+            if (sprint != null)
+            {
+                if (sprint.SprintId == 0)  // this is new
+                {
+                    _ScrumTimeEntities.AddToSprints(sprint);
+                }
+                else  // the sprint exists
+                {
+                    _ScrumTimeEntities.AttachTo("Sprints", sprint);
+
+                    ScrumTimeEntities freshScrumTimeEntities =
+                        new ScrumTimeEntities(_ScrumTimeEntities.Connection.ConnectionString);
+                    Sprint existingSprint = GetSprintById(freshScrumTimeEntities, sprint.SprintId);
+                    if (existingSprint == null)
+                    {
+                        throw new Exception("The task no longer exists.");
+                    }
+                    _ScrumTimeEntities.ObjectStateManager.ChangeObjectState(sprint, System.Data.EntityState.Modified);
+                }
+                _ScrumTimeEntities.SaveChanges();
+            }
+            return sprint;
+        }
+
+        public void DeleteSprint(int sprintId)
+        {
+            Sprint existingSprint = GetSprintById(sprintId);
+
+            if (existingSprint != null && existingSprint.SprintId > 0)
+            {
+                _ScrumTimeEntities.DeleteObject(existingSprint);
+                _ScrumTimeEntities.SaveChanges();
+            }
+            else
+                throw new Exception("You have attempted to delete a sprint that does not exist.");
+        }
+
     }
 }

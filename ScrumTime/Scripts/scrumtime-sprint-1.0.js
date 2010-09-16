@@ -1,5 +1,5 @@
 ﻿function setupReadOnlySprintRow(productId, sprintId) {
-    $(".sprint" + sprintId).click(function () {
+    $(".sprint_" + sprintId).click(function () {
         $.post('/Sprint/Edit',
             {
                 id: sprintId
@@ -62,8 +62,8 @@ function addSprintRow(productId) {
 function saveSprintRowEdit(productId, sprintId) {
     var name = $('#sprintName_' + sprintId).val();
     var description = $('#sprintDescription_' + sprintId).val();
-    var start = $('#sprintStartTarget_' + sprintId).val();
-    var finish = $('#sprintFinishTarget_' + sprintId).val();
+    var start = $('#sprintStart_' + sprintId).val();
+    var finish = $('#sprintFinish_' + sprintId).val();
 
     if (sprintId > 0) {
         $.post('/Sprint/Save',
@@ -113,8 +113,16 @@ function deleteSprint(productId, sprintId) {
 }
 
 
-function setupCalendarControl(sprintId) {
-    $("#sprintTarget_" + sprintId).datepicker({        
+function setupSprintCalendarControl(sprintId) {
+    $("#sprintStart_" + sprintId).datepicker({        
+        changeMonth: true,
+        changeYear: true,
+        gotoCurrent: true,
+        showOtherMonths: true,
+        selectOtherMonths: true,
+        yearRange: 'c-4:c+4'
+    });
+    $("#sprintFinish_" + sprintId).datepicker({
         changeMonth: true,
         changeYear: true,
         gotoCurrent: true,

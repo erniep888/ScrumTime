@@ -31,6 +31,7 @@
     <script src="<%: Url.Content("~/Scripts/scrumtime-task-1.0.js") %>" type="text/javascript" ></script>
     <script src="<%: Url.Content("~/Scripts/scrumtime-schedule-1.0.js") %>" type="text/javascript" ></script>
     <script src="<%: Url.Content("~/Scripts/scrumtime-release-1.0.js") %>" type="text/javascript" ></script>
+    <script src="<%: Url.Content("~/Scripts/scrumtime-sprint-1.0.js") %>" type="text/javascript" ></script>
 </head>
 
 <body>   
