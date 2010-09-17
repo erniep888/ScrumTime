@@ -94,6 +94,7 @@
     <Compile Include="Services\ReleaseService.cs" />
     <Compile Include="Services\StoryService.cs" />
     <Compile Include="Services\TaskService.cs" />
+    <Compile Include="ViewModels\JsonSchedule.cs" />
     <Compile Include="ViewModels\SprintCollectionViewModel.cs" />
     <Compile Include="ViewModels\ReleaseCollectionViewModel.cs" />
     <Compile Include="ViewModels\ProjectViewModel.cs" />

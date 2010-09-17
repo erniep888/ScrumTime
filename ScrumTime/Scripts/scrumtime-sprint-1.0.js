@@ -74,6 +74,7 @@ function saveSprintRowEdit(productId, sprintId) {
             },
             function (data) {
                 $('#sprintRow_' + sprintId).replaceWith(data);
+                updateReleaseSchedule();
             }
         );
 
@@ -93,6 +94,7 @@ function saveSprintRowEdit(productId, sprintId) {
         );
     }
 
+    
     // TODO: Implement save failure GUI
 }
 
