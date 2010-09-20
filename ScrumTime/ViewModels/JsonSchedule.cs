@@ -41,13 +41,7 @@ namespace ScrumTime.ViewModels
                 {
                     YAxisTicks.Add("Sprint " + sprint.Name);
                 }
-            }
-            else
-            {
-                YAxisTicks.Add(" ");  // a bit of a hack to allow the schedule to display...forces data to be present
-                Data.Add(CreateSprintJsonList(1, startDateRange.AddYears(-50), 
-                    startDateRange.AddYears(-50), startDateRange, endDateRange)); 
-            }
+            }            
 
             foreach (Release release in releases)
             {
@@ -65,6 +59,13 @@ namespace ScrumTime.ViewModels
                 pointLabels = pointLabels 
             };
             Series.Add(seriesPoint);
+
+            if (sprints.Count() == 0)
+            {
+                YAxisTicks.Add(" ");  // a bit of a hack to allow the schedule to display...forces data to be present
+                Data.Add(CreateSprintJsonList(1, startDateRange.AddYears(-50),
+                    startDateRange.AddYears(-50), startDateRange, endDateRange));
+            }
 
         }
 
@@ -95,6 +96,7 @@ namespace ScrumTime.ViewModels
         // [['09/20/2010', 0, 'Release 0.6'], ['09/20/2010', 3, 'Release 0.6']]
         private List<object> CreateReleaseJsonList(int sprintCount, Release release)
         {
+            sprintCount = (sprintCount < 1) ? 1 : sprintCount;
             List<object> releaseJsonList = new List<object>();
 
             List<object> releaseTopDetailsList = new List<object>();
