@@ -22,21 +22,31 @@ namespace ScrumTime.ViewModels
             Series = new List<object>();
 
             int sprintIndex = sprints.Count();
-            foreach (Sprint sprint in sprints)
-            {                
-                Data.Add(CreateSprintJsonList(sprintIndex, sprint, startDateRange, endDateRange));                
-                Series.Add(new JsonDataSeriesSprintElement() { lineWidth = 3, showMarker = false, 
-                    label = "Sprint " + sprint.Name });
-                sprintIndex--;
-            }
-
-            var descendingSprints = from s in sprints
-                                orderby s.StartDate descending
-                                select s;
-            // the YAxis ticks need to be listed in reverse order
-            foreach (Sprint sprint in descendingSprints)
+            if (sprintIndex > 0)
             {
-                YAxisTicks.Add("Sprint " + sprint.Name);
+                foreach (Sprint sprint in sprints)
+                {                
+                    Data.Add(CreateSprintJsonList(sprintIndex, sprint, startDateRange, endDateRange));                
+                    Series.Add(new JsonDataSeriesSprintElement() { lineWidth = 3, showMarker = false, 
+                        label = "Sprint " + sprint.Name });
+                    sprintIndex--;
+                }
+
+                var descendingSprints = from s in sprints
+                                    orderby s.StartDate descending
+                                    select s;
+                // the YAxis ticks need to be listed in reverse order
+            
+                foreach (Sprint sprint in descendingSprints)
+                {
+                    YAxisTicks.Add("Sprint " + sprint.Name);
+                }
+            }
+            else
+            {
+                YAxisTicks.Add(" ");  // a bit of a hack to allow the schedule to display...forces data to be present
+                Data.Add(CreateSprintJsonList(1, startDateRange.AddYears(-50), 
+                    startDateRange.AddYears(-50), startDateRange, endDateRange)); 
             }
 
             foreach (Release release in releases)
@@ -115,6 +125,28 @@ namespace ScrumTime.ViewModels
             sprintJsonList.Add(sprintStartDetailsList);
 
             DateTime finishDate = sprint.FinishDate;
+            List<object> sprintFinishDetailsList = new List<object>();
+            sprintFinishDetailsList.Add(finishDate.ToString("MM/dd/yyyy"));
+            sprintFinishDetailsList.Add(sprintIndex);
+            sprintFinishDetailsList.Add(finishDate.ToString("MM/dd/yyyy"));
+            sprintJsonList.Add(sprintFinishDetailsList);
+
+            return sprintJsonList;
+        }
+
+        // [['08/03/2010', 1, '08/03/2010'], ['09/15/2010', 1, '09/15/2010']]
+        private List<object> CreateSprintJsonList(int sprintIndex, DateTime sprintStartDate,
+            DateTime sprintFinishDate, DateTime startDateRange, DateTime endDateRange)
+        {
+            List<object> sprintJsonList = new List<object>();
+            DateTime startDate = sprintStartDate;
+            List<object> sprintStartDetailsList = new List<object>();
+            sprintStartDetailsList.Add(startDate.ToString("MM/dd/yyyy"));
+            sprintStartDetailsList.Add(sprintIndex);
+            sprintStartDetailsList.Add(startDate.ToString("MM/dd/yyyy"));
+            sprintJsonList.Add(sprintStartDetailsList);
+
+            DateTime finishDate = sprintFinishDate;
             List<object> sprintFinishDetailsList = new List<object>();
             sprintFinishDetailsList.Add(finishDate.ToString("MM/dd/yyyy"));
             sprintFinishDetailsList.Add(sprintIndex);

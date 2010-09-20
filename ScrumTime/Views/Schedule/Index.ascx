@@ -27,5 +27,6 @@
 
 
 <script type="text/javascript" language="javascript">
-    loadSchedule();
+    initializeRealeaseSchedule();
+    updateReleaseSchedule();
 </script>

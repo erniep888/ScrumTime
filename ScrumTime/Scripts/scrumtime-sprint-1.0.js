@@ -83,13 +83,15 @@ function saveSprintRowEdit(productId, sprintId) {
         $.post('/Sprint/Save',
             {
                 name: name, sprintId: sprintId,
-                description: description, target: target,
+                description: description, start: start,
+                finish: finish,
                 productId: productId
             },
             function (data) {
                 $("#sprintTableBody_" + productId + " .sprintRow").removeClass("typicalAltRows");
                 $('#sprintContentListId_' + productId).replaceWith(data);
                 $("#sprintTableBody_" + productId + " .sprintRow:odd").addClass("typicalAltRows");
+                updateReleaseSchedule();
             }
         );
     }
@@ -109,6 +111,7 @@ function deleteSprint(productId, sprintId) {
         $("#sprintTableBody_" + productId + " .sprintRow").removeClass("typicalAltRows");
         $('#sprintContentListId_' + productId).replaceWith(data);
         $("#sprintTableBody_" + productId + " .sprintRow:odd").addClass("typicalAltRows");
+        updateReleaseSchedule();
     });
 
     // TODO: Implement delete failure GUI

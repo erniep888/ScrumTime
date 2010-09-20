@@ -73,6 +73,7 @@ function saveReleaseRowEdit(productId, releaseId) {
             },
             function (data) {
                 $('#releaseRow_' + releaseId).replaceWith(data);
+                updateReleaseSchedule();
             }
         );
 
@@ -88,6 +89,7 @@ function saveReleaseRowEdit(productId, releaseId) {
                 $("#releaseTableBody_" + productId + " .releaseRow").removeClass("typicalAltRows");
                 $('#releaseContentListId_' + productId).replaceWith(data);
                 $("#releaseTableBody_" + productId + " .releaseRow:odd").addClass("typicalAltRows");
+                updateReleaseSchedule();
             }
         );
     }
@@ -106,6 +108,7 @@ function deleteRelease(productId, releaseId) {
         $("#releaseTableBody_" + productId + " .releaseRow").removeClass("typicalAltRows");
         $('#releaseContentListId_' + productId).replaceWith(data);
         $("#releaseTableBody_" + productId + " .releaseRow:odd").addClass("typicalAltRows");
+        updateReleaseSchedule();
     });
 
     // TODO: Implement delete failure GUI
