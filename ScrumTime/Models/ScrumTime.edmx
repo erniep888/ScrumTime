@@ -23,6 +23,10 @@
             <End Role="Products" EntitySet="Products" />
             <End Role="Stories" EntitySet="Stories" />
           </AssociationSet>
+          <AssociationSet Name="FK_Stories_Sprints" Association="ScrumTime.Models.Store.FK_Stories_Sprints">
+            <End Role="Sprints" EntitySet="Sprints" />
+            <End Role="Stories" EntitySet="Stories" />
+          </AssociationSet>
           <AssociationSet Name="FK_Tasks_Stories" Association="ScrumTime.Models.Store.FK_Tasks_Stories">
             <End Role="Stories" EntitySet="Stories" />
             <End Role="Tasks" EntitySet="Tasks" />
@@ -67,6 +71,7 @@
           <Property Name="UserDefinedId" Type="nvarchar" MaxLength="250" />
           <Property Name="Priority" Type="int" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="SprintId" Type="int" />
         </EntityType>
         <EntityType Name="Tasks">
           <Key>
@@ -114,6 +119,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Stories_Sprints">
+          <End Role="Sprints" Type="ScrumTime.Models.Store.Sprints" Multiplicity="0..1" />
+          <End Role="Stories" Type="ScrumTime.Models.Store.Stories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sprints">
+              <PropertyRef Name="SprintId" />
+            </Principal>
+            <Dependent Role="Stories">
+              <PropertyRef Name="SprintId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tasks_Stories">
           <End Role="Stories" Type="ScrumTime.Models.Store.Stories" Multiplicity="1" />
           <End Role="Tasks" Type="ScrumTime.Models.Store.Tasks" Multiplicity="*" />
@@ -152,6 +169,10 @@
             <End Role="Story" EntitySet="Stories" />
             <End Role="Task" EntitySet="Tasks" />
           </AssociationSet>
+          <AssociationSet Name="FK_Stories_Sprints" Association="ScrumTime.Models.FK_Stories_Sprints">
+            <End Role="Sprint" EntitySet="Sprints" />
+            <End Role="Story" EntitySet="Stories" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Product">
           <Key>
@@ -186,6 +207,7 @@
           <Property Type="DateTime" Name="FinishDate" Nullable="false" />
           <Property Type="Int32" Name="ProductId" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="ScrumTime.Models.FK_Sprints_Products" FromRole="Sprint" ToRole="Product" />
+          <NavigationProperty Name="Stories" Relationship="ScrumTime.Models.FK_Stories_Sprints" FromRole="Sprint" ToRole="Story" />
         </EntityType>
         <EntityType Name="Story">
           <Key>
@@ -199,6 +221,8 @@
           <Property Type="Int32" Name="ProductId" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="ScrumTime.Models.FK_Stories_Products" FromRole="Story" ToRole="Product" />
           <NavigationProperty Name="Tasks" Relationship="ScrumTime.Models.FK_Tasks_Stories" FromRole="Story" ToRole="Task" />
+          <Property Type="Int32" Name="SprintId" />
+          <NavigationProperty Name="Sprint" Relationship="ScrumTime.Models.FK_Stories_Sprints" FromRole="Story" ToRole="Sprint" />
         </EntityType>
         <EntityType Name="Task">
           <Key>
@@ -259,6 +283,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Stories_Sprints">
+          <End Type="ScrumTime.Models.Sprint" Role="Sprint" Multiplicity="0..1" />
+          <End Type="ScrumTime.Models.Story" Role="Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sprint">
+              <PropertyRef Name="SprintId" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="SprintId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -300,6 +336,7 @@
           <EntitySetMapping Name="Stories">
             <EntityTypeMapping TypeName="ScrumTime.Models.Story">
               <MappingFragment StoreEntitySet="Stories">
+                <ScalarProperty Name="SprintId" ColumnName="SprintId" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="Priority" ColumnName="Priority" />
                 <ScalarProperty Name="UserDefinedId" ColumnName="UserDefinedId" />
@@ -352,17 +389,21 @@
           <ConnectorPoint PointX="3" PointY="2.3362939453125" />
         </AssociationConnector>
         <AssociationConnector Association="ScrumTime.Models.FK_Sprints_Products" >
-          <ConnectorPoint PointX="2.25" PointY="5.4949446614583337" />
-          <ConnectorPoint PointX="3" PointY="5.4949446614583337" />
+          <ConnectorPoint PointX="2.25" PointY="5.5862939453125" />
+          <ConnectorPoint PointX="3" PointY="5.5862939453125" />
         </AssociationConnector>
         <AssociationConnector Association="ScrumTime.Models.FK_Stories_Products" >
           <ConnectorPoint PointX="1.5" PointY="6.672587890625" />
-          <ConnectorPoint PointX="1.5" PointY="8.5285953776041659" />
-          <ConnectorPoint PointX="3" PointY="8.5285953776041659" />
+          <ConnectorPoint PointX="1.5" PointY="8.7208968098958337" />
+          <ConnectorPoint PointX="3" PointY="8.7208968098958337" />
         </AssociationConnector>
         <AssociationConnector Association="ScrumTime.Models.FK_Tasks_Stories" >
           <ConnectorPoint PointX="4.5" PointY="8.5862939453125" />
           <ConnectorPoint PointX="5.25" PointY="8.5862939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="ScrumTime.Models.FK_Stories_Sprints" >
+          <ConnectorPoint PointX="3.75" PointY="6.6821907552083326" />
+          <ConnectorPoint PointX="3.75" PointY="7.25" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

@@ -200,6 +200,7 @@
     <Content Include="Views\Sprint\ReadOnly.ascx" />
     <Content Include="Views\Story\Backlog.ascx" />
     <Content Include="Views\Story\ReadOnlyColumns.ascx" />
+    <Content Include="Views\Story\Schedule.ascx" />
     <Content Include="Views\Story\StoryActionCancelOnly.ascx" />
     <Content Include="Views\Story\Edit.ascx" />
     <Content Include="Views\Story\ReadOnly.ascx" />

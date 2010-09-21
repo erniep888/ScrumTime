@@ -22,6 +22,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("ScrumTime.Models", "FK_Sprints_Products", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ScrumTime.Models.Product), "Sprint", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScrumTime.Models.Sprint), true)]
 [assembly: EdmRelationshipAttribute("ScrumTime.Models", "FK_Stories_Products", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ScrumTime.Models.Product), "Story", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScrumTime.Models.Story), true)]
 [assembly: EdmRelationshipAttribute("ScrumTime.Models", "FK_Tasks_Stories", "Story", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ScrumTime.Models.Story), "Task", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScrumTime.Models.Task), true)]
+[assembly: EdmRelationshipAttribute("ScrumTime.Models", "FK_Stories_Sprints", "Sprint", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(ScrumTime.Models.Sprint), "Story", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScrumTime.Models.Story), true)]
 
 #endregion
 
@@ -796,6 +797,28 @@ namespace ScrumTime.Models
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("ScrumTime.Models", "FK_Stories_Sprints", "Story")]
+        public EntityCollection<Story> Stories
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Story>("ScrumTime.Models.FK_Stories_Sprints", "Story");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Story>("ScrumTime.Models.FK_Stories_Sprints", "Story", value);
+                }
+            }
+        }
 
         #endregion
     }
@@ -978,6 +1001,30 @@ namespace ScrumTime.Models
         private global::System.Int32 _ProductId;
         partial void OnProductIdChanging(global::System.Int32 value);
         partial void OnProductIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SprintId
+        {
+            get
+            {
+                return _SprintId;
+            }
+            set
+            {
+                OnSprintIdChanging(value);
+                ReportPropertyChanging("SprintId");
+                _SprintId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SprintId");
+                OnSprintIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SprintId;
+        partial void OnSprintIdChanging(Nullable<global::System.Int32> value);
+        partial void OnSprintIdChanged();
 
         #endregion
     
@@ -1039,6 +1086,44 @@ namespace ScrumTime.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Task>("ScrumTime.Models.FK_Tasks_Stories", "Task", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("ScrumTime.Models", "FK_Stories_Sprints", "Sprint")]
+        public Sprint Sprint
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Sprint>("ScrumTime.Models.FK_Stories_Sprints", "Sprint").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Sprint>("ScrumTime.Models.FK_Stories_Sprints", "Sprint").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Sprint> SprintReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Sprint>("ScrumTime.Models.FK_Stories_Sprints", "Sprint");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Sprint>("ScrumTime.Models.FK_Stories_Sprints", "Sprint", value);
                 }
             }
         }
