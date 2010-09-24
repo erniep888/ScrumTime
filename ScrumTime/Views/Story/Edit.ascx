@@ -22,7 +22,7 @@
                         <td style="border:0px"><textarea id="storyNarrative_<%: Model.StoryModel.StoryId %>" rows="3" style="width:490px;font-family:Verdana;"><%: Model.StoryModel.Narrative %></textarea></td>
                         <td style="vertical-align:middle;text-align:center;width:80px;border:0px;font-size:11px;"><div><%: taskHourString %></div></td>
                         <td style="vertical-align:middle;text-align:center;width:80px;border:0px;">
-                            <select id="storyPoints_<%: Model.StoryModel.StoryId %>" style="text-align:left;width:50px;font-family:Verdana;margin-right:4px;">
+                            <select id="storyPoints_<%: Model.StoryModel.StoryId %>" style="text-align:left;font-family:Verdana;margin-right:4px;">
                             <%
                                 foreach(int point in Model.Points)
                                 {
@@ -43,8 +43,8 @@
                             %>            
                             </select>
                         </td>
-                        <td style="vertical-align:middle;text-align:center;width:114px;font-weight:bold;color:#0035a0;border:0px;">    
-                            <table border="1" cellpadding="0" cellspacing="0" style="padding:0;border:0;" width="100px">
+                        <td style="vertical-align:middle;text-align:left;width:116px;font-weight:bold;color:#0035a0;border:0px;">    
+                            <table border="0" cellpadding="0" cellspacing="0" style="padding:0;border:0;margin-left:18px" width="94px">
                                 <tr>
                                     <td style="border:0px;">
                                         <a href="#" class="simpleLink" onclick="saveStoryRowEdit(<%: Model.StoryModel.StoryId %>);"><img alt="Save" src="../../Content/Images/Menu/save24x24.png" /></a>
