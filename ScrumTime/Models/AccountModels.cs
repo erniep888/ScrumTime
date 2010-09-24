@@ -85,6 +85,8 @@ namespace ScrumTime.Models
         bool ValidateUser(string userName, string password);
         MembershipCreateStatus CreateUser(string userName, string password, string email);
         bool ChangePassword(string userName, string oldPassword, string newPassword);
+        MembershipUserCollection GetAllUsers();
+        bool DeleteUser(string username);
     }
 
     public class AccountMembershipService : IMembershipService
@@ -107,6 +109,17 @@ namespace ScrumTime.Models
             {
                 return _provider.MinRequiredPasswordLength;
             }
+        }
+
+        public MembershipUserCollection GetAllUsers()
+        {
+            int totalUserCount = 0;
+            return _provider.GetAllUsers(0, 100, out totalUserCount); 
+        }
+
+        public bool DeleteUser(string username)
+        {
+            return _provider.DeleteUser(username, true);
         }
 
         public bool ValidateUser(string userName, string password)

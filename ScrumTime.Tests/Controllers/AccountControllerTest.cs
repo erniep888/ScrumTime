@@ -392,6 +392,16 @@ namespace ScrumTime.Tests.Controllers
                 return MembershipCreateStatus.Success;
             }
 
+            public bool DeleteUser(string username)
+            {
+                return true;
+            }
+
+            public MembershipUserCollection GetAllUsers()
+            {
+                return new MembershipUserCollection();
+            }
+
             public bool ChangePassword(string userName, string oldPassword, string newPassword)
             {
                 return (userName == "someUser" && oldPassword == "goodOldPassword" && newPassword == "goodNewPassword");

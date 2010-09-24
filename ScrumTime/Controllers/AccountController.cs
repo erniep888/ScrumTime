@@ -63,6 +63,26 @@ namespace ScrumTime.Controllers
             return View(model);
         }
 
+        public ActionResult List()
+        {
+            MembershipUserCollection users = MembershipService.GetAllUsers();
+            return PartialView();
+        }
+
+        [HttpPost]
+        public ActionResult Delete(string username)
+        {
+            try
+            {
+                MembershipService.DeleteUser(username);
+                return RedirectToAction("List");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
         // **************************************
         // URL: /Account/LogOff
         // **************************************

@@ -185,6 +185,7 @@
     <Content Include="Scripts\jquery-ui-1.8.4.custom.min.js" />
     <Content Include="Scripts\scrumtime-task-1.0.js" />
     <Content Include="Scripts\scrumtime-story-1.0.js" />
+    <Content Include="Views\Account\List.ascx" />
     <Content Include="Views\Dashboard\Index.ascx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Product\Index.ascx" />
@@ -209,7 +210,9 @@
     <Content Include="Views\Task\StoryTaskBacklog.ascx" />
     <Content Include="Views\Task\List.ascx" />
     <Content Include="Views\Task\ReadOnly.ascx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
