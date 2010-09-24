@@ -13,51 +13,60 @@
             taskHourString = "1 hr";
      %>
      <tr id="storyRow_<%: Model.StoryModel.StoryId %>" class="storyRow" style="border:0px" >
-        <td style="vertical-align:middle;text-align:center;width:68px;border:0px;"><input id="storyPriority_<%: Model.StoryModel.StoryId %>" style="width:30px;text-align:center" type="text" value="<%: Model.StoryModel.Priority %>" /></td>
-        <td style="vertical-align:middle;text-align:center;border:0px;"><textarea id="storyUserDefinedId_<%: Model.StoryModel.StoryId %>" rows="3" style="width:100px;font-family:Verdana;font-style:italic;vertical-align:middle;text-align:center;"><%: Model.StoryModel.UserDefinedId%></textarea></td>
-        <td style="border:0px"><textarea id="storyNarrative_<%: Model.StoryModel.StoryId %>" rows="3" style="width:490px;font-family:Verdana;"><%: Model.StoryModel.Narrative %></textarea></td>
-        <td style="vertical-align:middle;text-align:center;width:80px;border:0px;font-size:11px;"><div><%: taskHourString %></div></td>
-        <td style="vertical-align:middle;text-align:center;width:80px;border:0px;">
-            <select id="storyPoints_<%: Model.StoryModel.StoryId %>" style="text-align:left;width:50px;font-family:Verdana;margin-right:4px;">
-            <%
-                foreach(int point in Model.Points)
-                {
-                    if (point == Model.StoryModel.Points)
-                    {
-                        %>
-                        <option value="<%: point %>" selected="selected"><%: point%></option>
-                        <%
-                    }
-                    else
-                    {
-                        %>
-                        <option value="<%: point %>"><%: point%></option>
-                        <%
+        <td style="padding:0" colspan="6">
+            <table style="padding:0" cellpadding="0" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td style="vertical-align:middle;text-align:center;width:68px;border:0px;"><input id="storyPriority_<%: Model.StoryModel.StoryId %>" style="width:30px;text-align:center" type="text" value="<%: Model.StoryModel.Priority %>" /></td>
+                        <td style="vertical-align:middle;text-align:center;border:0px;"><textarea id="storyUserDefinedId_<%: Model.StoryModel.StoryId %>" rows="3" style="width:100px;font-family:Verdana;font-style:italic;vertical-align:middle;text-align:center;"><%: Model.StoryModel.UserDefinedId%></textarea></td>
+                        <td style="border:0px"><textarea id="storyNarrative_<%: Model.StoryModel.StoryId %>" rows="3" style="width:490px;font-family:Verdana;"><%: Model.StoryModel.Narrative %></textarea></td>
+                        <td style="vertical-align:middle;text-align:center;width:80px;border:0px;font-size:11px;"><div><%: taskHourString %></div></td>
+                        <td style="vertical-align:middle;text-align:center;width:80px;border:0px;">
+                            <select id="storyPoints_<%: Model.StoryModel.StoryId %>" style="text-align:left;width:50px;font-family:Verdana;margin-right:4px;">
+                            <%
+                                foreach(int point in Model.Points)
+                                {
+                                    if (point == Model.StoryModel.Points)
+                                    {
+                                        %>
+                                        <option value="<%: point %>" selected="selected"><%: point%></option>
+                                        <%
+                                    }
+                                    else
+                                    {
+                                        %>
+                                        <option value="<%: point %>"><%: point%></option>
+                                        <%
                     
-                    }
-                }
-            %>            
-            </select>
-        </td>
-        <td style="vertical-align:middle;text-align:center;width:114px;font-weight:bold;color:#0035a0;border:0px;">    
-            <table border="1" cellpadding="0" cellspacing="0" style="padding:0;border:0;" width="100px">
-                <tr>
-                    <td style="border:0px;">
-                        <a href="#" class="simpleLink" onclick="saveStoryRowEdit(<%: Model.StoryModel.StoryId %>);"><img alt="Save" src="../../Content/Images/Menu/save24x24.png" /></a>
-                    </td>
-                    <td style="border:0px">
-                        <a href="#" class="simpleLink" onclick="cancelStoryRowEdit(<%: Model.StoryModel.StoryId %>);">
-                            <img alt="Cancel" src="../../Content/Images/Menu/cancel24x24.png" /></a>
-                    </td>
-                </tr>
+                                    }
+                                }
+                            %>            
+                            </select>
+                        </td>
+                        <td style="vertical-align:middle;text-align:center;width:114px;font-weight:bold;color:#0035a0;border:0px;">    
+                            <table border="1" cellpadding="0" cellspacing="0" style="padding:0;border:0;" width="100px">
+                                <tr>
+                                    <td style="border:0px;">
+                                        <a href="#" class="simpleLink" onclick="saveStoryRowEdit(<%: Model.StoryModel.StoryId %>);"><img alt="Save" src="../../Content/Images/Menu/save24x24.png" /></a>
+                                    </td>
+                                    <td style="border:0px">
+                                        <a href="#" class="simpleLink" onclick="cancelStoryRowEdit(<%: Model.StoryModel.StoryId %>);">
+                                            <img alt="Cancel" src="../../Content/Images/Menu/cancel24x24.png" /></a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+
+                        <script type="text/javascript">           
+                            setupEditStoryRow(<%: Model.StoryModel.StoryId %>, <%: Model.StoryModel.Priority %> );
+
+                            $('storyRow_<%: Model.StoryModel.StoryId %>').ready(function () {
+                                setAlternatingStoryBackgroundColors();
+                            });
+                        </script>
+                    </tr>                    
+                    <% Html.RenderPartial("~/Views/Story/Schedule.ascx", Model); %>
+                </tbody>
             </table>
         </td>
-
-        <script type="text/javascript">           
-            setupEditStoryRow(<%: Model.StoryModel.StoryId %>, <%: Model.StoryModel.Priority %> );
-
-            $('storyRow_<%: Model.StoryModel.StoryId %>').ready(function () {
-                setAlternatingStoryBackgroundColors();
-            });
-        </script>
     </tr>

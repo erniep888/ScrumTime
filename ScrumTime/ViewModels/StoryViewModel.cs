@@ -11,6 +11,7 @@ namespace ScrumTime.ViewModels
     {
         public Story StoryModel { get; set; }
         public List<int> Points { get; private set; }
+        public List<Sprint> AllSprints { get; set; }
 
         public StoryViewModel()
         {

@@ -47,10 +47,18 @@ namespace ScrumTime.Controllers
         // Returns only one edit row
         public ActionResult Edit(int id)
         {
+            List<Sprint> allSprints = SprintService.GetAllSprints(_ScrumTimeEntities);
+            Sprint noneSprint = new Sprint()
+            {
+                Name = "None",
+                SprintId = -1
+            };
+            allSprints.Insert(0, noneSprint);
             Story story = _StoryService.GetStoryById(id);
             StoryViewModel storyViewModel = new StoryViewModel()
             {
-                StoryModel = story
+                StoryModel = story,
+                AllSprints = allSprints
             };
             return PartialView(storyViewModel);
         }
@@ -92,6 +100,9 @@ namespace ScrumTime.Controllers
                 string userDefinedId = collection.Get("userDefinedId");
                 string narrative = collection.Get("narrative");
                 string points = collection.Get("points");
+                string sprintId = collection.Get("sprintId");
+                int? sprintIdAsInt = (sprintId == null) ? null : (int?)Int32.Parse(sprintId);
+                sprintIdAsInt = (sprintIdAsInt != null && sprintIdAsInt > 0) ? sprintIdAsInt : null;
                 // TODO:  Validate the story data before saving
                 // TODO:  Set the correct product id
                 Story story = new Story()
@@ -101,7 +112,8 @@ namespace ScrumTime.Controllers
                     Points = Int32.Parse(points),
                     Priority = Int32.Parse(priority),
                     ProductId = 1,
-                    UserDefinedId = userDefinedId 
+                    UserDefinedId = userDefinedId,
+                    SprintId = sprintIdAsInt
                 };
                 _StoryService.SaveStory(story);
 

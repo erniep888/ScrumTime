@@ -64,10 +64,11 @@ function saveStoryRowEdit(storyId) {
     var userDefinedId = $('#storyUserDefinedId_' + storyId).val();
     var narrative = $('#storyNarrative_' + storyId).val();
     var points = $('#storyPoints_' + storyId).val();
+    var sprintId = $('#storySprint_' + storyId).val();
     if (originalPriority != priority ) {
         $.post('/Story/Save',
             {
-                storyId: storyId, priority: priority,
+                storyId: storyId, priority: priority, sprintId: sprintId,
                 userDefinedId: userDefinedId, narrative: narrative,
                 originalPriority: originalPriority, points: points
             },
@@ -79,7 +80,7 @@ function saveStoryRowEdit(storyId) {
     else {
         $.post('/Story/Save',
             {
-                storyId: storyId, priority: priority,
+                storyId: storyId, priority: priority, sprintId: sprintId,
                 userDefinedId: userDefinedId, narrative: narrative,
                 originalPriority: originalPriority, points: points
             },
