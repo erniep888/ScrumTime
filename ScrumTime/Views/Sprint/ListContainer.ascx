@@ -4,7 +4,7 @@
     <div class="nopadding" style="width:100%;background-color:#fff;font-family:Verdana;font-size:12px;border:1px solid #999;">
         <div id="Div3" style="height:34px;width:100%;background-color:#fff;font-family:Verdana;border-bottom:1px solid #999;">
             <div style="position:absolute;left:30px;width:115px;margin-top:10px">
-                  <a href="#" class="simpleLink newStoryLink" onclick="addSprintRow(<%: Model.ProductId %>);">Add Sprint</a>
+                  <a href="#" class="simpleLink" onclick="addSprintRow(<%: Model.ProductId %>);">Add Sprint</a>
             </div>            
             <div style="position:absolute;left:444px;width:80px;margin-top:0px;color:#79a52c;font-weight:bold;
                 letter-spacing:1px;font-size:13px;text-align:left;">Sprints</div>

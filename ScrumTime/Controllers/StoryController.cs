@@ -66,6 +66,13 @@ namespace ScrumTime.Controllers
         // Returns only one new row
         public ActionResult New()
         {
+            List<Sprint> allSprints = SprintService.GetAllSprints(_ScrumTimeEntities);
+            Sprint noneSprint = new Sprint()
+            {
+                Name = "None",
+                SprintId = -1
+            };
+            allSprints.Insert(0, noneSprint);
             // TODO: Pull the actual product information from session before 0.9 release
             Product product = _ScrumTimeEntities.Products.First<Product>(p => p.ProductId == 1);
             StoryViewModel storyViewModel = new StoryViewModel()
@@ -77,7 +84,8 @@ namespace ScrumTime.Controllers
                     Points = 0,
                     Priority = 0,
                     UserDefinedId = (product.Stories.Count() + 1).ToString()
-                }
+                },
+                AllSprints = allSprints
             };
             return PartialView("Edit", storyViewModel);
         }

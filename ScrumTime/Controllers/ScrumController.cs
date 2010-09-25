@@ -3,25 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ScrumTime.ViewModels;
+using ScrumTime.Services;
+using ScrumTime.Models;
+
 
 namespace ScrumTime.Controllers
 {
     public class ScrumController : Controller
     {
+        ScrumTimeEntities _ScrumTimeEntities;
+        ScrumService _ScrumService;
+
+        public ScrumController()
+        {
+            _ScrumTimeEntities = new ScrumTimeEntities();
+            _ScrumService = new ScrumService(_ScrumTimeEntities);            
+        }
+
         //
         // GET: /Scrum/
 
         public ActionResult Index()
-        {
+        {            
             return View();
         }
 
         //
         // GET: /Scrum/List
 
-        public ActionResult List()
+        public ActionResult List(int sprintId)
         {
-            return View();
+            ScrumCollectionViewModel scrumCollectionViewModel = ScrumCollectionViewModel.BuildByDateOfScrumDesc(sprintId);
+            return View(scrumCollectionViewModel);
         }
 
         //
