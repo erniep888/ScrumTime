@@ -8,24 +8,28 @@ namespace ScrumTime.ViewModels
 {
     public class ScrumCollectionViewModel 
     {
+        public List<Scrum> Scrums { get; set; }
+
         public ScrumCollectionViewModel()
         {
-            
+            Scrums = new List<Scrum>();
         }
 
-        public List<Scrum> Scrums { get; set; }
+        
 
         public static ScrumCollectionViewModel BuildByDateOfScrumDesc(int sprintId)
         {
             ScrumTimeEntities scrumTimeEntities = new ScrumTimeEntities();
             ScrumCollectionViewModel scrumCollectionViewModel = new ScrumCollectionViewModel();
-            Sprint sprint = scrumTimeEntities.Sprints.First<Sprint>(s => s.SprintId == sprintId);
-            var results = from s in sprint.Scrums
-                          orderby s.DateOfScrum descending
-                          select s;
-            List<Scrum> scrums = results.ToList<Scrum>();
-            scrumCollectionViewModel.Scrums = scrums;
-
+            if (sprintId > 0)
+            {
+                Sprint sprint = scrumTimeEntities.Sprints.First<Sprint>(s => s.SprintId == sprintId);
+                var results = from s in sprint.Scrums
+                              orderby s.DateOfScrum descending
+                              select s;
+                List<Scrum> scrums = results.ToList<Scrum>();
+                scrumCollectionViewModel.Scrums = scrums;
+            }
             return scrumCollectionViewModel;
         }
     }

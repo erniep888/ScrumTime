@@ -36,8 +36,6 @@
 </head>
 
 <body>   
-    <input type="hidden" name="currentProductId" value="1" />
-    <input type="hidden" name="currentSprintId" value="-1" />
     <div id="pageHeader"></div>
 	<div id="menuBackgroundDiv"></div>
 	<div id="pageCenterDiv">

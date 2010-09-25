@@ -7,11 +7,11 @@
      %>
 
     <tr id="scrumRow_<%: Model.ScrumId %>" class="scrumRow">
-        <td class="scrum_<%: Model.ScrumId %>" style="vertical-align:middle;text-align:center;width:80px;border:0px;font-size:11px;""><a class="simpleLink" href="#"><%: Model.ScrumId %></a></td>
-        <td class="scrum_<%: Model.ScrumId %>" style="border:0px;"><a class="simpleLink" href="#"><%: scrumDate %></a></td>
-        <td class="scrum_<%: Model.ScrumId %>" style="vertical-align:middle;text-align:center;width:80px;border:0px;font-size:11px;"><a class="simpleLink" href="#"><%: hoursCompleted %></a></td>
-        <td class="scrum_<%: Model.ScrumId %>" style="vertical-align:middle;text-align:center;width:80px;border:0px;font-size:11px;"><a class="simpleLink" href="#"><%: hoursRemaining %></a></td>
-        <td style="vertical-align:middle;text-align:center;width:194px;border:0px;font-size:11px;">
+        <td class="scrum_<%: Model.ScrumId %>" style="vertical-align:middle;text-align:center;width:100px;border:0px;font-size:11px;""><a class="simpleLink" href="#"><%: Model.ScrumId %></a></td>
+        <td class="scrum_<%: Model.ScrumId %>" style="vertical-align:middle;text-align:center;width:210px;border:0px;font-size:11px;"><a class="simpleLink" href="#"><%: scrumDate %></a></td>
+        <td class="scrum_<%: Model.ScrumId %>" style="vertical-align:middle;text-align:center;width:180px;border:0px;font-size:11px;"><a class="simpleLink" href="#"><%: hoursCompleted %></a></td>
+        <td class="scrum_<%: Model.ScrumId %>" style="vertical-align:middle;text-align:center;width:180px;border:0px;font-size:11px;"><a class="simpleLink" href="#"><%: hoursRemaining %></a></td>
+        <td style="vertical-align:middle;text-align:center;border:0px;font-size:11px;">
             <a href="#" class="simpleLink" onclick="deleteScrum(<%: Model.ScrumId %>);"><img alt="Delete" style="" src="../../Content/Images/Menu/trash.png" /></a>
         </td>
         <script type="text/javascript">           

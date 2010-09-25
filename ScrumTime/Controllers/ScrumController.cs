@@ -25,16 +25,25 @@ namespace ScrumTime.Controllers
         // GET: /Scrum/
 
         public ActionResult Index()
-        {            
-            return View();
+        {
+            //var value = Session["productId"];
+            //Session.Add("productId", 1);
+            int currentSprintId = (Session["currentSprintId"] != null) ? 
+                (int)Session["currentSprintId"] : -1;
+            ScrumCollectionViewModel scrumCollectionViewModel = 
+                ScrumCollectionViewModel.BuildByDateOfScrumDesc(currentSprintId);
+            return View(scrumCollectionViewModel);
         }
 
         //
         // GET: /Scrum/List
 
-        public ActionResult List(int sprintId)
+        public ActionResult List()
         {
-            ScrumCollectionViewModel scrumCollectionViewModel = ScrumCollectionViewModel.BuildByDateOfScrumDesc(sprintId);
+            int currentSprintId = (Session["currentSprintId"] != null) ?
+                (int)Session["currentSprintId"] : -1;
+            ScrumCollectionViewModel scrumCollectionViewModel =
+                ScrumCollectionViewModel.BuildByDateOfScrumDesc(currentSprintId);
             return View(scrumCollectionViewModel);
         }
 
