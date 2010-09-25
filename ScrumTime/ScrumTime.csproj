@@ -96,6 +96,7 @@
     <Compile Include="Services\ReleaseService.cs" />
     <Compile Include="Services\StoryService.cs" />
     <Compile Include="Services\TaskService.cs" />
+    <Compile Include="ViewModels\ScrumCollectionViewModel.cs" />
     <Compile Include="ViewModels\ScrumViewModel.cs" />
     <Compile Include="ViewModels\JsonSchedule.cs" />
     <Compile Include="ViewModels\SprintCollectionViewModel.cs" />
@@ -198,6 +199,7 @@
     <Content Include="Views\Release\ReadOnly.ascx" />
     <Content Include="Views\Schedule\Index.ascx" />
     <Content Include="Views\Scrum\List.ascx" />
+    <Content Include="Views\Scrum\ReadOnly.ascx" />
     <Content Include="Views\Shared\FooterControl.ascx" />
     <Content Include="Views\Sprint\Edit.ascx" />
     <Content Include="Views\Sprint\List.ascx" />

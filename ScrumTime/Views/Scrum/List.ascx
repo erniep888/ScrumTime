@@ -1,11 +1,11 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<ScrumTime.ViewModels.StoryCollectionViewModel>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<ScrumTime.ViewModels.ScrumCollectionViewModel>" %>
 
     <table class="storyTable" style="width:943px;font-family:Verdana;padding:0" cellpadding="0" cellspacing="0">                
         <tbody style="font-size:12px;">
             <%  
-            foreach (ScrumTime.Models.Story story in Model.Stories)
+            foreach (ScrumTime.Models.Scrum scrum in Model.Scrums)
             {
-                Html.RenderPartial("~/Views/Story/ReadOnly.ascx", story); 
+                Html.RenderPartial("~/Views/Scrum/ReadOnly.ascx", scrum); 
             }                               
             %>                      
         </tbody>
