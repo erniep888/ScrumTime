@@ -33,6 +33,14 @@ namespace ScrumTime.Services
             return results.ToList<Sprint>();
         }
 
+        public List<Sprint> GetSprintsByFinishDateDesc(int productId)
+        {
+            var results = from s in _ScrumTimeEntities.Sprints
+                          orderby s.FinishDate descending
+                          select s;
+            return results.ToList<Sprint>();
+        }
+
         public static Sprint GetSprintById(ScrumTimeEntities scrumTimeEntities, int id)
         {
             Sprint sprint = null;

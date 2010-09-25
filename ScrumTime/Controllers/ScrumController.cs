@@ -47,19 +47,12 @@ namespace ScrumTime.Controllers
             return View(scrumCollectionViewModel);
         }
 
+       
         //
-        // GET: /Scrum/Create
-
-        public ActionResult Create()
-        {
-            return View();
-        } 
-
-        //
-        // POST: /Scrum/Create
+        // POST: /Scrum/New
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult New(FormCollection collection)
         {
             try
             {

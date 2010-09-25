@@ -8,8 +8,8 @@ using ScrumTime.Helpers;
 namespace ScrumTime.ViewModels
 {
     public class ScrumViewModel
-    {
-        public Scrum ScrumModel { get; set; }
+    {        
+        public Scrum ScrumModel { get; set; }       
 
         public ScrumViewModel()
         {

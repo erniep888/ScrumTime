@@ -12,7 +12,7 @@
         <div id="Div3" style="height:34px;width:960px;background-color:#fff;
             font-family:Verdana;font-size:12px;padding-top:6px;border-top:2px solid #999;border-left:2px solid #999;border-right:2px solid #999;">
             <div style="position:absolute;left:30px;width:115px;margin-top:10px">
-                  <a href="#" class="simpleLink" onclick="addStoryRow();">Add Scrum</a>
+                  <a href="#" id="scrumAddLink" class="simpleLink" onclick="addStoryRow();">Add Scrum</a>
             </div>            
             <div style="position:absolute;left:450px;width:80px;margin-top:0px;color:#79a52c;font-weight:bold;
                 letter-spacing:1px;font-size:13px;text-align:left;">Scrums</div>
