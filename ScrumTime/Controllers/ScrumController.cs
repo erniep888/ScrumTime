@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using ScrumTime.ViewModels;
 using ScrumTime.Services;
 using ScrumTime.Models;
+using ScrumTime.Helpers;
 
 
 namespace ScrumTime.Controllers
@@ -26,12 +27,9 @@ namespace ScrumTime.Controllers
 
         public ActionResult Index()
         {
-            //var value = Session["productId"];
-            //Session.Add("productId", 1);
-            int currentSprintId = (Session["currentSprintId"] != null) ? 
-                (int)Session["currentSprintId"] : -1;
-            ScrumCollectionViewModel scrumCollectionViewModel = 
-                ScrumCollectionViewModel.BuildByDateOfScrumDesc(currentSprintId);
+            ScrumCollectionViewModel scrumCollectionViewModel =
+                ScrumCollectionViewModel.BuildByDateOfScrumDesc(SessionHelper.GetCurrentProductId(Session),
+                    SessionHelper.GetCurrentSprintId(Session));
             return View(scrumCollectionViewModel);
         }
 
@@ -40,10 +38,9 @@ namespace ScrumTime.Controllers
 
         public ActionResult List()
         {
-            int currentSprintId = (Session["currentSprintId"] != null) ?
-                (int)Session["currentSprintId"] : -1;
             ScrumCollectionViewModel scrumCollectionViewModel =
-                ScrumCollectionViewModel.BuildByDateOfScrumDesc(currentSprintId);
+                ScrumCollectionViewModel.BuildByDateOfScrumDesc(SessionHelper.GetCurrentProductId(Session),
+                    SessionHelper.GetCurrentSprintId(Session));
             return View(scrumCollectionViewModel);
         }
 

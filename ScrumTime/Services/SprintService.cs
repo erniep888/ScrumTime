@@ -54,9 +54,11 @@ namespace ScrumTime.Services
             return sprint;
         }
 
-        public static List<Sprint> GetAllSprints(ScrumTimeEntities scrumTimeEntities)
+        public static List<Sprint> GetAllSprints(ScrumTimeEntities scrumTimeEntities,
+                int productId)
         {
             var results = from t in scrumTimeEntities.Sprints
+                          where t.ProductId == productId
                           orderby t.FinishDate descending
                           select t;
             return results.ToList<Sprint>();

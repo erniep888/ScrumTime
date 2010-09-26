@@ -47,7 +47,8 @@ namespace ScrumTime.Controllers
         // Returns only one edit row
         public ActionResult Edit(int id)
         {
-            List<Sprint> allSprints = SprintService.GetAllSprints(_ScrumTimeEntities);
+            List<Sprint> allSprints = SprintService.GetAllSprints(_ScrumTimeEntities, 
+                SessionHelper.GetCurrentProductId(Session));
             Sprint noneSprint = new Sprint()
             {
                 Name = "None",
@@ -66,7 +67,8 @@ namespace ScrumTime.Controllers
         // Returns only one new row
         public ActionResult New()
         {
-            List<Sprint> allSprints = SprintService.GetAllSprints(_ScrumTimeEntities);
+            List<Sprint> allSprints = SprintService.GetAllSprints(_ScrumTimeEntities,
+                SessionHelper.GetCurrentProductId(Session));
             Sprint noneSprint = new Sprint()
             {
                 Name = "None",
