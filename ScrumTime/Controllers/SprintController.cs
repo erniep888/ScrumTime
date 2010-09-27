@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using ScrumTime.ViewModels;
 using ScrumTime.Services;
 using ScrumTime.Models;
+using ScrumTime.Helpers;
 
 
 namespace ScrumTime.Controllers
@@ -70,6 +71,31 @@ namespace ScrumTime.Controllers
                 FinishDate = DateTime.Today.AddDays(30)
             };
             return PartialView("Edit", sprint);
+        }
+
+        // Change Selected Sprint
+        [HttpPost]
+        public ActionResult ChangeSprint(int id)
+        {
+            SessionHelper.SetCurrentSprintId(Session, id);
+            return Json(id);
+        }
+
+        /// <summary>
+        /// Returns the name of the current Sprint
+        /// </summary>
+        /// <returns>Current sprint name in Json form.</returns>
+        public ActionResult CurrentSprintName()
+        {
+            string currentSprintName = "";
+            int currentSprintId = SessionHelper.GetCurrentSprintId(Session);
+            if (currentSprintId > 0)
+            {
+                Sprint currentSprint = SprintService.GetSprintById(_ScrumTimeEntities, currentSprintId);
+                if (currentSprint != null)
+                    currentSprintName = currentSprint.Name;
+            }
+            return new SecureJsonResult(currentSprintName);
         }
 
         // POST: /Sprint/Save

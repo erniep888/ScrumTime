@@ -17,7 +17,7 @@
                 letter-spacing:1px;font-size:13px;text-align:left;">Scrums</div>
             <div style="position:absolute;right:30px;margin-top:10px;color:#666;text-align:right">
                 <span>Sprint: </span>                        
-                <select id="scrumSprint_<%: Model.SprintId %>" style="text-align:left;font-family:Verdana;margin-right:4px;">
+                <select id="scrumSelectedSprint" style="text-align:left;font-family:Verdana;margin-right:4px;">
                 <%
                     foreach(ScrumTime.Models.Sprint sprint in Model.Sprints)
                     {
@@ -55,7 +55,7 @@
             <% Html.RenderPartial("~/Views/Scrum/List.ascx", Model); %>  
         </div>       
         
-        <div id="scrumEditDialog" title="Scrum">
+        <div id="scrumEditDialog" title="Scrum For Sprint <%: Model.SprintName %>">
         </div>   
     </div>  
     <script type="text/javascript">

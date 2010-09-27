@@ -12,6 +12,14 @@
         );
     });
 
+
+    $("#scrumSelectedSprint").change(function () {
+        $.post('/Sprint/ChangeSprint',
+            {
+                id: $("#scrumSelectedSprint").val()
+            }
+        );
+    });
 //    $(document).ready(function () {
 //       $("#scrumTableBody " .scrumRow:odd").addClass("typicalAltRows");
 //    });
@@ -42,6 +50,16 @@ function setupScrumEditDialog() {
     });
 
     $("#scrumAddLink").click(function () {
+        var currentSprintName = "";
+        $.ajax({
+            url: '/Sprint/CurrentSprintName',
+            dataType: 'json',
+            success: function (json) {
+                $('#scrumEditDialog').dialog({ title: 'Scrum For Sprint ' + json.d });
+            },
+            cache: false
+        });
+
         // Fetch the edit content
         fetchScrumInformationForEdit(-1);
         return;
@@ -56,7 +74,7 @@ function fetchScrumInformationForEdit(scrumId) {
         data: ({ id: scrumId }),
         dataType: "html",
         success: function (html) {
-            $('#scrumEditDialog').html(html);
+            $('#scrumEditDialog').html(html);            
             $('#scrumEditDialog').ready(function () {
                 $('#scrumEditDialog').dialog("open");
             });
