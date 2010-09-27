@@ -46,23 +46,25 @@ function setupScrumEditDialog() {
             Cancel: function () {
                 $(this).dialog("close");
             }
-        }
+        }           
     });
 
-    $("#scrumAddLink").click(function () {
-        var currentSprintName = "";
-        $.ajax({
-            url: '/Sprint/CurrentSprintName',
-            dataType: 'json',
-            success: function (json) {
-                $('#scrumEditDialog').dialog({ title: 'Scrum For Sprint ' + json.d });
-            },
-            cache: false
-        });
-
+    $("#scrumAddLink").click(function () {        
         // Fetch the edit content
         fetchScrumInformationForEdit(-1);
         return;
+    });
+}
+
+function loadScrumEditTitle() {
+    $.ajax({
+        url: '/Sprint/CurrentSprintName',
+        dataType: 'json',
+        success: function (json) {
+            $('#scrumEditDialog').dialog({ title: 'Scrum For Sprint ' + json.d });
+        },
+        cache: false,
+        async: false
     });
 }
 

@@ -25,6 +25,8 @@
             </tbody>
         </table>
     </div>
-
+    <script type="text/javascript">
+        loadScrumEditTitle();
+    </script>
 
 
