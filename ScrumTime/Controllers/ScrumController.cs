@@ -68,7 +68,12 @@ namespace ScrumTime.Controllers
  
         public ActionResult Edit(int id)
         {
-            return View();
+            Scrum scrum = new Scrum()
+            {
+                 DateOfScrum = DateTime.Now,
+                 ScrumId = -1
+            };
+            return View(scrum);
         }
 
         //

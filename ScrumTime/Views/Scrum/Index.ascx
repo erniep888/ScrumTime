@@ -55,6 +55,11 @@
             <% Html.RenderPartial("~/Views/Scrum/List.ascx", Model); %>  
         </div>       
         
-        <% Html.RenderPartial("~/Views/Scrum/Edit.ascx"); %>      
-    </div>    
+        <div id="scrumEditDialog" title="Scrum">
+        </div>   
+    </div>  
+    <script type="text/javascript">
+        setupScrumEditDialog();
+
+    </script>  
 

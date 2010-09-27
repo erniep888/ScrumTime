@@ -1,9 +1,8 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<ScrumTime.ViewModels.ScrumCollectionViewModel>" %>
-
-<div id="scrumEditDialog" title="Scrum">
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<ScrumTime.Models.Scrum>" %>
 
     <div>
         Date of Scrum:
+        <input type="text" id="dateOfScrum_<%: Model.ScrumId %>" size="11" style="text-align:center" value="<%: Model.DateOfScrum.ToString("MM/dd/yyyy") %>" />
     </div>
     <div>
         <table>
@@ -26,29 +25,6 @@
             </tbody>
         </table>
     </div>
-</div>
 
-<script type="text/javascript">
-    $("#scrumEditDialog").dialog({
-        autoOpen: false,
-        modal: true,
-        height: 460,
-        width: 850,
-        buttons: {
-            "Save": function () {
-                alert("howdy");
-                $(this).dialog("close");
-            },
-            Cancel: function () {
-                $(this).dialog("close");
-            }
-        }
 
-    });
 
-    $("#scrumAddLink").click(function () {
-        $("#scrumEditDialog").dialog("open");
-        return false;
-    });
-
-</script>
