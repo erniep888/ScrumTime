@@ -85,14 +85,21 @@ namespace ScrumTime.Controllers
         }
 
         //
-        // POST: /Scrum/Edit/5
+        // POST: /Scrum/Save
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Save(FormCollection collection)
         {
             try
             {
-                // TODO: Add update logic here
+                var keys = collection.Keys;
+                string value = keys[0];
+                foreach (string key in collection.AllKeys)
+                {
+
+                    string scrumDetail = collection.Get(key);
+                }
+                
  
                 return RedirectToAction("Index");
             }

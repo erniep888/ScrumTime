@@ -26,6 +26,36 @@
     return;
 }
 
+function saveScrumDetails(scrumId) {
+    var dateOfScrum = $('#dateOfScrum').val();
+    var scrumDetailCount = $('#scrumDetailCount').val();
+
+    var scrumDetails = new Array();
+    var i = 0;
+    while (i < scrumDetailCount) {
+        var scrumDetail = new Object;
+        scrumDetail.index = i;
+        scrumDetail.AssignedTo = $('#scrumDetailAssignedTo_' + i).val();
+        scrumDetail.HoursRemaining = $('#scrumDetailHrsComp_' + i).val();
+        scrumDetail.HoursCompleted = $('#scrumDetailHrsRem_' + i).val();
+        scrumDetails[i] = scrumDetail;
+        i++;
+    }
+//    var name = $('#releaseName_' + releaseId).val();
+//    var description = $('#releaseDescription_' + releaseId).val();
+    //    var target = $('#releaseTarget_' + releaseId).val();
+    $.post('/Scrum/Save',
+        {
+            scrumDetails: scrumDetails
+        },
+        function (data) {
+            
+        }
+    ); 
+}
+
+
+
 
 function setAlternatingScrumBackgroundColors() {
     $(".scrumTable .scrumRow").removeClass("typicalAltRows");
@@ -46,13 +76,13 @@ function setupScrumEditDialog() {
         resizable: false,
         buttons: {
             "Save": function () {
-                alert("howdy");
+                saveScrumDetails(2, 10);
                 $(this).dialog("close");
             },
             Cancel: function () {
                 $(this).dialog("close");
             }
-        }           
+        }
     });
 
     $("#scrumAddLink").click(function () {        

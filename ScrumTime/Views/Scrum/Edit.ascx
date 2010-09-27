@@ -71,6 +71,7 @@
                 
             </tbody>
         </table>
+        <input type="hidden" id="scrumDetailCount" name="scrumDetailCount" value="<%: Model.ScrumModel.ScrumDetails.Count() %>"
     </div>
     <script type="text/javascript">
         loadScrumEditTitle();
