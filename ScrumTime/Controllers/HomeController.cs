@@ -14,8 +14,9 @@ namespace ScrumTime.Controllers
 
         public ActionResult Index()
         {
+            // TODO: Pull the initial values from UserSettings in the DB
             SessionHelper.SetCurrentProductId(Session, 1);
-            Session["currentSprintId"] = 1;
+            SessionHelper.SetCurrentSprintId(Session, 10);
             return View();
         }
 

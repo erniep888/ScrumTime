@@ -8,6 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ScrumTime;
 using ScrumTime.Controllers;
 using ScrumTime.Models;
+using System.Collections.Generic;
 
 namespace ScrumTime.Tests.Controllers
 {
@@ -390,6 +391,12 @@ namespace ScrumTime.Tests.Controllers
                 Assert.AreEqual("goodEmail", email);
 
                 return MembershipCreateStatus.Success;
+            }
+
+            public List<string> GetAlphabeticalUsernameList()
+            {
+                List<string> usernames = new List<string>();
+                return usernames;
             }
 
             public bool DeleteUser(string username)

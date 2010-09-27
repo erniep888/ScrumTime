@@ -67,13 +67,21 @@ namespace ScrumTime.Controllers
         // GET: /Scrum/Edit/5
  
         public ActionResult Edit(int id)
-        {
+        {            
             Scrum scrum = new Scrum()
             {
                  DateOfScrum = DateTime.Now,
-                 ScrumId = -1
+                 ScrumId = -1                 
             };
-            return View(scrum);
+            scrum = _ScrumService.GenerateNewScrumDetails(SessionHelper.GetCurrentSprintId(Session), scrum);
+            IMembershipService membershipService = new AccountMembershipService();            
+            ScrumViewModel scrumViewModel = new ScrumViewModel()
+            {
+                ScrumModel = scrum,
+                MemberUsernames = membershipService.GetAlphabeticalUsernameList()
+            };
+
+            return View(scrumViewModel);
         }
 
         //

@@ -32,12 +32,18 @@ function setAlternatingScrumBackgroundColors() {
     $(".scrumTable .scrumRow:odd").addClass("typicalAltRows");
 }
 
+function setAlternatingScrumDetailBackgroundColors() {
+    $(".scrumDetailTable .scrumDetailRow").removeClass("typicalAltRows");
+    $(".scrumDetailTable .scrumDetailRow:odd").addClass("typicalAltRows");
+}
+
 function setupScrumEditDialog() {
     $("#scrumEditDialog").dialog({
         autoOpen: false,
         modal: true,
-        height: 460,
+        height: 490,
         width: 850,
+        resizable: false,
         buttons: {
             "Save": function () {
                 alert("howdy");
@@ -67,6 +73,21 @@ function loadScrumEditTitle() {
         async: false
     });
 }
+
+function setupDateOfScrumDatePicker() {
+    $("#dateOfScrum").datepicker({
+        onSelect: function (dateText, inst) {  },
+        onClose: function (dateText, inst) {  },
+        changeMonth: true,
+        changeYear: true,
+        gotoCurrent: true,
+        showOtherMonths: true,
+        selectOtherMonths: true,
+        yearRange: 'c-4:c+4'
+    });
+}
+
+
 
 function fetchScrumInformationForEdit(scrumId) {
     $.ajax({

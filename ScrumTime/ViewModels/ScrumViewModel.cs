@@ -9,7 +9,8 @@ namespace ScrumTime.ViewModels
 {
     public class ScrumViewModel
     {        
-        public Scrum ScrumModel { get; set; }       
+        public Scrum ScrumModel { get; set; }
+        public List<string> MemberUsernames { get; set; }
 
         public ScrumViewModel()
         {

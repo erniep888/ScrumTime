@@ -75,6 +75,31 @@ namespace ScrumTime.Services
                 throw new Exception("You have attempted to delete a scrum that does not exist.");
         }
 
+        public Scrum GenerateNewScrumDetails(int sprintId, Scrum scrum)
+        {
+            SprintService sprintService = new SprintService(_ScrumTimeEntities);
+            Sprint sprint = sprintService.GetSprintById(sprintId);
+            if (sprint != null)
+            {
+                foreach (Story story in sprint.Stories)
+                {
+                    foreach (Task task in story.Tasks)
+                    {
+                        ScrumDetail scrumDetail = new ScrumDetail()
+                        {
+                            AssignedTo = "",
+                            HoursCompleted = 0,
+                            HoursRemaining = (task.Hours != null) ? (int) task.Hours : 0,
+                            StoryTaskDescription = story.UserDefinedId + " -> " + task.Description,
+                            TaskId = task.TaskId
+                        };
+                        scrum.ScrumDetails.Add(scrumDetail);
+                    }
+                }
+            }
+            return scrum;
+        }
+
         protected bool ScrumDateExists(Scrum scrum)
         {
             var results = from s in _ScrumTimeEntities.Scrums

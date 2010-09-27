@@ -87,6 +87,7 @@ namespace ScrumTime.Models
         bool ChangePassword(string userName, string oldPassword, string newPassword);
         MembershipUserCollection GetAllUsers();
         bool DeleteUser(string username);
+        List<string> GetAlphabeticalUsernameList();
     }
 
     public class AccountMembershipService : IMembershipService
@@ -109,6 +110,18 @@ namespace ScrumTime.Models
             {
                 return _provider.MinRequiredPasswordLength;
             }
+        }
+
+        public List<string> GetAlphabeticalUsernameList()
+        {
+            List<string> usernames = new List<string>();
+            MembershipUserCollection membershipUserCollection = GetAllUsers();
+            foreach (MembershipUser membershipUser in membershipUserCollection)
+            {
+                usernames.Add(membershipUser.UserName);
+            }
+            usernames.Sort();
+            return usernames;
         }
 
         public MembershipUserCollection GetAllUsers()
