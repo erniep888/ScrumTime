@@ -125,7 +125,7 @@ namespace ScrumTime.Controllers
             }
 
             scrum = _ScrumService.SaveScrum(scrum);
-            return View();            
+            return new SecureJsonResult("success");        
         }
 
         //

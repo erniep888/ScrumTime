@@ -48,13 +48,13 @@ function saveScrumDetails() {
     $.post('/Scrum/Save',
         {
             scrumDetails: scrumDetails,
-            scrumDetailCount : scrumDetailCount,
+            scrumDetailCount: scrumDetailCount,
             dateOfScrum: dateOfScrum,
             scrumId: scrumId,
             sprintId: sprintId
         },
         function (data) {
-            
+            refreshScrumList();
         }
     ); 
 }
@@ -120,6 +120,20 @@ function setupDateOfScrumDatePicker() {
         selectOtherMonths: true,
         yearRange: 'c-4:c+4'
     });
+}
+
+function refreshScrumList() {
+    $.ajax({
+        url: '/Scrum/List',
+        cache: false,
+        type: "GET",
+        dataType: "html",
+        success: function (html) {
+            $('.scrumTable').replaceWith(html);
+        },
+        async: true
+    });
+
 }
 
 
