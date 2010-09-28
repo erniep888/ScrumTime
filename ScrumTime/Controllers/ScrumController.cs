@@ -30,7 +30,7 @@ namespace ScrumTime.Controllers
             ScrumCollectionViewModel scrumCollectionViewModel =
                 ScrumCollectionViewModel.BuildByDateOfScrumDesc(SessionHelper.GetCurrentProductId(Session),
                     SessionHelper.GetCurrentSprintId(Session));
-            return View(scrumCollectionViewModel);
+            return PartialView(scrumCollectionViewModel);
         }
 
         //
@@ -41,7 +41,7 @@ namespace ScrumTime.Controllers
             ScrumCollectionViewModel scrumCollectionViewModel =
                 ScrumCollectionViewModel.BuildByDateOfScrumDesc(SessionHelper.GetCurrentProductId(Session),
                     SessionHelper.GetCurrentSprintId(Session));
-            return View(scrumCollectionViewModel);
+            return PartialView(scrumCollectionViewModel);
         }
 
        
@@ -87,7 +87,7 @@ namespace ScrumTime.Controllers
             };
             scrumViewModel.MemberUsernames.Insert(0, AccountMembershipService.UNASSIGNED);
 
-            return View(scrumViewModel);
+            return PartialView(scrumViewModel);
         }
 
         //
