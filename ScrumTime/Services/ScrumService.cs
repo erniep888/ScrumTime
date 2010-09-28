@@ -29,6 +29,21 @@ namespace ScrumTime.Services
             return scrum;
         }
 
+        public static Scrum GetScrumByDateOfScrumAndSprintId(ScrumTimeEntities scrumTimeEntities, 
+            DateTime dateOfScrum, int sprintId)
+        {
+            Scrum scrum = null;
+            var results = from s in scrumTimeEntities.Scrums
+                          where s.DateOfScrum == dateOfScrum &&
+                          s.SprintId == sprintId
+                          select s;
+            if (results.Count() > 0)
+                scrum = results.First<Scrum>();
+            else
+                scrum = new Scrum();
+            return scrum;
+        }
+
         public Scrum GetScrumById(int id)
         {
             return GetScrumById(_ScrumTimeEntities, id);
@@ -38,41 +53,55 @@ namespace ScrumTime.Services
         {
             if (scrum != null)
             {
-                if (scrum.ScrumId == 0)  // this is new
+                if (scrum.ScrumId == 0 && !ScrumDateExists(scrum))  // this is new
                 {
-                    if (ScrumDateExists(scrum))
-                        throw new Exception("Scrum for this Sprint already exists.");
                     _ScrumTimeEntities.AddToScrums(scrum);
                 }
                 else  // the scrum exists
                 {
-                    _ScrumTimeEntities.AttachTo("Scrums", scrum);
-                    
-                    ScrumTimeEntities freshScrumTimeEntities =
-                        new ScrumTimeEntities(_ScrumTimeEntities.Connection.ConnectionString);
-                    Scrum existingScrum = GetScrumById(freshScrumTimeEntities, scrum.ScrumId);
-                    if (existingScrum == null)                    
+                    if (scrum.ScrumId == 0)  // the scrum matches an existing date
                     {
-                        throw new Exception("The story no longer exists.");
+                        ScrumTimeEntities freshScrumTimeEntities =
+                            new ScrumTimeEntities(_ScrumTimeEntities.Connection.ConnectionString);
+                        Scrum scrumByDate = GetScrumByDateOfScrumAndSprintId(freshScrumTimeEntities,
+                            scrum.DateOfScrum, scrum.SprintId);
+                        DeleteScrum(freshScrumTimeEntities, scrumByDate.ScrumId);
                     }
-                    _ScrumTimeEntities.ObjectStateManager.ChangeObjectState(scrum, System.Data.EntityState.Modified);
+                    else  // the scrum matches an existing scrum id
+                    {                       
+                        ScrumTimeEntities freshScrumTimeEntities =
+                            new ScrumTimeEntities(_ScrumTimeEntities.Connection.ConnectionString);
+                        Scrum existingScrum = GetScrumById(freshScrumTimeEntities, scrum.ScrumId);
+                        DeleteScrum(freshScrumTimeEntities, existingScrum.ScrumId);
+                    }
+                    _ScrumTimeEntities.AddToScrums(scrum);
                 }
                 _ScrumTimeEntities.SaveChanges();
             }
             return scrum;
         }
 
-        public void DeleteScrum(int scrumId)
+        public void DeleteScrum(ScrumTimeEntities scrumTimeEntities, int scrumId)
         {
-            Scrum existingScrum = GetScrumById(scrumId);
+            Scrum existingScrum = GetScrumById(scrumTimeEntities, scrumId);
 
             if (existingScrum != null && existingScrum.ScrumId > 0)
             {
-                int totalStories = _ScrumTimeEntities.Scrums.Count();
-                _ScrumTimeEntities.DeleteObject(existingScrum);
+                List<ScrumDetail> scrumDetails = existingScrum.ScrumDetails.ToList<ScrumDetail>();
+                foreach (ScrumDetail scrumDetail in scrumDetails)
+                {
+                    scrumTimeEntities.DeleteObject(scrumDetail);
+                }
+                scrumTimeEntities.DeleteObject(existingScrum);
+                scrumTimeEntities.SaveChanges();
             }
             else
                 throw new Exception("You have attempted to delete a scrum that does not exist.");
+        }
+
+        public void DeleteScrum(int scrumId)
+        {
+            DeleteScrum(_ScrumTimeEntities, scrumId);
         }
 
         public Scrum GenerateNewScrumDetails(int sprintId, Scrum scrum)

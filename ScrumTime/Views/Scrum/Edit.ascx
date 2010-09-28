@@ -32,7 +32,7 @@
                         
                         %>
                         <tr class="scrumDetailRow">
-                            <td style="text-align:left;width:404px;border:0px;padding-left:3px"><%: scrumDetail.StoryTaskDescription %></td>
+                            <td id="scrumDetailStoryTaskDescription_<%: index %>" style="text-align:left;width:404px;border:0px;padding-left:3px"><%: scrumDetail.StoryTaskDescription %></td>
                             <td style="text-align:center;width:180px;border:0px;">
                                 <select id="scrumDetailAssignedTo_<%: index %>" 
                                 style="text-align:left;font-family:Verdana;margin-right:4px;">
@@ -62,8 +62,11 @@
                             <td style="text-align:center;width:100px;border:0px;">
                                 <input id="scrumDetailHrsRem_<%: index %>" style="width:40px;text-align:center" type="text" value="<%: scrumDetail.HoursRemaining %>" />                                
                             </td>                
-                            <td style="width:15px;border:0px;"></td>
-                        </tr>
+                            <td style="width:15px;border:0px;">
+                                <input type="hidden" id="scrumDetailTaskId_<%: index %>" name="scrumDetailTaskId_<%: index %>" value="<%: scrumDetail.TaskId %>" />
+                            </td>
+                            
+                        </tr>                        
                         <%
                         index++;
                     }
@@ -71,7 +74,9 @@
                 
             </tbody>
         </table>
-        <input type="hidden" id="scrumDetailCount" name="scrumDetailCount" value="<%: Model.ScrumModel.ScrumDetails.Count() %>"
+        <input type="hidden" id="scrumDetailCount" name="scrumDetailCount" value="<%: Model.ScrumModel.ScrumDetails.Count() %>" />
+        <input type="hidden" id="scrumDetailSprintId" name="scrumDetailSprintId" value="<%: Model.ScrumModel.SprintId %>" />
+        <input type="hidden" id="scrumDetailScrumId" name="scrumDetailScrumId" value="<%: Model.ScrumModel.ScrumId %>" />
     </div>
     <script type="text/javascript">
         loadScrumEditTitle();

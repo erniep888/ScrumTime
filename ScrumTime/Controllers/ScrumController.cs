@@ -71,7 +71,7 @@ namespace ScrumTime.Controllers
             Scrum scrum = new Scrum()
             {
                  DateOfScrum = DateTime.Now,
-                 ScrumId = -1                 
+                 SprintId = SessionHelper.GetCurrentSprintId(Session)
             };
             scrum = _ScrumService.GenerateNewScrumDetails(SessionHelper.GetCurrentSprintId(Session), scrum);
             IMembershipService membershipService = new AccountMembershipService();            
@@ -90,23 +90,42 @@ namespace ScrumTime.Controllers
         [HttpPost]
         public ActionResult Save(FormCollection collection)
         {
-            try
+            string scrumId = collection.Get("scrumId");
+            int scrumIdAsInt = Int32.Parse(scrumId);
+            string sprintId = collection.Get("sprintId");
+            int sprintIdAsInt = Int32.Parse(sprintId);            
+            string dateOfScrum = collection.Get("dateOfScrum");
+            DateTime dateOfScrumAsDateTime = DateTime.Parse(dateOfScrum);
+            string scrumDetailCount = collection.Get("scrumDetailCount");
+            int scrumDetailCountAsInt = Int32.Parse(scrumDetailCount);
+            Scrum scrum = new Scrum()
             {
-                var keys = collection.Keys;
-                string value = keys[0];
-                foreach (string key in collection.AllKeys)
+                ScrumId = scrumIdAsInt,
+                SprintId = sprintIdAsInt,
+                DateOfScrum = dateOfScrumAsDateTime,
+                ProductId = SessionHelper.GetCurrentProductId(Session)                
+            };
+            for (int i = 0; i < scrumDetailCountAsInt; i++)
+            {
+                string storyTaskDescription = collection.Get("scrumDetails[" + i + "][StoryTaskDescription]");
+                string assignedTo = collection.Get("scrumDetails[" + i + "][AssignedTo]");
+                string hoursRemaining = collection.Get("scrumDetails[" + i + "][HoursRemaining]");
+                string hoursCompleted = collection.Get("scrumDetails[" + i + "][HoursCompleted]");
+                string taskId = collection.Get("scrumDetails[" + i + "][TaskId]");
+                ScrumDetail scrumDetail = new ScrumDetail()
                 {
+                    ScrumId = scrumIdAsInt,
+                    AssignedTo = assignedTo,
+                    HoursRemaining = Int32.Parse(hoursRemaining),
+                    HoursCompleted = Int32.Parse(hoursCompleted),
+                    StoryTaskDescription = storyTaskDescription,
+                    TaskId = Int32.Parse(taskId)                    
+                };
+                scrum.ScrumDetails.Add(scrumDetail);
+            }
 
-                    string scrumDetail = collection.Get(key);
-                }
-                
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            scrum = _ScrumService.SaveScrum(scrum);
+            return View();            
         }
 
         //

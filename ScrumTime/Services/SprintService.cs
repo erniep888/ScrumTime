@@ -86,7 +86,7 @@ namespace ScrumTime.Services
                     Sprint existingSprint = GetSprintById(freshScrumTimeEntities, sprint.SprintId);
                     if (existingSprint == null)
                     {
-                        throw new Exception("The task no longer exists.");
+                        throw new Exception("The sprint no longer exists.");
                     }
                     _ScrumTimeEntities.ObjectStateManager.ChangeObjectState(sprint, System.Data.EntityState.Modified);
                 }

@@ -26,27 +26,32 @@
     return;
 }
 
-function saveScrumDetails(scrumId) {
+function saveScrumDetails() {
     var dateOfScrum = $('#dateOfScrum').val();
     var scrumDetailCount = $('#scrumDetailCount').val();
+    var sprintId = $('#scrumDetailSprintId').val();
+    var scrumId = $('#scrumDetailScrumId').val();
 
     var scrumDetails = new Array();
     var i = 0;
     while (i < scrumDetailCount) {
         var scrumDetail = new Object;
-        scrumDetail.index = i;
+        scrumDetail.StoryTaskDescription = $('#scrumDetailStoryTaskDescription_' + i).text();
         scrumDetail.AssignedTo = $('#scrumDetailAssignedTo_' + i).val();
         scrumDetail.HoursRemaining = $('#scrumDetailHrsComp_' + i).val();
         scrumDetail.HoursCompleted = $('#scrumDetailHrsRem_' + i).val();
+        scrumDetail.TaskId = $('#scrumDetailTaskId_' + i).val();
         scrumDetails[i] = scrumDetail;
         i++;
     }
-//    var name = $('#releaseName_' + releaseId).val();
-//    var description = $('#releaseDescription_' + releaseId).val();
-    //    var target = $('#releaseTarget_' + releaseId).val();
+
     $.post('/Scrum/Save',
         {
-            scrumDetails: scrumDetails
+            scrumDetails: scrumDetails,
+            scrumDetailCount : scrumDetailCount,
+            dateOfScrum: dateOfScrum,
+            scrumId: scrumId,
+            sprintId: sprintId
         },
         function (data) {
             
@@ -76,7 +81,7 @@ function setupScrumEditDialog() {
         resizable: false,
         buttons: {
             "Save": function () {
-                saveScrumDetails(2, 10);
+                saveScrumDetails();
                 $(this).dialog("close");
             },
             Cancel: function () {

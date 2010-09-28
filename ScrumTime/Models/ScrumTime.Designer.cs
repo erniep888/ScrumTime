@@ -19,14 +19,14 @@ using System.Runtime.Serialization;
 #region EDM Relationship Metadata
 
 [assembly: EdmRelationshipAttribute("ScrumTime.Models", "FK_Releases_Products", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ScrumTime.Models.Product), "Release", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScrumTime.Models.Release), true)]
-[assembly: EdmRelationshipAttribute("ScrumTime.Models", "FK_Scrums_Products", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ScrumTime.Models.Product), "Scrum", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScrumTime.Models.Scrum), true)]
 [assembly: EdmRelationshipAttribute("ScrumTime.Models", "FK_Sprints_Products", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ScrumTime.Models.Product), "Sprint", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScrumTime.Models.Sprint), true)]
 [assembly: EdmRelationshipAttribute("ScrumTime.Models", "FK_Stories_Products", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ScrumTime.Models.Product), "Story", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScrumTime.Models.Story), true)]
+[assembly: EdmRelationshipAttribute("ScrumTime.Models", "FK_Stories_Sprints", "Sprint", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(ScrumTime.Models.Sprint), "Story", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScrumTime.Models.Story), true)]
+[assembly: EdmRelationshipAttribute("ScrumTime.Models", "FK_Tasks_Stories", "Story", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ScrumTime.Models.Story), "Task", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScrumTime.Models.Task), true)]
+[assembly: EdmRelationshipAttribute("ScrumTime.Models", "FK_Scrums_Products", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ScrumTime.Models.Product), "Scrum", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScrumTime.Models.Scrum), true)]
 [assembly: EdmRelationshipAttribute("ScrumTime.Models", "FK_ScrumDetails_Scrums", "Scrum", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ScrumTime.Models.Scrum), "ScrumDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScrumTime.Models.ScrumDetail), true)]
 [assembly: EdmRelationshipAttribute("ScrumTime.Models", "FK_ScrumDetails_Tasks", "Task", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ScrumTime.Models.Task), "ScrumDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScrumTime.Models.ScrumDetail), true)]
 [assembly: EdmRelationshipAttribute("ScrumTime.Models", "FK_Scrums_Sprints", "Sprint", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ScrumTime.Models.Sprint), "Scrum", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScrumTime.Models.Scrum), true)]
-[assembly: EdmRelationshipAttribute("ScrumTime.Models", "FK_Stories_Sprints", "Sprint", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(ScrumTime.Models.Sprint), "Story", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScrumTime.Models.Story), true)]
-[assembly: EdmRelationshipAttribute("ScrumTime.Models", "FK_Tasks_Stories", "Story", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ScrumTime.Models.Story), "Task", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScrumTime.Models.Task), true)]
 
 #endregion
 
@@ -113,38 +113,6 @@ namespace ScrumTime.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<ScrumDetail> ScrumDetails
-        {
-            get
-            {
-                if ((_ScrumDetails == null))
-                {
-                    _ScrumDetails = base.CreateObjectSet<ScrumDetail>("ScrumDetails");
-                }
-                return _ScrumDetails;
-            }
-        }
-        private ObjectSet<ScrumDetail> _ScrumDetails;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Scrum> Scrums
-        {
-            get
-            {
-                if ((_Scrums == null))
-                {
-                    _Scrums = base.CreateObjectSet<Scrum>("Scrums");
-                }
-                return _Scrums;
-            }
-        }
-        private ObjectSet<Scrum> _Scrums;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Sprint> Sprints
         {
             get
@@ -189,6 +157,38 @@ namespace ScrumTime.Models
             }
         }
         private ObjectSet<Task> _Tasks;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ScrumDetail> ScrumDetails
+        {
+            get
+            {
+                if ((_ScrumDetails == null))
+                {
+                    _ScrumDetails = base.CreateObjectSet<ScrumDetail>("ScrumDetails");
+                }
+                return _ScrumDetails;
+            }
+        }
+        private ObjectSet<ScrumDetail> _ScrumDetails;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Scrum> Scrums
+        {
+            get
+            {
+                if ((_Scrums == null))
+                {
+                    _Scrums = base.CreateObjectSet<Scrum>("Scrums");
+                }
+                return _Scrums;
+            }
+        }
+        private ObjectSet<Scrum> _Scrums;
 
         #endregion
         #region AddTo Methods
@@ -207,22 +207,6 @@ namespace ScrumTime.Models
         public void AddToReleases(Release release)
         {
             base.AddObject("Releases", release);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the ScrumDetails EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToScrumDetails(ScrumDetail scrumDetail)
-        {
-            base.AddObject("ScrumDetails", scrumDetail);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Scrums EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToScrums(Scrum scrum)
-        {
-            base.AddObject("Scrums", scrum);
         }
     
         /// <summary>
@@ -247,6 +231,22 @@ namespace ScrumTime.Models
         public void AddToTasks(Task task)
         {
             base.AddObject("Tasks", task);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ScrumDetails EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToScrumDetails(ScrumDetail scrumDetail)
+        {
+            base.AddObject("ScrumDetails", scrumDetail);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Scrums EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToScrums(Scrum scrum)
+        {
+            base.AddObject("Scrums", scrum);
         }
 
         #endregion
@@ -390,28 +390,6 @@ namespace ScrumTime.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ScrumTime.Models", "FK_Scrums_Products", "Scrum")]
-        public EntityCollection<Scrum> Scrums
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Scrum>("ScrumTime.Models.FK_Scrums_Products", "Scrum");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Scrum>("ScrumTime.Models.FK_Scrums_Products", "Scrum", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("ScrumTime.Models", "FK_Sprints_Products", "Sprint")]
         public EntityCollection<Sprint> Sprints
         {
@@ -446,6 +424,28 @@ namespace ScrumTime.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Story>("ScrumTime.Models.FK_Stories_Products", "Story", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("ScrumTime.Models", "FK_Scrums_Products", "Scrum")]
+        public EntityCollection<Scrum> Scrums
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Scrum>("ScrumTime.Models.FK_Scrums_Products", "Scrum");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Scrum>("ScrumTime.Models.FK_Scrums_Products", "Scrum", value);
                 }
             }
         }
@@ -1402,28 +1402,6 @@ namespace ScrumTime.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ScrumTime.Models", "FK_Scrums_Sprints", "Scrum")]
-        public EntityCollection<Scrum> Scrums
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Scrum>("ScrumTime.Models.FK_Scrums_Sprints", "Scrum");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Scrum>("ScrumTime.Models.FK_Scrums_Sprints", "Scrum", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("ScrumTime.Models", "FK_Stories_Sprints", "Story")]
         public EntityCollection<Story> Stories
         {
@@ -1436,6 +1414,28 @@ namespace ScrumTime.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Story>("ScrumTime.Models.FK_Stories_Sprints", "Story", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("ScrumTime.Models", "FK_Scrums_Sprints", "Scrum")]
+        public EntityCollection<Scrum> Scrums
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Scrum>("ScrumTime.Models.FK_Scrums_Sprints", "Scrum");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Scrum>("ScrumTime.Models.FK_Scrums_Sprints", "Scrum", value);
                 }
             }
         }
@@ -1912,28 +1912,6 @@ namespace ScrumTime.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ScrumTime.Models", "FK_ScrumDetails_Tasks", "ScrumDetail")]
-        public EntityCollection<ScrumDetail> ScrumDetails
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ScrumDetail>("ScrumTime.Models.FK_ScrumDetails_Tasks", "ScrumDetail");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ScrumDetail>("ScrumTime.Models.FK_ScrumDetails_Tasks", "ScrumDetail", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("ScrumTime.Models", "FK_Tasks_Stories", "Story")]
         public Story Story
         {
@@ -1962,6 +1940,28 @@ namespace ScrumTime.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Story>("ScrumTime.Models.FK_Tasks_Stories", "Story", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("ScrumTime.Models", "FK_ScrumDetails_Tasks", "ScrumDetail")]
+        public EntityCollection<ScrumDetail> ScrumDetails
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ScrumDetail>("ScrumTime.Models.FK_ScrumDetails_Tasks", "ScrumDetail");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ScrumDetail>("ScrumTime.Models.FK_ScrumDetails_Tasks", "ScrumDetail", value);
                 }
             }
         }
