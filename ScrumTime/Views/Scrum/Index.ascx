@@ -42,10 +42,10 @@
         <table style="width:964px;font-family:Verdana;padding:0;border:2px solid #999;height:30px;margin-left:0px;
             background-color:#f3f3f3;font-size:12px;color:#666;" cellpadding="0" cellspacing="0">
             <tr>
-                <th style="text-align:center;width:100px;border:0px;background-color:#f3f3f3;">Id</th>
+                <th style="text-align:center;width:100px;border:0px;background-color:#f3f3f3;">Index</th>
                 <th style="text-align:center;width:210px;border:0px;background-color:#f3f3f3;">Date Of Scrum</th>
-                <th style="text-align:center;width:180px;border:0px;background-color:#f3f3f3;">Hours Completed</th>    
-                <th style="text-align:center;width:180px;border:0px;background-color:#f3f3f3;">Hours Remaining</th>                
+                <th style="text-align:center;width:180px;border:0px;background-color:#f3f3f3;">Hours Completed</th>  
+                <th style="text-align:center;width:180px;border:0px;background-color:#f3f3f3;">Hours Remaining</th>                                  
                 <th style="text-align:center;border:0px;background-color:#f3f3f3;">Actions</th>
                 <th style="width:30px;border:0px;background-color:#f3f3f3;"></th>
             </tr>

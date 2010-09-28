@@ -38,8 +38,8 @@ function saveScrumDetails() {
         var scrumDetail = new Object;
         scrumDetail.StoryTaskDescription = $('#scrumDetailStoryTaskDescription_' + i).text();
         scrumDetail.AssignedTo = $('#scrumDetailAssignedTo_' + i).val();
-        scrumDetail.HoursRemaining = $('#scrumDetailHrsComp_' + i).val();
-        scrumDetail.HoursCompleted = $('#scrumDetailHrsRem_' + i).val();
+        scrumDetail.HoursRemaining = $('#scrumDetailHrsRem_' + i).val();
+        scrumDetail.HoursCompleted = $('#scrumDetailHrsComp_' + i).val();
         scrumDetail.TaskId = $('#scrumDetailTaskId_' + i).val();
         scrumDetails[i] = scrumDetail;
         i++;

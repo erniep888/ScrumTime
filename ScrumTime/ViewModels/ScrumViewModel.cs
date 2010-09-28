@@ -11,6 +11,7 @@ namespace ScrumTime.ViewModels
     {        
         public Scrum ScrumModel { get; set; }
         public List<string> MemberUsernames { get; set; }
+        public int Index { get; set; }
 
         public ScrumViewModel()
         {

@@ -57,10 +57,10 @@
                                 </select>
                             </td>
                             <td style="text-align:center;width:100px;border:0px;">
-                                <input id="scrumDetailHrsComp_<%: index %>" style="width:40px;text-align:center" type="text" value="<%: scrumDetail.HoursCompleted %>" />                                
+                                <input id="scrumDetailHrsComp_<%: index %>" style="width:40px;text-align:center;color:#79a52c;" type="text" value="<%: scrumDetail.HoursCompleted %>" />                                
                             </td>    
                             <td style="text-align:center;width:100px;border:0px;">
-                                <input id="scrumDetailHrsRem_<%: index %>" style="width:40px;text-align:center" type="text" value="<%: scrumDetail.HoursRemaining %>" />                                
+                                <input id="scrumDetailHrsRem_<%: index %>" style="width:40px;text-align:center;color:Red;" type="text" value="<%: scrumDetail.HoursRemaining %>" />                                
                             </td>                
                             <td style="width:15px;border:0px;">
                                 <input type="hidden" id="scrumDetailTaskId_<%: index %>" name="scrumDetailTaskId_<%: index %>" value="<%: scrumDetail.TaskId %>" />

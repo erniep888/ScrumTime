@@ -39,7 +39,7 @@ namespace ScrumTime.ViewModels
             {
                 Sprint sprint = scrumTimeEntities.Sprints.First<Sprint>(s => s.SprintId == selectedSprintId);
                 var results = from s in sprint.Scrums
-                              orderby s.DateOfScrum descending
+                              orderby s.DateOfScrum ascending
                               select s;
                 List<Scrum> scrums = results.ToList<Scrum>();
                 scrumCollectionViewModel.Scrums = scrums;
