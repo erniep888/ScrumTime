@@ -1,15 +1,6 @@
 ﻿function setupReadOnlyScrumRow(scrumId) {
     $(".scrum_" + scrumId).click(function () {
-        $.post('/Scrum/Edit',
-            {
-                id: sprintId
-            },
-            function (data) {
-                $("#scrumTableBody_" + scrumId + " .scrumRow").removeClass("typicalAltRows");
-                $('#scrumRow_' + sprintId).replaceWith(data);
-                $("#scrumTableBody_" + scrumId + " .scrumRow:odd").addClass("typicalAltRows");
-            }
-        );
+        fetchScrumInformationForEdit(scrumId);        
     });
 
 
@@ -17,12 +8,12 @@
         $.post('/Sprint/ChangeSprint',
             {
                 id: $("#scrumSelectedSprint").val()
+            },
+            function (data) {
+                refreshScrumList();
             }
         );
     });
-//    $(document).ready(function () {
-//       $("#scrumTableBody " .scrumRow:odd").addClass("typicalAltRows");
-//    });
     return;
 }
 
@@ -59,6 +50,18 @@ function saveScrumDetails() {
     ); 
 }
 
+
+function deleteScrum(scrumId) {
+    $.post('/Scrum/Delete',
+    {
+        id: scrumId
+    },
+    function (data) {
+        refreshScrumList();
+    });
+
+    // TODO: Implement delete failure GUI
+}
 
 
 

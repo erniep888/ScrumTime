@@ -79,7 +79,7 @@ namespace ScrumTime.Models
     // code unit testable.
 
     public interface IMembershipService
-    {
+    {        
         int MinPasswordLength { get; }
 
         bool ValidateUser(string userName, string password);
@@ -93,6 +93,8 @@ namespace ScrumTime.Models
     public class AccountMembershipService : IMembershipService
     {
         private readonly MembershipProvider _provider;
+
+        public static string UNASSIGNED = "-Unassigned-";
 
         public AccountMembershipService()
             : this(null)

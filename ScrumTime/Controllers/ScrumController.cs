@@ -67,19 +67,25 @@ namespace ScrumTime.Controllers
         // GET: /Scrum/Edit/5
  
         public ActionResult Edit(int id)
-        {            
-            Scrum scrum = new Scrum()
+        {
+            Scrum scrum = _ScrumService.GetScrumById(id);
+            if (scrum == null)  // new scrum
             {
-                 DateOfScrum = DateTime.Now,
-                 SprintId = SessionHelper.GetCurrentSprintId(Session)
-            };
-            scrum = _ScrumService.GenerateNewScrumDetails(SessionHelper.GetCurrentSprintId(Session), scrum);
-            IMembershipService membershipService = new AccountMembershipService();            
+                scrum = new Scrum()
+                {
+                    DateOfScrum = DateTime.Now,
+                    SprintId = SessionHelper.GetCurrentSprintId(Session)
+                };
+                scrum = _ScrumService.GenerateNewScrumDetails(SessionHelper.GetCurrentSprintId(Session), scrum);                
+            }
+
+            IMembershipService membershipService = new AccountMembershipService();
             ScrumViewModel scrumViewModel = new ScrumViewModel()
             {
                 ScrumModel = scrum,
                 MemberUsernames = membershipService.GetAlphabeticalUsernameList()
             };
+            scrumViewModel.MemberUsernames.Insert(0, AccountMembershipService.UNASSIGNED);
 
             return View(scrumViewModel);
         }
@@ -116,8 +122,8 @@ namespace ScrumTime.Controllers
                 {
                     ScrumId = scrumIdAsInt,
                     AssignedTo = assignedTo,
-                    HoursRemaining = Int32.Parse(hoursRemaining),
-                    HoursCompleted = Int32.Parse(hoursCompleted),
+                    HoursRemaining = decimal.Parse(hoursRemaining),
+                    HoursCompleted = decimal.Parse(hoursCompleted),
                     StoryTaskDescription = storyTaskDescription,
                     TaskId = Int32.Parse(taskId)                    
                 };
@@ -126,32 +132,17 @@ namespace ScrumTime.Controllers
 
             scrum = _ScrumService.SaveScrum(scrum);
             return new SecureJsonResult("success");        
-        }
-
-        //
-        // GET: /Scrum/Delete/5
- 
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+        }        
 
         //
         // POST: /Scrum/Delete/5
 
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            _ScrumService.DeleteScrum(id);
+
+            return new SecureJsonResult("success");  
         }
     }
 }

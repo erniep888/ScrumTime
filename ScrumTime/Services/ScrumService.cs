@@ -24,8 +24,6 @@ namespace ScrumTime.Services
                           select s;
             if (results.Count() > 0)
                 scrum = results.First<Scrum>();
-            else
-                scrum = new Scrum();
             return scrum;
         }
 
@@ -39,8 +37,6 @@ namespace ScrumTime.Services
                           select s;
             if (results.Count() > 0)
                 scrum = results.First<Scrum>();
-            else
-                scrum = new Scrum();
             return scrum;
         }
 
@@ -104,6 +100,41 @@ namespace ScrumTime.Services
             DeleteScrum(_ScrumTimeEntities, scrumId);
         }
 
+        protected Scrum GetMostRecentScrum(Sprint sprint)
+        {
+            Scrum mostRecentScrum = null;
+            DateTime maxScrumDate = DateTime.MinValue;
+            if (sprint.Scrums != null && sprint.Scrums.Count() > 0)
+                maxScrumDate = sprint.Scrums.Max(s => s.DateOfScrum);
+            if (maxScrumDate.CompareTo(DateTime.MinValue) > 0)
+                mostRecentScrum = GetScrumByDateOfScrumAndSprintId(_ScrumTimeEntities, maxScrumDate, sprint.SprintId);
+            return mostRecentScrum;
+        }
+
+        protected ScrumDetail BuildScrumDetail(Sprint sprint, Task task)
+        {
+            Scrum mostRecentScrum = GetMostRecentScrum(sprint);
+            ScrumDetail mostRecentScrumDetail = null;
+            if (mostRecentScrum != null && mostRecentScrum.ScrumDetails.Count() > 0)
+            {
+                var results = from s in mostRecentScrum.ScrumDetails
+                              where s.TaskId == task.TaskId
+                              select s;
+                if (results.Count() > 0)
+                    mostRecentScrumDetail = results.First();
+            }
+            ScrumDetail scrumDetail = new ScrumDetail()
+            {
+                AssignedTo = (mostRecentScrumDetail != null) ? mostRecentScrumDetail.AssignedTo : AccountMembershipService.UNASSIGNED,
+                HoursCompleted = (mostRecentScrumDetail != null) ? mostRecentScrumDetail.HoursCompleted : 0,
+                HoursRemaining = (mostRecentScrumDetail != null) ? mostRecentScrumDetail.HoursRemaining :
+                    ( (task.Hours != null) ? (int)task.Hours : 0 ),
+                StoryTaskDescription = task.Story.UserDefinedId + " -> " + task.Description,
+                TaskId = task.TaskId
+            };
+            return scrumDetail;
+        }
+
         public Scrum GenerateNewScrumDetails(int sprintId, Scrum scrum)
         {
             SprintService sprintService = new SprintService(_ScrumTimeEntities);
@@ -114,14 +145,7 @@ namespace ScrumTime.Services
                 {
                     foreach (Task task in story.Tasks)
                     {
-                        ScrumDetail scrumDetail = new ScrumDetail()
-                        {
-                            AssignedTo = "",
-                            HoursCompleted = 0,
-                            HoursRemaining = (task.Hours != null) ? (int) task.Hours : 0,
-                            StoryTaskDescription = story.UserDefinedId + " -> " + task.Description,
-                            TaskId = task.TaskId
-                        };
+                        ScrumDetail scrumDetail = BuildScrumDetail(sprint, task);
                         scrum.ScrumDetails.Add(scrumDetail);
                     }
                 }

@@ -78,7 +78,7 @@ namespace ScrumTime.Controllers
         public ActionResult ChangeSprint(int id)
         {
             SessionHelper.SetCurrentSprintId(Session, id);
-            return Json(id);
+            return new SecureJsonResult("success");
         }
 
         /// <summary>
