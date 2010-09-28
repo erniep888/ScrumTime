@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>ScrumTime 0.9 Bistre (Development)</title>
+    <title>ScrumTime 0.9 Beta 1</title>
     <link rel="shortcut icon" href="/Content/Images/favicon.ico" type="image/x-icon"/>
     <meta http-equiv="CACHE-CONTROL" content="NO-CACHE"/>
 
@@ -56,7 +56,6 @@
                     <li><a href="Scrum/Index">Scrum</a></li>
                     <li><a href="Product/Index">Product</a></li>
                     <li><a href="Schedule/Index">Schedule</a></li>
-                    <li><a href="Chart/Index">Chart</a></li>
                 </ul>                
             </div>
         </div>        
