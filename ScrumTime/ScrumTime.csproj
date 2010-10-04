@@ -172,6 +172,7 @@
     <Content Include="Content\Images\scrumtime_logo.jpg" />
     <Content Include="Content\Images\scrumtime_tagline.jpg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\scrumtime-product-1.0.js" />
     <Content Include="Scripts\scrumtime-scrum-1.0.js" />
     <Content Include="Scripts\scrumtime-sprint-1.0.js" />
     <Content Include="Scripts\scrumtime-release-1.0.js" />
