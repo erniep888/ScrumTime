@@ -11,7 +11,7 @@
         <div id="Div3" style="height:34px;width:960px;background-color:#fff;
             font-family:Verdana;font-size:12px;padding-top:6px;border-top:2px solid #999;border-left:2px solid #999;border-right:2px solid #999;">
             <div style="position:absolute;left:30px;width:115px;margin-top:10px">
-                  <a href="#" id="scrumAddLink" class="simpleLink">Add Product</a>
+                  <a href="#" id="scrumAddLink" class="simpleLink" onclick="addProductRow();">Add Product</a>
             </div>            
             <div style="position:absolute;left:450px;width:80px;margin-top:0px;color:#79a52c;font-weight:bold;
                 letter-spacing:1px;font-size:13px;text-align:left;">Products</div>            
@@ -20,7 +20,7 @@
             background-color:#f3f3f3;font-size:12px;color:#666;" cellpadding="0" cellspacing="0">
             <tr>
                 <th style="text-align:center;width:210px;border:0px;background-color:#f3f3f3;">Name</th>
-                <th style="text-align:center;width:180px;border:0px;background-color:#f3f3f3;">Description</th>  
+                <th style="text-align:left;width:514px;border:0px;background-color:#f3f3f3;">Description</th>  
                 <th style="text-align:center;border:0px;background-color:#f3f3f3;">Actions</th>
                 <th style="width:30px;border:0px;background-color:#f3f3f3;"></th>
             </tr>
@@ -31,8 +31,4 @@
         </div>       
         
     </div>  
-    <script type="text/javascript">
-//        setupScrumEditDialog();
-
-    </script>  
-
+    

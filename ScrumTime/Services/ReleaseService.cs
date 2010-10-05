@@ -62,7 +62,7 @@ namespace ScrumTime.Services
                     Release existingRelease = GetReleaseById(freshScrumTimeEntities, release.ReleaseId);
                     if (existingRelease == null)
                     {
-                        throw new Exception("The task no longer exists.");
+                        throw new Exception("The release no longer exists.");
                     }
                     _ScrumTimeEntities.ObjectStateManager.ChangeObjectState(release, System.Data.EntityState.Modified);
                 }

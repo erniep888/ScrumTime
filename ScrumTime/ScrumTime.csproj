@@ -196,6 +196,7 @@
     <Content Include="Views\Account\List.ascx" />
     <Content Include="Views\Dashboard\Index.ascx" />
     <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Product\Edit.ascx" />
     <Content Include="Views\Product\Index.ascx" />
     <Content Include="Views\Product\List.ascx" />
     <Content Include="Views\Product\ReadOnly.ascx" />

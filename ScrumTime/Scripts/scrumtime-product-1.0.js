@@ -30,31 +30,32 @@ function cancelProductRowEdit(productId) {
             }
         );
     }
-        else {
+    else {
+        $("#productTable .productRow").removeClass("typicalAltRows");
         var target = $('#productTable tbody tr:first');
         if (target.length > 0)
             $('#productTable tbody tr:first').remove();
+        $("#productTable .productRow:odd").addClass("typicalAltRows");
     }
     return;
 }
 
-function addProductRow(productId) {
-    $("#productTableBody .productRow").removeClass("typicalAltRows");
+function addProductRow() {
+    $("#productTable .productRow").removeClass("typicalAltRows");
 
     $.post('/Product/New',
-        {
-            productId: productId
-        },
+        
         function (data) {
-            var target = $('#productTable tbody tr:first');
+            var target = $('#productTableBody tr:first');
             if (target.length > 0)
-                $('#productTable tbody tr:first').before(data);
+                $('#productTableBody tr:first').before(data);
             else
                 $('#productTable tbody').prepend(data);
+
+            $("#productTable .productRow:odd").addClass("typicalAltRows");
         }
     );
-
-        $("#productTableBody .productRow:odd").addClass("typicalAltRows");
+    
     return;
 }
 
@@ -66,7 +67,7 @@ function saveProductRowEdit(productId) {
     if (productId > 0) {
         $.post('/Product/Save',
             {
-                name: name, productId: productId,
+                name: name, id: productId,
                 description: description
             },
             function (data) {
@@ -78,13 +79,13 @@ function saveProductRowEdit(productId) {
     else {
         $.post('/Product/Save',
             {
-                name: name, productId: productId,
+                name: name, id: productId,
                 description: description
             },
             function (data) {
-                $("#productTableBody .productRow").removeClass("typicalAltRows");
-                $('#productContentListId_' + productId).replaceWith(data);
-                $("#productTableBody .productRow:odd").addClass("typicalAltRows");
+                $("#productTable .productRow").removeClass("typicalAltRows");                
+                $('#productTable').replaceWith(data);
+                $("#productTable .productRow:odd").addClass("typicalAltRows");
             }
         );
     }
@@ -95,13 +96,12 @@ function saveProductRowEdit(productId) {
 function deleteProduct(productId) {
     $.post('/Product/Delete',
     {
-        id: productId,
-        productId: productId
+        id: productId
     },
     function (data) {
-        $("#productTableBody .productRow").removeClass("typicalAltRows");
-        $('#productContentListId_' + productId).replaceWith(data);
-        $("#productTableBody .productRow:odd").addClass("typicalAltRows");
+        $("#productTable .productRow").removeClass("typicalAltRows");   
+        $('#productTable').replaceWith(data);
+        $("#productTable .productRow:odd").addClass("typicalAltRows");
     });
 
     // TODO: Implement delete failure GUI
