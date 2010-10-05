@@ -3,7 +3,6 @@
 <script type="text/javascript">
     $(document).ready(function () {
         document.title = 'ScrumTime 0.9 - Product';
-        //setupReadOnlyScrumRow(5);
     }); 
     </script>     
 
