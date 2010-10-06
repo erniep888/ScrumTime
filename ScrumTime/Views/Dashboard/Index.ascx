@@ -7,6 +7,12 @@
 </script> 
 
 <div class="nopadding" style="border:2px solid #999;text-align:center;font-family:Verdana;font-size:12px;
-        margin-bottom:10px;padding:6px;padding-left:12px;padding-right:11px;">
-    <div id="sprintBurndownChart" style="width:920px;height:496px;"></div>
+        margin-bottom:10px;padding:6px;padding-left:12px;padding-right:11px;width:934px;height:496px;">
+    <div id="sprintBurnDownChart" style="position:absolute;width:460px"></div>
+    <div id="taskHoursPerSprint" style="position:absolute;left:506px;width:460px;"></div>
 </div>
+
+<script type="text/javascript">
+    loadSprintBurnDownChart();
+    loadTaskHoursPerSprint();
+</script>
