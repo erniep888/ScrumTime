@@ -49,6 +49,8 @@
         <div class="loginLink" style="z-index:100;position:absolute;right:30px;top:96px;font-size:12px;">
             <% Html.RenderPartial("LogOnUserControl"); %>
         </div>
+
+        <% Html.RenderPartial("~/Views/Home/CurrentProductAndSprint.ascx"); %>
 	
         <div id="main" style="position:absolute;top:88px;margin:0px;left:0px;">
             <div id="mainMenu" style="width:1000px;height:576px;padding:0;margin:0">            

@@ -196,6 +196,7 @@
     <Content Include="Scripts\scrumtime-story-1.0.js" />
     <Content Include="Views\Account\List.ascx" />
     <Content Include="Views\Dashboard\Index.ascx" />
+    <Content Include="Views\Home\CurrentProductAndSprint.ascx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Product\Edit.ascx" />
     <Content Include="Views\Product\Index.ascx" />
