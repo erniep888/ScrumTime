@@ -65,10 +65,13 @@ namespace ScrumTime.Services
                     }
                     else  // the scrum matches an existing scrum id
                     {                       
-                        ScrumTimeEntities freshScrumTimeEntities =
-                            new ScrumTimeEntities(_ScrumTimeEntities.Connection.ConnectionString);
-                        Scrum existingScrum = GetScrumById(freshScrumTimeEntities, scrum.ScrumId);
-                        DeleteScrum(freshScrumTimeEntities, existingScrum.ScrumId);
+                        //ScrumTimeEntities freshScrumTimeEntities =
+                        //    new ScrumTimeEntities(_ScrumTimeEntities.Connection.ConnectionString);
+                        //Scrum existingScrum = GetScrumById(freshScrumTimeEntities, scrum.ScrumId);                        
+                        //DeleteScrum(freshScrumTimeEntities, existingScrum.ScrumId);                           
+                        DeleteScrum(scrum.ScrumId);
+                        scrum.ScrumId = 0;
+                        //_ScrumTimeEntities.ObjectStateManager.ChangeObjectState(scrum, System.Data.EntityState.Added);
                     }
                     _ScrumTimeEntities.AddToScrums(scrum);
                 }

@@ -1,4 +1,8 @@
 ﻿function setupReadOnlyScrumRow(scrumId) {
+    $.ajaxSetup({
+        cache: false
+    });
+
     $(".scrum_" + scrumId).click(function () {
         fetchScrumInformationForEdit(scrumId);        
     });
@@ -18,6 +22,9 @@
 }
 
 function saveScrumDetails() {
+    $.ajaxSetup({
+        cache: false
+    });
     var dateOfScrum = $('#dateOfScrum').val();
     var scrumDetailCount = $('#scrumDetailCount').val();
     var sprintId = $('#scrumDetailSprintId').val();
@@ -52,6 +59,9 @@ function saveScrumDetails() {
 
 
 function deleteScrum(scrumId) {
+    $.ajaxSetup({
+        cache: false
+    });
     $.post('/Scrum/Delete',
     {
         id: scrumId
@@ -76,6 +86,9 @@ function setAlternatingScrumDetailBackgroundColors() {
 }
 
 function setupScrumEditDialog() {
+    $.ajaxSetup({
+        cache: false
+    });
     $("#scrumEditDialog").dialog({
         autoOpen: false,
         modal: true,
@@ -101,6 +114,9 @@ function setupScrumEditDialog() {
 }
 
 function loadScrumEditTitle() {
+    $.ajaxSetup({
+        cache: false
+    });
     $.ajax({
         url: '/Sprint/CurrentSprintName',
         dataType: 'json',
@@ -149,7 +165,9 @@ function fetchScrumInformationForEdit(scrumId) {
         data: ({ id: scrumId }),
         dataType: "html",
         success: function (html) {
-            $('#scrumEditDialog').html(html);            
+            var number = $('#scrumDetailScrumId').length;
+
+            $('#scrumEditDialog').html(html);
             $('#scrumEditDialog').ready(function () {
                 $('#scrumEditDialog').dialog("open");
             });
