@@ -189,6 +189,22 @@ namespace ScrumTime.Models
             }
         }
         private ObjectSet<Scrum> _Scrums;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<UserSetting> UserSettings
+        {
+            get
+            {
+                if ((_UserSettings == null))
+                {
+                    _UserSettings = base.CreateObjectSet<UserSetting>("UserSettings");
+                }
+                return _UserSettings;
+            }
+        }
+        private ObjectSet<UserSetting> _UserSettings;
 
         #endregion
         #region AddTo Methods
@@ -247,6 +263,14 @@ namespace ScrumTime.Models
         public void AddToScrums(Scrum scrum)
         {
             base.AddObject("Scrums", scrum);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the UserSettings EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToUserSettings(UserSetting userSetting)
+        {
+            base.AddObject("UserSettings", userSetting);
         }
 
         #endregion
@@ -1967,6 +1991,159 @@ namespace ScrumTime.Models
         }
 
         #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="ScrumTime.Models", Name="UserSetting")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class UserSetting : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new UserSetting object.
+        /// </summary>
+        /// <param name="userSettingId">Initial value of the UserSettingId property.</param>
+        /// <param name="username">Initial value of the Username property.</param>
+        public static UserSetting CreateUserSetting(global::System.Int32 userSettingId, global::System.String username)
+        {
+            UserSetting userSetting = new UserSetting();
+            userSetting.UserSettingId = userSettingId;
+            userSetting.Username = username;
+            return userSetting;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 UserSettingId
+        {
+            get
+            {
+                return _UserSettingId;
+            }
+            set
+            {
+                if (_UserSettingId != value)
+                {
+                    OnUserSettingIdChanging(value);
+                    ReportPropertyChanging("UserSettingId");
+                    _UserSettingId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("UserSettingId");
+                    OnUserSettingIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _UserSettingId;
+        partial void OnUserSettingIdChanging(global::System.Int32 value);
+        partial void OnUserSettingIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Username
+        {
+            get
+            {
+                return _Username;
+            }
+            set
+            {
+                OnUsernameChanging(value);
+                ReportPropertyChanging("Username");
+                _Username = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Username");
+                OnUsernameChanged();
+            }
+        }
+        private global::System.String _Username;
+        partial void OnUsernameChanging(global::System.String value);
+        partial void OnUsernameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CurrentProduct
+        {
+            get
+            {
+                return _CurrentProduct;
+            }
+            set
+            {
+                OnCurrentProductChanging(value);
+                ReportPropertyChanging("CurrentProduct");
+                _CurrentProduct = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CurrentProduct");
+                OnCurrentProductChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CurrentProduct;
+        partial void OnCurrentProductChanging(Nullable<global::System.Int32> value);
+        partial void OnCurrentProductChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CurrentSprint
+        {
+            get
+            {
+                return _CurrentSprint;
+            }
+            set
+            {
+                OnCurrentSprintChanging(value);
+                ReportPropertyChanging("CurrentSprint");
+                _CurrentSprint = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CurrentSprint");
+                OnCurrentSprintChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CurrentSprint;
+        partial void OnCurrentSprintChanging(Nullable<global::System.Int32> value);
+        partial void OnCurrentSprintChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> LastMainTabSelected
+        {
+            get
+            {
+                return _LastMainTabSelected;
+            }
+            set
+            {
+                OnLastMainTabSelectedChanging(value);
+                ReportPropertyChanging("LastMainTabSelected");
+                _LastMainTabSelected = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastMainTabSelected");
+                OnLastMainTabSelectedChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _LastMainTabSelected;
+        partial void OnLastMainTabSelectedChanging(Nullable<global::System.Int32> value);
+        partial void OnLastMainTabSelectedChanged();
+
+        #endregion
+    
     }
 
     #endregion

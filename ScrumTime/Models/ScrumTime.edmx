@@ -13,6 +13,7 @@
           <EntitySet Name="Sprints" EntityType="ScrumTime.Models.Store.Sprints" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Stories" EntityType="ScrumTime.Models.Store.Stories" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tasks" EntityType="ScrumTime.Models.Store.Tasks" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserSettings" EntityType="ScrumTime.Models.Store.UserSettings" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Releases_Products" Association="ScrumTime.Models.Store.FK_Releases_Products">
             <End Role="Products" EntitySet="Products" />
             <End Role="Releases" EntitySet="Releases" />
@@ -121,6 +122,16 @@
           <Property Name="Hours" Type="decimal" Scale="1" />
           <Property Name="StoryId" Type="int" Nullable="false" />
           <Property Name="AssignedTo" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="UserSettings">
+          <Key>
+            <PropertyRef Name="UserSettingId" />
+          </Key>
+          <Property Name="UserSettingId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="CurrentProduct" Type="int" />
+          <Property Name="CurrentSprint" Type="int" />
+          <Property Name="LastMainTabSelected" Type="int" />
         </EntityType>
         <Association Name="FK_Releases_Products">
           <End Role="Products" Type="ScrumTime.Models.Store.Products" Multiplicity="1">
@@ -284,6 +295,7 @@
             <End Role="Sprint" EntitySet="Sprints" />
             <End Role="Scrum" EntitySet="Scrums" />
           </AssociationSet>
+          <EntitySet Name="UserSettings" EntityType="ScrumTime.Models.UserSetting" />
         </EntityContainer>
         <EntityType Name="Product">
           <Key>
@@ -483,6 +495,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UserSetting">
+          <Key>
+            <PropertyRef Name="UserSettingId" />
+          </Key>
+          <Property Type="Int32" Name="UserSettingId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CurrentProduct" />
+          <Property Type="Int32" Name="CurrentSprint" />
+          <Property Type="Int32" Name="LastMainTabSelected" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -568,6 +590,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="UserSettings">
+            <EntityTypeMapping TypeName="ScrumTime.Models.UserSetting">
+              <MappingFragment StoreEntitySet="UserSettings">
+                <ScalarProperty Name="LastMainTabSelected" ColumnName="LastMainTabSelected" />
+                <ScalarProperty Name="CurrentSprint" ColumnName="CurrentSprint" />
+                <ScalarProperty Name="CurrentProduct" ColumnName="CurrentProduct" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserSettingId" ColumnName="UserSettingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -599,9 +632,9 @@
           <ConnectorPoint PointX="3" PointY="5.0237939453125" />
         </AssociationConnector>
         <AssociationConnector Association="ScrumTime.Models.FK_Sprints_Products" >
-          <ConnectorPoint PointX="1.5" PointY="7.1148893229166665" />
-          <ConnectorPoint PointX="1.5" PointY="10.49974609375" />
-          <ConnectorPoint PointX="3" PointY="10.49974609375" />
+          <ConnectorPoint PointX="1.5" PointY="7.1148893229166674" />
+          <ConnectorPoint PointX="1.5" PointY="10.499746093750002" />
+          <ConnectorPoint PointX="3" PointY="10.499746093750002" />
         </AssociationConnector>
         <AssociationConnector Association="ScrumTime.Models.FK_Stories_Products" >
           <ConnectorPoint PointX="2.25" PointY="6.1175434453124993" />
@@ -640,6 +673,7 @@
           <ConnectorPoint PointX="4.5" PointY="9.3074446614583337" />
           <ConnectorPoint PointX="5.25" PointY="9.3074446614583337" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="ScrumTime.Models.UserSetting" Width="1.5" PointX="5.375" PointY="0.75" Height="1.9802864583333317" />
       </Diagram>
     </Diagrams>
   </Designer>
