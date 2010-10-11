@@ -162,5 +162,29 @@ namespace ScrumTime.Services
             return (results.Count() > 0) ? true : false;
         }
 
+        public List<Scrum> GetScrumsBySprintId(int sprintId)
+        {            
+            var results = from s in _ScrumTimeEntities.Scrums
+                          where s.SprintId == sprintId
+                          orderby s.DateOfScrum ascending
+                          select s;
+            return results.ToList<Scrum>();
+        }
+
+        public decimal GetMaxTaskHourCountBySprintId(int sprintId)
+        {
+            decimal maxCount = 0;
+            var results = from s in _ScrumTimeEntities.Scrums
+                          where s.SprintId == sprintId
+                          orderby s.DateOfScrum ascending
+                          select s;
+            if (results != null && results.Count() > 0)
+            {
+                var targetScrum = results.First();
+                maxCount = targetScrum.ScrumDetails.Max(m => m.HoursRemaining);
+            }
+            return maxCount;
+        }
+
     }
 }

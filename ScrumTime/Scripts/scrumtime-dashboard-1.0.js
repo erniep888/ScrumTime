@@ -1,53 +1,63 @@
 ﻿function loadSprintBurnDownChart() {
-    // Get
 
-    $(function () {
-        $.jqplot.config.enablePlugins = true;
-        tasks = [['08/04/2010', 54, '08/04/2010'], ['08/05/2010', 50, '08/05/2010'],
-            ['08/08/2010', 56, '08/08/2010'], ['08/12/2010', 48, '08/12/2010'], ['08/15/2010', 43, '08/15/2010']];
-        idealTasks = [['08/04/2010', 54, '08/04/2010'], ['09/01/2010', 0, '09/01/2010']];
+    
+    // Get    
+//    var testget = $.cookie('myCookie2');
+//    if (testget.length > 0)
+//        alert(testget);
+//    else
+//        $.cookie('myCookie2', 'bob');
 
-        $.jqplot('sprintBurnDownChart', [idealTasks, tasks], {
-            title: {
-                text: 'Sprint Burn Down',
-                show: true
-            },
-            grid: {
-                drawGridlines: true,
-                gridLineColor: '#ddd',
-                background: '#fff',
-                shadowWidth: 5
-            },
-            axes: {
-                xaxis: {
-                    renderer: $.jqplot.DateAxisRenderer,
-                    tickInterval: "7 days",
-                    min: '08/04/2010',
-                    max: '09/01/2010',
-                    tickRenderer: $.jqplot.CanvasAxisTickRenderer,
-                    tickOptions: {
-                        enableFontSupport: true,
-                        angle: 30,
-                        fontSize: '7pt',
-                        formatString: '%m-%d-%y'
+    $.ajaxSetup({
+        cache: false
+    });
+
+    $.getJSON("/Dashboard/UpdateSprintBurnDown",
+        {
+            
+        },
+        function (json) {
+            var sprintBurnDownPlot = $.jqplot('sprintBurnDownChart', json.Data, {
+                title: {
+                    text: 'Sprint Burn Down',
+                    show: true
+                },
+                grid: {
+                    drawGridlines: true,
+                    gridLineColor: '#ddd',
+                    background: '#fff',
+                    shadowWidth: 5
+                },
+                axes: {
+                    xaxis: {
+                        renderer: $.jqplot.DateAxisRenderer,
+                        tickInterval: "7 days",
+                        min: json.XAxisMinDate,
+                        max: json.XAxisMaxDate,
+                        tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+                        tickOptions: {
+                            enableFontSupport: true,
+                            angle: 30,
+                            fontSize: '7pt',
+                            formatString: '%m-%d-%y'
+                        }
+                    },
+                    yaxis: {
+                        min: json.YAxisMin
                     }
                 },
-                yaxis: {
-                    min: 0,
-                    max: 60
-                }
-            },
-            series: [
+                series: [
                         { lineWidth: 2, showMarker: false, color: '#aaa' },
                         { lineWidth: 3, showMarker: true, markerOptions: { style: 'square' }, color: '#90c233' }
                     ]
-    });
+            });
 
-
-
-});
+            sprintBurnDownPlot.replot();
+            sprintBurnDownPlot.draw();
+        });
 
 }
+
 
 function loadTaskHoursPerSprint() {
     // Get

@@ -3,6 +3,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         document.title = 'ScrumTime 0.9 - Dashboard';
+       
     }); 
 </script> 
 
@@ -34,7 +35,7 @@
     </div>
 </div>  
 
-<script type="text/javascript">
+<script type="text/javascript">    
     loadSprintBurnDownChart();
-    loadTaskHoursPerSprint();
+    //loadTaskHoursPerSprint();
 </script>

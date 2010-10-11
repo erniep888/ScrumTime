@@ -108,5 +108,18 @@ namespace ScrumTime.Services
                 throw new Exception("You have attempted to delete a sprint that does not exist.");
         }
 
+        public decimal GetTotalHourCount(int sprintId)
+        {
+            decimal totalHourCount = 0;
+            Sprint sprint = GetSprintById(sprintId);
+            foreach (Story story in sprint.Stories)
+            {
+                totalHourCount += (story.Tasks.Sum(t => t.Hours) != null)?
+                    (decimal) story.Tasks.Sum(t => t.Hours) : 0;
+            }
+
+            return totalHourCount;
+        }
+
     }
 }
