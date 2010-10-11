@@ -98,6 +98,7 @@
     <Compile Include="Services\StoryService.cs" />
     <Compile Include="Services\TaskService.cs" />
     <Compile Include="Services\UserSettingService.cs" />
+    <Compile Include="ViewModels\JsonTaskHoursPerSprint.cs" />
     <Compile Include="ViewModels\JsonSprintBurnDown.cs" />
     <Compile Include="ViewModels\ProductCollectionViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />

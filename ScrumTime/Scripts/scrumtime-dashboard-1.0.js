@@ -8,6 +8,7 @@
 //    else
 //        $.cookie('myCookie2', 'bob');
 
+    $.jqplot.config.enablePlugins = true;
     $.ajaxSetup({
         cache: false
     });
@@ -37,7 +38,7 @@
                         tickRenderer: $.jqplot.CanvasAxisTickRenderer,
                         tickOptions: {
                             enableFontSupport: true,
-                            angle: 30,
+                            angle: 40,
                             fontSize: '7pt',
                             formatString: '%m-%d-%y'
                         }
@@ -62,41 +63,52 @@
 function loadTaskHoursPerSprint() {
     // Get
 
-    $(function () {
-        var taskHoursPerSprint = [[1, 250, 'Unscheduled'], [2, 54, 'Sprint 1'], [3, 20, 'Sprint Banana'], [4, 0, 'Sprint Cross Reference'], [5, 8, 'Sprint Sammy']];
-
-        $.jqplot('taskHoursPerSprint', [taskHoursPerSprint], {
-            title: {
-                text: 'Task Hours Per Sprint',
-                show: true
-            },
-            seriesDefaults: {
-                renderer: $.jqplot.BarRenderer,
-                rendererOptions: { barDirection: 'vertical', barPadding: 6, barMargin: 15 }
-            },            
-            grid: {
-                drawGridlines: true,
-                gridLineColor: '#ddd',
-                background: '#fff',
-                shadowWidth: 5
-            },
-            axes: {
-                xaxis: {
-                    renderer: $.jqplot.CategoryAxisRenderer,
-                    tickRenderer: $.jqplot.CanvasAxisTickRenderer,
-                    tickOptions: {
-                        enableFontSupport: true,
-                        angle: 40,
-                        fontSize: '7pt'
-                    },
-                    ticks: [' ', ' ', ' ', ' ', ' ']
-                },
-                yaxis: {
-                    min: 0,
-                    max: 330
-                }
-            }
-        });
+    $.jqplot.config.enablePlugins = true;
+    $.ajaxSetup({
+        cache: false
     });
+
+    $.getJSON("/Dashboard/UpdateTaskHoursPerSprint",
+        {
+
+        },
+        function (json) {
+            var sprintBurnDownPlot = $.jqplot('taskHoursPerSprint', json.Data, {
+                title: {
+                    text: 'Task Hours Per Sprint',
+                    show: true
+                },
+                seriesDefaults: {
+                    renderer: $.jqplot.BarRenderer,
+                    rendererOptions: { barDirection: 'vertical', barPadding: 6, barMargin: 15 }
+                },
+                grid: {
+                    drawGridlines: true,
+                    gridLineColor: '#ddd',
+                    background: '#fff',
+                    shadowWidth: 5
+                },
+                axes: {
+                    xaxis: {
+                        renderer: $.jqplot.CategoryAxisRenderer,
+                        tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+                        tickOptions: {
+                            enableFontSupport: true,
+                            angle: 40,
+                            fontSize: '7pt'
+                        },
+                        ticks: json.Ticks
+                    },
+                    yaxis: {
+                        min: json.YAxisMin,
+                        max: json.YAxisMax
+                    }
+                }
+            });
+
+            sprintBurnDownPlot.replot();
+            sprintBurnDownPlot.draw();
+        });
+
 
 }

@@ -86,5 +86,18 @@ namespace ScrumTime.Services
             else
                 throw new Exception("You have attempted to delete a task that does not exist.");
         }
+
+        public decimal GetUnassignedTaskHours(int productId)
+        {
+            decimal unassignedTaskHours = 0;
+            var results = from t in _ScrumTimeEntities.Tasks
+                          where t.Story.ProductId == productId
+                          && t.Story.SprintId == null
+                          select t;
+            if (results != null && results.Count() > 0)
+                unassignedTaskHours = (results.Sum(t => t.Hours) != null) ?
+                    (decimal) results.Sum(t => t.Hours) : 0;
+            return unassignedTaskHours;
+        }
     }
 }

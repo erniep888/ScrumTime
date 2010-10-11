@@ -121,5 +121,25 @@ namespace ScrumTime.Services
             return totalHourCount;
         }
 
+        public List<Sprint> GetMostRecentSprints(int productId, int numberToReturn)
+        {
+            List<Sprint> sprints = new List<Sprint>();
+            DateTime today = DateTime.Now;
+            var results = from s in _ScrumTimeEntities.Sprints
+                          where s.StartDate.CompareTo(today) < 0
+                          && s.ProductId == productId
+                          orderby s.StartDate descending
+                          select s;
+            if (results != null)
+            {
+                if (results.Count() > numberToReturn)
+                    sprints = results.ToList().GetRange(0, numberToReturn);
+                else
+                    sprints = results.ToList();
+            }
+            return sprints;
+
+        }
+
     }
 }

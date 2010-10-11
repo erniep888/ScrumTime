@@ -30,12 +30,12 @@
     </div>  
     <div class="nopadding" style="border-left:2px solid #999;border-right:2px solid #aaa;border-bottom:2px solid #999;
         height:395px;padding-top:30px">
-        <div id="sprintBurnDownChart" style="position:absolute;left:30px;width:460px"></div>
+        <div id="sprintBurnDownChart" style="position:absolute;left:30px;width:460px;height:306px;"></div>
         <div id="taskHoursPerSprint" style="position:absolute;left:510px;width:463px;height:280px;"></div>
     </div>
 </div>  
 
 <script type="text/javascript">    
     loadSprintBurnDownChart();
-    //loadTaskHoursPerSprint();
+    loadTaskHoursPerSprint();
 </script>
