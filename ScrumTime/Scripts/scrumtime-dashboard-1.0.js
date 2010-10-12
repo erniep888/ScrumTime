@@ -1,5 +1,4 @@
 ﻿function loadSprintBurnDownChart() {
-
     
     // Get    
 //    var testget = $.cookie('myCookie2');

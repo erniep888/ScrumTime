@@ -2,8 +2,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        document.title = 'ScrumTime 0.9 - Scrum';
-        setupReadOnlyScrumRow(5);
+        document.title = 'ScrumTime 0.9 - Scrum';                
     }); 
     </script>     
 
@@ -55,11 +54,12 @@
             <% Html.RenderPartial("~/Views/Scrum/List.ascx", Model); %>  
         </div>       
         
-        <div id="scrumEditDialog" title="Scrum For Sprint <%: Model.SprintName %>">
+        <div id="scrumEditDialogContainer" class="nopadding">
         </div>   
     </div>  
-    <script type="text/javascript">
-        setupScrumEditDialog();
 
-    </script>  
+    <script type="text/javascript">
+        setupAddScrumLink();
+    </script>
+    
 

@@ -1,12 +1,7 @@
 ﻿function setupReadOnlyScrumRow(scrumId) {
-    $.ajaxSetup({
-        cache: false
-    });
-
     $(".scrum_" + scrumId).click(function () {
-        fetchScrumInformationForEdit(scrumId);        
+        fetchScrumInformationForEdit(scrumId);
     });
-
 
     $("#scrumSelectedSprint").change(function () {
         $.post('/Sprint/ChangeSprint',
@@ -21,10 +16,15 @@
     return;
 }
 
-function saveScrumDetails() {
-    $.ajaxSetup({
-        cache: false
+function setupAddScrumLink() {
+    $("#scrumAddLink").click(function () {
+        // Fetch the edit content
+        fetchScrumInformationForEdit(-1);
     });
+    return;
+}
+
+function saveScrumDetails() {
     var dateOfScrum = $('#dateOfScrum').val();
     var scrumDetailCount = $('#scrumDetailCount').val();
     var sprintId = $('#scrumDetailSprintId').val();
@@ -58,10 +58,7 @@ function saveScrumDetails() {
 }
 
 
-function deleteScrum(scrumId) {
-    $.ajaxSetup({
-        cache: false
-    });
+function deleteScrum(scrumId) {    
     $.post('/Scrum/Delete',
     {
         id: scrumId
@@ -86,9 +83,6 @@ function setAlternatingScrumDetailBackgroundColors() {
 }
 
 function setupScrumEditDialog() {
-    $.ajaxSetup({
-        cache: false
-    });
     $("#scrumEditDialog").dialog({
         autoOpen: false,
         modal: true,
@@ -99,24 +93,18 @@ function setupScrumEditDialog() {
             "Save": function () {
                 saveScrumDetails();
                 $(this).dialog("close");
+                $(this).dialog("destroy");
             },
             Cancel: function () {
                 $(this).dialog("close");
+                $(this).dialog("destroy");
+                $(this).remove();
             }
         }
-    });
-
-    $("#scrumAddLink").click(function () {        
-        // Fetch the edit content
-        fetchScrumInformationForEdit(-1);
-        return;
-    });
+    });    
 }
 
-function loadScrumEditTitle() {
-    $.ajaxSetup({
-        cache: false
-    });
+function loadScrumEditTitle() {    
     $.ajax({
         url: '/Sprint/CurrentSprintName',
         dataType: 'json',
@@ -124,8 +112,8 @@ function loadScrumEditTitle() {
             $('#scrumEditDialog').dialog({ title: 'Scrum For Sprint ' + json.d });
         },
         cache: false,
-        async: false
-    });
+        async: true
+    });    
 }
 
 function setupDateOfScrumDatePicker() {
@@ -152,7 +140,8 @@ function refreshScrumList() {
         },
         async: true
     });
-
+    $('#scrumEditDialog').dialog("close");
+    $('#scrumEditDialog').remove();
 }
 
 
@@ -165,14 +154,15 @@ function fetchScrumInformationForEdit(scrumId) {
         data: ({ id: scrumId }),
         dataType: "html",
         success: function (html) {
-            var number = $('#scrumDetailScrumId').length;
-
-            $('#scrumEditDialog').html(html);
-            $('#scrumEditDialog').ready(function () {
-                $('#scrumEditDialog').dialog("open");
+            $('#scrumEditDialogContainer').replaceWith(html);
+            $('#scrumEditDialogContainer').ready(function () {
+                setupScrumEditDialog();
+                $('#scrumEditDialog').ready(function () {
+                    $('#scrumEditDialog').dialog("open");
+                });
             });
         },
-        async: true
+        async: false
     });
-
 }
+
