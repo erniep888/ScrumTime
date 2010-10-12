@@ -28,8 +28,8 @@ namespace ScrumTime.Controllers
         public ActionResult Index()
         {
             ScrumCollectionViewModel scrumCollectionViewModel =
-                ScrumCollectionViewModel.BuildByDateOfScrumDesc(SessionHelper.GetCurrentProductId(Session),
-                    SessionHelper.GetCurrentSprintId(Session));
+                ScrumCollectionViewModel.BuildByDateOfScrumDesc(SessionHelper.GetCurrentProductId(User.Identity, Session),
+                    SessionHelper.GetCurrentSprintId(User.Identity, Session));
             return PartialView(scrumCollectionViewModel);
         }
 
@@ -39,8 +39,8 @@ namespace ScrumTime.Controllers
         public ActionResult List()
         {
             ScrumCollectionViewModel scrumCollectionViewModel =
-                ScrumCollectionViewModel.BuildByDateOfScrumDesc(SessionHelper.GetCurrentProductId(Session),
-                    SessionHelper.GetCurrentSprintId(Session));
+                ScrumCollectionViewModel.BuildByDateOfScrumDesc(SessionHelper.GetCurrentProductId(User.Identity, Session),
+                    SessionHelper.GetCurrentSprintId(User.Identity, Session));
             return PartialView(scrumCollectionViewModel);
         }
 
@@ -74,9 +74,9 @@ namespace ScrumTime.Controllers
                 scrum = new Scrum()
                 {
                     DateOfScrum = DateTime.Now,
-                    SprintId = SessionHelper.GetCurrentSprintId(Session)
+                    SprintId = SessionHelper.GetCurrentSprintId(User.Identity, Session)
                 };
-                scrum = _ScrumService.GenerateNewScrumDetails(SessionHelper.GetCurrentSprintId(Session), scrum);                
+                scrum = _ScrumService.GenerateNewScrumDetails(SessionHelper.GetCurrentSprintId(User.Identity, Session), scrum);                
             }
 
             IMembershipService membershipService = new AccountMembershipService();
@@ -109,7 +109,7 @@ namespace ScrumTime.Controllers
                 ScrumId = scrumIdAsInt,
                 SprintId = sprintIdAsInt,
                 DateOfScrum = dateOfScrumAsDateTime,
-                ProductId = SessionHelper.GetCurrentProductId(Session)                
+                ProductId = SessionHelper.GetCurrentProductId(User.Identity, Session)                
             };
             for (int i = 0; i < scrumDetailCountAsInt; i++)
             {

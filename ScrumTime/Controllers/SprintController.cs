@@ -77,7 +77,7 @@ namespace ScrumTime.Controllers
         [HttpPost]
         public ActionResult ChangeSprint(int id)
         {
-            SessionHelper.SetCurrentSprintId(Session, id);
+            SessionHelper.SetCurrentSprintId(User.Identity, Session, id);
             return new SecureJsonResult("success");
         }
 
@@ -88,7 +88,7 @@ namespace ScrumTime.Controllers
         public ActionResult CurrentSprintName()
         {
             string currentSprintName = "";
-            int currentSprintId = SessionHelper.GetCurrentSprintId(Session);
+            int currentSprintId = SessionHelper.GetCurrentSprintId(User.Identity, Session);
             if (currentSprintId > 0)
             {
                 Sprint currentSprint = SprintService.GetSprintById(_ScrumTimeEntities, currentSprintId);

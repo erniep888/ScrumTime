@@ -72,5 +72,18 @@ namespace ScrumTime.Services
                 throw new Exception("You have attempted to delete a product that does not exist.");
         }
 
+        // TODO: Ultimately remove GetProductIdOfSample() once no sample is needed.
+        public int GetProductIdOfSample()
+        {
+            int productIdOfSample = -1;
+            var results = from p in _ScrumTimeEntities.Products
+                          where p.Name.StartsWith("Sample -")
+                          select p.ProductId;
+            if (results.Count() > 0)
+                productIdOfSample = (int)results.First();
+
+            return productIdOfSample;
+        }
+
     }
 }

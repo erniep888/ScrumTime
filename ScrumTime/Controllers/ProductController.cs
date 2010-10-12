@@ -26,14 +26,14 @@ namespace ScrumTime.Controllers
         // GET: /Product/
         public ActionResult Index()
         {
-            int currentProductId = SessionHelper.GetCurrentProductId(Session);
+            int currentProductId = SessionHelper.GetCurrentProductId(User.Identity, Session);
             return PartialView(ProductCollectionViewModel.BuildByNameAlphabetical(currentProductId));
         }
 
         // An AJAX driven result that returns just the simple list of releases
         public ActionResult ListByNameAlphabetical()
         {
-            int currentProductId = SessionHelper.GetCurrentProductId(Session);
+            int currentProductId = SessionHelper.GetCurrentProductId(User.Identity, Session);
             return PartialView("List", ProductCollectionViewModel.BuildByNameAlphabetical(currentProductId));
         }
 
@@ -116,7 +116,7 @@ namespace ScrumTime.Controllers
             ProductViewModel productViewModel = new ProductViewModel()
             {
                 ProductModel = product,
-                IsCurrent = (product.ProductId == SessionHelper.GetCurrentProductId(Session)) ? true : false
+                IsCurrent = (product.ProductId == SessionHelper.GetCurrentProductId(User.Identity, Session)) ? true : false
             };
             return productViewModel;
         }

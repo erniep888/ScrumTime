@@ -20,14 +20,14 @@ namespace ScrumTime.Controllers
 
         public ActionResult UpdateSprintBurnDown()
         {
-            int sprintId = SessionHelper.GetCurrentSprintId(Session);
+            int sprintId = SessionHelper.GetCurrentSprintId(User.Identity, Session);
             JsonSprintBurnDown jsonSprintBurnDown = new JsonSprintBurnDown(sprintId);
             return new SecureJsonResult(jsonSprintBurnDown);
         }
 
         public ActionResult UpdateTaskHoursPerSprint()
         {
-            int productId = SessionHelper.GetCurrentProductId(Session);
+            int productId = SessionHelper.GetCurrentProductId(User.Identity, Session);
             JsonTaskHoursPerSprint jsonTaskHoursPerSprint = new JsonTaskHoursPerSprint(productId);
             return new SecureJsonResult(jsonTaskHoursPerSprint);
         }

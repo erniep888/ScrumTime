@@ -81,6 +81,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\UserHelper.cs" />
     <Compile Include="Helpers\SecureJsonResult.cs" />
     <Compile Include="Helpers\SessionHelper.cs" />
     <Compile Include="Helpers\StoryPoints.cs" />

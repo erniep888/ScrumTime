@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using ScrumTime.Models;
+using ScrumTime.Helpers;
 
 namespace ScrumTime.Controllers
 {
@@ -115,6 +116,7 @@ namespace ScrumTime.Controllers
                 if (createStatus == MembershipCreateStatus.Success)
                 {
                     FormsService.SignIn(model.UserName, false /* createPersistentCookie */);
+                    SessionHelper.CreateFirstTimeDefaults(model.UserName);
                     return RedirectToAction("Index", "Home");
                 }
                 else

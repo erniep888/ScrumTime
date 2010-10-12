@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ScrumTime.Helpers;
+using ScrumTime.Models;
+using ScrumTime.Services;
 
 namespace ScrumTime.Controllers
 {
@@ -14,10 +16,14 @@ namespace ScrumTime.Controllers
 
         public ActionResult Index()
         {
-            // TODO: Pull the initial values from UserSettings in the DB
-            SessionHelper.SetCurrentProductId(Session, 1);
-            SessionHelper.SetCurrentSprintId(Session, 10);
-            return View();
+            if (UserHelper.IsAuthorized(User.Identity, "Home Screen"))
+            {
+                //SessionHelper.SetCurrentProductId(User.Identity, Session, 1);
+                //SessionHelper.SetCurrentSprintId(User.Identity, Session, 10);
+                return View();
+            }                
+            else                
+                return RedirectToAction("Logon", "Account");
         }
 
     }

@@ -32,7 +32,7 @@ namespace ScrumTime.Services
         }
 
         public UserSetting SaveUserSetting(UserSetting userSetting)
-        {
+        {            
             if (userSetting != null)
             {
                 if (userSetting.UserSettingId == 0)  // this is new

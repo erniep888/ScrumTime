@@ -18,20 +18,23 @@ namespace ScrumTime.ViewModels
         public JsonSprintBurnDown(int sprintId)
             : base()
         {
-            ScrumTimeEntities scrumTimeEntities = new ScrumTimeEntities();
-            SprintService sprintService = new SprintService(scrumTimeEntities);
-            Sprint sprint = sprintService.GetSprintById(sprintId);
+            if (sprintId >= 0)
+            {
+                ScrumTimeEntities scrumTimeEntities = new ScrumTimeEntities();
+                SprintService sprintService = new SprintService(scrumTimeEntities);
+                Sprint sprint = sprintService.GetSprintById(sprintId);
 
-            Data = new List<object>();
-            Data.Add(CreateIdealScrumTaskJsonList(sprint));
-            Data.Add(CreateScrumTaskJsonList(sprint));
+                Data = new List<object>();
+                Data.Add(CreateIdealScrumTaskJsonList(sprint));
+                Data.Add(CreateScrumTaskJsonList(sprint));
 
-            XAxisMinDate = sprint.StartDate.ToString("MM/dd/yyyy");
-            XAxisMaxDate = sprint.FinishDate.ToString("MM/dd/yyyy");
-            YAxisMin = 0;
+                XAxisMinDate = sprint.StartDate.ToString("MM/dd/yyyy");
+                XAxisMaxDate = sprint.FinishDate.ToString("MM/dd/yyyy");
+                YAxisMin = 0;
 
-            ScrumService scrumService = new ScrumService(scrumTimeEntities);
-            YAxisMax = scrumService.GetMaxTaskHourCountBySprintId(sprint.SprintId);
+                ScrumService scrumService = new ScrumService(scrumTimeEntities);
+                YAxisMax = scrumService.GetMaxTaskHourCountBySprintId(sprint.SprintId);
+            }            
         }
 
 
