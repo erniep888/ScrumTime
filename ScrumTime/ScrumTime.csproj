@@ -203,6 +203,8 @@
     <Content Include="Views\Dashboard\Index.ascx" />
     <Content Include="Views\Home\CurrentProductAndSprint.ascx" />
     <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Product\CurrentEdit.ascx" />
+    <Content Include="Views\Product\CurrentReadOnly.ascx" />
     <Content Include="Views\Product\Edit.ascx" />
     <Content Include="Views\Product\Index.ascx" />
     <Content Include="Views\Product\List.ascx" />

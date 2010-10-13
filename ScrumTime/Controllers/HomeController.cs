@@ -18,8 +18,6 @@ namespace ScrumTime.Controllers
         {
             if (UserHelper.IsAuthorized(User.Identity, "Home Screen"))
             {
-                //SessionHelper.SetCurrentProductId(User.Identity, Session, 1);
-                //SessionHelper.SetCurrentSprintId(User.Identity, Session, 10);
                 return View();
             }                
             else                

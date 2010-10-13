@@ -120,5 +120,11 @@ namespace ScrumTime.Controllers
             };
             return productViewModel;
         }
+
+        [HttpPost]
+        public ActionResult CurrentEdit()
+        {
+            return PartialView();
+        }
     }
 }

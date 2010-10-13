@@ -106,3 +106,4 @@ function deleteProduct(productId) {
 
     // TODO: Implement delete failure GUI
 }
+
