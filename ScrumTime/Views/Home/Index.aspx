@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>ScrumTime 0.9 Beta 1</title>
-    <link rel="shortcut icon" href="/Content/Images/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="<%: Url.Content("~/Content/Images/favicon.ico") %>" type="image/x-icon"/>
     <meta http-equiv="CACHE-CONTROL" content="NO-CACHE"/>
 
     <link rel="stylesheet" href="<%: Url.Content("~/Content/Css/main.css") %>" type="text/css" />
@@ -41,8 +41,8 @@
 	<div id="menuBackgroundDiv"></div>
 	<div id="pageCenterDiv">
 		<div id="pageTitleDiv">			
-            <img id="pageLogoGraph" src="/Content/Images/Logos/logo_graph_48x48.png" height="32px" width="32px" alt="ScrumTime"/>		 
-            <img id="pageLogo" src="/Content/Images/Logos/ScrumTimeLogo.png" alt="ScrumTime"/>		           	
+            <img id="pageLogoGraph" src="<%: Url.Content("~/Content/Images/Logos/logo_graph_48x48.png") %>" height="32px" width="32px" alt="ScrumTime"/>		 
+            <img id="pageLogo" src="<%: Url.Content("~/Content/Images/Logos/ScrumTimeLogo.png") %>" alt="ScrumTime"/>		           	
 			<div id="pageTagline">scrum project management tool</div>
 		</div>
         <div class="loginLink" style="z-index:100;position:absolute;right:30px;top:96px;font-size:12px;">
