@@ -20,7 +20,7 @@ namespace ScrumTime.Tests.Services
             ScrumTimeEntities scrumTimeEntities = new ScrumTimeEntities();
             SprintService sprintService = new SprintService(scrumTimeEntities);
             List<Sprint> sprints =
-                sprintService.GetSprintsWithinDateRange(new DateTime(2010, 1, 1), 
+                sprintService.GetSprintsWithinDateRange(1, new DateTime(2010, 1, 1), 
                     new DateTime(2010, 6, 5));
             Assert.AreEqual(5, sprints.Count());
         }

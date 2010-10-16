@@ -9,6 +9,7 @@ namespace ScrumTime.ViewModels
     public class SprintCollectionViewModel 
     {
         public int ProductId { get; set; }
+        public int CurrentSprintId { get; set; }
 
         public SprintCollectionViewModel()
         {
@@ -21,7 +22,7 @@ namespace ScrumTime.ViewModels
         {
             ScrumTimeEntities scrumTimeEntities = new ScrumTimeEntities();
             SprintCollectionViewModel sprintCollectionViewModel = new SprintCollectionViewModel();
-            Product product = scrumTimeEntities.Products.First<Product>(p => p.ProductId == 1);
+            Product product = scrumTimeEntities.Products.First<Product>(p => p.ProductId == productId);
             var results = from s in product.Sprints
                           orderby s.StartDate descending
                           select s;

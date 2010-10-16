@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ScrumTime.Models;
+using ScrumTime.Helpers;
 
 namespace ScrumTime.Services
 {
@@ -19,15 +20,16 @@ namespace ScrumTime.Services
         // if there are any sprints that end after or equal to the startDate
         // make sure to include them in the results.  Conversely, if there
         // are any sprints that begin after the endDate, do not include them.
-        public List<Sprint> GetSprintsWithinDateRange(DateTime startDate, DateTime endDate)
-        {
+        public List<Sprint> GetSprintsWithinDateRange(int productId, DateTime startDate, DateTime endDate)
+        {            
             var results = from s in _ScrumTimeEntities.Sprints
-                          where (s.StartDate.CompareTo(startDate) < 0 && s.FinishDate.CompareTo(endDate) > 0) ||  // spans range
+                          where ((s.StartDate.CompareTo(startDate) < 0 && s.FinishDate.CompareTo(endDate) > 0) ||  // spans range
                                 (s.StartDate.CompareTo(startDate) > 0 && s.FinishDate.CompareTo(endDate) < 0) ||  // within range
                                 (s.StartDate.CompareTo(startDate) < 0 && 
                                     s.FinishDate.CompareTo(startDate) > 0 && s.FinishDate.CompareTo(endDate) < 0) || // finish in range
                                 (s.StartDate.CompareTo(startDate) > 0 &&
-                                    s.StartDate.CompareTo(endDate) < 0 && s.FinishDate.CompareTo(endDate) > 0)  // start in range
+                                    s.StartDate.CompareTo(endDate) < 0 && s.FinishDate.CompareTo(endDate) > 0))  // start in range
+                                && s.ProductId == productId
                           orderby s.StartDate ascending
                           select s;
             return results.ToList<Sprint>();

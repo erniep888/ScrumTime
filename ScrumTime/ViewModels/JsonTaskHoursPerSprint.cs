@@ -17,18 +17,33 @@ namespace ScrumTime.ViewModels
         public JsonTaskHoursPerSprint(int productId)
             : base()
         {
+            Data = new List<object>();
+            Ticks = new List<string>();
+            YAxisMin = 0;
+
             if (productId >= 0)
             {
                 ScrumTimeEntities scrumTimeEntities = new ScrumTimeEntities();
                 ProductService productService = new ProductService(scrumTimeEntities);
                 Product product = productService.GetProductById(productId);
 
-                Data = new List<object>();
-                Ticks = new List<string>();
                 Data.Add(CreateTaskHoursPerSprintJsonList(product));
-                YAxisMin = 0;
             }
+            else            
+                HandleBadProductId();
             
+            
+        }
+
+        private void HandleBadProductId()
+        {
+            List<object> taskHoursPerSprintJsonList = new List<object>();
+            taskHoursPerSprintJsonList.Add(0);
+            taskHoursPerSprintJsonList.Add(0);
+            taskHoursPerSprintJsonList.Add("None");
+            Data.Add(taskHoursPerSprintJsonList);
+            Ticks.Add(" ");
+            YAxisMax = 10;
         }
 
 

@@ -128,11 +128,40 @@ namespace ScrumTime.Controllers
             return productViewModel;
         }
 
-        [Authorize]
-        [HttpPost]
+        [Authorize]        
         public ActionResult CurrentEdit()
         {
-            return PartialView();
+            ProductCollectionViewModel productCollectionViewModel =
+                ProductCollectionViewModel.BuildByNameAlphabetical(SessionHelper.GetCurrentProductId(
+                    User.Identity.Name, Session));
+            return PartialView(productCollectionViewModel);
+        }
+
+        [Authorize]        
+        public ActionResult CurrentReadOnly()
+        {
+            ProductService productService = new ProductService(_ScrumTimeEntities);
+            Product product = productService.GetProductById(SessionHelper.GetCurrentProductId(User.Identity.Name, Session));
+            return PartialView(product);            
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult SetCurrent(int productId)
+        {
+            SessionHelper.SetCurrentProductId(User.Identity.Name, Session, productId);
+            ProductService productService = new ProductService(_ScrumTimeEntities);
+            Product product = productService.GetProductById(SessionHelper.GetCurrentProductId(User.Identity.Name, Session));
+            if (product.Sprints != null && product.Sprints.Count() > 0)
+            {
+                Sprint sprint = product.Sprints.First<Sprint>();
+                SessionHelper.SetCurrentSprintId(User.Identity.Name, Session, sprint.SprintId);
+            }
+            else
+            {
+                SessionHelper.SetCurrentSprintId(User.Identity.Name, Session, -1);
+            }
+            return new SecureJsonResult(new { productId });
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using ScrumTime.ViewModels;
 using ScrumTime.Services;
 using ScrumTime.Models;
+using ScrumTime.Helpers;
 
 namespace ScrumTime.Controllers
 {
@@ -33,7 +34,8 @@ namespace ScrumTime.Controllers
         [Authorize]
         public ActionResult ListContainerByTargetDateDesc()
         {
-            ReleaseCollectionViewModel releaseCollectionViewModel = ReleaseCollectionViewModel.BuildByTargetDateDesc(1);
+            ReleaseCollectionViewModel releaseCollectionViewModel = ReleaseCollectionViewModel.BuildByTargetDateDesc(
+                SessionHelper.GetCurrentProductId(User.Identity.Name, Session));
             return PartialView("ListContainer", releaseCollectionViewModel);
         }
 

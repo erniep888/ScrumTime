@@ -20,8 +20,9 @@ namespace ScrumTime.Helpers
             var value = session[CURRENTPRODUCTID];
             if (value == null)
             {
+                ScrumTimeEntities scrumTimeEntities = new ScrumTimeEntities();
                 // check the db
-                UserSetting userSetting = LoadUserSetting(username);
+                UserSetting userSetting = LoadUserSetting(scrumTimeEntities, username);
                 if (userSetting != null && userSetting.CurrentProduct != null)
                 {
                     session[CURRENTPRODUCTID] = userSetting.CurrentProduct;
@@ -45,7 +46,8 @@ namespace ScrumTime.Helpers
             if (value == null)
             {
                 // check the db
-                UserSetting userSetting = LoadUserSetting(username);
+                ScrumTimeEntities scrumTimeEntities = new ScrumTimeEntities();
+                UserSetting userSetting = LoadUserSetting(scrumTimeEntities, username);
                 if (userSetting != null && userSetting.CurrentSprint != null)
                 {
                     session[CURRENTSPRINTID] = userSetting.CurrentSprint;
@@ -69,7 +71,8 @@ namespace ScrumTime.Helpers
             if (value == null)
             {
                 // check the db
-                UserSetting userSetting = LoadUserSetting(username);
+                ScrumTimeEntities scrumTimeEntities = new ScrumTimeEntities();
+                UserSetting userSetting = LoadUserSetting(scrumTimeEntities, username);
                 if (userSetting != null && userSetting.LastMainTabSelected != null)
                 {
                     session[LASTMAINTABSELECTED] = userSetting.LastMainTabSelected;
@@ -87,12 +90,11 @@ namespace ScrumTime.Helpers
             session[LASTMAINTABSELECTED] = value;
         }
 
-        private static UserSetting LoadUserSetting(string username)
+        private static UserSetting LoadUserSetting(ScrumTimeEntities scrumTimeEntities, string username)
         {
             UserSetting userSetting = null;
             if (username != null && username.Length > 0)
             {
-                ScrumTimeEntities scrumTimeEntities = new ScrumTimeEntities();
                 userSetting = UserSettingService.GetUserSettingByUsername(scrumTimeEntities, username);
             }
             return userSetting;
@@ -103,14 +105,14 @@ namespace ScrumTime.Helpers
             if (value != null && username != null && username.Length > 0)
             {
                 ScrumTimeEntities scrumTimeEntities = new ScrumTimeEntities();
-                UserSetting existingUserSetting = LoadUserSetting(username);
+                UserSetting existingUserSetting = LoadUserSetting(scrumTimeEntities, username);
                 if (settingName == CURRENTPRODUCTID)
                     existingUserSetting.CurrentProduct = (int)value;
                 else if (settingName == CURRENTSPRINTID)
                     existingUserSetting.CurrentSprint = (int)value;
                 else if (settingName == LASTMAINTABSELECTED)
                     existingUserSetting.LastMainTabSelected = (int)value;
-                scrumTimeEntities.SaveChanges();
+                scrumTimeEntities.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
             }
             else
                 throw new Exception("Failed to save the user settings for setting: " + settingName);
@@ -139,7 +141,7 @@ namespace ScrumTime.Helpers
                             Username = username
                         };
                         scrumTimeEntities.AddToUserSettings(userSetting);
-                        scrumTimeEntities.SaveChanges();
+                        scrumTimeEntities.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
                     }
                     
                 }                

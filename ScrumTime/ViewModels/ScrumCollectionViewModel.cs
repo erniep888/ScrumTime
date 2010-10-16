@@ -22,12 +22,18 @@ namespace ScrumTime.ViewModels
         public ScrumCollectionViewModel()
         {
             Scrums = new List<Scrum>();
+            Scrums = new List<Scrum>();
+            Sprints = new List<Sprint>();
+            SprintId = -1;
+            SprintName = "";
         }
 
         public ScrumCollectionViewModel(int sprintId)
         {
             Scrums = new List<Scrum>();
+            Sprints = new List<Sprint>();
             SprintId = sprintId;
+            SprintName = "";
         }
         
 

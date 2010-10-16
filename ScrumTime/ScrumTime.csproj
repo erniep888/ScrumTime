@@ -219,6 +219,8 @@
     <Content Include="Views\Scrum\ReadOnly.ascx" />
     <Content Include="Views\Scrum\Edit.ascx" />
     <Content Include="Views\Shared\FooterControl.ascx" />
+    <Content Include="Views\Sprint\CurrentEdit.ascx" />
+    <Content Include="Views\Sprint\CurrentReadOnly.ascx" />
     <Content Include="Views\Sprint\Edit.ascx" />
     <Content Include="Views\Sprint\List.ascx" />
     <Content Include="Views\Sprint\ListContainer.ascx" />

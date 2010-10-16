@@ -21,7 +21,7 @@ namespace ScrumTime.ViewModels
         {
             ScrumTimeEntities scrumTimeEntities = new ScrumTimeEntities();
             ReleaseCollectionViewModel releaseCollectionViewModel = new ReleaseCollectionViewModel();
-            Product product = scrumTimeEntities.Products.First<Product>(p => p.ProductId == 1);
+            Product product = scrumTimeEntities.Products.First<Product>(p => p.ProductId == productId);
             var results = from s in product.Releases
                           orderby s.Target descending
                           select s;

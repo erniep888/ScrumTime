@@ -35,7 +35,8 @@ namespace ScrumTime.Controllers
         [Authorize]
         public ActionResult ListContainerByStartDateDesc()
         {
-            SprintCollectionViewModel sprintCollectionViewModel = SprintCollectionViewModel.BuildByStartDateDesc(1);
+            SprintCollectionViewModel sprintCollectionViewModel = SprintCollectionViewModel.BuildByStartDateDesc(
+                SessionHelper.GetCurrentProductId(User.Identity.Name, Session));
             return PartialView("ListContainer", sprintCollectionViewModel);
         }
 
@@ -175,6 +176,32 @@ namespace ScrumTime.Controllers
             // make sure to include them in the results.  Conversely, if there
             // are any sprints that begin after the endDate, do not include them.
             return Json(new object());
+        }
+
+        [Authorize]
+        public ActionResult CurrentEdit()
+        {
+            SprintCollectionViewModel sprintCollectionViewModel =
+                SprintCollectionViewModel.BuildByStartDateDesc(
+                    SessionHelper.GetCurrentProductId(User.Identity.Name, Session));
+            sprintCollectionViewModel.CurrentSprintId = SessionHelper.GetCurrentSprintId(User.Identity.Name, Session);
+            return PartialView(sprintCollectionViewModel);
+        }
+
+        [Authorize]
+        public ActionResult CurrentReadOnly()
+        {
+            SprintService sprintService = new SprintService(_ScrumTimeEntities);
+            Sprint sprint = sprintService.GetSprintById(SessionHelper.GetCurrentSprintId(User.Identity.Name, Session));
+            return PartialView(sprint);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult SetCurrent(int sprintId)
+        {
+            SessionHelper.SetCurrentSprintId(User.Identity.Name, Session, sprintId);
+            return new SecureJsonResult(new { sprintId });
         }
 
     }

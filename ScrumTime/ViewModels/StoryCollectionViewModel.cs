@@ -15,11 +15,11 @@ namespace ScrumTime.ViewModels
 
         public List<Story> Stories { get; set; }
 
-        public static StoryCollectionViewModel BuildByPriorityAsc(int projectId)
+        public static StoryCollectionViewModel BuildByPriorityAsc(int productId)
         {
             ScrumTimeEntities scrumTimeEntities = new ScrumTimeEntities();
             StoryCollectionViewModel storyCollectionViewModel = new StoryCollectionViewModel();
-            Product product = scrumTimeEntities.Products.First<Product>(p => p.ProductId == 1);
+            Product product = scrumTimeEntities.Products.First<Product>(p => p.ProductId == productId);
             var results = from s in product.Stories
                           orderby s.Priority ascending
                           select s;

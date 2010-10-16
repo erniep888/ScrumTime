@@ -26,7 +26,8 @@ namespace ScrumTime.Controllers
         public ActionResult BacklogByPriority()
         {
             // TODO: Pull the actual product information from session before 0.9 release
-            StoryCollectionViewModel storyCollectionViewModel = StoryCollectionViewModel.BuildByPriorityAsc(1);
+            StoryCollectionViewModel storyCollectionViewModel = StoryCollectionViewModel.BuildByPriorityAsc(
+                SessionHelper.GetCurrentProductId(User.Identity.Name, Session));
             return PartialView("Backlog", storyCollectionViewModel);
         }
 
@@ -35,7 +36,8 @@ namespace ScrumTime.Controllers
         public ActionResult ListByPriority()
         {
             // TODO: Pull the actual product information from session before 0.9 release
-            StoryCollectionViewModel storyCollectionViewModel = StoryCollectionViewModel.BuildByPriorityAsc(1);           
+            StoryCollectionViewModel storyCollectionViewModel = StoryCollectionViewModel.BuildByPriorityAsc(
+                SessionHelper.GetCurrentProductId(User.Identity.Name, Session));           
             return PartialView("List", storyCollectionViewModel);
         }
 
@@ -80,8 +82,8 @@ namespace ScrumTime.Controllers
                 SprintId = -1
             };
             allSprints.Insert(0, noneSprint);
-            // TODO: Pull the actual product information from session before 0.9 release
-            Product product = _ScrumTimeEntities.Products.First<Product>(p => p.ProductId == 1);
+            int currentProductId = SessionHelper.GetCurrentProductId(User.Identity.Name, Session);
+            Product product = _ScrumTimeEntities.Products.First<Product>(p => p.ProductId == currentProductId);
             StoryViewModel storyViewModel = new StoryViewModel()
             {
                 StoryModel = new Story()
@@ -127,7 +129,7 @@ namespace ScrumTime.Controllers
                     Narrative = narrative,
                     Points = Int32.Parse(points),
                     Priority = Int32.Parse(priority),
-                    ProductId = 1,
+                    ProductId = SessionHelper.GetCurrentProductId(User.Identity.Name, Session),
                     UserDefinedId = userDefinedId,
                     SprintId = sprintIdAsInt
                 };

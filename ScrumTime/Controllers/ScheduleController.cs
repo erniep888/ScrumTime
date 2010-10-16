@@ -48,8 +48,10 @@ namespace ScrumTime.Controllers
         {
             DateTime startDate = DateTime.Parse(startDateRange);
             DateTime endDate = DateTime.Parse(endDateRange);
-            List<Sprint> sprints = _SprintService.GetSprintsWithinDateRange(startDate, endDate);
-            List<Release> releases = _ReleaseService.GetReleasesWithinDateRange(startDate, endDate);
+            List<Sprint> sprints = _SprintService.GetSprintsWithinDateRange(
+                SessionHelper.GetCurrentProductId(User.Identity.Name, Session), startDate, endDate);
+            List<Release> releases = _ReleaseService.GetReleasesWithinDateRange(
+                SessionHelper.GetCurrentProductId(User.Identity.Name, Session), startDate, endDate);
             JsonSchedule jsonSchedule = new JsonSchedule(releases, sprints, startDate, endDate);
             return new SecureJsonResult(jsonSchedule);
         }
