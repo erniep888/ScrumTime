@@ -24,12 +24,13 @@ namespace ScrumTime.Controllers
 
         //
         // GET: /Release/
-
+        [Authorize]
         public ActionResult Index()
         {
             return View();
         }
 
+        [Authorize]
         public ActionResult ListContainerByTargetDateDesc()
         {
             ReleaseCollectionViewModel releaseCollectionViewModel = ReleaseCollectionViewModel.BuildByTargetDateDesc(1);
@@ -37,6 +38,7 @@ namespace ScrumTime.Controllers
         }
 
         // An AJAX driven result that returns just the simple list of releases
+        [Authorize]
         public ActionResult ListByTargetDateDesc(int productId)
         {
             ReleaseCollectionViewModel releaseCollectionViewModel = ReleaseCollectionViewModel.BuildByTargetDateDesc(productId);
@@ -44,6 +46,7 @@ namespace ScrumTime.Controllers
         }
 
         // An AJAX driven result that returns just the td's of the read only release...replaces any other
+        [Authorize]
         public ActionResult ReadOnly(int id)
         {
             Release release = _ReleaseService.GetReleaseById(id);
@@ -51,6 +54,7 @@ namespace ScrumTime.Controllers
         }
 
         // An AJAX driven result that returns just the td's of the editable release...replaces read only
+        [Authorize]
         public ActionResult Edit(int id)
         {
             Release release = _ReleaseService.GetReleaseById(id);
@@ -58,6 +62,7 @@ namespace ScrumTime.Controllers
         }
 
         // An AJAX driven result that returns just the td's of the editable "new" release...appends to list
+        [Authorize]
         public ActionResult New(int productId)
         {
             // TODO: May want to lookup the product id to ensure that it is valid
@@ -71,6 +76,7 @@ namespace ScrumTime.Controllers
         }
 
         // POST: /Release/Save
+        [Authorize]
         [HttpPost]
         public ActionResult Save(FormCollection collection)
         {
@@ -110,6 +116,7 @@ namespace ScrumTime.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

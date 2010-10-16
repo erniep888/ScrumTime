@@ -14,7 +14,7 @@
 
     $.getJSON("/Dashboard/UpdateSprintBurnDown",
         {
-            
+            username: 'bob'
         },
         function (json) {
             var sprintBurnDownPlot = $.jqplot('sprintBurnDownChart', json.Data, {
@@ -59,7 +59,7 @@
 }
 
 
-function loadTaskHoursPerSprint() {
+function loadTaskHoursPerSprint(username) {
     // Get
 
     $.jqplot.config.enablePlugins = true;
@@ -69,7 +69,7 @@ function loadTaskHoursPerSprint() {
 
     $.getJSON("/Dashboard/UpdateTaskHoursPerSprint",
         {
-
+            username: username
         },
         function (json) {
             var sprintBurnDownPlot = $.jqplot('taskHoursPerSprint', json.Data, {

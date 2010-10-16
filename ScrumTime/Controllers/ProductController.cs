@@ -24,20 +24,23 @@ namespace ScrumTime.Controllers
 
         //
         // GET: /Product/
+        [Authorize]
         public ActionResult Index()
-        {
-            int currentProductId = SessionHelper.GetCurrentProductId(User.Identity, Session);
+        {           
+            int currentProductId = SessionHelper.GetCurrentProductId(User.Identity.Name, Session);
             return PartialView(ProductCollectionViewModel.BuildByNameAlphabetical(currentProductId));
         }
 
         // An AJAX driven result that returns just the simple list of releases
+        [Authorize]
         public ActionResult ListByNameAlphabetical()
         {
-            int currentProductId = SessionHelper.GetCurrentProductId(User.Identity, Session);
+            int currentProductId = SessionHelper.GetCurrentProductId(User.Identity.Name, Session);
             return PartialView("List", ProductCollectionViewModel.BuildByNameAlphabetical(currentProductId));
         }
 
         // An AJAX driven result that returns just the td's of the read only product...replaces any other
+        [Authorize]
         public ActionResult ReadOnly(int id)
         {
             Product product = _ProductService.GetProductById(id);           
@@ -45,6 +48,7 @@ namespace ScrumTime.Controllers
         }
 
         // An AJAX driven result that returns just the td's of the editable product...replaces read only
+        [Authorize]
         public ActionResult Edit(int id)
         {
             Product product = _ProductService.GetProductById(id);
@@ -53,6 +57,7 @@ namespace ScrumTime.Controllers
 
 
         // An AJAX driven result that returns just the td's of the editable "new" release...appends to list
+        [Authorize]
         public ActionResult New()
         {            
             Product product = new Product()
@@ -63,6 +68,7 @@ namespace ScrumTime.Controllers
         }
 
         // POST: /Product/Save
+        [Authorize]
         [HttpPost]
         public ActionResult Save(FormCollection collection)
         {
@@ -96,6 +102,7 @@ namespace ScrumTime.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Delete(FormCollection collection)
         {
@@ -116,11 +123,12 @@ namespace ScrumTime.Controllers
             ProductViewModel productViewModel = new ProductViewModel()
             {
                 ProductModel = product,
-                IsCurrent = (product.ProductId == SessionHelper.GetCurrentProductId(User.Identity, Session)) ? true : false
+                IsCurrent = (product.ProductId == SessionHelper.GetCurrentProductId(User.Identity.Name, Session)) ? true : false
             };
             return productViewModel;
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult CurrentEdit()
         {

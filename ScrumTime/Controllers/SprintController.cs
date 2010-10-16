@@ -26,12 +26,13 @@ namespace ScrumTime.Controllers
 
         //
         // GET: /Sprint/
-
+        [Authorize]
         public ActionResult Index()
         {
             return View();
         }
 
+        [Authorize]
         public ActionResult ListContainerByStartDateDesc()
         {
             SprintCollectionViewModel sprintCollectionViewModel = SprintCollectionViewModel.BuildByStartDateDesc(1);
@@ -39,6 +40,7 @@ namespace ScrumTime.Controllers
         }
 
         // An AJAX driven result that returns just the simple list of sprints
+        [Authorize]
         public ActionResult ListByStartDateDesc(int productId)
         {
             SprintCollectionViewModel sprintCollectionViewModel = SprintCollectionViewModel.BuildByStartDateDesc(productId);
@@ -46,6 +48,7 @@ namespace ScrumTime.Controllers
         }
 
         // An AJAX driven result that returns just the td's of the read only sprint...replaces any other
+        [Authorize]
         public ActionResult ReadOnly(int id)
         {
             Sprint sprint = _SprintService.GetSprintById(id);
@@ -53,6 +56,7 @@ namespace ScrumTime.Controllers
         }
 
         // An AJAX driven result that returns just the td's of the editable sprint...replaces read only
+        [Authorize]
         public ActionResult Edit(int id)
         {
             Sprint sprint = _SprintService.GetSprintById(id);
@@ -60,6 +64,7 @@ namespace ScrumTime.Controllers
         }
 
         // An AJAX driven result that returns just the td's of the editable "new" sprint...appends to list
+        [Authorize]
         public ActionResult New(int productId)
         {
             // TODO: May want to lookup the product id to ensure that it is valid
@@ -74,10 +79,11 @@ namespace ScrumTime.Controllers
         }
 
         // Change Selected Sprint
+        [Authorize]
         [HttpPost]
         public ActionResult ChangeSprint(int id)
         {
-            SessionHelper.SetCurrentSprintId(User.Identity, Session, id);
+            SessionHelper.SetCurrentSprintId(User.Identity.Name, Session, id);
             return new SecureJsonResult("success");
         }
 
@@ -85,10 +91,11 @@ namespace ScrumTime.Controllers
         /// Returns the name of the current Sprint
         /// </summary>
         /// <returns>Current sprint name in Json form.</returns>
+        [Authorize]
         public ActionResult CurrentSprintName()
         {
             string currentSprintName = "";
-            int currentSprintId = SessionHelper.GetCurrentSprintId(User.Identity, Session);
+            int currentSprintId = SessionHelper.GetCurrentSprintId(User.Identity.Name, Session);
             if (currentSprintId > 0)
             {
                 Sprint currentSprint = SprintService.GetSprintById(_ScrumTimeEntities, currentSprintId);
@@ -99,6 +106,7 @@ namespace ScrumTime.Controllers
         }
 
         // POST: /Sprint/Save
+        [Authorize]
         [HttpPost]
         public ActionResult Save(FormCollection collection)
         {
@@ -140,6 +148,7 @@ namespace ScrumTime.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -156,6 +165,7 @@ namespace ScrumTime.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Graph(string startDateRange, string endDateRange)
         {

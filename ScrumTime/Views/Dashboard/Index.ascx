@@ -37,5 +37,5 @@
 
 <script type="text/javascript">        
     loadSprintBurnDownChart();
-    loadTaskHoursPerSprint();
+    loadTaskHoursPerSprint("<%: Page.User.Identity.Name %>");
 </script>

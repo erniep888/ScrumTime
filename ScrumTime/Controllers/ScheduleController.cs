@@ -25,22 +25,25 @@ namespace ScrumTime.Controllers
 
         //
         // GET: /Schedule/
-
+        [Authorize]
         public ActionResult Index()
         {
             return View();
         }
 
+        [Authorize]
         public ActionResult ReleaseList()
         {
             return PartialView();
         }
 
+        [Authorize]
         public ActionResult SprintList()
         {
             return PartialView();
         }
 
+        [Authorize]
         public ActionResult UpdateCalendar(string startDateRange, string endDateRange)
         {
             DateTime startDate = DateTime.Parse(startDateRange);

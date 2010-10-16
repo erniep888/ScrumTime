@@ -25,6 +25,7 @@ namespace ScrumTime.Controllers
         }        
 
         // An AJAX driven result that replaces the story row with a story row + task backlog
+        [Authorize]
         public ActionResult StoryTaskBacklog(int storyId)
         {
             TaskCollectionViewModel taskCollectionViewModel = TaskCollectionViewModel.BuildByIdAsc(storyId);
@@ -32,6 +33,7 @@ namespace ScrumTime.Controllers
         }
 
         // An AJAX driven result that returns just the tbody of the task backlog for the given story
+        [Authorize]
         public ActionResult ListById(int storyId)
         {
             TaskCollectionViewModel taskCollectionViewModel = TaskCollectionViewModel.BuildByIdAsc(storyId);
@@ -39,6 +41,7 @@ namespace ScrumTime.Controllers
         }
 
         // An AJAX driven result that returns just the td's of the editable task...replaces read only
+        [Authorize]
         public ActionResult Edit(int id)
         {
             Task task = _TaskService.GetTaskById(id);
@@ -46,6 +49,7 @@ namespace ScrumTime.Controllers
         }
 
         // An AJAX driven result that returns just the td's of the read only task...replaces any other
+        [Authorize]
         public ActionResult ReadOnly(int id)
         {
             Task task = _TaskService.GetTaskById(id);
@@ -53,6 +57,7 @@ namespace ScrumTime.Controllers
         }
 
         // An AJAX driven result that returns just the td's of the editable "new" task...appends to list
+        [Authorize]
         public ActionResult New(int storyId)
         {
             Story story = _StoryService.GetStoryById(storyId);
@@ -65,6 +70,7 @@ namespace ScrumTime.Controllers
             return PartialView("Edit", task);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult TotalTaskHours(int storyId)
         {
@@ -73,6 +79,7 @@ namespace ScrumTime.Controllers
         }
 
         // POST: /Task/Save
+        [Authorize]
         [HttpPost]
         public ActionResult Save(FormCollection collection)
         {
@@ -112,7 +119,7 @@ namespace ScrumTime.Controllers
 
         //
         // POST: /Task/Delete/5
-
+        [Authorize]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

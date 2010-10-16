@@ -22,6 +22,7 @@ namespace ScrumTime.Controllers
         }
 
         // The backlog is the entire html page
+        [Authorize]
         public ActionResult BacklogByPriority()
         {
             // TODO: Pull the actual product information from session before 0.9 release
@@ -30,6 +31,7 @@ namespace ScrumTime.Controllers
         }
 
         // The list is the sub-section of the page that contains only the table of story read only rows
+        [Authorize]
         public ActionResult ListByPriority()
         {
             // TODO: Pull the actual product information from session before 0.9 release
@@ -38,6 +40,7 @@ namespace ScrumTime.Controllers
         }
 
         // Returns only one read only row
+        [Authorize]
         public ActionResult ReadOnly(int id)
         {
             Story story = _StoryService.GetStoryById(id);
@@ -45,10 +48,11 @@ namespace ScrumTime.Controllers
         }
 
         // Returns only one edit row
+        [Authorize]
         public ActionResult Edit(int id)
         {
             List<Sprint> allSprints = SprintService.GetAllSprints(_ScrumTimeEntities,
-                SessionHelper.GetCurrentProductId(User.Identity, Session));
+                SessionHelper.GetCurrentProductId(User.Identity.Name, Session));
             Sprint noneSprint = new Sprint()
             {
                 Name = "None",
@@ -65,10 +69,11 @@ namespace ScrumTime.Controllers
         }
 
         // Returns only one new row
+        [Authorize]
         public ActionResult New()
         {
             List<Sprint> allSprints = SprintService.GetAllSprints(_ScrumTimeEntities,
-                SessionHelper.GetCurrentProductId(User.Identity, Session));
+                SessionHelper.GetCurrentProductId(User.Identity.Name, Session));
             Sprint noneSprint = new Sprint()
             {
                 Name = "None",
@@ -93,6 +98,7 @@ namespace ScrumTime.Controllers
         }
 
         // POST: /Story/Save
+        [Authorize]
         [HttpPost]
         public ActionResult Save(FormCollection collection)
         {
@@ -140,7 +146,7 @@ namespace ScrumTime.Controllers
 
         //
         // GET: /Story/Delete/5
-
+        [Authorize]
         public ActionResult Delete(int id)
         {
             // TODO: Provide a caution prior to delete...use this GET delete to display a warning.
@@ -149,7 +155,7 @@ namespace ScrumTime.Controllers
 
         //
         // POST: /Story/Delete/5
-
+        [Authorize]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -166,6 +172,7 @@ namespace ScrumTime.Controllers
         }
 
         // Returns only a small table for the story actions
+        [Authorize]
         public ActionResult StoryActionCancelOnly(int storyId)
         {
             Story story = _StoryService.GetStoryById(storyId);
@@ -174,6 +181,7 @@ namespace ScrumTime.Controllers
 
    
         // Returns the entire Backlog html page
+        [Authorize]
         public ActionResult Index()
         {
             return RedirectToAction("BacklogByPriority");

@@ -15,13 +15,13 @@ namespace ScrumTime.Helpers
         public static string CURRENTSPRINTID = "currentSprintId";
         public static string LASTMAINTABSELECTED = "lastMainTabSelected";
 
-        public static int GetCurrentProductId(IIdentity identity, HttpSessionStateBase session)
+        public static int GetCurrentProductId(string username, HttpSessionStateBase session)
         {
             var value = session[CURRENTPRODUCTID];
             if (value == null)
             {
                 // check the db
-                UserSetting userSetting = LoadUserSetting(identity);
+                UserSetting userSetting = LoadUserSetting(username);
                 if (userSetting != null && userSetting.CurrentProduct != null)
                 {
                     session[CURRENTPRODUCTID] = userSetting.CurrentProduct;
@@ -33,19 +33,19 @@ namespace ScrumTime.Helpers
             return (int)value;
         }
 
-        public static void SetCurrentProductId(IIdentity identity, HttpSessionStateBase session, int value)
+        public static void SetCurrentProductId(string username, HttpSessionStateBase session, int value)
         {
-            SaveUserSetting(identity, CURRENTPRODUCTID, value);
+            SaveUserSetting(username, CURRENTPRODUCTID, value);
             session[CURRENTPRODUCTID] = value;
         }
 
-        public static int GetCurrentSprintId(IIdentity identity, HttpSessionStateBase session)
+        public static int GetCurrentSprintId(string username, HttpSessionStateBase session)
         {
             var value = session[CURRENTSPRINTID];
             if (value == null)
             {
                 // check the db
-                UserSetting userSetting = LoadUserSetting(identity);
+                UserSetting userSetting = LoadUserSetting(username);
                 if (userSetting != null && userSetting.CurrentSprint != null)
                 {
                     session[CURRENTSPRINTID] = userSetting.CurrentSprint;
@@ -57,19 +57,19 @@ namespace ScrumTime.Helpers
             return (int)value;
         }
 
-        public static void SetCurrentSprintId(IIdentity identity, HttpSessionStateBase session, int value)
+        public static void SetCurrentSprintId(string username, HttpSessionStateBase session, int value)
         {
-            SaveUserSetting(identity, CURRENTSPRINTID, value);
+            SaveUserSetting(username, CURRENTSPRINTID, value);
             session[CURRENTSPRINTID] = value;
         }
 
-        public static int GetLastSelectedMainTabIndex(IIdentity identity, HttpSessionStateBase session)
+        public static int GetLastSelectedMainTabIndex(string username, HttpSessionStateBase session)
         {
             var value = session[LASTMAINTABSELECTED];
             if (value == null)
             {
                 // check the db
-                UserSetting userSetting = LoadUserSetting(identity);
+                UserSetting userSetting = LoadUserSetting(username);
                 if (userSetting != null && userSetting.LastMainTabSelected != null)
                 {
                     session[LASTMAINTABSELECTED] = userSetting.LastMainTabSelected;
@@ -81,29 +81,29 @@ namespace ScrumTime.Helpers
             return (int)value;
         }
 
-        public static void SetLastSelectedMainTabIndex(IIdentity identity, HttpSessionStateBase session, int value)
+        public static void SetLastSelectedMainTabIndex(string username, HttpSessionStateBase session, int value)
         {
-            SaveUserSetting(identity, LASTMAINTABSELECTED, value);
+            SaveUserSetting(username, LASTMAINTABSELECTED, value);
             session[LASTMAINTABSELECTED] = value;
         }
 
-        private static UserSetting LoadUserSetting(IIdentity identity)
+        private static UserSetting LoadUserSetting(string username)
         {
             UserSetting userSetting = null;
-            if (identity != null && identity.Name != null && identity.Name.Length > 0)
+            if (username != null && username.Length > 0)
             {
                 ScrumTimeEntities scrumTimeEntities = new ScrumTimeEntities();
-                userSetting = UserSettingService.GetUserSettingByUsername(scrumTimeEntities, identity.Name);
+                userSetting = UserSettingService.GetUserSettingByUsername(scrumTimeEntities, username);
             }
             return userSetting;
         }
 
-        private static void SaveUserSetting(IIdentity identity, string settingName, object value)
+        private static void SaveUserSetting(string username, string settingName, object value)
         {
-            if (value != null && identity != null && identity.Name != null && identity.Name.Length > 0)
+            if (value != null && username != null && username.Length > 0)
             {
                 ScrumTimeEntities scrumTimeEntities = new ScrumTimeEntities();
-                UserSetting existingUserSetting = LoadUserSetting(identity);
+                UserSetting existingUserSetting = LoadUserSetting(username);
                 if (settingName == CURRENTPRODUCTID)
                     existingUserSetting.CurrentProduct = (int)value;
                 else if (settingName == CURRENTSPRINTID)

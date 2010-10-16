@@ -24,30 +24,30 @@ namespace ScrumTime.Controllers
 
         //
         // GET: /Scrum/
-
+        [Authorize]
         public ActionResult Index()
         {
             ScrumCollectionViewModel scrumCollectionViewModel =
-                ScrumCollectionViewModel.BuildByDateOfScrumDesc(SessionHelper.GetCurrentProductId(User.Identity, Session),
-                    SessionHelper.GetCurrentSprintId(User.Identity, Session));
+                ScrumCollectionViewModel.BuildByDateOfScrumDesc(SessionHelper.GetCurrentProductId(User.Identity.Name, Session),
+                    SessionHelper.GetCurrentSprintId(User.Identity.Name, Session));
             return PartialView(scrumCollectionViewModel);
         }
 
         //
         // GET: /Scrum/List
-
+        [Authorize]
         public ActionResult List()
         {
             ScrumCollectionViewModel scrumCollectionViewModel =
-                ScrumCollectionViewModel.BuildByDateOfScrumDesc(SessionHelper.GetCurrentProductId(User.Identity, Session),
-                    SessionHelper.GetCurrentSprintId(User.Identity, Session));
+                ScrumCollectionViewModel.BuildByDateOfScrumDesc(SessionHelper.GetCurrentProductId(User.Identity.Name, Session),
+                    SessionHelper.GetCurrentSprintId(User.Identity.Name, Session));
             return PartialView(scrumCollectionViewModel);
         }
 
        
         //
         // POST: /Scrum/New
-
+        [Authorize]
         [HttpPost]
         public ActionResult New(FormCollection collection)
         {
@@ -65,7 +65,7 @@ namespace ScrumTime.Controllers
         
         //
         // GET: /Scrum/Edit/5
- 
+        [Authorize]
         public ActionResult Edit(int id)
         {
             Scrum scrum = _ScrumService.GetScrumById(id);
@@ -74,9 +74,9 @@ namespace ScrumTime.Controllers
                 scrum = new Scrum()
                 {
                     DateOfScrum = DateTime.Now,
-                    SprintId = SessionHelper.GetCurrentSprintId(User.Identity, Session)
+                    SprintId = SessionHelper.GetCurrentSprintId(User.Identity.Name, Session)
                 };
-                scrum = _ScrumService.GenerateNewScrumDetails(SessionHelper.GetCurrentSprintId(User.Identity, Session), scrum);                
+                scrum = _ScrumService.GenerateNewScrumDetails(SessionHelper.GetCurrentSprintId(User.Identity.Name, Session), scrum);                
             }
 
             IMembershipService membershipService = new AccountMembershipService();
@@ -92,7 +92,7 @@ namespace ScrumTime.Controllers
 
         //
         // POST: /Scrum/Save
-
+        [Authorize]
         [HttpPost]
         public ActionResult Save(FormCollection collection)
         {
@@ -109,7 +109,7 @@ namespace ScrumTime.Controllers
                 ScrumId = scrumIdAsInt,
                 SprintId = sprintIdAsInt,
                 DateOfScrum = dateOfScrumAsDateTime,
-                ProductId = SessionHelper.GetCurrentProductId(User.Identity, Session)                
+                ProductId = SessionHelper.GetCurrentProductId(User.Identity.Name, Session)                
             };
             for (int i = 0; i < scrumDetailCountAsInt; i++)
             {
@@ -136,7 +136,7 @@ namespace ScrumTime.Controllers
 
         //
         // POST: /Scrum/Delete/5
-
+        [Authorize]
         [HttpPost]
         public ActionResult Delete(int id)
         {
