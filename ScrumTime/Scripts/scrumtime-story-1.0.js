@@ -115,7 +115,11 @@ function addStoryRow() {
         {            
         },
         function (data) {
-            $('.storyTable  tr:first').before(data);
+            var target = $('.storyTable tbody tr:first');
+            if (target.length > 0)
+                $('.storyTable  tr:first').before(data);
+            else
+                $('.storyTable tbody').prepend(data);
         }
     );
     return;

@@ -2,7 +2,7 @@
 
     <div class="nopadding currentSprintContainer">
         <select id="currentSprintSelected" style="text-align:left;font-family:Verdana;margin-right:4px;" 
-                onblur="revertCurrentSprintToReadOnly();" onchange="onCurrentSprintChange();">
+                onblur="revertCurrentSprintToReadOnly();" onchange="onCurrentSprintChange();" onfocus="onCurrentSprintFocus();">
             <%
                 foreach (ScrumTime.Models.Sprint sprint in Model.Sprints)
                 {

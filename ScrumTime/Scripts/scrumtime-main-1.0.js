@@ -77,6 +77,13 @@ function onCurrentSprintChange() {
     return;
 }
 
+function onCurrentSprintFocus() {
+    var selectionCount = $("#currentSprintSelected")[0].length;
+    if (selectionCount == 1)
+        onCurrentSprintChange();
+    return;
+}
+
 function revertCurrentSprintToReadOnly() {
     $.get('/Sprint/CurrentReadOnly',
         {
