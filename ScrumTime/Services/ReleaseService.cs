@@ -84,5 +84,18 @@ namespace ScrumTime.Services
             else
                 throw new Exception("You have attempted to delete a release that does not exist.");
         }
+
+        
+        public Release GetNextReleaseEqOrAfterDate(int productId, DateTime targetDate)
+        {
+            Release nextRelease = null;
+            var results = from s in _ScrumTimeEntities.Releases
+                          where s.Target.CompareTo(targetDate) >= 0 && s.ProductId == productId
+                          orderby s.Target ascending
+                          select s;
+            if (results.Count() > 0)
+                nextRelease = results.First<Release>();
+            return nextRelease;
+        }
     }
 }

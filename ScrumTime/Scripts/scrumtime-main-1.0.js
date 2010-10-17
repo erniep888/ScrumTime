@@ -30,7 +30,10 @@ function onCurrentProductChange() {
             productId: $("#currentProductSelected").val()
         },
         function (data) {
-            window.location.reload();
+            var selected = $("#mainMenu").tabs("option", "selected");
+            $("#mainMenu").tabs("load", selected);
+            revertCurrentProductToReadOnly();
+            revertCurrentSprintToReadOnly();
         }
     );
     return;
@@ -66,7 +69,9 @@ function onCurrentSprintChange() {
             sprintId: $("#currentSprintSelected").val()
         },
         function (data) {
-            window.location.reload();
+            var selected = $("#mainMenu").tabs("option", "selected");
+            $("#mainMenu").tabs("load", selected);
+            revertCurrentSprintToReadOnly();
         }
     );
     return;

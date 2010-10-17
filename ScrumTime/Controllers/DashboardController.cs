@@ -7,6 +7,10 @@ using ScrumTime.ViewModels;
 using ScrumTime.Helpers;
 using System.Web.Security;
 using System.Web.UI;
+using ScrumTime.Helpers;
+using ScrumTime.Models;
+using ScrumTime.ViewModels;
+using ScrumTime.Services;
 
 namespace ScrumTime.Controllers
 {
@@ -16,8 +20,34 @@ namespace ScrumTime.Controllers
         // GET: /Dashboard/  
         [Authorize]
         public ActionResult Index()
-        {
-            return PartialView();
+        {            
+            ScrumTimeEntities scrumTimeEntities = new ScrumTimeEntities();
+            string currentProductName = "None";
+            string currentSprintName = "None";
+            string nextReleaseName = "None";
+            ProductService productService = new ProductService(scrumTimeEntities);
+            Product product = productService.GetProductById(SessionHelper.GetCurrentProductId(User.Identity.Name, Session));
+            if (product != null && product.ProductId > 0)
+            {
+                currentProductName = product.Name;
+                SprintService sprintService = new SprintService(scrumTimeEntities);
+                Sprint sprint = sprintService.GetSprintById(SessionHelper.GetCurrentSprintId(User.Identity.Name, Session));
+                if (sprint != null && sprint.SprintId > 0)
+                {
+                    currentSprintName = sprint.Name;
+                    ReleaseService releaseService = new ReleaseService(scrumTimeEntities);
+                    Release nextRelease = releaseService.GetNextReleaseEqOrAfterDate(sprint.ProductId, sprint.FinishDate);
+                    if (nextRelease != null && nextRelease.ReleaseId > 0)
+                        nextReleaseName = nextRelease.Name;
+                }
+            }
+            DashboardViewModel dashboardViewModel = new DashboardViewModel()
+            {
+                CurrentProductName = currentProductName,
+                CurrentSprintName = currentSprintName,
+                NextReleaseName = nextReleaseName
+            };
+            return PartialView(dashboardViewModel);
         }
 
         [Authorize]

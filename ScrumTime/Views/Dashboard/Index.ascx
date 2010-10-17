@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<dynamic>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<ScrumTime.ViewModels.DashboardViewModel>" %>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -16,14 +16,14 @@
     <table class="nopadding" cellpadding="0" cellspacing="0" style="width:100%;border:2px solid #999;
             height:30px;margin-left:0px;" border="0">
         <tr>
-            <td class="nopadding" style="color:#666;font-size:11px;width:200px;background-color:#f3f3f3;">Current Product</td>
+            <td class="nopadding" style="color:#666;font-size:11px;width:290px;background-color:#f3f3f3;">Current Product</td>
             <td class="nopadding" style="color:#666;font-size:11px;background-color:#f3f3f3;">Current Sprint</td>
-            <td class="nopadding" style="color:#666;font-size:11px;width:200px;background-color:#f3f3f3;">Next Release</td>
+            <td class="nopadding" style="color:#666;font-size:11px;width:290px;background-color:#f3f3f3;">Next Release</td>
         </tr>
         <tr>
-            <td class="nopadding" style="color:#75a22a;font-size:12px;width:200px;background-color:#f3f3f3;">Acme</td>
-            <td class="nopadding" style="color:#75a22a;font-size:12px;background-color:#f3f3f3;">Copperhead</td>
-            <td class="nopadding" style="color:#75a22a;font-size:12px;width:200px;background-color:#f3f3f3;">1.0</td>
+            <td class="nopadding" style="color:#75a22a;font-size:12px;width:290px;background-color:#f3f3f3;"><%: Model.CurrentProductName %></td>
+            <td class="nopadding" style="color:#75a22a;font-size:12px;background-color:#f3f3f3;"><%: Model.CurrentSprintName %></td>
+            <td class="nopadding" style="color:#75a22a;font-size:12px;width:290px;background-color:#f3f3f3;"><%: Model.NextReleaseName %></td>
         </tr>
     </table> 
     </div>  
