@@ -10,10 +10,6 @@ namespace ScrumTime.ViewModels
 {
     public class ScrumCollectionViewModel 
     {                
-        public List<Sprint> Sprints { get; set; }
-        public int SprintId { get; set; }
-        public string SprintName { get; set; }
-        
         public List<Scrum> Scrums { get; set; }
         
         public List<string> Usernames { get; set; }            
@@ -23,17 +19,11 @@ namespace ScrumTime.ViewModels
         {
             Scrums = new List<Scrum>();
             Scrums = new List<Scrum>();
-            Sprints = new List<Sprint>();
-            SprintId = -1;
-            SprintName = "";
         }
 
         public ScrumCollectionViewModel(int sprintId)
         {
             Scrums = new List<Scrum>();
-            Sprints = new List<Sprint>();
-            SprintId = sprintId;
-            SprintName = "";
         }
         
 
@@ -49,8 +39,6 @@ namespace ScrumTime.ViewModels
                               select s;
                 List<Scrum> scrums = results.ToList<Scrum>();
                 scrumCollectionViewModel.Scrums = scrums;
-                scrumCollectionViewModel.Sprints = SprintService.GetAllSprints(scrumTimeEntities, productId);
-                scrumCollectionViewModel.SprintName = sprint.Name;
             }
             scrumCollectionViewModel.Usernames = new List<string>();
             AccountMembershipService membershipService = new AccountMembershipService();
