@@ -28,7 +28,21 @@ namespace ScrumTime.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            return View();
+            DateTime fromDate = DateTime.Now.AddDays(-60);
+            DateTime toDate = DateTime.Now.AddDays(60);
+            SprintService sprintService = new SprintService(_ScrumTimeEntities);
+            Sprint currentSprint = sprintService.GetSprintById(SessionHelper.GetCurrentSprintId(User.Identity.Name, Session));
+            if (currentSprint != null && currentSprint.SprintId > 0)
+            {
+                fromDate = currentSprint.StartDate.AddDays(-60);
+                toDate = currentSprint.FinishDate.AddDays(60);
+            }
+            ScheduleViewModel scheduleViewModel = new ScheduleViewModel()
+            {
+                FromDate = fromDate,
+                ToDate = toDate
+            };
+            return View(scheduleViewModel);
         }
 
         [Authorize]

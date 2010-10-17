@@ -39,7 +39,7 @@ namespace ScrumTime.ViewModels
             
                 foreach (Sprint sprint in descendingSprints)
                 {
-                    YAxisTicks.Add("Sprint " + sprint.Name);
+                    YAxisTicks.Add(sprint.Name);
                 }
             }            
 

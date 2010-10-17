@@ -104,6 +104,7 @@
     <Compile Include="ViewModels\JsonSprintBurnDown.cs" />
     <Compile Include="ViewModels\ProductCollectionViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
+    <Compile Include="ViewModels\ScheduleViewModel.cs" />
     <Compile Include="ViewModels\ScrumCollectionViewModel.cs" />
     <Compile Include="ViewModels\ScrumViewModel.cs" />
     <Compile Include="ViewModels\JsonSchedule.cs" />

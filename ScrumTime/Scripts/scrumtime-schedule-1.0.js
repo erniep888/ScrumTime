@@ -1,6 +1,5 @@
 ﻿function initializeRealeaseSchedule() {
     $("#toDatePicker").datepicker({
-        defaultDate: +60,
         onSelect: function (dateText, inst) { updateReleaseSchedule(); },
         onClose: function (dateText, inst) { updateReleaseSchedule(); },
         changeMonth: true,
@@ -11,7 +10,6 @@
         yearRange: 'c-4:c+4'
     });
     $("#fromDatePicker").datepicker({
-        defaultDate: -60,
         onSelect: function (dateText, inst) { updateReleaseSchedule(); },
         onClose: function (dateText, inst) { updateReleaseSchedule(); },
         changeMonth: true,
@@ -21,11 +19,6 @@
         selectOtherMonths: true,
         yearRange: 'c-4:c+4'
     });
-
-    var today = new Date();
-
-    $("#fromDatePicker").datepicker("setDate", today.getDate() - 60);
-    $("#toDatePicker").datepicker("setDate", today.getDate() + 60);
 
     $("#scheduleMenu").tabs();
     $("#scheduleMenu").tabs("option", "cache", false);
