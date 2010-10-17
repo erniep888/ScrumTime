@@ -78,15 +78,7 @@ namespace ScrumTime.Controllers
             };
             return PartialView("Edit", sprint);
         }
-
-        // Change Selected Sprint
-        [Authorize]
-        [HttpPost]
-        public ActionResult ChangeSprint(int id)
-        {
-            SessionHelper.SetCurrentSprintId(User.Identity.Name, Session, id);
-            return new SecureJsonResult("success");
-        }
+      
 
         /// <summary>
         /// Returns the name of the current Sprint

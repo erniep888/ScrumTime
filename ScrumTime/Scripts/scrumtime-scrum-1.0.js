@@ -2,17 +2,6 @@
     $(".scrum_" + scrumId).click(function () {
         fetchScrumInformationForEdit(scrumId);
     });
-
-    $("#scrumSelectedSprint").change(function () {
-        $.post('/Sprint/ChangeSprint',
-            {
-                id: $("#scrumSelectedSprint").val()
-            },
-            function (data) {
-                refreshScrumList();
-            }
-        );
-    });
     return;
 }
 

@@ -14,29 +14,6 @@
             </div>            
             <div style="position:absolute;left:450px;width:80px;margin-top:0px;color:#79a52c;font-weight:bold;
                 letter-spacing:1px;font-size:13px;text-align:left;">Scrums</div>
-            <div style="position:absolute;right:30px;margin-top:10px;color:#666;text-align:right">
-                <span>Sprint: </span>                        
-                <select id="scrumSelectedSprint" style="text-align:left;font-family:Verdana;margin-right:4px;">
-                <%
-                    foreach(ScrumTime.Models.Sprint sprint in Model.Sprints)
-                    {
-                        if (sprint.SprintId == Model.SprintId)
-                        {
-                            %>
-                            <option value="<%: sprint.SprintId %>" selected="selected"><%: sprint.Name %></option>
-                            <%
-                        }
-                        else
-                        {
-                            %>
-                            <option value="<%: sprint.SprintId %>"><%: sprint.Name %></option>
-                            <%
-                    
-                        }
-                    }
-                %>            
-                </select>
-            </div>
         </div>       
         <table style="width:964px;font-family:Verdana;padding:0;border:2px solid #999;height:30px;margin-left:0px;
             background-color:#f3f3f3;font-size:12px;color:#666;" cellpadding="0" cellspacing="0">
