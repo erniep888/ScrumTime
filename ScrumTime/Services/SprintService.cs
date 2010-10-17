@@ -133,12 +133,12 @@ namespace ScrumTime.Services
             var results = from s in _ScrumTimeEntities.Sprints
                           where s.StartDate.CompareTo(targetDate) < 0
                           && s.ProductId == productId
-                          orderby s.StartDate descending
+                          orderby s.StartDate ascending
                           select s;
             if (results != null)
             {
                 if (results.Count() > numberToReturn)
-                    sprints = results.ToList().GetRange(0, numberToReturn);
+                    sprints = results.ToList().GetRange(results.Count() - numberToReturn, numberToReturn);
                 else
                     sprints = results.ToList();
             }
