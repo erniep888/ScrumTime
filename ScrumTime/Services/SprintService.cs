@@ -123,12 +123,15 @@ namespace ScrumTime.Services
             return totalHourCount;
         }
 
-        public List<Sprint> GetMostRecentSprints(int productId, int numberToReturn)
+        public List<Sprint> GetMostRecentSprints(int productId, int currentSprintId, int numberToReturn)
         {
             List<Sprint> sprints = new List<Sprint>();
-            DateTime today = DateTime.Now;
+            Sprint currentSprint = GetSprintById(currentSprintId);
+            DateTime targetDate = DateTime.Today.AddDays(10);
+            if (currentSprint != null && currentSprint.SprintId > 0)
+                targetDate = currentSprint.StartDate.AddDays(10);
             var results = from s in _ScrumTimeEntities.Sprints
-                          where s.StartDate.CompareTo(today) < 0
+                          where s.StartDate.CompareTo(targetDate) < 0
                           && s.ProductId == productId
                           orderby s.StartDate descending
                           select s;

@@ -62,7 +62,8 @@ namespace ScrumTime.Controllers
         public ActionResult UpdateTaskHoursPerSprint()
         {
             int productId = SessionHelper.GetCurrentProductId(User.Identity.Name, Session);
-            JsonTaskHoursPerSprint jsonTaskHoursPerSprint = new JsonTaskHoursPerSprint(productId);
+            int currentSprintId = SessionHelper.GetCurrentSprintId(User.Identity.Name, Session);
+            JsonTaskHoursPerSprint jsonTaskHoursPerSprint = new JsonTaskHoursPerSprint(productId, currentSprintId);
             return new SecureJsonResult(jsonTaskHoursPerSprint);
         }
 

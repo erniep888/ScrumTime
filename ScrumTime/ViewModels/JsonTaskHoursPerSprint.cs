@@ -14,7 +14,7 @@ namespace ScrumTime.ViewModels
         public decimal YAxisMin { get; set; }
         public decimal YAxisMax { get; set; }
 
-        public JsonTaskHoursPerSprint(int productId)
+        public JsonTaskHoursPerSprint(int productId, int currentSprintId)
             : base()
         {
             Data = new List<object>();
@@ -27,7 +27,7 @@ namespace ScrumTime.ViewModels
                 ProductService productService = new ProductService(scrumTimeEntities);
                 Product product = productService.GetProductById(productId);
 
-                Data.Add(CreateTaskHoursPerSprintJsonList(product));
+                Data.Add(CreateTaskHoursPerSprintJsonList(product, currentSprintId));
             }
             else            
                 HandleBadProductId();
@@ -48,7 +48,7 @@ namespace ScrumTime.ViewModels
 
 
         // [[1, 250, 'Unscheduled'], [2, 54, 'Sprint 1'], [3, 20, 'Sprint Banana'], [4, 0, 'Sprint Cross Reference'], [5, 8, 'Sprint Sammy']]
-        private List<object> CreateTaskHoursPerSprintJsonList(Product product)
+        private List<object> CreateTaskHoursPerSprintJsonList(Product product, int currentSprintId)
         {
             List<object> taskHoursPerSprintJsonList = new List<object>();
 
@@ -64,7 +64,7 @@ namespace ScrumTime.ViewModels
             Ticks.Add(" ");
 
             SprintService sprintService = new SprintService(scrumTimeEntities);
-            List<Sprint> mostRecentSprints = sprintService.GetMostRecentSprints(product.ProductId, 4);
+            List<Sprint> mostRecentSprints = sprintService.GetMostRecentSprints(product.ProductId, currentSprintId, 4);
             int index = 2;
             foreach (Sprint recentSprint in mostRecentSprints)
             {

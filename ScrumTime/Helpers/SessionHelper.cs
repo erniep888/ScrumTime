@@ -130,7 +130,7 @@ namespace ScrumTime.Helpers
                 if (productIdOfSample > -1)
                 {
                     SprintService sprintService = new SprintService(scrumTimeEntities);
-                    List<Sprint> mostRecentSprints = sprintService.GetMostRecentSprints(productIdOfSample, 1);
+                    List<Sprint> mostRecentSprints = sprintService.GetMostRecentSprints(productIdOfSample, -1, 1);
                     if (mostRecentSprints.Count > 0 && mostRecentSprints[0] != null)
                     {
                         userSetting = new UserSetting()
