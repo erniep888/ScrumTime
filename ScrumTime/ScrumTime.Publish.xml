@@ -14,7 +14,7 @@
     <file relUrl="Views/Product/ReadOnly.ascx" publishTime="10/08/2010 16:34:15" />
     <file relUrl="Scripts/Plugins/jqplot.canvasAxisLabelRenderer.min.js" publishTime="10/08/2010 16:34:15" />
     <file relUrl="Content/Css/jquery.jqplot.min.css" publishTime="10/08/2010 16:34:14" />
-    <file relUrl="Web.config" publishTime="10/17/2010 15:13:20" />
+    <file relUrl="Web.config" publishTime="10/18/2010 12:45:26" />
     <file relUrl="Scripts/scrumtime-story-1.0.js" publishTime="10/17/2010 12:59:39" />
     <file relUrl="Content/Css/smooth_withgreen/images/ui-bg_glass_65_ffffff_1x400.png" publishTime="10/08/2010 16:34:15" />
     <file relUrl="Views/Story/ReadOnlyColumns.ascx" publishTime="10/08/2010 16:34:15" />
@@ -31,7 +31,6 @@
     <file relUrl="Views/Release/ReadOnly.ascx" publishTime="10/08/2010 16:34:15" />
     <file relUrl="Views/Sprint/ReadOnly.ascx" publishTime="10/08/2010 16:34:15" />
     <file relUrl="Views/Sprint/CurrentReadOnly.ascx" publishTime="10/16/2010 18:35:03" />
-    <file relUrl="Views/Product/CurrentEdit.ascx" publishTime="10/16/2010 17:51:18" />
     <file relUrl="Content/Css/smoothness/images/ui-bg_highlight-soft_75_cccccc_1x100.png" publishTime="10/08/2010 16:34:15" />
     <file relUrl="Scripts/Plugins/jqplot.pointLabels.min.js" publishTime="10/08/2010 16:34:15" />
     <file relUrl="Views/Story/ReadOnly.ascx" publishTime="10/08/2010 16:34:15" />
@@ -48,7 +47,7 @@
     <file relUrl="Content/Css/smoothness/images/ui-bg_glass_65_ffffff_1x400.png" publishTime="10/08/2010 16:34:15" />
     <file relUrl="Views/Schedule/Index.ascx" publishTime="10/17/2010 12:43:12" />
     <file relUrl="Views/Sprint/CurrentEdit.ascx" publishTime="10/17/2010 13:12:14" />
-    <file relUrl="App_Data/ScrumTime.mdf" publishTime="10/17/2010 15:11:17" />
+    <file relUrl="App_Data/ScrumTime.mdf" publishTime="10/18/2010 12:45:25" />
     <file relUrl="Content/Css/main.css" publishTime="10/08/2010 16:34:14" />
     <file relUrl="Views/Scrum/ReadOnly.ascx" publishTime="10/12/2010 18:54:20" />
     <file relUrl="Views/Story/Backlog.ascx" publishTime="10/08/2010 16:34:15" />
@@ -66,7 +65,7 @@
     <file relUrl="Content/Css/smooth_withgreen/jquery-ui-1.8.4.custom.css" publishTime="10/08/2010 16:34:15" />
     <file relUrl="Content/Css/smooth_withgreen/images/ui-icons_555555_256x240.png" publishTime="10/08/2010 16:34:15" />
     <file relUrl="Content/Images/Logos/logo_graph_48x48.png" publishTime="10/08/2010 16:34:15" />
-    <file relUrl="Views/Story/Schedule.ascx" publishTime="10/08/2010 16:34:15" />
+    <file relUrl="Content/Images/movie.png" publishTime="07/19/2010 23:51:47" />
     <file relUrl="Views/Sprint/Edit.ascx" publishTime="10/08/2010 16:34:15" />
     <file relUrl="Content/Css/smooth_withgreen/images/ui-bg_hexagon_55_e2e6d6_12x10.png" publishTime="10/08/2010 16:34:15" />
     <file relUrl="Views/Task/ReadOnly.ascx" publishTime="10/08/2010 16:34:15" />
@@ -77,7 +76,7 @@
     <file relUrl="Views/Task/Edit.ascx" publishTime="10/08/2010 16:34:15" />
     <file relUrl="Content/Images/MessageTypes/spinner.gif" publishTime="07/19/2010 23:51:47" />
     <file relUrl="Scripts/scrumtime-dashboard-1.0.js" publishTime="10/16/2010 12:41:28" />
-    <file relUrl="App_Data/ScrumTime_log.ldf" publishTime="10/17/2010 15:11:17" />
+    <file relUrl="App_Data/ScrumTime_log.ldf" publishTime="10/18/2010 12:45:25" />
     <file relUrl="Content/Css/smoothness/images/ui-bg_flat_75_ffffff_40x100.png" publishTime="10/08/2010 16:34:15" />
     <file relUrl="Scripts/Plugins/jqplot.logAxisRenderer.min.js" publishTime="10/08/2010 16:34:15" />
     <file relUrl="Content/Css/smoothness/images/ui-bg_glass_95_fef1ec_1x400.png" publishTime="10/08/2010 16:34:15" />
@@ -104,19 +103,20 @@
     <file relUrl="Content/Css/smoothness/images/ui-icons_888888_256x240.png" publishTime="10/08/2010 16:34:15" />
     <file relUrl="Views/Account/List.ascx" publishTime="10/08/2010 16:34:15" />
     <file relUrl="Views/Shared/Error.aspx" publishTime="07/19/2010 23:51:47" />
+    <file relUrl="bin/ScrumTime.dll" publishTime="10/18/2010 12:45:03" />
     <file relUrl="Views/Product/Edit.ascx" publishTime="10/08/2010 16:34:15" />
     <file relUrl="Content/Css/smooth_withgreen/images/ui-bg_diagonals-medium_95_f8dde1_40x40.png" publishTime="10/08/2010 16:34:15" />
     <file relUrl="Content/Images/Menu/save24x24.png" publishTime="10/08/2010 16:34:15" />
     <file relUrl="Content/Css/smoothness/images/ui-bg_flat_0_aaaaaa_40x100.png" publishTime="10/08/2010 16:34:15" />
     <file relUrl="Content/Css/smoothness/images/ui-bg_glass_55_fbf9ee_1x400.png" publishTime="10/08/2010 16:34:15" />
-    <file relUrl="bin/ScrumTime.pdb" publishTime="10/17/2010 15:13:15" />
+    <file relUrl="bin/ScrumTime.pdb" publishTime="10/18/2010 12:45:03" />
     <file relUrl="Scripts/Plugins/jqplot.enhancedLegendRenderer.min.js" publishTime="10/08/2010 16:34:15" />
     <file relUrl="Views/Scrum/Index.ascx" publishTime="10/17/2010 11:18:04" />
     <file relUrl="Content/Images/Menu/trash.png" publishTime="10/08/2010 16:34:15" />
-    <file relUrl="bin/ScrumTime.dll" publishTime="10/17/2010 15:13:15" />
+    <file relUrl="Views/Story/Schedule.ascx" publishTime="10/08/2010 16:34:15" />
     <file relUrl="Scripts/Plugins/jqplot.categoryAxisRenderer.min.js" publishTime="10/08/2010 16:34:15" />
     <file relUrl="Content/Images/asterisk.gif" publishTime="07/19/2010 23:51:47" />
-    <file relUrl="Content/Images/movie.png" publishTime="07/19/2010 23:51:47" />
+    <file relUrl="Views/Product/CurrentEdit.ascx" publishTime="10/16/2010 17:51:18" />
     <file relUrl="Content/Images/Logos/ScrumTimeLogo.png" publishTime="10/08/2010 16:34:15" />
     <file relUrl="Views/Account/ChangePasswordSuccess.aspx" publishTime="07/19/2010 23:51:47" />
     <file relUrl="Views/Task/StoryTaskBacklog.ascx" publishTime="10/08/2010 16:34:15" />
