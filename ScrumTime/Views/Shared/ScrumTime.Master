@@ -39,25 +39,24 @@
 </head>
 
 <body>   
-    <%--<div id="pageHeader"></div>--%>
-	<%--<div id="menuBackgroundDiv"></div>--%>
 	<div id="pageCenterDiv">
 		<div id="pageTitleDiv">			
             <img id="pageLogoGraph" src="<%: Url.Content("~/Content/Images/Logos/logo_graph_48x48.png") %>" height="32px" width="32px" alt="ScrumTime"/>
             <a class="simpleLink" style="font-size:11px;color:#75a22a;" href="http://scrumtime.org">		 
                 <img id="pageLogo" src="<%: Url.Content("~/Content/Images/Logos/ScrumTimeLogo.png") %>" alt="ScrumTime"/>
             </a>
-			<div id="pageTagline">scrum project management tool</div>
+            <div id="pageTagline">scrum project management tool</div>			
 		</div>
-        <div class="loginLink" style="z-index:100;position:absolute;right:30px;top:96px;font-size:12px;">
-            <% Html.RenderPartial("LogOnUserControl"); %>
-        </div>
 
         <% Html.RenderPartial("~/Views/Home/CurrentProductAndSprint.ascx"); %>
-	    
-        <% Html.RenderPartial("~/Views/Shared/MainMenu.ascx"); %>
-        
+
+
+        <div class="loginLink" style="z-index:100;position:absolute;right:30px;top:106px;font-size:12px;">
+            <% Html.RenderPartial("LogOnUserControl"); %>
+        </div>
     </div>
+    <% Html.RenderPartial("~/Views/Shared/MainMenu.ascx"); %>
+
     <% Html.RenderPartial("~/Views/Shared/FooterControl.ascx"); %>
 
     <asp:ContentPlaceHolder ID="ScriptingPlaceHolder" runat="server" />

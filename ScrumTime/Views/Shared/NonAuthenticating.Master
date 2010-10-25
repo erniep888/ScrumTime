@@ -19,8 +19,8 @@
 
 <body>
 
-	<div id="pageHeader"></div>
-	<div id="menuBackgroundDiv" style="z-index:50"></div>
+	<%--<div id="pageHeader"></div>--%>
+	<%--<div id="menuBackgroundDiv" style="z-index:50"></div>--%>
 	<div id="pageCenterDiv">
 		<div id="pageTitleDiv">
 			<img id="pageLogoGraph" src="/Content/Images/Logos/logo_graph_48x48.png" height="32px" width="32px" alt="ScrumTime"/>		 
