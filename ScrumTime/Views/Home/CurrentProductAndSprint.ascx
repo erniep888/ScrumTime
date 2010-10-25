@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<dynamic>" %>
 
-    <div id="currentProductAndSprint" class="nopadding" style="position:absolute;top:65px;right:18px;">
+    <div id="currentProductAndSprint" class="nopadding" style="position:absolute;top:60px;right:18px;">
         <table class="nopadding">
             <tr>
                 <td class="nopadding" style="color:#666;font-size:12px;padding-right:6px">Product:</td>

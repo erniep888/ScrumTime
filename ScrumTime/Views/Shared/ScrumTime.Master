@@ -41,10 +41,11 @@
 <body>   
 
     <% Html.RenderPartial("~/Views/Shared/HeaderControl.ascx"); %>
+
     <% Html.RenderPartial("~/Views/Home/CurrentProductAndSprint.ascx"); %>
 
 
-	<div class="loginLink" style="z-index:100;position:absolute;right:30px;top:106px;font-size:12px;">
+	<div class="loginLink" style="z-index:100;position:absolute;right:30px;top:96px;font-size:12px;">
 		<% Html.RenderPartial("LogOnUserControl"); %>
 	</div>
 	

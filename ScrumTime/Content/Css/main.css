@@ -33,40 +33,27 @@ td
 	margin-bottom:4px;
 }        
 #pageHeader {	
-	height:121px;
+	height:70px;
 	background-color:#fff;
-	border-bottom:2px solid #aaaaaa;
-	position:absolute;
-	width:100%;
 	z-index:1;
-}
-
-#pageCenterDiv{
-	margin: 0px auto;
-	/*width:990px;*/
-	background:#eee;
-	/*height:666px;*/
-	/*position:absolute;*/
-	z-index:2;
-	/*left:50%;*/
-	/*margin-left:-501px;*/
+	min-width:990px;
 }
 
 #pageTitleDiv{	
-	height:80px;
+	
 	background:#fff;
 }
 
 #pageLogo {	
 	float:left;
-	margin-top:22px;
+	margin-top:18px;
 	padding-left: 8px;
 }
 
 #pageLogoGraph 
 {
 	float:left;
-	margin-top:25px;
+	margin-top:21px;
 	margin-left:14px;
 }
 
@@ -92,12 +79,14 @@ td
 	margin-right:14px;
 	border: 2px solid #aaaaaa;
 	color:#666;
+	min-width:990px;
 }
 
 #mainMenu
 {	
 	margin-left:18px;
 	margin-right:18px;	
+	min-width:1024px;
 }
 
 .simpleLink:active{
