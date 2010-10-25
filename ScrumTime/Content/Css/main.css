@@ -43,13 +43,13 @@ td
 
 #pageCenterDiv{
 	margin: 0px auto;
-	width:990px;
+	/*width:990px;*/
 	background:#fff;
-	height:666px;
-	position:absolute;
+	/*height:666px;*/
+	/*position:absolute;*/
 	z-index:2;
-	left:50%;
-	margin-left:-501px;
+	/*left:50%;*/
+	/*margin-left:-501px;*/
 }
 
 #pageTitleDiv{	
