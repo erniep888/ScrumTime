@@ -19,17 +19,9 @@
 
 <body>
 
-	<%--<div id="pageHeader"></div>--%>
-	<%--<div id="menuBackgroundDiv" style="z-index:50"></div>--%>
-	<div id="pageCenterDiv">
-		<div id="pageTitleDiv">
-			<img id="pageLogoGraph" src="/Content/Images/Logos/logo_graph_48x48.png" height="32px" width="32px" alt="ScrumTime"/>		 
-            <img id="pageLogo" src="/Content/Images/Logos/ScrumTimeLogo.png" alt="ScrumTime"/>		           	
-			<div id="pageTagline">scrum project management tool</div>
-		</div>			
-        <div id="main" style="position:absolute;top:88px;left:0px;border: 2px solid #aaaaaa;width:968px;height:558px;margin:0;padding:10px;">
-                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-        </div>
+    <% Html.RenderPartial("~/Views/Shared/HeaderControl.ascx"); %>
+    <div id="main" style="border: 2px solid #aaaaaa;height:548px;margin-left:14px;margin-right:14px;padding:10px;">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
     </div>
 	<% Html.RenderPartial("~/Views/Shared/FooterControl.ascx"); %>
 

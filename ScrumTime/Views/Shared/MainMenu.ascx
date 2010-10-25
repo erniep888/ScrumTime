@@ -1,6 +1,4 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<dynamic>" %>
-
-
     <div id="mainMenu" >            
         <ul style="font-size:12px">              
             <li><a href="Dashboard/Index">Dashboard</a></li>                    

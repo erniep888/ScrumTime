@@ -65,9 +65,9 @@ td
 
 #pageLogoGraph 
 {
-    float:left;
+	float:left;
 	margin-top:25px;
-	margin-left:16px;
+	margin-left:14px;
 }
 
 #pageTagline{
@@ -76,25 +76,28 @@ td
 	font-size: 20px; 
 	text-align: right; 
 	vertical-align:top;
-	padding-right: 18px;
+	padding-right: 14px;
 	padding-top: 18px;
 }
 
 
-#pageCenterFooterDiv
+#pageFooterDiv
 {
 	font-size:12px;
-	margin: 0px auto;
-	width:998px;
 	background:#eee;
-	height:20px;
-	position:absolute;
+	height:20px;	
 	z-index:1;
-	left:50%;
-	margin-left:-501px;
+	margin-top:5px;
+	margin-left:14px;
+	margin-right:14px;
 	border: 2px solid #aaaaaa;
-	top:672px;
 	color:#666;
+}
+
+#mainMenu
+{	
+	margin-left:18px;
+	margin-right:18px;	
 }
 
 .simpleLink:active{
