@@ -1,14 +1,14 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<ScrumTime.ViewModels.TaskCollectionViewModel>" %>
 <tr id="storyRow_<%: Model.ParentStoryModel.StoryId %>" class="storyRow" style="border:0px" >                
-   <td style="padding:0px;margin:0px;border:0px;" colspan="6">           
-     <table style="width:940px;font-family:Verdana;padding:0px;margin:0px;border:0px" cellpadding="0" cellspacing="0">
+   <td style="padding:0px;margin:0px;border:0px;" colspan="7">           
+     <table style="width:100%;font-family:Verdana;padding:0px;margin:0px;border:0px" cellpadding="0" cellspacing="0">
             <tr style="padding:0px;margin:0px;border:0px;">
                 <%
                     Html.RenderPartial("~/Views/Story/ReadOnlyColumns.ascx", Model.ParentStoryModel);
                 %>
             </tr>
             <tr style="padding:0px;margin:0px;border:0px;">
-                <td colspan="6" style="border:0px">
+                <td colspan="7" style="border:0px">
                     <div id="taskContainerId_<%: Model.ParentStoryModel.StoryId %>" style="margin-left:10px;margin-right:10px;margin-bottom:10px;border:1px dotted #444;">
                         <div id="Div4" style="height:22px;width:100%;background-color:white;
                             font-family:Verdana;font-size:10px;padding-top:0px;border:0px;">
