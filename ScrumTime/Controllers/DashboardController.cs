@@ -1,25 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using ScrumTime.ViewModels;
-using ScrumTime.Helpers;
-using System.Web.Security;
-using System.Web.UI;
+﻿using System.Web.Mvc;
 using ScrumTime.Helpers;
 using ScrumTime.Models;
-using ScrumTime.ViewModels;
 using ScrumTime.Services;
+using ScrumTime.ViewModels;
 
 namespace ScrumTime.Controllers
 {
-    public class DashboardController : Controller
+    public partial class DashboardController : Controller
     {
         //
         // GET: /Dashboard/  
         [Authorize]
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {            
             ScrumTimeEntities scrumTimeEntities = new ScrumTimeEntities();
             string currentProductName = "None";
@@ -51,7 +43,7 @@ namespace ScrumTime.Controllers
         }
 
         [Authorize]
-        public ActionResult UpdateSprintBurnDown()
+        public virtual ActionResult UpdateSprintBurnDown()
         {
             int sprintId = SessionHelper.GetCurrentSprintId(User.Identity.Name, Session);
             JsonSprintBurnDown jsonSprintBurnDown = new JsonSprintBurnDown(sprintId);
@@ -59,7 +51,7 @@ namespace ScrumTime.Controllers
         }
 
         [Authorize]
-        public ActionResult UpdateTaskHoursPerSprint()
+        public virtual ActionResult UpdateTaskHoursPerSprint()
         {
             int productId = SessionHelper.GetCurrentProductId(User.Identity.Name, Session);
             int currentSprintId = SessionHelper.GetCurrentSprintId(User.Identity.Name, Session);

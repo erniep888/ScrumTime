@@ -1,6 +1,6 @@
-﻿function setupReadOnlyTaskRow(taskId, storyId) {
+﻿function setupReadOnlyTaskRow(taskId, storyId, editUrl) {
     $(".task_" + taskId).click(function () {
-        $.post('/Task/Edit',
+        $.post(editUrl,
             {
                 id: taskId
             },
@@ -19,9 +19,9 @@
     return;
 }
 
-function cancelTaskRowEdit(taskId, storyId) {
+function cancelTaskRowEdit(taskId, storyId, readOnlyUrl) {
     if (taskId > 0) {
-        $.post('/Task/ReadOnly',
+        $.post(readOnlyUrl,
             {
                 id: taskId
             },
@@ -38,10 +38,10 @@ function cancelTaskRowEdit(taskId, storyId) {
     return;
 }
 
-function addTaskRow(storyId) {
+function addTaskRow(storyId, newUrl) {
     $("#taskTableBody_" + storyId + " .taskRow").removeClass("taskAltRows");
 
-    $.post('/Task/New',
+    $.post(newUrl,
         {
             storyId: storyId
         },
@@ -68,25 +68,25 @@ function hideBottomContainerBorderIfNeeded(storyId) {
     return;
 }
 
-function saveTaskRowEdit(taskId, storyId) {
+function saveTaskRowEdit(taskId, storyId, saveUrl, totalTaskHrsUrl) {
     var description = $('#taskDescription_' + taskId).val();
     var hours = $('#taskHours_' + taskId).val();
 
     if (taskId > 0) {
-        $.post('/Task/Save',
+        $.post(saveUrl,
             {
                 storyId: storyId, taskId: taskId,
                 description: description, hours: hours
             },
             function (data) {
                 $('#taskRow_' + taskId).replaceWith(data);
-                setTaskTotalHours(storyId);
+                setTaskTotalHours(storyId, totalTaskHrsUrl);
             }
         );              
         
     }
     else {
-        $.post('/Task/Save',
+        $.post(saveUrl,
             {
                 storyId: storyId, taskId: taskId,
                 description: description, hours: hours
@@ -95,7 +95,7 @@ function saveTaskRowEdit(taskId, storyId) {
                 $("#taskTableBody_" + storyId + " .taskRow").removeClass("taskAltRows");
                 $('#taskTableBody_' + storyId).replaceWith(data);
                 $("#taskTableBody_" + storyId + " .taskRow:odd").addClass("taskAltRows");
-                setTaskTotalHours(storyId);
+                setTaskTotalHours(storyId, totalTaskHrsUrl);
             }
         );
     }
@@ -109,9 +109,9 @@ function saveTaskRowEdit(taskId, storyId) {
 
 // TODO: ************  Turn total into a number
 
-function setTaskTotalHours(storyId) {
+function setTaskTotalHours(storyId, totalTaskHrsUrl) {
 
-    $.post('/Task/TotalTaskHours',
+    $.post(totalTaskHrsUrl,
         {
             storyId: storyId
         },
@@ -132,16 +132,8 @@ function getTaskHourString(taskHours){
     return taskHourString;
 }
 
-
-
-
-
-
-
-
-
-function deleteTask(storyId, taskId) {
-    $.post('/Task/Delete',
+function deleteTask(storyId, taskId, deleteUrl, totalTaskHrsUrl) {
+    $.post(deleteUrl,
     {
         id: taskId,
         taskId: taskId,
@@ -151,15 +143,15 @@ function deleteTask(storyId, taskId) {
         $("#taskTableBody_" + storyId + " .taskRow").removeClass("taskAltRows");
         $('#taskTableBody_' + storyId).replaceWith(data);
         $("#taskTableBody_" + storyId + " .taskRow:odd").addClass("taskAltRows");
-        setTaskTotalHours(storyId);
+        setTaskTotalHours(storyId, totalTaskHrsUrl);
     });
 
     // TODO: Implement delete failure GUI
 }
 
-function setupTaskEditorCancelButton(storyId) {    
+function setupTaskEditorCancelButton(storyId, cancelOnlyUrl) {    
     $.ajax({
-        url: '/Story/StoryActionCancelOnly',
+        url: cancelOnlyUrl,
         data: ({ storyId: storyId }),
         success: function (data) {
             $('.story_' + storyId + '_Actions').replaceWith(data);

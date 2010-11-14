@@ -1,14 +1,16 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
 <%
-    if (Request.IsAuthenticated) {
+    if (Request.IsAuthenticated)
+    {
 %>
-        Welcome <b><%: Page.User.Identity.Name %></b>!
-        &nbsp;&nbsp;&nbsp;<%: Html.ActionLink("Log Off", "LogOff", "Account") %>
+Welcome <b>
+    <%: Page.User.Identity.Name %></b>! &nbsp;&nbsp;&nbsp;<%: Html.ActionLink("Log Off", MVC.Account.LogOff()) %>
 <%
     }
-    else {
-%> 
-        <%: Html.ActionLink("Log On", "LogOn", "Account") %>        
+    else
+    {
+%>
+<%: Html.ActionLink("Log On", MVC.Account.LogOn()) %>
 <%
     }
 %>

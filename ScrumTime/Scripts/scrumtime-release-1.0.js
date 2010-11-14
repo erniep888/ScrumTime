@@ -1,6 +1,6 @@
-﻿function setupReadOnlyReleaseRow(productId, releaseId) {
+﻿function setupReadOnlyReleaseRow(productId, releaseId, url) {
     $(".release_" + releaseId).click(function () {
-        $.post('/Release/Edit',
+        $.post(url,
             {
                 id: releaseId
             },
@@ -19,9 +19,9 @@
     return;
 }
 
-function cancelReleaseRowEdit(productId, releaseId) {
+function cancelReleaseRowEdit(productId, releaseId, url) {
     if (releaseId > 0) {
-        $.post('/Release/ReadOnly',
+        $.post(url,
             {
                 id: releaseId
             },
@@ -38,10 +38,10 @@ function cancelReleaseRowEdit(productId, releaseId) {
     return;
 }
 
-function addReleaseRow(productId) {
+function addReleaseRow(productId, url) {
     $("#releaseTableBody_" + productId + " .releaseRow").removeClass("typicalAltRows");
 
-    $.post('/Release/New',
+    $.post(url,
         {
             productId: productId
         },
@@ -59,13 +59,13 @@ function addReleaseRow(productId) {
 }
 
 
-function saveReleaseRowEdit(productId, releaseId) {
+function saveReleaseRowEdit(productId, releaseId, saveUrl, updateCalendarUrl) {
     var name = $('#releaseName_' + releaseId).val();
     var description = $('#releaseDescription_' + releaseId).val();
     var target = $('#releaseTarget_' + releaseId).val();    
 
     if (releaseId > 0) {
-        $.post('/Release/Save',
+        $.post(saveUrl,
             {
                 name: name, releaseId: releaseId,
                 description: description, target: target,
@@ -73,13 +73,13 @@ function saveReleaseRowEdit(productId, releaseId) {
             },
             function (data) {
                 $('#releaseRow_' + releaseId).replaceWith(data);
-                updateReleaseSchedule();
+                updateReleaseSchedule(updateCalendarUrl);
             }
         );
 
     }
     else {
-        $.post('/Release/Save',
+        $.post(saveUrl,
             {
                 name: name, releaseId: releaseId,
                 description: description, target: target,
@@ -89,7 +89,7 @@ function saveReleaseRowEdit(productId, releaseId) {
                 $("#releaseTableBody_" + productId + " .releaseRow").removeClass("typicalAltRows");
                 $('#releaseContentListId_' + productId).replaceWith(data);
                 $("#releaseTableBody_" + productId + " .releaseRow:odd").addClass("typicalAltRows");
-                updateReleaseSchedule();
+                updateReleaseSchedule(updateCalendarUrl);
             }
         );
     }
@@ -97,8 +97,8 @@ function saveReleaseRowEdit(productId, releaseId) {
     // TODO: Implement save failure GUI
 }
 
-function deleteRelease(productId, releaseId) {
-    $.post('/Release/Delete',
+function deleteRelease(productId, releaseId, deleteUrl, updateCalendarUrl) {
+    $.post(deleteUrl,
     {
         id: releaseId,
         releaseId: releaseId,
@@ -108,7 +108,7 @@ function deleteRelease(productId, releaseId) {
         $("#releaseTableBody_" + productId + " .releaseRow").removeClass("typicalAltRows");
         $('#releaseContentListId_' + productId).replaceWith(data);
         $("#releaseTableBody_" + productId + " .releaseRow:odd").addClass("typicalAltRows");
-        updateReleaseSchedule();
+        updateReleaseSchedule(updateCalendarUrl);
     });
 
     // TODO: Implement delete failure GUI

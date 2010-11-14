@@ -24,7 +24,7 @@
                         <td style="vertical-align:middle;text-align:center;width:80px;border:0px;">
                             <select id="storyPoints_<%: Model.StoryModel.StoryId %>" style="text-align:left;font-family:Verdana;margin-right:4px;">
                             <%
-                                foreach(int point in Model.Points)
+                                foreach(var point in Model.Points)
                                 {
                                     if (point == Model.StoryModel.Points)
                                     {
@@ -47,11 +47,11 @@
                             <table border="0" cellpadding="0" cellspacing="0" style="padding:0;border:0;margin-left:24px" width="94px">
                                 <tr>
                                     <td style="border:0px;">
-                                        <a href="#" class="simpleLink" onclick="saveStoryRowEdit(<%: Model.StoryModel.StoryId %>);"><img alt="Save" src="../../Content/Images/Menu/save24x24.png" /></a>
+                                        <a href="#" class="simpleLink" onclick="saveStoryRowEdit(<%: Model.StoryModel.StoryId %>, '<%: Url.Action(MVC.Story.Save()) %>');"><img alt="Save" src="<%: Links.Content.Images.Menu.save24x24_png %>" /></a>
                                     </td>
                                     <td style="border:0px">
-                                        <a href="#" class="simpleLink" onclick="cancelStoryRowEdit(<%: Model.StoryModel.StoryId %>);">
-                                            <img alt="Cancel" src="../../Content/Images/Menu/cancel24x24.png" /></a>
+                                        <a href="#" class="simpleLink" onclick="cancelStoryRowEdit(<%: Model.StoryModel.StoryId %>, '<%: Url.Action(MVC.Story.ReadOnly()) %>', '<%: Url.Action(MVC.Story.ListByPriority()) %>');">
+                                            <img alt="Cancel" src="<%: Links.Content.Images.Menu.cancel24x24_png %>" /></a>
                                     </td>
                                 </tr>
                             </table>
@@ -66,7 +66,7 @@
                             });
                         </script>
                     </tr>                    
-                    <% Html.RenderPartial("~/Views/Story/Schedule.ascx", Model); %>
+                    <% Html.RenderPartial(MVC.Story.Views.Schedule, Model); %>
                 </tbody>
             </table>
         </td>

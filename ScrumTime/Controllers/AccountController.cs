@@ -14,7 +14,7 @@ namespace ScrumTime.Controllers
 {
 
     [HandleError]
-    public class AccountController : Controller
+    public partial class AccountController : Controller
     {
 
         public IFormsAuthenticationService FormsService { get; set; }
@@ -32,13 +32,13 @@ namespace ScrumTime.Controllers
         // URL: /Account/LogOn
         // **************************************
 
-        public ActionResult LogOn()
+        public virtual ActionResult LogOn()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult LogOn(LogOnModel model, string returnUrl)
+        public virtual ActionResult LogOn(LogOnModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -64,14 +64,14 @@ namespace ScrumTime.Controllers
             return View(model);
         }
 
-        public ActionResult List()
+        public virtual ActionResult List()
         {
             MembershipUserCollection users = MembershipService.GetAllUsers();
             return PartialView();
         }
 
         [HttpPost]
-        public ActionResult Delete(string username)
+        public virtual ActionResult Delete(string username)
         {
             try
             {
@@ -88,7 +88,7 @@ namespace ScrumTime.Controllers
         // URL: /Account/LogOff
         // **************************************
 
-        public ActionResult LogOff()
+        public virtual ActionResult LogOff()
         {
             FormsService.SignOut();
 
@@ -99,14 +99,14 @@ namespace ScrumTime.Controllers
         // URL: /Account/Register
         // **************************************
 
-        public ActionResult Register()
+        public virtual ActionResult Register()
         {
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
             return View();
         }
 
         [HttpPost]
-        public ActionResult Register(RegisterModel model)
+        public virtual ActionResult Register(RegisterModel model)
         {
             if (ModelState.IsValid)
             {
@@ -135,7 +135,7 @@ namespace ScrumTime.Controllers
         // **************************************
 
         [Authorize]
-        public ActionResult ChangePassword()
+        public virtual ActionResult ChangePassword()
         {
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
             return View();
@@ -143,7 +143,7 @@ namespace ScrumTime.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult ChangePassword(ChangePasswordModel model)
+        public virtual ActionResult ChangePassword(ChangePasswordModel model)
         {
             if (ModelState.IsValid)
             {
@@ -166,7 +166,7 @@ namespace ScrumTime.Controllers
         // URL: /Account/ChangePasswordSuccess
         // **************************************
 
-        public ActionResult ChangePasswordSuccess()
+        public virtual ActionResult ChangePasswordSuccess()
         {
             return View();
         }

@@ -10,7 +10,7 @@ using ScrumTime.Services;
 
 namespace ScrumTime.Controllers
 {
-    public class TaskController : Controller
+    public partial class TaskController : Controller
     {
 
         ScrumTimeEntities _ScrumTimeEntities;
@@ -26,7 +26,7 @@ namespace ScrumTime.Controllers
 
         // An AJAX driven result that replaces the story row with a story row + task backlog
         [Authorize]
-        public ActionResult StoryTaskBacklog(int storyId)
+        public virtual ActionResult StoryTaskBacklog(int storyId)
         {
             TaskCollectionViewModel taskCollectionViewModel = TaskCollectionViewModel.BuildByIdAsc(storyId);
             return PartialView(taskCollectionViewModel);
@@ -34,7 +34,7 @@ namespace ScrumTime.Controllers
 
         // An AJAX driven result that returns just the tbody of the task backlog for the given story
         [Authorize]
-        public ActionResult ListById(int storyId)
+        public virtual ActionResult ListById(int storyId)
         {
             TaskCollectionViewModel taskCollectionViewModel = TaskCollectionViewModel.BuildByIdAsc(storyId);
             return PartialView("List", taskCollectionViewModel);
@@ -42,7 +42,7 @@ namespace ScrumTime.Controllers
 
         // An AJAX driven result that returns just the td's of the editable task...replaces read only
         [Authorize]
-        public ActionResult Edit(int id)
+        public virtual ActionResult Edit(int id)
         {
             Task task = _TaskService.GetTaskById(id);
             return PartialView(task);
@@ -50,7 +50,7 @@ namespace ScrumTime.Controllers
 
         // An AJAX driven result that returns just the td's of the read only task...replaces any other
         [Authorize]
-        public ActionResult ReadOnly(int id)
+        public virtual ActionResult ReadOnly(int id)
         {
             Task task = _TaskService.GetTaskById(id);
             return PartialView(task);
@@ -58,7 +58,7 @@ namespace ScrumTime.Controllers
 
         // An AJAX driven result that returns just the td's of the editable "new" task...appends to list
         [Authorize]
-        public ActionResult New(int storyId)
+        public virtual ActionResult New(int storyId)
         {
             Story story = _StoryService.GetStoryById(storyId);
             Task task = new Task()
@@ -72,7 +72,7 @@ namespace ScrumTime.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult TotalTaskHours(int storyId)
+        public virtual ActionResult TotalTaskHours(int storyId)
         {
             var tasks = _TaskService.GetTasksByStoryIdOrderbyIdAsc(storyId);
             return Json(tasks.Sum(t => t.Hours));
@@ -81,7 +81,7 @@ namespace ScrumTime.Controllers
         // POST: /Task/Save
         [Authorize]
         [HttpPost]
-        public ActionResult Save(FormCollection collection)
+        public virtual ActionResult Save(FormCollection collection)
         {
             try
             {
@@ -121,7 +121,7 @@ namespace ScrumTime.Controllers
         // POST: /Task/Delete/5
         [Authorize]
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public virtual ActionResult Delete(int id, FormCollection collection)
         {
             try
             {

@@ -10,7 +10,7 @@ using ScrumTime.Services;
 
 namespace ScrumTime.Controllers
 {
-    public class StoryController : Controller
+    public partial class StoryController : Controller
     {
         ScrumTimeEntities _ScrumTimeEntities;
         StoryService _StoryService;
@@ -23,27 +23,27 @@ namespace ScrumTime.Controllers
 
         // The backlog is the entire html page
         [Authorize]
-        public ActionResult BacklogByPriority()
+        public virtual ActionResult BacklogByPriority()
         {
             // TODO: Pull the actual product information from session before 0.9 release
             StoryCollectionViewModel storyCollectionViewModel = StoryCollectionViewModel.BuildByPriorityAsc(
                 SessionHelper.GetCurrentProductId(User.Identity.Name, Session));
-            return PartialView("Backlog", storyCollectionViewModel);
+            return PartialView(Views.Backlog, storyCollectionViewModel);
         }
 
         // The list is the sub-section of the page that contains only the table of story read only rows
         [Authorize]
-        public ActionResult ListByPriority()
+        public virtual ActionResult ListByPriority()
         {
             // TODO: Pull the actual product information from session before 0.9 release
             StoryCollectionViewModel storyCollectionViewModel = StoryCollectionViewModel.BuildByPriorityAsc(
                 SessionHelper.GetCurrentProductId(User.Identity.Name, Session));           
-            return PartialView("List", storyCollectionViewModel);
+            return PartialView(Views.List, storyCollectionViewModel);
         }
 
         // Returns only one read only row
         [Authorize]
-        public ActionResult ReadOnly(int id)
+        public virtual ActionResult ReadOnly(int id)
         {
             Story story = _StoryService.GetStoryById(id);
             return PartialView(story);
@@ -51,7 +51,7 @@ namespace ScrumTime.Controllers
 
         // Returns only one edit row
         [Authorize]
-        public ActionResult Edit(int id)
+        public virtual ActionResult Edit(int id)
         {
             List<Sprint> allSprints = SprintService.GetAllSprints(_ScrumTimeEntities,
                 SessionHelper.GetCurrentProductId(User.Identity.Name, Session));
@@ -72,7 +72,7 @@ namespace ScrumTime.Controllers
 
         // Returns only one new row
         [Authorize]
-        public ActionResult New()
+        public virtual ActionResult New()
         {
             List<Sprint> allSprints = SprintService.GetAllSprints(_ScrumTimeEntities,
                 SessionHelper.GetCurrentProductId(User.Identity.Name, Session));
@@ -96,13 +96,13 @@ namespace ScrumTime.Controllers
                 },
                 AllSprints = allSprints
             };
-            return PartialView("Edit", storyViewModel);
+            return PartialView(Views.Edit, storyViewModel);
         }
 
         // POST: /Story/Save
         [Authorize]
         [HttpPost]
-        public ActionResult Save(FormCollection collection)
+        public virtual ActionResult Save(FormCollection collection)
         {
             try
             {
@@ -149,7 +149,7 @@ namespace ScrumTime.Controllers
         //
         // GET: /Story/Delete/5
         [Authorize]
-        public ActionResult Delete(int id)
+        public virtual ActionResult Delete(int id)
         {
             // TODO: Provide a caution prior to delete...use this GET delete to display a warning.
             return View();
@@ -159,7 +159,7 @@ namespace ScrumTime.Controllers
         // POST: /Story/Delete/5
         [Authorize]
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public virtual ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
@@ -175,7 +175,7 @@ namespace ScrumTime.Controllers
 
         // Returns only a small table for the story actions
         [Authorize]
-        public ActionResult StoryActionCancelOnly(int storyId)
+        public virtual ActionResult StoryActionCancelOnly(int storyId)
         {
             Story story = _StoryService.GetStoryById(storyId);
             return PartialView(story);
@@ -184,7 +184,7 @@ namespace ScrumTime.Controllers
    
         // Returns the entire Backlog html page
         [Authorize]
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             return RedirectToAction("BacklogByPriority");
         }

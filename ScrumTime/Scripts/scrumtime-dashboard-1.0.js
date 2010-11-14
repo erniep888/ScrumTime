@@ -1,4 +1,4 @@
-﻿function loadSprintBurnDownChart() {
+﻿function loadSprintBurnDownChart(url) {
     
     // Get    
 //    var testget = $.cookie('myCookie2');
@@ -12,7 +12,7 @@
         cache: false
     });
 
-    $.getJSON("/Dashboard/UpdateSprintBurnDown",
+    $.getJSON(url,
         {
             username: 'bob'
         },
@@ -59,7 +59,7 @@
 }
 
 
-function loadTaskHoursPerSprint(username) {
+function loadTaskHoursPerSprint(username, url) {
     // Get
 
     $.jqplot.config.enablePlugins = true;
@@ -67,7 +67,7 @@ function loadTaskHoursPerSprint(username) {
         cache: false
     });
 
-    $.getJSON("/Dashboard/UpdateTaskHoursPerSprint",
+    $.getJSON(url,
         {
             username: username
         },
@@ -108,6 +108,4 @@ function loadTaskHoursPerSprint(username) {
             sprintBurnDownPlot.replot();
             sprintBurnDownPlot.draw();
         });
-
-
 }

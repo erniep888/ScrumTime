@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using ScrumTime.Models;
 
 namespace ScrumTime.ViewModels
 {
     public class StoryCollectionViewModel 
     {
-        public StoryCollectionViewModel()
-        {
-            
-        }
+        private const string TitleName = "Backlog"; // ScrumTime 0.9 - Backlog
 
+        public string Title { get { return TitleName; } }
         public List<Story> Stories { get; set; }
 
         public static StoryCollectionViewModel BuildByPriorityAsc(int productId)

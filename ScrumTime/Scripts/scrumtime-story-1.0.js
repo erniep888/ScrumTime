@@ -1,7 +1,7 @@
 ﻿
-function setupReadOnlyStoryRow(storyId) {
+function setupReadOnlyStoryRow(storyId, editUrl, storyTaskBacklogUrl) {
     $(".story_" + storyId).click(function () {
-        $.post('/Story/Edit',
+        $.post(editUrl,
             {
                 id: storyId
             },
@@ -12,7 +12,7 @@ function setupReadOnlyStoryRow(storyId) {
     });
 
     $("#storyTasks_" + storyId).click(function () {
-        $.post('/Task/StoryTaskBacklog',
+        $.post(storyTaskBacklogUrl,
             {
                 storyId: storyId
             },
@@ -25,9 +25,9 @@ function setupReadOnlyStoryRow(storyId) {
     return;
 }
 
-function cancelStoryRowEdit(storyId) {
+function cancelStoryRowEdit(storyId, readOnlyUrl, listByPriorityUrl) {
     if (storyId > 0) {
-        $.post('/Story/ReadOnly',
+        $.post(readOnlyUrl,
             {
                 id: storyId
             },
@@ -40,7 +40,7 @@ function cancelStoryRowEdit(storyId) {
         );
     }
     else {
-        $.post('/Story/ListByPriority',
+        $.post(listByPriorityUrl,
             {
             },
             function (data) {
@@ -56,7 +56,7 @@ function setupEditStoryRow(storyId, originalStoryPriority) {
     return;
 }
 
-function saveStoryRowEdit(storyId) {
+function saveStoryRowEdit(storyId, url) {
     var originalPriority = $('#storyPriority_' + storyId).data('originalValue');
     if (originalPriority == 0) // handle the nulled/nonexisting originalValue
         originalPriority = -9;
@@ -66,7 +66,7 @@ function saveStoryRowEdit(storyId) {
     var points = $('#storyPoints_' + storyId).val();
     var sprintId = $('#storySprint_' + storyId).val();
     if (originalPriority != priority ) {
-        $.post('/Story/Save',
+        $.post(url,
             {
                 storyId: storyId, priority: priority, sprintId: sprintId,
                 userDefinedId: userDefinedId, narrative: narrative,
@@ -78,7 +78,7 @@ function saveStoryRowEdit(storyId) {
         );
     }
     else {
-        $.post('/Story/Save',
+        $.post(url,
             {
                 storyId: storyId, priority: priority, sprintId: sprintId,
                 userDefinedId: userDefinedId, narrative: narrative,
@@ -96,8 +96,8 @@ function saveStoryRowEdit(storyId) {
     // TODO: Implement save failure GUI
 }
 
-function deleteStory(storyId) {
-    $.post('/Story/Delete',
+function deleteStory(storyId, url) {
+    $.post(url,
         {
             id: storyId,
             storyId: storyId
@@ -110,8 +110,8 @@ function deleteStory(storyId) {
     // TODO: Implement delete failure GUI
 }
 
-function addStoryRow() {
-    $.post('/Story/New',
+function addStoryRow(url) {
+    $.post(url,
         {            
         },
         function (data) {

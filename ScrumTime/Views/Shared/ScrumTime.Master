@@ -1,61 +1,53 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
-    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
-    <link rel="shortcut icon" href="<%: Url.Content("~/Content/Images/favicon.ico") %>" type="image/x-icon"/>
-    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE"/>
-
-    <link rel="stylesheet" href="<%: Url.Content("~/Content/Css/main.css") %>" type="text/css" />
-    <link rel="stylesheet" href="<%: Url.Content("~/Content/Css/smooth_withgreen/jquery-ui-1.8.4.custom.css") %>" type="text/css" />
-    <link rel="stylesheet" href="<%: Url.Content("~/Content/Css/jquery.jqplot.min.css") %>" type="text/css" />
-    <!--[if IE]><script language="javascript" type="text/javascript" src="<%: Url.Content("~/Scripts/excanvas.min.js") %>"></script><![endif]-->
-    <script src="<%: Url.Content("~/Scripts/jquery-1.4.2.min.js") %>" type="text/javascript" ></script>
-    <script src="<%: Url.Content("~/Scripts/jquery-ui-1.8.4.custom.min.js") %>" type="text/javascript" ></script>    
-    <script src="<%: Url.Content("~/Scripts/jquery.jqplot.min.js") %>" type="text/javascript" ></script>
-    <script src="<%: Url.Content("~/Scripts/Plugins/jqplot.logAxisRenderer.min.js") %>" type="text/javascript" ></script>
-    <script src="<%: Url.Content("~/Scripts/Plugins/jqplot.canvasTextRenderer.min.js") %>" type="text/javascript" ></script>
-    <script src="<%: Url.Content("~/Scripts/Plugins/jqplot.canvasAxisLabelRenderer.min.js") %>" type="text/javascript" ></script>
-    <script src="<%: Url.Content("~/Scripts/Plugins/jqplot.canvasAxisTickRenderer.min.js") %>" type="text/javascript" ></script>
-    <script src="<%: Url.Content("~/Scripts/Plugins/jqplot.dateAxisRenderer.min.js") %>" type="text/javascript" ></script>
-    <script src="<%: Url.Content("~/Scripts/Plugins/jqplot.categoryAxisRenderer.min.js") %>" type="text/javascript" ></script>    
-    <script src="<%: Url.Content("~/Scripts/Plugins/jqplot.enhancedLegendRenderer.min.js") %>" type="text/javascript" ></script>  
-    <script src="<%: Url.Content("~/Scripts/Plugins/jqplot.barRenderer.min.js") %>" type="text/javascript" ></script>    
-    <script src="<%: Url.Content("~/Scripts/Plugins/jqplot.pointLabels.min.js") %>" type="text/javascript" ></script>  
-    <script src="<%: Url.Content("~/Scripts/Plugins/cookie_plugin.js") %>" type="text/javascript" ></script>
-    <script src="<%: Url.Content("~/Scripts/scrumtime-main-1.0.js") %>" type="text/javascript" ></script>
-    <script src="<%: Url.Content("~/Scripts/scrumtime-story-1.0.js") %>" type="text/javascript" ></script>
-    <script src="<%: Url.Content("~/Scripts/scrumtime-task-1.0.js") %>" type="text/javascript" ></script>
-    <script src="<%: Url.Content("~/Scripts/scrumtime-schedule-1.0.js") %>" type="text/javascript" ></script>
-    <script src="<%: Url.Content("~/Scripts/scrumtime-release-1.0.js") %>" type="text/javascript" ></script>
-    <script src="<%: Url.Content("~/Scripts/scrumtime-sprint-1.0.js") %>" type="text/javascript" ></script>
-    <script src="<%: Url.Content("~/Scripts/scrumtime-scrum-1.0.js") %>" type="text/javascript" ></script>
-    <script src="<%: Url.Content("~/Scripts/scrumtime-product-1.0.js") %>" type="text/javascript" ></script>
-    <script src="<%: Url.Content("~/Scripts/scrumtime-dashboard-1.0.js") %>" type="text/javascript" ></script>
+<head id="Head1">
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    <link rel="shortcut icon" href="<%: Links.Content.Images.favicon_ico %>" type="image/x-icon" />
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE" />
+    <link rel="stylesheet" href="<%: Links.Content.Css.main_css %>" type="text/css" />
+    <link rel="stylesheet" href="<%: Links.Content.Css.smooth_withgreen.jquery_ui_1_8_4_custom_css %>"
+        type="text/css" />
+    <link rel="stylesheet" href="<%: Links.Content.Css.jquery_jqplot_min_css %>" type="text/css" />
+    <!--[if IE]><script language="javascript" type="text/javascript" src="<%: Links.Scripts.excanvas_min_js %>"></script><![endif]-->
+    <script src="<%: Links.Scripts.jquery_1_4_2_min_js %>" type="text/javascript"></script>
+    <script src="<%: Links.Scripts.jquery_ui_1_8_4_custom_min_js %>" type="text/javascript"></script>
+    <script src="<%: Links.Scripts.jquery_jqplot_min_js %>" type="text/javascript"></script>
+    <script src="<%: Links.Scripts.Plugins.jqplot_logAxisRenderer_min_js %>" type="text/javascript"></script>
+    <script src="<%: Links.Scripts.Plugins.jqplot_canvasTextRenderer_min_js %>" type="text/javascript"></script>
+    <script src="<%: Links.Scripts.Plugins.jqplot_canvasAxisLabelRenderer_min_js %>"
+        type="text/javascript"></script>
+    <script src="<%: Links.Scripts.Plugins.jqplot_canvasAxisTickRenderer_min_js %>" type="text/javascript"></script>
+    <script src="<%: Links.Scripts.Plugins.jqplot_dateAxisRenderer_min_js %>" type="text/javascript"></script>
+    <script src="<%: Links.Scripts.Plugins.jqplot_categoryAxisRenderer_min_js %>" type="text/javascript"></script>
+    <script src="<%: Links.Scripts.Plugins.jqplot_enhancedLegendRenderer_min_js %>" type="text/javascript"></script>
+    <script src="<%: Links.Scripts.Plugins.jqplot_barRenderer_min_js %>" type="text/javascript"></script>
+    <script src="<%: Links.Scripts.Plugins.jqplot_pointLabels_min_js %>" type="text/javascript"></script>
+    <script src="<%: Links.Scripts.Plugins.cookie_plugin_js %>" type="text/javascript"></script>
+    <script src="<%: Links.Scripts.scrumtime_main_1_0_js %>" type="text/javascript"></script>
+    <script src="<%: Links.Scripts.scrumtime_story_1_0_js %>" type="text/javascript"></script>
+    <script src="<%: Links.Scripts.scrumtime_task_1_0_js %>" type="text/javascript"></script>
+    <script src="<%: Links.Scripts.scrumtime_schedule_1_0_js %>" type="text/javascript"></script>
+    <script src="<%: Links.Scripts.scrumtime_release_1_0_js %>" type="text/javascript"></script>
+    <script src="<%: Links.Scripts.scrumtime_sprint_1_0_js %>" type="text/javascript"></script>
+    <script src="<%: Links.Scripts.scrumtime_scrum_1_0_js %>" type="text/javascript"></script>
+    <script src="<%: Links.Scripts.scrumtime_product_1_0_js %>" type="text/javascript"></script>
+    <script src="<%: Links.Scripts.scrumtime_dashboard_1_0_js %>" type="text/javascript"></script>
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
-    </asp:ContentPlaceHolder> 
+    </asp:ContentPlaceHolder>
 </head>
-
-<body>   
-
-    <% Html.RenderPartial("~/Views/Shared/HeaderControl.ascx"); %>
-
-    <% Html.RenderPartial("~/Views/Home/CurrentProductAndSprint.ascx"); %>
-
-
-	<div class="loginLink" style="z-index:100;position:absolute;right:30px;top:96px;font-size:12px;">
-		<% Html.RenderPartial("LogOnUserControl"); %>
-	</div>
-	
-    <% Html.RenderPartial("~/Views/Shared/MainMenu.ascx"); %>
-
-    <% Html.RenderPartial("~/Views/Shared/FooterControl.ascx"); %>
-
+<body>
+    <% Html.RenderPartial(MVC.Shared.Views.HeaderControl); %>
+    <% Html.RenderPartial(MVC.Home.Views.CurrentProductAndSprint); %>
+    <div class="loginLink" style="z-index: 100; position: absolute; right: 30px; top: 96px;
+        font-size: 12px;">
+        <% Html.RenderPartial(MVC.Shared.Views.LogOnUserControl); %>
+    </div>
+    <% Html.RenderPartial(MVC.Shared.Views.MainMenu); %>
+    <% Html.RenderPartial(MVC.Shared.Views.FooterControl); %>
     <asp:ContentPlaceHolder ID="ScriptingPlaceHolder" runat="server" />
 </body>
-
-
 </html>
-

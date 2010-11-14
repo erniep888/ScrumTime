@@ -1,6 +1,6 @@
-﻿function setupReadOnlyProductRow(productId) {
+﻿function setupReadOnlyProductRow(productId, url) {
     $(".product_" + productId).click(function () {
-        $.post('/Product/Edit',
+        $.post(url,
             {
                 id: productId
             },
@@ -19,9 +19,9 @@
     return;
 }
 
-function cancelProductRowEdit(productId) {
+function cancelProductRowEdit(productId, url) {
     if (productId > 0) {
-        $.post('/Product/ReadOnly',
+        $.post(url,
             {
                 id: productId
             },
@@ -40,10 +40,10 @@ function cancelProductRowEdit(productId) {
     return;
 }
 
-function addProductRow() {
+function addProductRow(url) {
     $("#productTable .productRow").removeClass("typicalAltRows");
 
-    $.post('/Product/New',
+    $.post(url,
         
         function (data) {
             var target = $('#productTableBody tr:first');
@@ -60,12 +60,12 @@ function addProductRow() {
 }
 
 
-function saveProductRowEdit(productId) {
+function saveProductRowEdit(productId, url) {
     var name = $('#productName_' + productId).val();
     var description = $('#productDescription_' + productId).val();
 
     if (productId > 0) {
-        $.post('/Product/Save',
+        $.post(url,
             {
                 name: name, id: productId,
                 description: description
@@ -77,7 +77,7 @@ function saveProductRowEdit(productId) {
 
     }
     else {
-        $.post('/Product/Save',
+        $.post(url,
             {
                 name: name, id: productId,
                 description: description
@@ -93,8 +93,8 @@ function saveProductRowEdit(productId) {
     // TODO: Implement save failure GUI
 }
 
-function deleteProduct(productId) {
-    $.post('/Product/Delete',
+function deleteProduct(productId, url) {
+    $.post(url,
     {
         id: productId
     },

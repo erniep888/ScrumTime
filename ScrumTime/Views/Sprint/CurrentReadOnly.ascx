@@ -9,5 +9,5 @@
         <a class="simpleLink currentSprintLink" style="font-size:12px;color:#75a22a;" href="#"><%: sprintName %></a>
     </div>
     <script type="text/javascript">
-        setupCurrentSprintReadOnly();
+        setupCurrentSprintReadOnly('<%: Url.Action(MVC.Sprint.CurrentEdit()) %>');
     </script>

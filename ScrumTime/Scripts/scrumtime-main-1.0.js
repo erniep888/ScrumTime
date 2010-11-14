@@ -14,9 +14,9 @@ function loadBacklogTab() {
 }
 
 
-function setupCurrentProductReadOnly() {
+function setupCurrentProductReadOnly(url) {
     $(".currentProductLink").click(function () {
-        $.get('/Product/CurrentEdit',
+        $.get(url,
             {
         },
             function (data) {
@@ -27,23 +27,23 @@ function setupCurrentProductReadOnly() {
     return;
 }
 
-function onCurrentProductChange() {
-    $.post('/Product/SetCurrent',
+function onCurrentProductChange(url, currentProductReadOnlyUrl, currentSprintReadOnlyUrl) {
+    $.post(url,
         {
             productId: $("#currentProductSelected").val()
         },
         function (data) {
             var selected = $("#mainMenu").tabs("option", "selected");
             $("#mainMenu").tabs("load", selected);
-            revertCurrentProductToReadOnly();
-            revertCurrentSprintToReadOnly();
+            revertCurrentProductToReadOnly(currentProductReadOnlyUrl);
+            revertCurrentSprintToReadOnly(currentSprintReadOnlyUrl);
         }
     );
     return;
 }
 
-function revertCurrentProductToReadOnly() {
-    $.get('/Product/CurrentReadOnly',
+function revertCurrentProductToReadOnly(url) {
+    $.get(url,
         {
     },
         function (data) {
@@ -53,9 +53,9 @@ function revertCurrentProductToReadOnly() {
     return;
 }
 
-function setupCurrentSprintReadOnly() {
+function setupCurrentSprintReadOnly(url) {
     $(".currentSprintLink").click(function () {
-        $.get('/Sprint/CurrentEdit',
+        $.get(url,
             {
         },
             function (data) {
@@ -66,29 +66,29 @@ function setupCurrentSprintReadOnly() {
     return;
 }
 
-function onCurrentSprintChange() {
-    $.post('/Sprint/SetCurrent',
+function onCurrentSprintChange(url, currentSprintReadOnlyUrl) {
+    $.post(url,
         {
             sprintId: $("#currentSprintSelected").val()
         },
         function (data) {
             var selected = $("#mainMenu").tabs("option", "selected");
             $("#mainMenu").tabs("load", selected);
-            revertCurrentSprintToReadOnly();
+            revertCurrentSprintToReadOnly(currentSprintReadOnlyUrl);
         }
     );
     return;
 }
 
-function onCurrentSprintFocus() {
+function onCurrentSprintFocus(url, currentSprintReadOnlyUrl) {
     var selectionCount = $("#currentSprintSelected")[0].length;
     if (selectionCount == 1)
-        onCurrentSprintChange();
+        onCurrentSprintChange(url, currentSprintReadOnlyUrl);
     return;
 }
 
-function revertCurrentSprintToReadOnly() {
-    $.get('/Sprint/CurrentReadOnly',
+function revertCurrentSprintToReadOnly(url) {
+    $.get(url,
         {
         },
         function (data) {

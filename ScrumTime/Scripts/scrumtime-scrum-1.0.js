@@ -1,19 +1,19 @@
-﻿function setupReadOnlyScrumRow(scrumId) {
+﻿function setupReadOnlyScrumRow(scrumId, editUrl, saveUrl, scrumListUrl) {
     $(".scrum_" + scrumId).click(function () {
-        fetchScrumInformationForEdit(scrumId);
+        fetchScrumInformationForEdit(scrumId, editUrl, saveUrl, scrumListUrl);
     });
     return;
 }
 
-function setupAddScrumLink() {
+function setupAddScrumLink(editUrl, saveUrl, scrumListUrl) {
     $("#scrumAddLink").click(function () {
         // Fetch the edit content
-        fetchScrumInformationForEdit(-1);
+        fetchScrumInformationForEdit(-1, editUrl, saveUrl, scrumListUrl);
     });
     return;
 }
 
-function saveScrumDetails() {
+function saveScrumDetails(saveUrl, scrumListUrl) {
     var dateOfScrum = $('#dateOfScrum').val();
     var scrumDetailCount = $('#scrumDetailCount').val();
     var sprintId = $('#scrumDetailSprintId').val();
@@ -32,7 +32,7 @@ function saveScrumDetails() {
         i++;
     }
 
-    $.post('/Scrum/Save',
+    $.post(saveUrl,
         {
             scrumDetails: scrumDetails,
             scrumDetailCount: scrumDetailCount,
@@ -41,19 +41,19 @@ function saveScrumDetails() {
             sprintId: sprintId
         },
         function (data) {
-            refreshScrumList();
+            refreshScrumList(scrumListUrl);
         }
     ); 
 }
 
 
-function deleteScrum(scrumId) {    
-    $.post('/Scrum/Delete',
+function deleteScrum(scrumId, deleteUrl, scrumListUrl) {    
+    $.post(deleteUrl,
     {
         id: scrumId
     },
     function (data) {
-        refreshScrumList();
+        refreshScrumList(scrumListUrl);
     });
 
     // TODO: Implement delete failure GUI
@@ -71,7 +71,7 @@ function setAlternatingScrumDetailBackgroundColors() {
     $(".scrumDetailTable .scrumDetailRow:odd").addClass("typicalAltRows");
 }
 
-function setupScrumEditDialog() {
+function setupScrumEditDialog(saveUrl, scrumListUrl) {
     $("#scrumEditDialog").dialog({
         autoOpen: false,
         modal: true,
@@ -80,7 +80,7 @@ function setupScrumEditDialog() {
         resizable: false,
         buttons: {
             "Save": function () {
-                saveScrumDetails();
+                saveScrumDetails(saveUrl, scrumListUrl);
                 $(this).dialog("close");
                 $(this).dialog("destroy");
             },
@@ -93,9 +93,9 @@ function setupScrumEditDialog() {
     });    
 }
 
-function loadScrumEditTitle() {    
+function loadScrumEditTitle(currentSprintNameUrl) {    
     $.ajax({
-        url: '/Sprint/CurrentSprintName',
+        url: currentSprintNameUrl,
         dataType: 'json',
         success: function (json) {
             $('#scrumEditDialog').dialog({ title: 'Scrum For Sprint ' + json.d });
@@ -118,9 +118,9 @@ function setupDateOfScrumDatePicker() {
     });
 }
 
-function refreshScrumList() {
+function refreshScrumList(scrumListUrl) {
     $.ajax({
-        url: '/Scrum/List',
+        url: scrumListUrl,
         cache: false,
         type: "GET",
         dataType: "html",
@@ -135,9 +135,9 @@ function refreshScrumList() {
 
 
 
-function fetchScrumInformationForEdit(scrumId) {
+function fetchScrumInformationForEdit(scrumId, editUrl, saveUrl, scrumListUrl) {
     $.ajax({
-        url: '/Scrum/Edit',
+        url: editUrl,
         cache: false,
         type: "GET",
         data: ({ id: scrumId }),
@@ -145,7 +145,7 @@ function fetchScrumInformationForEdit(scrumId) {
         success: function (html) {
             $('#scrumEditDialogContainer').replaceWith(html);
             $('#scrumEditDialogContainer').ready(function () {
-                setupScrumEditDialog();
+                setupScrumEditDialog(saveUrl, scrumListUrl);
                 $('#scrumEditDialog').ready(function () {
                     $('#scrumEditDialog').dialog("open");
                 });

@@ -68,6 +68,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ScrumController.cs" />
     <Compile Include="Controllers\SprintController.cs" />
@@ -78,6 +81,9 @@
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\StoryController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
+    <Compile Include="DashboardController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -85,13 +91,28 @@
     <Compile Include="Helpers\SecureJsonResult.cs" />
     <Compile Include="Helpers\SessionHelper.cs" />
     <Compile Include="Helpers\StoryPoints.cs" />
+    <Compile Include="HomeController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ScrumTime.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ScrumTime.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ProductController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReleaseController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ScheduleController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ScrumController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Services\ScrumService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\SprintService.cs" />
@@ -99,6 +120,23 @@
     <Compile Include="Services\StoryService.cs" />
     <Compile Include="Services\TaskService.cs" />
     <Compile Include="Services\UserSettingService.cs" />
+    <Compile Include="SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SprintController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StoryController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TaskController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\JsonTaskHoursPerSprint.cs" />
     <Compile Include="ViewModels\JsonSprintBurnDown.cs" />
@@ -257,7 +295,9 @@
     <Content Include="Views\Shared\LogOnUserControl.ascx" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\NonAuthenticating.Master" />
   </ItemGroup>
@@ -270,6 +310,12 @@
   <ItemGroup>
     <None Include="Content\Images\Logos\ScrumTimeLogo.design" />
     <Content Include="Views\Shared\ScrumTime.Master" />
+    <Content Include="packages.config" />
+    <None Include="T4MVC.settings.t4" />
+    <None Include="T4MVC.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>T4MVC.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -10,7 +10,7 @@ using ScrumTime.Models;
 
 namespace ScrumTime.Controllers
 {
-    public class ScheduleController : Controller
+    public partial class ScheduleController : Controller
     {
         ScrumTimeEntities _ScrumTimeEntities;
         SprintService _SprintService;
@@ -26,7 +26,7 @@ namespace ScrumTime.Controllers
         //
         // GET: /Schedule/
         [Authorize]
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             DateTime fromDate = DateTime.Now.AddDays(-60);
             DateTime toDate = DateTime.Now.AddDays(60);
@@ -46,19 +46,19 @@ namespace ScrumTime.Controllers
         }
 
         [Authorize]
-        public ActionResult ReleaseList()
+        public virtual ActionResult ReleaseList()
         {
             return PartialView();
         }
 
         [Authorize]
-        public ActionResult SprintList()
+        public virtual ActionResult SprintList()
         {
             return PartialView();
         }
 
         [Authorize]
-        public ActionResult UpdateCalendar(string startDateRange, string endDateRange)
+        public virtual ActionResult UpdateCalendar(string startDateRange, string endDateRange)
         {
             DateTime startDate = DateTime.Parse(startDateRange);
             DateTime endDate = DateTime.Parse(endDateRange);

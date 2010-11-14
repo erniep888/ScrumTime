@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using ScrumTime.ViewModels;
-using ScrumTime.Services;
-using ScrumTime.Models;
 using ScrumTime.Helpers;
-
+using ScrumTime.Models;
+using ScrumTime.Services;
+using ScrumTime.ViewModels;
 
 namespace ScrumTime.Controllers
 {
-    public class SprintController : Controller
+    public partial class SprintController : Controller
     {
         ScrumTimeEntities _ScrumTimeEntities;
         SprintService _SprintService;
@@ -27,30 +23,30 @@ namespace ScrumTime.Controllers
         //
         // GET: /Sprint/
         [Authorize]
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             return View();
         }
 
         [Authorize]
-        public ActionResult ListContainerByStartDateDesc()
+        public virtual ActionResult ListContainerByStartDateDesc()
         {
             SprintCollectionViewModel sprintCollectionViewModel = SprintCollectionViewModel.BuildByStartDateDesc(
                 SessionHelper.GetCurrentProductId(User.Identity.Name, Session));
-            return PartialView("ListContainer", sprintCollectionViewModel);
+            return PartialView(Views.ListContainer, sprintCollectionViewModel);
         }
 
         // An AJAX driven result that returns just the simple list of sprints
         [Authorize]
-        public ActionResult ListByStartDateDesc(int productId)
+        public virtual ActionResult ListByStartDateDesc(int productId)
         {
             SprintCollectionViewModel sprintCollectionViewModel = SprintCollectionViewModel.BuildByStartDateDesc(productId);
-            return PartialView("List", sprintCollectionViewModel);
+            return PartialView(Views.List, sprintCollectionViewModel);
         }
 
         // An AJAX driven result that returns just the td's of the read only sprint...replaces any other
         [Authorize]
-        public ActionResult ReadOnly(int id)
+        public virtual ActionResult ReadOnly(int id)
         {
             Sprint sprint = _SprintService.GetSprintById(id);
             return PartialView(sprint);
@@ -58,7 +54,7 @@ namespace ScrumTime.Controllers
 
         // An AJAX driven result that returns just the td's of the editable sprint...replaces read only
         [Authorize]
-        public ActionResult Edit(int id)
+        public virtual ActionResult Edit(int id)
         {
             Sprint sprint = _SprintService.GetSprintById(id);
             return PartialView(sprint);
@@ -66,7 +62,7 @@ namespace ScrumTime.Controllers
 
         // An AJAX driven result that returns just the td's of the editable "new" sprint...appends to list
         [Authorize]
-        public ActionResult New(int productId)
+        public virtual ActionResult New(int productId)
         {
             // TODO: May want to lookup the product id to ensure that it is valid
             Sprint sprint = new Sprint()
@@ -76,7 +72,7 @@ namespace ScrumTime.Controllers
                 StartDate = DateTime.Today,
                 FinishDate = DateTime.Today.AddDays(30)
             };
-            return PartialView("Edit", sprint);
+            return PartialView(Views.Edit, sprint);
         }
       
 
@@ -85,7 +81,7 @@ namespace ScrumTime.Controllers
         /// </summary>
         /// <returns>Current sprint name in Json form.</returns>
         [Authorize]
-        public ActionResult CurrentSprintName()
+        public virtual ActionResult CurrentSprintName()
         {
             string currentSprintName = "";
             int currentSprintId = SessionHelper.GetCurrentSprintId(User.Identity.Name, Session);
@@ -101,7 +97,7 @@ namespace ScrumTime.Controllers
         // POST: /Sprint/Save
         [Authorize]
         [HttpPost]
-        public ActionResult Save(FormCollection collection)
+        public virtual ActionResult Save(FormCollection collection)
         {
             try
             {
@@ -131,9 +127,9 @@ namespace ScrumTime.Controllers
                 _SprintService.SaveSprint(sprint);
 
                 if (newSprint)
-                    return RedirectToAction("ListByStartDateDesc", new { productId = Int32.Parse(productId) });
+                    return RedirectToAction(Actions.ListByStartDateDesc(Int32.Parse(productId)));
                 else
-                    return RedirectToAction("ReadOnly", new { id = Int32.Parse(id) });
+                    return RedirectToAction(Actions.ReadOnly(Int32.Parse(id)));
             }
             catch (Exception ex)
             {
@@ -143,14 +139,14 @@ namespace ScrumTime.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public virtual ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
                 string productId = collection.Get("productId");
                 string idAsString = collection.Get("sprintId");
                 _SprintService.DeleteSprint(Int32.Parse(idAsString));
-                return RedirectToAction("ListByStartDateDesc", new { productId = Int32.Parse(productId) });
+                return RedirectToAction(Actions.ListByStartDateDesc(Int32.Parse(productId)));
             }
             catch
             {
@@ -160,7 +156,7 @@ namespace ScrumTime.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Graph(string startDateRange, string endDateRange)
+        public virtual ActionResult Graph(string startDateRange, string endDateRange)
         {
             DateTime startDate = DateTime.Parse(startDateRange);
             DateTime endDate = DateTime.Parse(endDateRange);
@@ -171,7 +167,7 @@ namespace ScrumTime.Controllers
         }
 
         [Authorize]
-        public ActionResult CurrentEdit()
+        public virtual ActionResult CurrentEdit()
         {
             SprintCollectionViewModel sprintCollectionViewModel =
                 SprintCollectionViewModel.BuildByStartDateDesc(
@@ -181,7 +177,7 @@ namespace ScrumTime.Controllers
         }
 
         [Authorize]
-        public ActionResult CurrentReadOnly()
+        public virtual ActionResult CurrentReadOnly()
         {
             SprintService sprintService = new SprintService(_ScrumTimeEntities);
             Sprint sprint = sprintService.GetSprintById(SessionHelper.GetCurrentSprintId(User.Identity.Name, Session));
@@ -190,7 +186,7 @@ namespace ScrumTime.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult SetCurrent(int sprintId)
+        public virtual ActionResult SetCurrent(int sprintId)
         {
             SessionHelper.SetCurrentSprintId(User.Identity.Name, Session, sprintId);
             return new SecureJsonResult(new { sprintId });

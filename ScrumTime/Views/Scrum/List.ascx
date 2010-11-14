@@ -4,14 +4,14 @@
         <tbody id="scrumTableBody" style="font-size:12px;">
             <%  
             int index = 1;
-            foreach (ScrumTime.Models.Scrum scrum in Model.Scrums)
+            foreach (var scrum in Model.Scrums)
             {
-                ScrumTime.ViewModels.ScrumViewModel scrumViewModel = new ScrumTime.ViewModels.ScrumViewModel()
+                var scrumViewModel = new ScrumTime.ViewModels.ScrumViewModel()
                 {
                     Index = index,
                     ScrumModel = scrum
                 };
-                Html.RenderPartial("~/Views/Scrum/ReadOnly.ascx", scrumViewModel);
+                Html.RenderPartial(MVC.Scrum.Views.ReadOnly, scrumViewModel);
                 index++;
             }                               
             %>                      

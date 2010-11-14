@@ -1,6 +1,6 @@
-﻿function setupReadOnlySprintRow(productId, sprintId) {
+﻿function setupReadOnlySprintRow(productId, sprintId, url) {
     $(".sprint_" + sprintId).click(function () {
-        $.post('/Sprint/Edit',
+        $.post(url,
             {
                 id: sprintId
             },
@@ -19,9 +19,9 @@
     return;
 }
 
-function cancelSprintRowEdit(productId, sprintId) {
+function cancelSprintRowEdit(productId, sprintId, url) {
     if (sprintId > 0) {
-        $.post('/Sprint/ReadOnly',
+        $.post(url,
             {
                 id: sprintId
             },
@@ -38,10 +38,10 @@ function cancelSprintRowEdit(productId, sprintId) {
     return;
 }
 
-function addSprintRow(productId) {
+function addSprintRow(productId, url) {
     $("#sprintTableBody_" + productId + " .sprintRow").removeClass("typicalAltRows");
 
-    $.post('/Sprint/New',
+    $.post(url,
         {
             productId: productId
         },
@@ -59,14 +59,14 @@ function addSprintRow(productId) {
 }
 
 
-function saveSprintRowEdit(productId, sprintId) {
+function saveSprintRowEdit(productId, sprintId, saveUrl, updateCalendarUrl) {
     var name = $('#sprintName_' + sprintId).val();
     var description = $('#sprintDescription_' + sprintId).val();
     var start = $('#sprintStart_' + sprintId).val();
     var finish = $('#sprintFinish_' + sprintId).val();
 
     if (sprintId > 0) {
-        $.post('/Sprint/Save',
+        $.post(saveUrl,
             {
                 name: name, sprintId: sprintId,
                 description: description, start: start,
@@ -74,13 +74,13 @@ function saveSprintRowEdit(productId, sprintId) {
             },
             function (data) {
                 $('#sprintRow_' + sprintId).replaceWith(data);
-                updateReleaseSchedule();
+                updateReleaseSchedule(updateCalendarUrl);
             }
         );
 
     }
     else {
-        $.post('/Sprint/Save',
+        $.post(saveUrl,
             {
                 name: name, sprintId: sprintId,
                 description: description, start: start,
@@ -91,7 +91,7 @@ function saveSprintRowEdit(productId, sprintId) {
                 $("#sprintTableBody_" + productId + " .sprintRow").removeClass("typicalAltRows");
                 $('#sprintContentListId_' + productId).replaceWith(data);
                 $("#sprintTableBody_" + productId + " .sprintRow:odd").addClass("typicalAltRows");
-                updateReleaseSchedule();
+                updateReleaseSchedule(updateCalendarUrl);
             }
         );
     }
@@ -100,8 +100,8 @@ function saveSprintRowEdit(productId, sprintId) {
     // TODO: Implement save failure GUI
 }
 
-function deleteSprint(productId, sprintId) {
-    $.post('/Sprint/Delete',
+function deleteSprint(productId, sprintId, deleteUrl, updateCalendarUrl) {
+    $.post(deleteUrl,
     {
         id: sprintId,
         sprintId: sprintId,
@@ -111,7 +111,7 @@ function deleteSprint(productId, sprintId) {
         $("#sprintTableBody_" + productId + " .sprintRow").removeClass("typicalAltRows");
         $('#sprintContentListId_' + productId).replaceWith(data);
         $("#sprintTableBody_" + productId + " .sprintRow:odd").addClass("typicalAltRows");
-        updateReleaseSchedule();
+        updateReleaseSchedule(updateCalendarUrl);
     });
 
     // TODO: Implement delete failure GUI

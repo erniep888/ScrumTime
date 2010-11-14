@@ -1,7 +1,7 @@
-﻿function initializeRealeaseSchedule() {
+﻿function initializeRealeaseSchedule(updateCalendarUrl) {
     $("#toDatePicker").datepicker({
-        onSelect: function (dateText, inst) { updateReleaseSchedule(); },
-        onClose: function (dateText, inst) { updateReleaseSchedule(); },
+        onSelect: function (dateText, inst) { updateReleaseSchedule(updateCalendarUrl); },
+        onClose: function (dateText, inst) { updateReleaseSchedule(updateCalendarUrl); },
         changeMonth: true,
         changeYear: true,
         gotoCurrent: true,
@@ -10,8 +10,8 @@
         yearRange: 'c-4:c+4'
     });
     $("#fromDatePicker").datepicker({
-        onSelect: function (dateText, inst) { updateReleaseSchedule(); },
-        onClose: function (dateText, inst) { updateReleaseSchedule(); },
+        onSelect: function (dateText, inst) { updateReleaseSchedule(updateCalendarUrl); },
+        onClose: function (dateText, inst) { updateReleaseSchedule(updateCalendarUrl); },
         changeMonth: true,
         changeYear: true,
         gotoCurrent: true,
@@ -26,7 +26,7 @@
     $("#scheduleMenu").tabs('select', 0);
 }
 
-function updateReleaseSchedule() {
+function updateReleaseSchedule(updateCalendarUrl) {
     $.jqplot.config.enablePlugins = true;
     var startDate = $("#fromDatePicker").val();
     var endDate = $("#toDatePicker").val();
@@ -34,7 +34,7 @@ function updateReleaseSchedule() {
         cache: false
     });
 
-    $.getJSON("/Schedule/UpdateCalendar",
+    $.getJSON(updateCalendarUrl,
         {
             startDateRange: startDate,
             endDateRange: endDate
@@ -72,8 +72,4 @@ function updateReleaseSchedule() {
             plot.replot();
             plot.draw();
         });
-
-    
-
-
 }

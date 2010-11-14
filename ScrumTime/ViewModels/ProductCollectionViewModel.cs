@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using ScrumTime.Models;
 
 namespace ScrumTime.ViewModels
 {
     public class ProductCollectionViewModel 
     {
+        private const string TitleName = "Product"; // ScrumTime 0.9 - Product
 
+        public string Title { get { return TitleName; } }
         public List<ProductViewModel> ProductViewModels { get; set; }
-
-        public ProductCollectionViewModel()
-        {
-            
-        }
 
         public static ProductCollectionViewModel BuildByNameAlphabetical(int currentProductId)
         {

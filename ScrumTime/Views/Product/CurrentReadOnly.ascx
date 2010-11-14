@@ -9,5 +9,5 @@
         <a class="simpleLink currentProductLink" style="font-size:12px;color:#75a22a;" href="#"><%: productName %></a>
     </div>
     <script type="text/javascript">
-        setupCurrentProductReadOnly();
+        setupCurrentProductReadOnly('<%: Url.Action(MVC.Product.CurrentEdit()) %>');
     </script>

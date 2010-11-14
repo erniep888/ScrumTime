@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using ScrumTime.ViewModels;
-using ScrumTime.Services;
-using ScrumTime.Models;
 using ScrumTime.Helpers;
-
+using ScrumTime.Models;
+using ScrumTime.Services;
+using ScrumTime.ViewModels;
 
 namespace ScrumTime.Controllers
 {
-    public class ProductController : Controller
+    public partial class ProductController : Controller
     {
         ScrumTimeEntities _ScrumTimeEntities;
         ProductService _ProductService;
@@ -25,7 +22,7 @@ namespace ScrumTime.Controllers
         //
         // GET: /Product/
         [Authorize]
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {           
             int currentProductId = SessionHelper.GetCurrentProductId(User.Identity.Name, Session);
             return PartialView(ProductCollectionViewModel.BuildByNameAlphabetical(currentProductId));
@@ -33,15 +30,15 @@ namespace ScrumTime.Controllers
 
         // An AJAX driven result that returns just the simple list of releases
         [Authorize]
-        public ActionResult ListByNameAlphabetical()
+        public virtual ActionResult ListByNameAlphabetical()
         {
             int currentProductId = SessionHelper.GetCurrentProductId(User.Identity.Name, Session);
-            return PartialView("List", ProductCollectionViewModel.BuildByNameAlphabetical(currentProductId));
+            return PartialView(Views.List, ProductCollectionViewModel.BuildByNameAlphabetical(currentProductId));
         }
 
         // An AJAX driven result that returns just the td's of the read only product...replaces any other
         [Authorize]
-        public ActionResult ReadOnly(int id)
+        public virtual ActionResult ReadOnly(int id)
         {
             Product product = _ProductService.GetProductById(id);           
             return PartialView(CreateProductViewModel(product));
@@ -49,7 +46,7 @@ namespace ScrumTime.Controllers
 
         // An AJAX driven result that returns just the td's of the editable product...replaces read only
         [Authorize]
-        public ActionResult Edit(int id)
+        public virtual ActionResult Edit(int id)
         {
             Product product = _ProductService.GetProductById(id);
             return PartialView(CreateProductViewModel(product));
@@ -58,19 +55,19 @@ namespace ScrumTime.Controllers
 
         // An AJAX driven result that returns just the td's of the editable "new" release...appends to list
         [Authorize]
-        public ActionResult New()
+        public virtual ActionResult New()
         {            
             Product product = new Product()
             {
                Description = "", Name = "New Product"
             };
-            return PartialView("Edit", CreateProductViewModel(product));
+            return PartialView(Views.Edit, CreateProductViewModel(product));
         }
 
         // POST: /Product/Save
         [Authorize]
         [HttpPost]
-        public ActionResult Save(FormCollection collection)
+        public virtual ActionResult Save(FormCollection collection)
         {
             try
             {                
@@ -92,9 +89,9 @@ namespace ScrumTime.Controllers
                 _ProductService.SaveProduct(product);
 
                 if (newProduct)
-                    return RedirectToAction("ListByNameAlphabetical");
+                    return RedirectToAction(Actions.ListByNameAlphabetical());
                 else
-                    return RedirectToAction("ReadOnly", new { id = Int32.Parse(productId) });
+                    return RedirectToAction(Actions.ReadOnly(Int32.Parse(productId)));
             }
             catch (Exception ex)
             {
@@ -104,13 +101,13 @@ namespace ScrumTime.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Delete(FormCollection collection)
+        public virtual ActionResult Delete(FormCollection collection)
         {
             try
             {
                 string productId = collection.Get("id");
                 _ProductService.DeleteProduct(Int32.Parse(productId));
-                return RedirectToAction("ListByNameAlphabetical");
+                return RedirectToAction(Actions.ListByNameAlphabetical());
             }
             catch
             {
@@ -128,8 +125,8 @@ namespace ScrumTime.Controllers
             return productViewModel;
         }
 
-        [Authorize]        
-        public ActionResult CurrentEdit()
+        [Authorize]
+        public virtual ActionResult CurrentEdit()
         {
             ProductCollectionViewModel productCollectionViewModel =
                 ProductCollectionViewModel.BuildByNameAlphabetical(SessionHelper.GetCurrentProductId(
@@ -137,8 +134,8 @@ namespace ScrumTime.Controllers
             return PartialView(productCollectionViewModel);
         }
 
-        [Authorize]        
-        public ActionResult CurrentReadOnly()
+        [Authorize]
+        public virtual ActionResult CurrentReadOnly()
         {
             ProductService productService = new ProductService(_ScrumTimeEntities);
             Product product = productService.GetProductById(SessionHelper.GetCurrentProductId(User.Identity.Name, Session));
@@ -147,7 +144,7 @@ namespace ScrumTime.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult SetCurrent(int productId)
+        public virtual ActionResult SetCurrent(int productId)
         {
             SessionHelper.SetCurrentProductId(User.Identity.Name, Session, productId);
             ProductService productService = new ProductService(_ScrumTimeEntities);

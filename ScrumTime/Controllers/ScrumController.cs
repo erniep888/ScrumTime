@@ -11,7 +11,7 @@ using ScrumTime.Helpers;
 
 namespace ScrumTime.Controllers
 {
-    public class ScrumController : Controller
+    public partial class ScrumController : Controller
     {
         ScrumTimeEntities _ScrumTimeEntities;
         ScrumService _ScrumService;
@@ -25,7 +25,7 @@ namespace ScrumTime.Controllers
         //
         // GET: /Scrum/
         [Authorize]
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             ScrumCollectionViewModel scrumCollectionViewModel =
                 ScrumCollectionViewModel.BuildByDateOfScrumDesc(SessionHelper.GetCurrentProductId(User.Identity.Name, Session),
@@ -36,7 +36,7 @@ namespace ScrumTime.Controllers
         //
         // GET: /Scrum/List
         [Authorize]
-        public ActionResult List()
+        public virtual ActionResult List()
         {
             ScrumCollectionViewModel scrumCollectionViewModel =
                 ScrumCollectionViewModel.BuildByDateOfScrumDesc(SessionHelper.GetCurrentProductId(User.Identity.Name, Session),
@@ -49,7 +49,7 @@ namespace ScrumTime.Controllers
         // POST: /Scrum/New
         [Authorize]
         [HttpPost]
-        public ActionResult New(FormCollection collection)
+        public virtual ActionResult New(FormCollection collection)
         {
             try
             {
@@ -66,7 +66,7 @@ namespace ScrumTime.Controllers
         //
         // GET: /Scrum/Edit/5
         [Authorize]
-        public ActionResult Edit(int id)
+        public virtual ActionResult Edit(int id)
         {
             Scrum scrum = _ScrumService.GetScrumById(id);
             if (scrum == null)  // new scrum
@@ -94,7 +94,7 @@ namespace ScrumTime.Controllers
         // POST: /Scrum/Save
         [Authorize]
         [HttpPost]
-        public ActionResult Save(FormCollection collection)
+        public virtual ActionResult Save(FormCollection collection)
         {
             string scrumId = collection.Get("scrumId");
             int scrumIdAsInt = Int32.Parse(scrumId);
@@ -138,7 +138,7 @@ namespace ScrumTime.Controllers
         // POST: /Scrum/Delete/5
         [Authorize]
         [HttpPost]
-        public ActionResult Delete(int id)
+        public virtual ActionResult Delete(int id)
         {
             _ScrumService.DeleteScrum(id);
 
