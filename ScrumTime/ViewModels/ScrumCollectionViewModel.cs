@@ -7,9 +7,6 @@ namespace ScrumTime.ViewModels
 {
     public class ScrumCollectionViewModel 
     {
-        private const string TitleName = "Scrum"; // ScrumTime 0.9 - Scrum
-
-        public string Title { get { return TitleName; } }
         public List<Scrum> Scrums { get; set; }
         
         public List<string> Usernames { get; set; }            

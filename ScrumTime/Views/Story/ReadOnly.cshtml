@@ -1,0 +1,4 @@
+﻿@model ScrumTime.Models.Story
+<tr id="@("storyRow_" + Model.StoryId)" class="storyRow" style="border: 0px">
+    @Html.Partial(MVC.Story.Views.ReadOnlyColumns, Model)
+</tr>

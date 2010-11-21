@@ -1,0 +1,12 @@
+﻿<div id="mainMenu">
+    <ul style="font-size: 12px">
+        <li>@Html.ActionLink("Dashboard", MVC.Dashboard.Index())</li>
+        <li>@Html.ActionLink("Backlog", MVC.Story.BacklogByPriority())</li>
+        <li>@Html.ActionLink("Scrums", MVC.Scrum.Index())</li>
+        <li>@Html.ActionLink("Schedule", MVC.Schedule.Index())</li>
+        <li>@Html.ActionLink("Products", MVC.Product.Index())</li>
+    </ul>
+</div>
+<script type="text/javascript">
+    createMainTabs();
+</script>

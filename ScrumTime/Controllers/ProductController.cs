@@ -23,7 +23,7 @@ namespace ScrumTime.Controllers
         // GET: /Product/
         [Authorize]
         public virtual ActionResult Index()
-        {           
+        {
             int currentProductId = SessionHelper.GetCurrentProductId(User.Identity.Name, Session);
             return PartialView(ProductCollectionViewModel.BuildByNameAlphabetical(currentProductId));
         }

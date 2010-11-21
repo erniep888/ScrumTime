@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using ScrumTime.Models;
-using ScrumTime.Helpers;
 
 namespace ScrumTime.ViewModels
 {
@@ -12,11 +8,5 @@ namespace ScrumTime.ViewModels
         public Scrum ScrumModel { get; set; }
         public List<string> MemberUsernames { get; set; }
         public int Index { get; set; }
-
-        public ScrumViewModel()
-        {
-        }
     }
-
-
 }

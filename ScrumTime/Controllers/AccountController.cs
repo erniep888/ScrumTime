@@ -1,22 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Security.Principal;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
-using ScrumTime.Models;
 using ScrumTime.Helpers;
+using ScrumTime.Models;
 
 namespace ScrumTime.Controllers
 {
-
     [HandleError]
     public partial class AccountController : Controller
     {
-
         public IFormsAuthenticationService FormsService { get; set; }
         public IMembershipService MembershipService { get; set; }
 
@@ -49,15 +42,9 @@ namespace ScrumTime.Controllers
                     {
                         return Redirect(returnUrl);
                     }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                    return RedirectToAction(MVC.Home.Index());
                 }
-                else
-                {
-                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
-                }
+                ModelState.AddModelError("", "The user name or password provided is incorrect.");
             }
 
             // If we got this far, something failed, redisplay form
@@ -76,7 +63,7 @@ namespace ScrumTime.Controllers
             try
             {
                 MembershipService.DeleteUser(username);
-                return RedirectToAction("List");
+                return RedirectToAction(Actions.List());
             }
             catch
             {
@@ -92,7 +79,7 @@ namespace ScrumTime.Controllers
         {
             FormsService.SignOut();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(MVC.Home.Index());
         }
 
         // **************************************
@@ -101,7 +88,7 @@ namespace ScrumTime.Controllers
 
         public virtual ActionResult Register()
         {
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+            ViewModel.PasswordLength = MembershipService.MinPasswordLength;
             return View();
         }
 
@@ -117,16 +104,13 @@ namespace ScrumTime.Controllers
                 {
                     FormsService.SignIn(model.UserName, false /* createPersistentCookie */);
                     SessionHelper.CreateFirstTimeDefaults(model.UserName);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction(MVC.Home.Index());
                 }
-                else
-                {
-                    ModelState.AddModelError("", AccountValidation.ErrorCodeToString(createStatus));
-                }
+                ModelState.AddModelError("", AccountValidation.ErrorCodeToString(createStatus));
             }
 
             // If we got this far, something failed, redisplay form
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+            ViewModel.PasswordLength = MembershipService.MinPasswordLength;
             return View(model);
         }
 
@@ -137,7 +121,7 @@ namespace ScrumTime.Controllers
         [Authorize]
         public virtual ActionResult ChangePassword()
         {
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+            ViewModel.PasswordLength = MembershipService.MinPasswordLength;
             return View();
         }
 
@@ -149,16 +133,13 @@ namespace ScrumTime.Controllers
             {
                 if (MembershipService.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword))
                 {
-                    return RedirectToAction("ChangePasswordSuccess");
+                    return RedirectToAction(Actions.ChangePasswordSuccess());
                 }
-                else
-                {
-                    ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
-                }
+                ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
             }
 
             // If we got this far, something failed, redisplay form
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+            ViewModel.PasswordLength = MembershipService.MinPasswordLength;
             return View(model);
         }
 
@@ -170,6 +151,5 @@ namespace ScrumTime.Controllers
         {
             return View();
         }
-
     }
 }

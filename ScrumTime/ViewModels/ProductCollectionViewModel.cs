@@ -6,9 +6,6 @@ namespace ScrumTime.ViewModels
 {
     public class ProductCollectionViewModel 
     {
-        private const string TitleName = "Product"; // ScrumTime 0.9 - Product
-
-        public string Title { get { return TitleName; } }
         public List<ProductViewModel> ProductViewModels { get; set; }
 
         public static ProductCollectionViewModel BuildByNameAlphabetical(int currentProductId)

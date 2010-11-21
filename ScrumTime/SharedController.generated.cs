@@ -27,11 +27,12 @@ namespace T4MVC {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string Error = "~/Views/Shared/Error.aspx";
-            public readonly string FooterControl = "~/Views/Shared/FooterControl.ascx";
-            public readonly string HeaderControl = "~/Views/Shared/HeaderControl.ascx";
-            public readonly string LogOnUserControl = "~/Views/Shared/LogOnUserControl.ascx";
-            public readonly string MainMenu = "~/Views/Shared/MainMenu.ascx";
+            public readonly string FooterControl = "~/Views/Shared/FooterControl.cshtml";
+            public readonly string HeaderControl = "~/Views/Shared/HeaderControl.cshtml";
+            public readonly string Layout = "~/Views/Shared/Layout.cshtml";
+            public readonly string LogOnUserControl = "~/Views/Shared/LogOnUserControl.cshtml";
+            public readonly string MainMenu = "~/Views/Shared/MainMenu.cshtml";
+            public readonly string NonAuthenticatingLayout = "~/Views/Shared/NonAuthenticatingLayout.cshtml";
         }
     }
 

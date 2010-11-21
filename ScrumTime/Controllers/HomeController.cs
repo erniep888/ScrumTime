@@ -13,7 +13,7 @@ namespace ScrumTime.Controllers
             if (UserHelper.IsAuthorized(User.Identity, "Home Screen"))
             {
                 return View();
-            }                
+            }
             return RedirectToAction(MVC.Account.LogOn());
         }
     }

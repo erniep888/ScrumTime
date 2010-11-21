@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using ScrumTime.Models;
+﻿using System.Collections.Generic;
 using ScrumTime.Helpers;
+using ScrumTime.Models;
 
 namespace ScrumTime.ViewModels
 {
@@ -18,6 +15,4 @@ namespace ScrumTime.ViewModels
             Points = StoryPoints.All();
         }
     }
-
-
 }

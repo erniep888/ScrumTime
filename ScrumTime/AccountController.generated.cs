@@ -66,11 +66,10 @@ namespace ScrumTime.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string ChangePassword = "~/Views/Account/ChangePassword.aspx";
-            public readonly string ChangePasswordSuccess = "~/Views/Account/ChangePasswordSuccess.aspx";
-            public readonly string List = "~/Views/Account/List.ascx";
-            public readonly string LogOn = "~/Views/Account/LogOn.aspx";
-            public readonly string Register = "~/Views/Account/Register.aspx";
+            public readonly string ChangePassword = "~/Views/Account/ChangePassword.cshtml";
+            public readonly string ChangePasswordSuccess = "~/Views/Account/ChangePasswordSuccess.cshtml";
+            public readonly string LogOn = "~/Views/Account/LogOn.cshtml";
+            public readonly string Register = "~/Views/Account/Register.cshtml";
         }
     }
 

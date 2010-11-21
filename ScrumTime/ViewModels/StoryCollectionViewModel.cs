@@ -6,9 +6,6 @@ namespace ScrumTime.ViewModels
 {
     public class StoryCollectionViewModel 
     {
-        private const string TitleName = "Backlog"; // ScrumTime 0.9 - Backlog
-
-        public string Title { get { return TitleName; } }
         public List<Story> Stories { get; set; }
 
         public static StoryCollectionViewModel BuildByPriorityAsc(int productId)

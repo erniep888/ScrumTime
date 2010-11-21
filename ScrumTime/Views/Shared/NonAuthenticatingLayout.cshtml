@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head id="Head1">
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE" />
+    <title></title>
+    <link rel="shortcut icon" href="@Links.Content.Images.favicon_ico" type="image/x-icon" />
+    <link rel="stylesheet" href="@Links.Content.Css.main_css" type="text/css" />
+    <link rel="stylesheet" href="@Links.Content.Css.smooth_withgreen.jquery_ui_1_8_4_custom_css" type="text/css" />
+    <script src="@Links.Scripts.jquery_1_4_2_min_js" type="text/javascript"></script>
+    <script src="@Links.Scripts.jquery_ui_1_8_4_custom_min_js" type="text/javascript"></script>
+    <script src="@Links.Scripts.scrumtime_main_1_0_js" type="text/javascript"></script>
+</head>
+<body>
+    <header>
+        @Html.Partial(MVC.Shared.Views.HeaderControl)
+    </header>
+    <div id="main" style="border: 2px solid #aaaaaa; height: 548px; margin-left: 14px;
+        margin-right: 14px; padding: 10px;">
+        @RenderBody()
+    </div>
+    <footer>
+        @Html.Partial(MVC.Shared.Views.FooterControl)
+    </footer>
+</body>
+</html>

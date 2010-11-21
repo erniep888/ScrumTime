@@ -104,12 +104,12 @@ namespace ScrumTime.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string CurrentEdit = "~/Views/Sprint/CurrentEdit.ascx";
-            public readonly string CurrentReadOnly = "~/Views/Sprint/CurrentReadOnly.ascx";
-            public readonly string Edit = "~/Views/Sprint/Edit.ascx";
-            public readonly string List = "~/Views/Sprint/List.ascx";
-            public readonly string ListContainer = "~/Views/Sprint/ListContainer.ascx";
-            public readonly string ReadOnly = "~/Views/Sprint/ReadOnly.ascx";
+            public readonly string CurrentEdit = "~/Views/Sprint/CurrentEdit.cshtml";
+            public readonly string CurrentReadOnly = "~/Views/Sprint/CurrentReadOnly.cshtml";
+            public readonly string Edit = "~/Views/Sprint/Edit.cshtml";
+            public readonly string List = "~/Views/Sprint/List.cshtml";
+            public readonly string ListContainer = "~/Views/Sprint/ListContainer.cshtml";
+            public readonly string ReadOnly = "~/Views/Sprint/ReadOnly.cshtml";
         }
     }
 

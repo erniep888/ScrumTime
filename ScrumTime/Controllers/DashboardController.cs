@@ -12,7 +12,7 @@ namespace ScrumTime.Controllers
         // GET: /Dashboard/  
         [Authorize]
         public virtual ActionResult Index()
-        {            
+        {
             ScrumTimeEntities scrumTimeEntities = new ScrumTimeEntities();
             string currentProductName = "None";
             string currentSprintName = "None";

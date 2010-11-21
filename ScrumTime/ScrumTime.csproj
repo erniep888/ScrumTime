@@ -148,6 +148,7 @@
     <Compile Include="TaskController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AppInfoHelper.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\JsonTaskHoursPerSprint.cs" />
     <Compile Include="ViewModels\JsonSprintBurnDown.cs" />
@@ -162,13 +163,6 @@
     <Compile Include="ViewModels\StoryViewModel.cs" />
     <Compile Include="ViewModels\StoryCollectionViewModel.cs" />
     <Compile Include="ViewModels\TaskCollectionViewModel.cs" />
-    <Compile Include="Views\Shared\NonAuthenticating.Master.cs">
-      <DependentUpon>NonAuthenticating.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Shared\NonAuthenticating.Master.designer.cs">
-      <DependentUpon>NonAuthenticating.Master</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\ScrumTime.mdf" />
@@ -250,45 +244,31 @@
     <Content Include="Scripts\jquery-ui-1.8.4.custom.min.js" />
     <Content Include="Scripts\scrumtime-task-1.0.js" />
     <Content Include="Scripts\scrumtime-story-1.0.js" />
-    <Content Include="Views\Account\List.ascx" />
-    <Content Include="Views\Dashboard\Index.ascx" />
-    <Content Include="Views\Home\CurrentProductAndSprint.ascx" />
-    <Content Include="Views\Home\Index.aspx" />
-    <Content Include="Views\Product\CurrentEdit.ascx" />
-    <Content Include="Views\Product\CurrentReadOnly.ascx" />
-    <Content Include="Views\Product\Edit.ascx" />
-    <Content Include="Views\Product\Index.ascx" />
-    <Content Include="Views\Product\List.ascx" />
-    <Content Include="Views\Product\ReadOnly.ascx" />
-    <Content Include="Views\Release\Edit.ascx" />
-    <Content Include="Views\Release\List.ascx" />
-    <Content Include="Views\Release\ListContainer.ascx" />
-    <Content Include="Views\Release\ReadOnly.ascx" />
-    <Content Include="Views\Schedule\Index.ascx" />
-    <Content Include="Views\Scrum\Index.ascx" />
-    <Content Include="Views\Scrum\List.ascx" />
-    <Content Include="Views\Scrum\ReadOnly.ascx" />
-    <Content Include="Views\Scrum\Edit.ascx" />
-    <Content Include="Views\Shared\FooterControl.ascx" />
-    <Content Include="Views\Shared\HeaderControl.ascx" />
-    <Content Include="Views\Shared\MainMenu.ascx" />
-    <Content Include="Views\Sprint\CurrentEdit.ascx" />
-    <Content Include="Views\Sprint\CurrentReadOnly.ascx" />
-    <Content Include="Views\Sprint\Edit.ascx" />
-    <Content Include="Views\Sprint\List.ascx" />
-    <Content Include="Views\Sprint\ListContainer.ascx" />
-    <Content Include="Views\Sprint\ReadOnly.ascx" />
-    <Content Include="Views\Story\Backlog.ascx" />
-    <Content Include="Views\Story\ReadOnlyColumns.ascx" />
-    <Content Include="Views\Story\Schedule.ascx" />
-    <Content Include="Views\Story\StoryActionCancelOnly.ascx" />
-    <Content Include="Views\Story\Edit.ascx" />
-    <Content Include="Views\Story\ReadOnly.ascx" />
-    <Content Include="Views\Story\List.ascx" />
-    <Content Include="Views\Task\Edit.ascx" />
-    <Content Include="Views\Task\StoryTaskBacklog.ascx" />
-    <Content Include="Views\Task\List.ascx" />
-    <Content Include="Views\Task\ReadOnly.ascx" />
+    <Content Include="Views\Home\CurrentProductAndSprint.cshtml" />
+    <Content Include="Views\Schedule\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Scrum\Edit.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Scrum\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Scrum\List.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Scrum\ReadOnly.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Story\ReadOnly.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Story\ReadOnlyColumns.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Task\List.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -298,19 +278,10 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Account\ChangePassword.aspx" />
-    <Content Include="Views\Account\ChangePasswordSuccess.aspx" />
-    <Content Include="Views\Account\LogOn.aspx" />
-    <Content Include="Views\Account\Register.aspx" />
-    <Content Include="Views\Shared\Error.aspx" />
-    <Content Include="Views\Shared\LogOnUserControl.ascx" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\NonAuthenticating.Master" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Models\ScrumTime.edmx">
@@ -320,14 +291,51 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\Images\Logos\ScrumTimeLogo.design" />
-    <Content Include="Views\Shared\ScrumTime.Master" />
+    <Content Include="Views\Shared\Layout.cshtml" />
+    <Content Include="Views\Shared\NonAuthenticatingLayout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\HeaderControl.cshtml" />
+    <Content Include="Views\Shared\LogOnUserControl.cshtml" />
+    <Content Include="Views\Shared\MainMenu.cshtml" />
+    <Content Include="Views\Shared\FooterControl.cshtml" />
+    <Content Include="Views\Account\LogOn.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
     <Content Include="packages.config" />
     <None Include="T4MVC.settings.t4" />
     <None Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MVC.cs</LastGenOutput>
     </None>
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Sprint\CurrentReadOnly.cshtml" />
+    <Content Include="Views\Story\Backlog.cshtml" />
+    <Content Include="Views\Story\List.cshtml" />
+    <Content Include="Views\Story\Edit.cshtml" />
+    <Content Include="Views\Story\Schedule.cshtml" />
+    <Content Include="Views\Story\StoryActionCancelOnly.cshtml" />
+    <Content Include="Views\Task\Edit.cshtml" />
+    <Content Include="Views\Task\ReadOnly.cshtml" />
+    <Content Include="Views\Task\StoryTaskBacklog.cshtml" />
+    <Content Include="Views\Product\CurrentReadOnly.cshtml" />
+    <Content Include="Views\Product\CurrentEdit.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\List.cshtml" />
+    <Content Include="Views\Product\ReadOnly.cshtml" />
+    <Content Include="Views\Release\Edit.cshtml" />
+    <Content Include="Views\Release\List.cshtml" />
+    <Content Include="Views\Release\ListContainer.cshtml" />
+    <Content Include="Views\Release\ReadOnly.cshtml" />
+    <Content Include="Views\Sprint\CurrentEdit.cshtml" />
+    <Content Include="Views\Sprint\Edit.cshtml" />
+    <Content Include="Views\Sprint\List.cshtml" />
+    <Content Include="Views\Sprint\ListContainer.cshtml" />
+    <Content Include="Views\Sprint\ReadOnly.cshtml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -341,12 +349,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50266</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost/ScrumTime</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

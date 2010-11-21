@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using ScrumTime.Models;
+﻿using ScrumTime.Models;
 
 namespace ScrumTime.ViewModels
 {

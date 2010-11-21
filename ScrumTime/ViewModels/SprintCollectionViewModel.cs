@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using ScrumTime.Models;
 
 namespace ScrumTime.ViewModels
@@ -10,11 +8,6 @@ namespace ScrumTime.ViewModels
     {
         public int ProductId { get; set; }
         public int CurrentSprintId { get; set; }
-
-        public SprintCollectionViewModel()
-        {
-            
-        }
 
         public List<Sprint> Sprints { get; set; }
 

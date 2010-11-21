@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using ScrumTime.Models;
 
 namespace ScrumTime.ViewModels
@@ -9,11 +7,6 @@ namespace ScrumTime.ViewModels
     public class ReleaseCollectionViewModel 
     {
         public int ProductId { get; set; }
-
-        public ReleaseCollectionViewModel()
-        {
-            
-        }
 
         public List<Release> Releases { get; set; }
 
