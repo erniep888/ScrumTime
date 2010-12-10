@@ -2,13 +2,10 @@
 ## ScrumTime source repository
 ###########################################################
 
-ScrumTime is being developed in multiple phases each with 
-the name of a color as its title.  
+ScrumTime Beta 2 Feature/Fix Goals
 
-Alizarin is the first phase that must have the following completed functionality:
-	* AJAX enabled Story/Task viewer and editor
-	* Data is stored in local SQL Express db
-
-Bistre is the second phase that must have the following completed functionality:
-	* CRUD for Releases and Sprints
-	* Editor for Stories and Tasks assignments to Releases and Sprints
+-Create database creation scripts
+-Merge in Brook's TaskBoard feature
+-Use a wide screen layout
+-Implement the Backlog filter
+-Implement Epic concept (indicates a story that is the parent of other stories)
