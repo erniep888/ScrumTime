@@ -7,13 +7,12 @@ namespace ScrumTime.Foundation.Models
 {
     public class Scrum
     {
-        [Display(Name = "Scrum")]
         public int ScrumId { get; set; }
 
-        [Display(Name = "Product")]
+        [Required()]
         public int ProductId { get; set; }
 
-        [Display(Name = "Sprint")]
+        [Required()]
         public int SprintId { get; set; }
 
         public virtual Product Product { get; set; }

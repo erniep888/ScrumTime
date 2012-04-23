@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
+using ScrumTime.Foundation.Resources;
 
 namespace ScrumTime.Foundation.Models
 {
@@ -10,19 +11,20 @@ namespace ScrumTime.Foundation.Models
         [Display(Name = "Task")]
         public int TaskId { get; set; }
 
-        //[MaxLength(500 ,ErrorMessage = "Description may not be more than 500 characters long.")]
-        [Required(ErrorMessage = "Description is required.")]
+        [Required(ErrorMessageResourceType = typeof(CommonResources),
+            ErrorMessageResourceName = "DescriptionRequired")]
+        [MaxLength(1000, ErrorMessageResourceType = typeof(CommonResources),
+            ErrorMessage = "DescriptionLength1000")]
         public string Description { get; set; }
 
-        [Range(0.0d, 40.0d, ErrorMessage = "Hours must be between 0.0 and 40.0 hours.")]
+        [Range(0.0d, 40.0d, ErrorMessageResourceType = typeof(CommonResources),
+            ErrorMessage = "HoursRange0_40")]
         public decimal Hours { get; set; }
 
-        [MaxLength(128, ErrorMessage = "Assigned To may not be more than 128 characters long.")]
-        [Required(ErrorMessage = "Assigned To is required.")]
-        [Display(Name = "Assigned To")]
+        [MaxLength(120, ErrorMessageResourceType = typeof(CommonResources),
+            ErrorMessage = "AssignedToMaxLength120")]
         public string AssignedTo { get; set; }
 
-        [Display(Name = "Story")]
         public int StoryId { get; set; }
 
         public virtual Story Story { get; set; }
