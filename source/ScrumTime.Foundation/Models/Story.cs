@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.ComponentModel.DataAnnotations;
 
 namespace ScrumTime.Foundation.Models
@@ -11,7 +10,7 @@ namespace ScrumTime.Foundation.Models
         [Display(Name = "Story")]
         public int StoryId { get; set; }
 
-       //[MaxLength(1000, ErrorMessage = "Narrative may not be more than 1000 characters long.")]
+        [MaxLength(1000, ErrorMessage = "Narrative may not be more than 1000 characters long.")]
         [Required(ErrorMessage = "Narrative is required.")]
         public string Narrative { get; set; }
 

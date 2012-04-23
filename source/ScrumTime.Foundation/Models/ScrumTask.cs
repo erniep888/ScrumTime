@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.ComponentModel.DataAnnotations;
+
 
 namespace ScrumTime.Foundation.Models
 {
@@ -11,7 +11,7 @@ namespace ScrumTime.Foundation.Models
         [Display(Name = "Scrum Task")]
         public int ScrumTaskId { get; set; }
 
-       //[MaxLength(128, ErrorMessage = "Assigned To may not be more than 128 characters long.")]
+        [MaxLength(128, ErrorMessage = "Assigned To may not be more than 128 characters long.")]
         [Required(ErrorMessage = "Assigned To is required.")]
         [Display(Name = "Assigned To")]
         public string AssignedTo { get; set; }
