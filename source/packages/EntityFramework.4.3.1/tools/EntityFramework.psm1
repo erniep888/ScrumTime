@@ -2,12 +2,11 @@
 
 $InitialDatabase = '0'
 
+$installPath = $args[0]
 $knownExceptions = @(
     'System.Data.Entity.Migrations.Infrastructure.MigrationsException',
     'System.Data.Entity.Migrations.Infrastructure.AutomaticMigrationsDisabledException',
-    'System.Data.Entity.Migrations.Infrastructure.AutomaticDataLossException',
-    'System.Data.Entity.Migrations.MigrationsPendingException',
-    'System.Data.Entity.Migrations.ProjectTypeNotSupportedException'
+    'System.Data.Entity.Migrations.Infrastructure.AutomaticDataLossException'
 )
 
 <#
@@ -36,34 +35,37 @@ function Enable-Migrations
 {
     [CmdletBinding(DefaultParameterSetName = 'ProjectName')] 
     param (
-        [alias('Auto')]
+        [alias("Auto")]
         [switch] $EnableAutomaticMigrations,
         [string] $ProjectName,
 		[switch] $Force
     )
 
-    $runner = New-GenericRunner $ProjectName
-
     try
     {
-        Invoke-RunnerCommand $runner System.Data.Entity.Migrations.EnableMigrationsCommand @( $EnableAutomaticMigrations.IsPresent, $Force.IsPresent)
-        $error = Get-RunnerError $runner
+        $commands = New-MigrationsCommandsNoConfiguration $ProjectName
+        $commands.EnableMigrations($EnableAutomaticMigrations, $Force)
+    }
+    catch [Exception]
+    {
+        $exception = $_.Exception
+        $exceptionType = $exception.GetType()
         
-        if ($error)
+        if ($exceptionType.FullName -eq 'System.Data.Entity.Migrations.Design.ToolingException')
         {
-            if ($knownExceptions -notcontains $error.TypeName)
+            if ($knownExceptions -notcontains $exception.InnerType)
             {
-                Write-Host $error.StackTrace
+                Write-Host $exception.InnerStackTrace
             }
-
-            throw $error.Message
         }
-    }
-    finally
+        elseif (!(Test-TypeInherits $exceptionType 'System.Data.Entity.Migrations.Infrastructure.MigrationsException'))
         {
-        Remove-Runner $runner
+            Write-Host $exception
         }
+        
+        throw $exception.Message
     }
+}
 
 <#
 .SYNOPSIS
@@ -132,28 +134,31 @@ function Add-Migration
         [string] $ConnectionProviderName,
         [switch] $IgnoreChanges)
 
-    $runner = New-MigrationsRunner $ProjectName $StartUpProjectName $ConfigurationTypeName $ConnectionStringName $ConnectionString $ConnectionProviderName
-
     try
     {
-        Invoke-RunnerCommand $runner System.Data.Entity.Migrations.AddMigrationCommand @( $Name, $Force.IsPresent, $IgnoreChanges.IsPresent )
-        $error = Get-RunnerError $runner
+        $commands = New-MigrationsCommands $ProjectName $StartUpProjectName $ConfigurationTypeName $ConnectionStringName $ConnectionString $ConnectionProviderName
+        $commands.AddMigration($Name, $Force, $IgnoreChanges)
+    }
+    catch [Exception]
+    {
+        $exception = $_.Exception
+        $exceptionType = $exception.GetType()
         
-        if ($error)
+        if ($exceptionType.FullName -eq 'System.Data.Entity.Migrations.Design.ToolingException')
         {
-            if ($knownExceptions -notcontains $error.TypeName)
+            if ($knownExceptions -notcontains $exception.InnerType)
             {
-                Write-Host $error.StackTrace
+                Write-Host $exception.InnerStackTrace
             }
-
-            throw $error.Message
         }
-    }
-    finally
+        elseif (!(Test-TypeInherits $exceptionType 'System.Data.Entity.Migrations.Infrastructure.MigrationsException'))
         {
-        Remove-Runner $runner
+            Write-Host $exception
         }
+        
+        throw $exception.Message
     }
+}
 
 <#
 .SYNOPSIS
@@ -223,28 +228,37 @@ function Update-Database
             Mandatory = $true)]
         [string] $ConnectionProviderName)
 
-    $runner = New-MigrationsRunner $ProjectName $StartUpProjectName $ConfigurationTypeName $ConnectionStringName $ConnectionString $ConnectionProviderName
+    # TODO: If possible, convert this to a ParameterSet
+    if ($SourceMigration -and !$script)
+    {
+        throw '-SourceMigration can only be specified with -Script.'
+    }
 
     try
     {
-        Invoke-RunnerCommand $runner System.Data.Entity.Migrations.UpdateDatabaseCommand @( $SourceMigration, $TargetMigration, $Script.IsPresent, $Force.IsPresent, $Verbose.IsPresent )
-        $error = Get-RunnerError $runner
+        $commands = New-MigrationsCommands $ProjectName $StartUpProjectName $ConfigurationTypeName $ConnectionStringName $ConnectionString $ConnectionProviderName
+        $commands.UpdateDatabase($SourceMigration, $TargetMigration, $Script, $Force)
+    }
+    catch [Exception]
+    {
+        $exception = $_.Exception
+        $exceptionType = $exception.GetType()
         
-        if ($error)
+        if ($exceptionType.FullName -eq 'System.Data.Entity.Migrations.Design.ToolingException')
         {
-            if ($knownExceptions -notcontains $error.TypeName)
+            if ($knownExceptions -notcontains $exception.InnerType)
             {
-                Write-Host $error.StackTrace
+                Write-Host $exception.InnerStackTrace
             }
-
-            throw $error.Message
         }
-    }
-    finally
+        elseif (!(Test-TypeInherits $exceptionType 'System.Data.Entity.Migrations.Infrastructure.MigrationsException'))
         {
-        Remove-Runner $runner
+            Write-Host $exception
         }
+        
+        throw $exception.Message
     }
+}
 
 <#
 .SYNOPSIS
@@ -294,125 +308,81 @@ function Get-Migrations
             Mandatory = $true)]
         [string] $ConnectionProviderName)
 
-    $runner = New-MigrationsRunner $ProjectName $StartUpProjectName $ConfigurationTypeName $ConnectionStringName $ConnectionString $ConnectionProviderName
+    try
+    {
+        $commands = New-MigrationsCommands $ProjectName $StartUpProjectName $ConfigurationTypeName $ConnectionStringName $ConnectionString $ConnectionProviderName
+        $commands.GetMigrations()
+    }
+    catch [Exception]
+    {
+        $exception = $_.Exception
+        $exceptionType = $exception.GetType()
+        
+        if ($exceptionType.FullName -eq 'System.Data.Entity.Migrations.Design.ToolingException')
+        {
+            if ($knownExceptions -notcontains $exception.InnerType)
+            {
+                Write-Host $exception.InnerStackTrace
+            }
+        }
+        elseif (!(Test-TypeInherits $exceptionType 'System.Data.Entity.Migrations.Infrastructure.MigrationsException'))
+        {
+            Write-Host $exception
+        }
+        
+        throw $exception.Message
+    }
+}
+
+function New-MigrationsCommandsNoConfiguration($ProjectName)
+{
+    $project = Get-MigrationsProject $ProjectName
+
+    Build-Project $project
+
+    Load-EntityFramework
 
     try
     {
-        Invoke-RunnerCommand $runner System.Data.Entity.Migrations.GetMigrationsCommand
-        $error = Get-RunnerError $runner
-        
-        if ($error)
-        {
-            if ($knownExceptions -notcontains $error.TypeName)
-            {
-                Write-Host $error.StackTrace
-            }
-
-            throw $error.Message
-        }
+        return New-Object 'System.Data.Entity.Migrations.MigrationsCommands' @(
+        $project,
+        $project,
+        $null,
+        $null,
+        $null,
+        $null,
+        $PSCmdlet )
     }
-    finally
-        {
-        Remove-Runner $runner
-        }
+    catch [System.Management.Automation.MethodInvocationException]
+    {
+        throw $_.Exception.InnerException
     }
+}
 
-function New-GenericRunner($ProjectName)
+function New-MigrationsCommands($ProjectName, $StartUpProjectName, $ConfigurationTypeName, $ConnectionStringName, $ConnectionString, $ConnectionProviderName)
 {
     $project = Get-MigrationsProject $ProjectName
-    Build-Project $project
-
-    $installPath = Get-EntityFrameworkInstallPath $project
-    $toolsPath = Join-Path $installPath tools
-
-    $info = New-Object System.AppDomainSetup -Property @{
-            ShadowCopyFiles = 'true';
-            ApplicationBase = $installPath;
-            PrivateBinPath = 'tools'
-        }
-    
-    $targetFrameworkVersion = (New-Object System.Runtime.Versioning.FrameworkName ($project.Properties.Item('TargetFrameworkMoniker').Value)).Version
-
-    if ($targetFrameworkVersion -lt (New-Object Version @( 4, 5 )))
-    {
-        $info.PrivateBinPath += ';lib\net40'
-        $info.ConfigurationFile = Join-Path $toolsPath 'Redirect.config'
-    }
-    else
-    {
-        $info.PrivateBinPath += ';lib\net45'
-    }
-
-    $domain = [AppDomain]::CreateDomain('Migrations', $null, $info)
-    $domain.SetData('project', $project)
-
-    [AppDomain]::CurrentDomain.SetShadowCopyFiles()
-    $utilityAssembly = [System.Reflection.Assembly]::LoadFrom((Join-Path $toolsPath EntityFramework.PowerShell.Utility.dll))
-    $dispatcher = $utilityAssembly.CreateInstance(
-        'System.Data.Entity.Migrations.Utilities.DomainDispatcher',
-        $false,
-        [System.Reflection.BindingFlags]::Instance -bor [System.Reflection.BindingFlags]::Public,
-        $null,
-        $PSCmdlet,
-        $null,
-        $null)
-    $domain.SetData('efDispatcher', $dispatcher)
-
-    return @{
-            Domain = $domain;
-            ToolsPath = $toolsPath
-    }
-}
-
-function New-MigrationsRunner($ProjectName, $StartUpProjectName, $ConfigurationTypeName, $ConnectionStringName, $ConnectionString, $ConnectionProviderName)
-{
     $startUpProject = Get-MigrationsStartUpProject $StartUpProjectName
+
+    Build-Project $project
     Build-Project $startUpProject
 
-    $runner = New-GenericRunner $ProjectName
+    Load-EntityFramework
 
-    $domain = $runner.Domain
-    $domain.SetData('startUpProject', $startUpProject)
-    $domain.SetData('configurationTypeName', $ConfigurationTypeName)
-    $domain.SetData('connectionStringName', $ConnectionStringName)
-    $domain.SetData('connectionString', $ConnectionString)
-    $domain.SetData('connectionProviderName', $ConnectionProviderName)
-
-    return $runner
-}
-
-function Remove-Runner($runner)
-{
-    [AppDomain]::Unload($runner.Domain)
-}
-
-function Invoke-RunnerCommand($runner, $command, $parameters)
+    try
     {
-    $domain = $runner.Domain
-    $domain.CreateInstanceFrom(
-        (Join-Path $runner.ToolsPath EntityFramework.PowerShell.dll),
-        $command,
-        $false,
-        0,
-        $null,
-        $parameters,
-        $null,
-        $null) | Out-Null
+        return New-Object 'System.Data.Entity.Migrations.MigrationsCommands' @(
+            $project,
+            $startUpProject,
+            $ConfigurationTypeName,
+            $ConnectionStringName,
+            $ConnectionString,
+            $ConnectionProviderName,
+            $PSCmdlet )
     }
-
-function Get-RunnerError($runner)
-{
-    $domain = $runner.Domain
-
-    if (!$domain.GetData('wasError'))
+    catch [System.Management.Automation.MethodInvocationException]
     {
-        return $null
-    }
-
-    return @{
-            Message = $domain.GetData('error.Message');
-            TypeName = $domain.GetData('error.TypeName');
-            StackTrace = $domain.GetData('error.StackTrace')
+        throw $_.Exception.InnerException
     }
 }
 
@@ -424,9 +394,8 @@ function Get-MigrationsProject($name)
     }
 
     $project = Get-Project
-    $projectName = $project.Name
 
-    Write-Verbose "Using NuGet project '$projectName'."
+    Write-Verbose ('Using NuGet project ''' + $project.Name + '''.')
 
     return $project
 }
@@ -467,9 +436,8 @@ function Get-MigrationsStartUpProject($name)
 
         return $fullName -eq $startupProjectPath
     }
-    $startUpProjectName = $startupProject.Name
 
-    Write-Verbose "Using StartUp project '$startUpProjectName'."
+    Write-Verbose ('Using StartUp project ''' + $startupProject.Name + '''.')
 
     return $startupProject
 }
@@ -486,6 +454,13 @@ function Get-SingleProject($name)
     return $project
 }
 
+function Load-EntityFramework()
+{
+    [System.AppDomain]::CurrentDomain.SetShadowCopyFiles()
+    [System.Reflection.Assembly]::LoadFrom((Join-Path $installPath 'lib\net40\EntityFramework.dll')) | Out-Null
+    [System.Reflection.Assembly]::LoadFrom((Join-Path $installPath 'tools\EntityFramework.PowerShell.dll')) | Out-Null
+}
+
 function Build-Project($project)
 {
     $configuration = $DTE.Solution.SolutionBuild.ActiveConfiguration.Name
@@ -494,34 +469,25 @@ function Build-Project($project)
 
     if ($DTE.Solution.SolutionBuild.LastBuildInfo)
     {
-        $projectName = $project.Name
-
-        throw "The project '$projectName' failed to build."
+        throw 'The project ''' + $project.Name + ''' failed to build.'
     }
 }
 
-function Get-EntityFrameworkInstallPath($project)
+function Test-TypeInherits($type, $baseTypeName)
 {
-    $package = Get-Package -ProjectName $project.FullName | ?{ $_.Id -eq 'EntityFramework' }
-
-    if (!$package)
+    if ($type.FullName -eq $baseTypeName)
     {
-        $projectName = $project.Name
-
-        throw "The EntityFramework package is not installed on project '$projectName'."
+        return $true
     }
     
-    return Get-PackageInstallPath $package
-}
+    $baseType = $type.BaseType
     
-function Get-PackageInstallPath($package)
+    if ($baseType)
     {
-    $componentModel = Get-VsComponentModel
-    $packageInstallerServices = $componentModel.GetService([NuGet.VisualStudio.IVsPackageInstallerServices])
-
-    $vsPackage = $packageInstallerServices.GetInstalledPackages() | ?{ $_.Id -eq $package.Id -and $_.Version -eq $package.Version }
+        return Test-TypeInherits $baseType $baseTypeName
+    }
     
-    return $vsPackage.InstallPath
+    return $false
 }
 
-Export-ModuleMember @( 'Enable-Migrations', 'Add-Migration', 'Update-Database', 'Get-Migrations' ) -Variable InitialDatabase
+Export-ModuleMember @( 'Enable-Migrations', 'Add-Migration', 'Update-Database', 'Get-Migrations' ) -Variable 'InitialDatabase'
