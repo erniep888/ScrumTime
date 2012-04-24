@@ -21,7 +21,7 @@ namespace ScrumTime.Foundation.Models
         public string Description { get; set; }
 
         public virtual ICollection<Feature> Features { get; set; }
-        public virtual ICollection<Release> Releases { get; set; }
-        public virtual ICollection<Team> Teams { get; set; }
+        //public virtual ICollection<Release> Releases { get; set; }
+        //public virtual ICollection<Team> Teams { get; set; }
     }
 }

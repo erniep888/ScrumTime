@@ -10,12 +10,8 @@ namespace ScrumTime.Foundation.Models
         public int ScrumId { get; set; }
 
         [Required()]
-        public int ProductId { get; set; }
-
-        [Required()]
         public int SprintId { get; set; }
 
-        public virtual Product Product { get; set; }
         public virtual Sprint Sprint { get; set; }
         public virtual ICollection<ScrumTask> ScrumDetails { get; set; }
 

@@ -26,8 +26,8 @@ namespace ScrumTime.Foundation.Models
 
         public int Priority { get; set; }
 
-        public int SprintId { get; set; }
-        public virtual Sprint Sprint { get; set; }
+        //public int SprintId { get; set; }
+        //public virtual Sprint Sprint { get; set; }
 
         public virtual ICollection<Task> Tasks { get; set; }
 

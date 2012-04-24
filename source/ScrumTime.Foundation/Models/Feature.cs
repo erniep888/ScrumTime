@@ -11,7 +11,7 @@ namespace ScrumTime.Foundation.Models
         public int FeatureId { get; set; }
 
         public int ProductId { get; set; }
-        public Product ParentProduct { get; set; }
+        public Product Product { get; set; }
 
         public ICollection<Story> Stories { get; set; }
 

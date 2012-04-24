@@ -24,11 +24,7 @@ namespace ScrumTime.Foundation.Models
             ErrorMessage = "AssignedToMaxLength120")]
         public string AssignedTo { get; set; }
 
-        public int StoryId { get; set; }
-        public int FeatureId { get; set; }
-        public int ScrumId { get; set; }
-
-        public virtual Story ParentStory { get; set; }      // Want a task to be able to 
-        public virtual Feature ParentFeature { get; set; }  // float between stories and features
+        public int StoryId { get; set; }        
+        public virtual Story Story { get; set; }  
     }
 }

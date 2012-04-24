@@ -1,17 +1,18 @@
-﻿extern alias EntityFramework4_3;
+﻿extern alias EntityFramework5;
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EntityFramework4_3::System.Data.Entity;
+using EntityFramework5::System.Data.Entity;
 using ScrumTime.Foundation.Models;
 
 namespace ScrumTime.Foundation.DataAccessLayer
 {
-    public class ScrumTimeInitializer : DropCreateDatabaseIfModelChanges<ScrumTimeContext>
+    public class ScrumTimeInitializer : DropCreateDatabaseAlways<ScrumTimeContext>
     {
+        
 
         protected override void Seed(ScrumTimeContext context)
         {
