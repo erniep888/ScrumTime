@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace ScrumTime.Foundation.Models
 {
-    class Feature
+    public class Feature
     {
+        public int FeatureId { get; set; }
+
+        public int ProductId { get; set; }
+        public Product ParentProduct { get; set; }
+
+        public ICollection<Story> Stories { get; set; }
+
     }
 }

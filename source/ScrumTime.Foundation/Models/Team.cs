@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace ScrumTime.Foundation.Models
 {
-    class Team
+    public class Team
     {
+        public int TeamId { get; set; }
+
+        public int ProductId { get; set; }
+
+        public Product ParentProduct { get; set; }
     }
 }

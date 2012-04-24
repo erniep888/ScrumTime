@@ -10,6 +10,10 @@ namespace ScrumTime.Foundation.Models
     {
         public int StoryId { get; set; }
 
+        [MaxLength(120, ErrorMessageResourceType = typeof(CommonResources),
+            ErrorMessage = "NameLength120")]
+        public string Name { get; set; }
+
         [Required(ErrorMessageResourceType = typeof(CommonResources),
             ErrorMessageResourceName = "NarrativeRequired")]
         [MaxLength(120, ErrorMessageResourceType = typeof(CommonResources),
@@ -22,12 +26,9 @@ namespace ScrumTime.Foundation.Models
 
         public int Priority { get; set; }
 
-        public int ProductId { get; set; }
-
         public int SprintId { get; set; }
+        public virtual Sprint Sprint { get; set; }
 
-        public virtual Product Product { get; set; }
-        //public virtual Sprint Sprint { get; set; }
         public virtual ICollection<Task> Tasks { get; set; }
 
     }

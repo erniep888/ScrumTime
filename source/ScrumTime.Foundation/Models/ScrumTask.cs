@@ -29,7 +29,7 @@ namespace ScrumTime.Foundation.Models
 
         public int TaskId { get; set; }
 
-        public virtual Scrum Scrum { get; set; }
+        public virtual Scrum ParentScrum { get; set; }
         public virtual Task Task { get; set; }
     }
 }

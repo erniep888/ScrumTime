@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ScrumTime.Foundation.Models
 {
-    class Bug
+    public class Bug
     {
+        public int BugId { get; set; }
+
     }
 }

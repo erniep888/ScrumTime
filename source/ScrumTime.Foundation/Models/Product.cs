@@ -20,12 +20,8 @@ namespace ScrumTime.Foundation.Models
             ErrorMessage = "DescriptionLength1000")]
         public string Description { get; set; }
 
-        public virtual List<Release> Releases { get; set; }
-
-        // public virtual ICollection<Story> Stories { get; set; }
-        //public virtual ICollection<Sprint> Sprints { get; set; }
-        //public virtual ICollection<Scrum> Scrums { get; set; }
-
-
+        public virtual ICollection<Feature> Features { get; set; }
+        public virtual ICollection<Release> Releases { get; set; }
+        public virtual ICollection<Team> Teams { get; set; }
     }
 }

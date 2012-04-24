@@ -22,8 +22,9 @@ namespace ScrumTime.Foundation.Models
             ErrorMessage = "DescriptionLength1000")]
         public string Description { get; set; }
 
-       
         public DateTime TargetDate { get; set; }
+
+        public int ProductId { get; set; }
         
         public virtual Product Product { get; set; }
 

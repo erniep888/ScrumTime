@@ -8,7 +8,6 @@ namespace ScrumTime.Foundation.Models
 {
     public class Task
     {
-        [Display(Name = "Task")]
         public int TaskId { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(CommonResources),
@@ -26,8 +25,10 @@ namespace ScrumTime.Foundation.Models
         public string AssignedTo { get; set; }
 
         public int StoryId { get; set; }
+        public int FeatureId { get; set; }
+        public int ScrumId { get; set; }
 
-        public virtual Story Story { get; set; }
-        //public virtual ICollection<ScrumDetail> ScrumDetails { get; set; }
+        public virtual Story ParentStory { get; set; }      // Want a task to be able to 
+        public virtual Feature ParentFeature { get; set; }  // float between stories and features
     }
 }
