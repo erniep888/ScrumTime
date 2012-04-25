@@ -13,10 +13,10 @@ namespace ScrumTime.Foundation.DataAccessLayer
         //public DbSet<Bug> Bugs { get; set; }
         public DbSet<Feature> Features { get; set; }
         public DbSet<Product> Products { get; set; }
-        //public DbSet<Release> Releases { get; set; }
+        public DbSet<Release> Releases { get; set; }
         //public DbSet<Scrum> Scrums { get; set; }
         //public DbSet<ScrumTask> ScrumTasks { get; set; }
-        //public DbSet<Sprint> Sprints { get; set; }
+        public DbSet<Sprint> Sprints { get; set; }
         public DbSet<Story> Stories { get; set; }
         public DbSet<Task> Tasks { get; set; }
         //public DbSet<Team> Teams { get; set; }
