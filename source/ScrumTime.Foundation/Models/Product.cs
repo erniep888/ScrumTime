@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using MongoDB.Bson;
 using ScrumTime.Foundation.Resources;
 
 namespace ScrumTime.Foundation.Models
 {
     public class Product
     {
-        public int ProductId { get; set; }
+        public ObjectId Id { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(CommonResources),
             ErrorMessageResourceName = "NameRequired")]
