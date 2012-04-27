@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ScrumTime.Foundation.Resources;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace ScrumTime.Foundation.Models
 {
     public class Story
     {
-        public int StoryId { get; set; }
+        public ObjectId Id { get; set; }
 
         [MaxLength(120, ErrorMessageResourceType = typeof(CommonResources),
             ErrorMessage = "NameLength120")]
@@ -29,7 +31,18 @@ namespace ScrumTime.Foundation.Models
         //public int SprintId { get; set; }
         //public virtual Sprint Sprint { get; set; }
 
-        public virtual ICollection<Task> Tasks { get; set; }
+        public List<Story> Children { get; set; }
+
+        public List<Task> Tasks { get; set; }
+
+
+        public bool HasChildren()
+        {
+            if (Children == null || Children.Count() == 0)
+                return false;
+            else
+                return true;
+        }
 
     }
 }

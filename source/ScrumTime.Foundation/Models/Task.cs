@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ScrumTime.Foundation.Resources;
+using MongoDB.Bson;
 
 namespace ScrumTime.Foundation.Models
 {
     public class Task
     {
-        public int TaskId { get; set; }
+        public ObjectId Id { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(CommonResources),
             ErrorMessageResourceName = "DescriptionRequired")]
@@ -23,8 +24,5 @@ namespace ScrumTime.Foundation.Models
         [MaxLength(120, ErrorMessageResourceType = typeof(CommonResources),
             ErrorMessage = "AssignedToMaxLength120")]
         public string AssignedTo { get; set; }
-
-        public int StoryId { get; set; }        
-        public virtual Story Story { get; set; }  
     }
 }

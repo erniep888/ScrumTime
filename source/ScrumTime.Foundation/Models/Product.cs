@@ -1,7 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using MongoDB.Bson;
+using MongoDB.Driver;
+using MongoDB.Driver.Linq;
+using MongoDB.Driver.Builders;
+using MongoDB.Bson.Serialization.Attributes;
 using ScrumTime.Foundation.Resources;
+
 
 namespace ScrumTime.Foundation.Models
 {
@@ -12,7 +17,7 @@ namespace ScrumTime.Foundation.Models
         [Required(ErrorMessageResourceType = typeof(CommonResources),
             ErrorMessageResourceName = "NameRequired")]
         [MaxLength(120, ErrorMessageResourceType = typeof(CommonResources),
-            ErrorMessage = "NameLength120")]
+            ErrorMessage = "NameLength120")]           
         public string Name { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(CommonResources),
@@ -21,7 +26,7 @@ namespace ScrumTime.Foundation.Models
             ErrorMessage = "DescriptionLength1000")]
         public string Description { get; set; }
 
-        public virtual ICollection<Feature> Features { get; set; }
+        //public List<Feature> Features { get; set; }
         //public virtual ICollection<Release> Releases { get; set; }
         //public virtual ICollection<Team> Teams { get; set; }
     }

@@ -70,9 +70,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\ScrumTime_Compact.sdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>

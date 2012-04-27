@@ -32,7 +32,46 @@ namespace ScrumTime.Foundation.Test
         }
 
         [TestMethod]
-        public void SeedTest()
+        public void SeedStoryTest()
+        {
+            var connectionString = "mongodb://localhost/?safe=true";
+            var server = MongoServer.Create(connectionString);
+
+            var database = server.GetDatabase("ScrumTime");
+
+            var collection = database.GetCollection<Story>("stories");
+
+            var storyChild = new Story()
+            {
+                Name = "Login Hide",
+                Narrative = "As an anonymous user, I need to see more of the screen prior to logging in so that I may see recent quotes.",
+                Points = 5,
+                Priority = 200
+            };
+
+            var storyParent = new Story()
+            {
+                Name = "Login Control",
+                Narrative = "As an anonymous user, I need to login so that the system provides authorized access.",
+                Points = 13,
+                Priority = 200,
+                Children = new List<Story>()
+            };
+
+            storyParent.Children.Add(storyChild);
+
+            try
+            {
+                collection.Insert(storyParent);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail();
+            }
+        }
+
+        [TestMethod]
+        public void SeedProductTest()
         {
             var connectionString = "mongodb://localhost/?safe=true";
             var server = MongoServer.Create(connectionString);
