@@ -1,12 +1,13 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using MongoDB.Bson;
 using ScrumTime.Foundation.Resources;
 
 namespace ScrumTime.Foundation.Models
 {
-    public class Artifact
-    {
-        public int ArtifactId { get; set; }
+    public class Artifact : IScrumTimeModel
+    {               
+        public ObjectId Id { get; set; }
 
         [Required(ErrorMessageResourceType=typeof(CommonResources),
             ErrorMessageResourceName = "DescriptionRequired")]

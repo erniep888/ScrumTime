@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
+using MongoDB.Bson;
 
 namespace ScrumTime.Foundation.Models
 {
     public class Scrum
     {
-        public int ScrumId { get; set; }
+        public ObjectId ParentSprintId { get; set; }
 
-        [Required()]
-        public int SprintId { get; set; }
-
-        public virtual Sprint Sprint { get; set; }
-        public virtual ICollection<ScrumTask> ScrumDetails { get; set; }
+        public DateTime DateTimeOfScrum { get; set; }
+        public List<ScrumTask> ScrumDetails { get; set; }
 
     }
 }

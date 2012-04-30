@@ -8,9 +8,13 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace ScrumTime.Foundation.Models
 {
-    public class Story
+    public class Story : IScrumTimeModel
     {
         public ObjectId Id { get; set; }
+        public ObjectId ParentStoryId { get; set; }
+        public ObjectId ParentFeatureId { get; set; }
+
+        public List<Artifact> Artifacts { get; set; }
 
         [MaxLength(120, ErrorMessageResourceType = typeof(CommonResources),
             ErrorMessage = "NameLength120")]
@@ -22,19 +26,13 @@ namespace ScrumTime.Foundation.Models
             ErrorMessage = "NarrativeLength1000")]
         public string Narrative { get; set; }
 
-        [Range(0, 100, ErrorMessageResourceType = typeof(CommonResources),
-            ErrorMessageResourceName = "Points0_100")]
-        public int Points { get; set; }
+        public String Points { get; set; }
 
         public int Priority { get; set; }
-
-        //public int SprintId { get; set; }
-        //public virtual Sprint Sprint { get; set; }
 
         public List<Story> Children { get; set; }
 
         public List<Task> Tasks { get; set; }
-
 
         public bool HasChildren()
         {

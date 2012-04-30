@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ScrumTime.Foundation.Resources;
+using MongoDB.Bson;
 
 namespace ScrumTime.Foundation.Models
 {
-    public class Sprint
+    public class Sprint : IScrumTimeModel
     {
-        public int SprintId { get; set; }
+        public ObjectId Id { get; set; }
+        public ObjectId ParentProductId { get; set; }
+
+        public List<ObjectId> AssignedStoryIds { get; set; }
+
+        public List<Scrum> Scrums { get; set; }
+
+        public List<Artifact> Artifacts { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(CommonResources),
             ErrorMessageResourceName = "NameRequired")]
@@ -25,12 +33,5 @@ namespace ScrumTime.Foundation.Models
         public DateTime StartDate { get; set; }
         
         public DateTime FinishDate { get; set; }
-
-        public int ProductId { get; set; }
-
-        public virtual Product Product { get; set; }
-        public virtual ICollection<Story> Stories { get; set; }
-        public virtual ICollection<Scrum> Scrums { get; set; }
-
     }
 }

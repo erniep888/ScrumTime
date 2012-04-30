@@ -11,6 +11,8 @@ namespace ScrumTime.Foundation.Models
     {
         public ObjectId Id { get; set; }
 
+        public List<Artifact> Artifacts { get; set; }
+
         [Required(ErrorMessageResourceType = typeof(CommonResources),
             ErrorMessageResourceName = "DescriptionRequired")]
         [MaxLength(1000, ErrorMessageResourceType = typeof(CommonResources),

@@ -3,21 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MongoDB.Bson;
+using MongoDB.Driver.Linq;
 using ScrumTime.Foundation.Models;
 
 namespace ScrumTime.Foundation.DataAccessLayer
 {
-    public class ScrumTimeInitializer
+    public class ProductRepository : BaseRepository<Product>
     {
-        public void InitialCreation()
+        public ProductRepository()
+            : base("Products")
         {
-            var context = new ScrumTimeContext();
-            context.DeleteAllCollections();
-
-            // Create the default drop-down lists
         }
-
-
         
     }
 }

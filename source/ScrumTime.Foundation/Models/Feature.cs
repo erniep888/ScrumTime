@@ -5,13 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using ScrumTime.Foundation.Resources;
 
 namespace ScrumTime.Foundation.Models
 {
-    public class Feature
+    public class Feature : IScrumTimeModel
     {
         public ObjectId Id { get; set; }
+        public ObjectId ParentProductId { get; set; }
+
+        public List<Artifact> Artifacts { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(CommonResources),
             ErrorMessageResourceName = "NameRequired")]
@@ -25,9 +29,14 @@ namespace ScrumTime.Foundation.Models
             ErrorMessage = "DescriptionLength1000")]
         public string Description { get; set; }
 
-        public ObjectId ProductId { get; set; }        
-
-        public List<Story> Stories { get; set; }
+        [BsonIgnore]
+        public Decimal HoursRemaining { get; set; }
+        [BsonIgnore]
+        public Decimal HoursCompleted { get; set; }
+        [BsonIgnore]
+        public Decimal UnbilledHours { get; set; }
+        [BsonIgnore]
+        public Decimal BilledHours { get; set; }
 
     }
 }

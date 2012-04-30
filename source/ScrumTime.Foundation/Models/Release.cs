@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using ScrumTime.Foundation.Resources;
+using MongoDB.Bson;
 
 namespace ScrumTime.Foundation.Models
 {
-    public class Release
+    public class Release : IScrumTimeModel
     {
-        public int ReleaseId { get; set; }
+        public ObjectId Id { get; set; }
+        public ObjectId ParentProductId { get; set; }
+        public ObjectId SprintIdsIncluded { get; set; }
+
+        public Artifact Photo { get; set; }
+        public List<Artifact> Artifacts { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(CommonResources),
             ErrorMessageResourceName = "NameRequired")]
@@ -23,9 +29,6 @@ namespace ScrumTime.Foundation.Models
         public string Description { get; set; }
 
         public DateTime TargetDate { get; set; }
-
-        public int ProductId { get; set; }        
-        public virtual Product Product { get; set; }
 
     }
 }

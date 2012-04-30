@@ -5,12 +5,15 @@ using System.Text;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using ScrumTime.Foundation.Resources;
+using MongoDB.Bson;
 
 namespace ScrumTime.Foundation.Models
 {
     public class Actor
     {
-        public int ActorId { get; set; }
+        public Artifact Photo { get; set; }
+
+        public List<Artifact> Artifacts { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(CommonResources),
             ErrorMessageResourceName = "NameRequired")]

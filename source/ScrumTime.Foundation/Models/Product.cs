@@ -10,9 +10,13 @@ using ScrumTime.Foundation.Resources;
 
 namespace ScrumTime.Foundation.Models
 {
-    public class Product
+    public class Product : IScrumTimeModel
     {
         public ObjectId Id { get; set; }
+
+        public Artifact Photo { get; set; }
+
+        public List<Artifact> Artifacts { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(CommonResources),
             ErrorMessageResourceName = "NameRequired")]

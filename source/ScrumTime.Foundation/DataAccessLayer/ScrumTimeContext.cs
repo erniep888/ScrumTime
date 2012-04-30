@@ -1,23 +1,50 @@
-﻿using ScrumTime.Foundation.Models;
-
-namespace ScrumTime.Foundation.DataAccessLayer
+﻿namespace ScrumTime.Foundation.DataAccessLayer
 {
-    public class ScrumTimeContext // : DbContext
+    using System.Configuration;
+    using MongoDB.Driver;
+
+    using ScrumTime.Foundation.Models;
+
+    public class ScrumTimeContext 
     {
 
-        //public DbSet<Actor> Actors { get; set; }
-        //public DbSet<Artifact> Artifacts { get; set; }
-        //public DbSet<Bug> Bugs { get; set; }
-        //public DbSet<Feature> Features { get; set; }
-        //public DbSet<Product> Products { get; set; }
-        //public DbSet<Release> Releases { get; set; }
-        ////public DbSet<Scrum> Scrums { get; set; }
-        ////public DbSet<ScrumTask> ScrumTasks { get; set; }
-        //public DbSet<Sprint> Sprints { get; set; }
-        //public DbSet<Story> Stories { get; set; }
-        //public DbSet<Task> Tasks { get; set; }
-        //public DbSet<Team> Teams { get; set; }
+        public MongoDatabase Database { get; private set; }
 
+        public ScrumTimeContext()
+        {
+            var connectionString = ConfigurationManager.AppSettings["ScrumTimeMongoDBConnection"];
+            var server = MongoServer.Create(connectionString);
+            Database = server.GetDatabase("ScrumTime");            
+        }
+
+
+
+        public void DeleteAllCollections()
+        {
+            foreach (var collectionName in Database.GetCollectionNames())
+            {
+                Database.DropCollection(collectionName);
+            }
+        }
+
+        public MongoCollection<StoryPoint> StoryPoints()
+        {
+            return Database.GetCollection<StoryPoint>("StoryPoints");
+        }
         
+        public MongoCollection<BugSeverity> BugSeverities()
+        {
+            return Database.GetCollection<BugSeverity>("BugSeverities");
+        }
+
+        public MongoCollection<BugPriority> BugPriorities()
+        {
+            return Database.GetCollection<BugPriority>("BugPriorities");
+        }
+
+        public MongoCollection<BugStatus> BugStatuses()
+        {
+            return Database.GetCollection<BugStatus>("BugStatuses");
+        }
     }
 }

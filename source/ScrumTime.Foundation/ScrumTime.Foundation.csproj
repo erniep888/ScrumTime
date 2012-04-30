@@ -33,10 +33,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DataAccessLayer\BaseRepository.cs" />
+    <Compile Include="DataAccessLayer\BugRepository.cs" />
+    <Compile Include="DataAccessLayer\ReleaseRepository.cs" />
+    <Compile Include="DataAccessLayer\ProductRepository.cs" />
+    <Compile Include="DataAccessLayer\StoryRepository.cs" />
     <Compile Include="DataAccessLayer\ScrumTimeInitializer.cs" />
     <Compile Include="Models\Actor.cs" />
     <Compile Include="Models\Artifact.cs" />
     <Compile Include="Models\Bug.cs" />
+    <Compile Include="Models\BugPriority.cs" />
+    <Compile Include="Models\BugStatus.cs" />
+    <Compile Include="Models\BugSeverity.cs" />
+    <Compile Include="Models\IScrumTimeModel.cs" />
+    <Compile Include="Models\StoryPoints.cs" />
     <Compile Include="Models\Feature.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Release.cs" />
@@ -70,6 +80,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ReadMe-MongoDB.txt" />
     <Content Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -87,6 +98,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
   </ItemGroup>
