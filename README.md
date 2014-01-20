@@ -11,6 +11,14 @@ Purpose
 ------
 ScrumTime is intended to facilitate the management of geographically dispersed Agile software development teams. 
 
+Features
+-------
+Identify the Project
+* Objective
+* Define the Actors
+* Define Scrum Teams
+** Define 
+
 Design
 ------
 Layers
