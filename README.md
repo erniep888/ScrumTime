@@ -91,10 +91,6 @@ Layers
 * Network - JSON / AJAX
 * RESTful Server API - Implemented with either Grails or ASP.NET (decision coming Jan 30, 2014)
 
-Target Release
---------------
-ScrumTime 2.0
-
 Future
 ------
 I would like to find someone interested in doing an Android app, an iPhone app, and/or a Windows phone app.  These apps will be relatively simple because they will reuse the RESTful Server API.  It will not make sense to begin these efforts until the API is available.  I expect that to be June 2014.  Please email: epaschall@bytefirm.com if you are interested.
