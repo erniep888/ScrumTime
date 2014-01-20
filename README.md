@@ -9,15 +9,59 @@ The UI is composed entirely of HTML, javascript, and CSS.  The primary javascrip
 
 Purpose
 ------
-ScrumTime is intended to facilitate the management of geographically dispersed Agile software development teams. 
+ScrumTime is focused on distributed agile software development teams. 
 
-Features
--------
+###Features###
+
 Identify the Project
 * Objective
 * Define the Actors
 * Define Scrum Teams
-** Define 
+	* Define Scrum Roles
+	* Assign Roles to ScrumTime Users
+* Create Team Wiki
+
+Plan the Project
+* Manage the Backlog (epics, stories, bugs)
+* Manage / Create Epics
+* Manage / Create Stories
+* Identify the Source Control System
+	* GitHub
+	* Git
+	* SVN
+	* CVS
+	* Source Safe
+	* Clearcase
+	* Team Foundation Server
+* Set Iteration Defaults
+	* Length
+	* Naming pattern
+	* Identify typical workdays and time of day
+* Maintain / Generate Iteration Schedule
+* Maintain a Parking Lot
+	* Features and ideas that are nice to haves
+
+Execute the Project
+* Maintain the Story Board
+* Document the Daily Scrum
+* Manage bugs
+
+Sustain the Project
+* Manage Support Tickets
+* Manage / Generate Client Billing
+* Create a Client Wiki
+
+Report on the Project
+* Burn Down Chart
+* Burn Up Chart
+* Resource Reporting
+	* Team member work load
+	* Team work load
+* Alerting
+	* Epic status change
+	* Story status change
+	* Bug status change
+	* Support Ticket status change
 
 Design
 ------
