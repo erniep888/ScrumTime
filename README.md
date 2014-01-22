@@ -1,4 +1,4 @@
-ScrumTime 1.0
+ScrumTime 1.0 Alpha (May 2014)
 =============
 
 Definition

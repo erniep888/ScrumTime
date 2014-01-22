@@ -34,4 +34,8 @@ controllers.planController = function ($scope) {
     ];
 };
 
+controllers.mainNavigationController = function ($scope) {
+
+}
+
 scrumtimeMainApp.controller(controllers);
