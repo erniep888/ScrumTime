@@ -41,3 +41,11 @@
 
 # other
 *.iws
+
+### Yeoman
+ui/node_modules/
+ui/bower_components/
+*.log
+
+ui/build/
+ui/dist/

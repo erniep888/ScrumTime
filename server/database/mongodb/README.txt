@@ -1,0 +1,1 @@
+The default mongo db will go here.  Once it has been checked in, this file will go away.
