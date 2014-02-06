@@ -3,8 +3,8 @@
 angular.module('scrumTimeApp')
   .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
+      'Stories that can inherit from stories',
+      'Tasks',
+	  'Etc.'
     ];
   });

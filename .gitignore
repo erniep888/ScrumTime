@@ -42,10 +42,14 @@
 # other
 *.iws
 
-### Yeoman
-ui/node_modules/
-ui/bower_components/
+### AngularJS
+node_modules
+bower_components
 *.log
 
-ui/build/
-ui/dist/
+build
+dist
+
+.tmp
+.sass-cache
+app/bower_components
