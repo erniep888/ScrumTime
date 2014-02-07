@@ -1,0 +1,4 @@
+npm install -g generator-angular
+yo angular ScrumTime
+grunt
+grunt serve
