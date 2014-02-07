@@ -26,7 +26,7 @@
 
 # project release file
 /*.war
-/target
+target
 
 # plugin release files
 /*.zip
