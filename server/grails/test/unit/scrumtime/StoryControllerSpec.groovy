@@ -1,13 +1,13 @@
-package org.scrumtime.domain.user
+package scrumtime
 
 
 
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(UserController)
-@Mock(User)
-class UserControllerSpec extends Specification {
+@TestFor(StoryController)
+@Mock(Story)
+class StoryControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
@@ -21,8 +21,8 @@ class UserControllerSpec extends Specification {
             controller.index()
 
         then:"The model is correct"
-            !model.userInstanceList
-            model.userInstanceCount == 0
+            !model.storyInstanceList
+            model.storyInstanceCount == 0
     }
 
     void "Test the create action returns the correct model"() {
@@ -30,92 +30,92 @@ class UserControllerSpec extends Specification {
             controller.create()
 
         then:"The model is correctly created"
-            model.userInstance!= null
+            model.storyInstance!= null
     }
 
     void "Test the save action correctly persists an instance"() {
 
         when:"The save action is executed with an invalid instance"
-            def user = new User()
-            user.validate()
-            controller.save(user)
+            def story = new Story()
+            story.validate()
+            controller.save(story)
 
         then:"The create view is rendered again with the correct model"
-            model.userInstance!= null
+            model.storyInstance!= null
             view == 'create'
 
         when:"The save action is executed with a valid instance"
             response.reset()
             populateValidParams(params)
-            user = new User(params)
+            story = new Story(params)
 
-            controller.save(user)
+            controller.save(story)
 
         then:"A redirect is issued to the show action"
-            response.redirectedUrl == '/user/show/1'
+            response.redirectedUrl == '/story/show/1'
             controller.flash.message != null
-            User.count() == 1
+            Story.count() == 1
     }
 
     void "Test that the show action returns the correct model"() {
-        when:"The show action is executed with a null domain"
+        when:"The show action is executed with a null scrumtime"
             controller.show(null)
 
         then:"A 404 error is returned"
             response.status == 404
 
-        when:"A domain instance is passed to the show action"
+        when:"A scrumtime instance is passed to the show action"
             populateValidParams(params)
-            def user = new User(params)
-            controller.show(user)
+            def story = new Story(params)
+            controller.show(story)
 
-        then:"A model is populated containing the domain instance"
-            model.userInstance == user
+        then:"A model is populated containing the scrumtime instance"
+            model.storyInstance == story
     }
 
     void "Test that the edit action returns the correct model"() {
-        when:"The edit action is executed with a null domain"
+        when:"The edit action is executed with a null scrumtime"
             controller.edit(null)
 
         then:"A 404 error is returned"
             response.status == 404
 
-        when:"A domain instance is passed to the edit action"
+        when:"A scrumtime instance is passed to the edit action"
             populateValidParams(params)
-            def user = new User(params)
-            controller.edit(user)
+            def story = new Story(params)
+            controller.edit(story)
 
-        then:"A model is populated containing the domain instance"
-            model.userInstance == user
+        then:"A model is populated containing the scrumtime instance"
+            model.storyInstance == story
     }
 
     void "Test the update action performs an update on a valid domain instance"() {
-        when:"Update is called for a domain instance that doesn't exist"
+        when:"Update is called for a scrumtime instance that doesn't exist"
             controller.update(null)
 
         then:"A 404 error is returned"
-            response.redirectedUrl == '/user/index'
+            response.redirectedUrl == '/story/index'
             flash.message != null
 
 
-        when:"An invalid domain instance is passed to the update action"
+        when:"An invalid scrumtime instance is passed to the update action"
             response.reset()
-            def user = new User()
-            user.validate()
-            controller.update(user)
+            def story = new Story()
+            story.validate()
+            controller.update(story)
 
         then:"The edit view is rendered again with the invalid instance"
             view == 'edit'
-            model.userInstance == user
+            model.storyInstance == story
 
-        when:"A valid domain instance is passed to the update action"
+        when:"A valid scrumtime instance is passed to the update action"
             response.reset()
             populateValidParams(params)
-            user = new User(params).save(flush: true)
-            controller.update(user)
+            story = new Story(params).save(flush: true)
+            controller.update(story)
 
         then:"A redirect is issues to the show action"
-            response.redirectedUrl == "/user/show/$user.id"
+            response.redirectedUrl == "/story/show/$story.id"
             flash.message != null
     }
 
@@ -124,23 +124,23 @@ class UserControllerSpec extends Specification {
             controller.delete(null)
 
         then:"A 404 is returned"
-            response.redirectedUrl == '/user/index'
+            response.redirectedUrl == '/story/index'
             flash.message != null
 
-        when:"A domain instance is created"
+        when:"A scrumtime instance is created"
             response.reset()
             populateValidParams(params)
-            def user = new User(params).save(flush: true)
+            def story = new Story(params).save(flush: true)
 
         then:"It exists"
-            User.count() == 1
+            Story.count() == 1
 
-        when:"The domain instance is passed to the delete action"
-            controller.delete(user)
+        when:"The scrumtime instance is passed to the delete action"
+            controller.delete(story)
 
         then:"The instance is deleted"
-            User.count() == 0
-            response.redirectedUrl == '/user/index'
+            Story.count() == 0
+            response.redirectedUrl == '/story/index'
             flash.message != null
     }
 }

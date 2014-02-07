@@ -1,4 +1,4 @@
-package org.scrumtime.domain.user
+package scrumtime.user
 
 class User {
 

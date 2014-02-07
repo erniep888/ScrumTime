@@ -83,6 +83,10 @@ grails.exceptionresolver.params.exclude = ['password']
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
 grails.hibernate.cache.queries = false
 
+cors.enabled = false
+cors.headers = [
+        'Access-Control-Allow-Origin': 'http://localhost:8000']
+
 environments {
     development {
         grails.logging.jul.usebridge = true
@@ -116,9 +120,9 @@ log4j = {
 
 
 // Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'org.scrumtime.domain.user.User'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'org.scrumtime.domain.user.UserRole'
-grails.plugin.springsecurity.authority.className = 'org.scrumtime.domain.user.Role'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'scrumtime.user.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'scrumtime.user.UserRole'
+grails.plugin.springsecurity.authority.className = 'scrumtime.user.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                              ['permitAll'],
 	'/index':                         ['permitAll'],

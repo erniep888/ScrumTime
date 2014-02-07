@@ -1,4 +1,6 @@
-package org.scrumtime.domain
+package scrumtime
+
+import grails.rest.Resource
 
 class Story {
 
@@ -14,6 +16,9 @@ class Story {
 
     static constraints = {
         narrative maxSize: 1000, blank: false
+        parent nullable: true
+        title nullable: true
+        storyPoints nullable: true
     }
 
     static mapping = {

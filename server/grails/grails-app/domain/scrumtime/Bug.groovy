@@ -1,4 +1,4 @@
-package org.scrumtime.domain
+package scrumtime
 
 class Bug {
 

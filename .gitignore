@@ -29,6 +29,7 @@ logs
 
 #temporary build files (grails)
 target
+out
 
 # plugin release files
 *.zip
