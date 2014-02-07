@@ -4,40 +4,39 @@
 
 
 # IDE support files
-/.launch
-/.settings
-/*.launch
-/*.tmproj
-/ivy*
-/eclipse
+.launch
+.settings
+*.launch
+*.tmproj
+ivy*
+eclipse
 
 
 # default HSQL database files for production mode
-/prodDb.*
+prodDb.*
 
 # general HSQL database files
 *Db.properties
 *Db.script
 
 # logs
-/stacktrace.log
-/test/reports
-/logs
+stacktrace.log
+test/reports
+logs
 
 # project release file
-/*.war
+*.war
+
+#temporary build files (grails)
 target
 
 # plugin release files
-/*.zip
-/plugin.xml
+*.zip
+plugin.xml
 
 # older plugin install locations
-/plugins
-/web-app/plugins
-
-# "temporary" build files
-/target
+plugins
+web-app/plugins
 
 # other
 *.iws
