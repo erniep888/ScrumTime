@@ -15,15 +15,14 @@ Blogging
 
 ###Notable Features###
 
-* AngularJS Single Page Application
-* Support for artifact uploads
-* RESTful data delivery (JSON)
+* AngularJS Single Page Application client
+* Grails backend JSON data provider
 * MongoDB datastore
+* Support for artifact uploads
 * ALM support including:
-	* features, ideas, epics, stories, tasks, bugs, support tickets
-	* releases, iterations
+	* features, stories, stories that inherit from stories, tasks, bugs, support tickets
+	* releases, iterations/sprints
 	* client billing and estimating
 	* client wiki
 	* team wiki
-* node.js backend
 
