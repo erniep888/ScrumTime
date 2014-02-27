@@ -54,3 +54,6 @@ dist
 .sass-cache
 app/bower_components
 documentation/~$DomainClasses.xlsx
+
+# Node.js
+node_modules
