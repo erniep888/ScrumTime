@@ -16,7 +16,6 @@ Blogging
 ###Notable Features###
 
 * AngularJS Single Page Application client
-* Grails backend JSON data provider
 * MongoDB datastore
 * Support for artifact uploads
 * ALM support including:
@@ -26,4 +25,3 @@ Blogging
 	* client wiki
 	* team wiki
 * Node.js Express backend server
-
