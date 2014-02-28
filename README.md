@@ -1,6 +1,6 @@
 # ScrumTime
 
-ScrumTime is intended to provide an end-to-end agile project management tool that is simple to use and simple to change.  With this in mind, I have decided to go with a node.js backend and angularjs front end that will be deployed via the "public" folder of the node.js Express web application.  
+ScrumTime is to provide an end-to-end agile project management tool that is simple to use and simple to change.  With this in mind, I have decided to go with a node.js backend and angularjs front end that will be deployed via the "public" folder of the node.js Express web application.  
 
 ### Next Release
 
