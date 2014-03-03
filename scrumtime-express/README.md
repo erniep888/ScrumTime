@@ -6,8 +6,8 @@ This project provides the server-side of the ScrumTime project management tool.
 
 -Install node.js and then use these commands in the root directory of this project.
 
-	-npm install package.json
-	-node apps.js
+	npm install package.json
+	node apps.js
   
 ### Next Release
 

@@ -6,12 +6,12 @@ This project provides the browser client-side of the ScrumTime project managemen
 
 -Install node.js and then use these commands in the root directory of this project.
 
-	-npm install -g yo
-	-npm install -g generator-angular
-	-bower install angular-ui
-	-grunt test
-	-grunt serve
-	-grunt                     -- builds the app for deployment
+	npm install -g yo
+	npm install -g generator-angular
+	bower install angular-ui
+	grunt test
+	grunt serve
+	grunt                                        -- builds the app for deployment
   
 
 ### Next Release
