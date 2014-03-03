@@ -11,8 +11,8 @@ the angularjs portion is developed separately from the express portion.
 
 _**Projects:**_ 
 
-		- [scrumtime-angularjs (web browser UI)](https://github.com/erniep888/ScrumTime/tree/master/scrumtime-angularjs)
-		- [scrumtime-express (JSON server)](https://github.com/erniep888/ScrumTime/tree/master/scrumtime-express)		
+		- scrumtime-angularjs (web browser UI)
+		- scrumtime-express (JSON server)		
 
 _**Datastore:**_ MongoDB
 

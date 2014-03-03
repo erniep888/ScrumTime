@@ -57,3 +57,6 @@ documentation/~$DomainClasses.xlsx
 
 # Node.js
 node_modules
+
+# GFM View used to view Markup in Eclipse
+.README*
