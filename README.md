@@ -17,7 +17,7 @@ Now, there is a lot todo.  I am getting rid of the dependency on yeoman and I pl
 _**Projects:**_ 
 
 		- scrumtime-angularjs (web browser UI)
-		- scrumtime-express (JSON server)		
+		- [backlog-json-api](https://github.com/erniep888/backlog-json-api "backlog-json-api") (JSON server)		
 
 _**Datastore:**_ MongoDB
 
