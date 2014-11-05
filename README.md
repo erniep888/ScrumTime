@@ -19,7 +19,7 @@ _**Projects:**_
 - [scrumtime-angularjs](https://github.com/erniep888/ScrumTime/tree/master/scrumtime-angularjs) (web browser UI)
 - [backlog-json-api](https://github.com/erniep888/backlog-json-api) (json server)
 
-_**Datastore:**_ MongoDB
+    _**Datastore:**_ MongoDB
 
 _**Languages:**_ Javascript, css, html
 
