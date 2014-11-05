@@ -17,11 +17,10 @@ Now, there is a lot todo.  I am getting rid of the dependency on yeoman and I pl
 _**Projects:**_ 
 
 - [scrumtime-angularjs](https://github.com/erniep888/ScrumTime/tree/master/scrumtime-angularjs) (web browser UI)
+    + _**Languages:**_ Javascript, css, html
 - [backlog-json-api](https://github.com/erniep888/backlog-json-api) (json server)
-
-    _**Datastore:**_ MongoDB
-
-_**Languages:**_ Javascript, css, html
+    + _**Languages:**_ Javascript, JSON
+    + _**Datastore:**_ MongoDB
 
 _**Features:**_ hierarchical epics, hierarchical stories, tasks, bugs, support tickets, upload attachments, releases, sprints
 
