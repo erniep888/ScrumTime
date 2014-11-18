@@ -2,6 +2,11 @@
 
 This project provides the browser client-side of the ScrumTime project management tool.
 
+## Update - Nov 2014
+My wife had the baby...
+
+Now, there is a lot todo.  I am getting rid of the dependency on yeoman and I plan to adhere the project structure guidelines outlined by Google for enterprise level applications.
+
 ## Getting started with Development
 
 -Install node.js and then use these commands in the root directory of this project.
@@ -16,7 +21,7 @@ This project provides the browser client-side of the ScrumTime project managemen
 
 ### Next Release
 
-1.0 GA ( August 2014 )
+1.0 GA ( 2015 )
 
 _**Languages:**_ Javascript, css, html
 
