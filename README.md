@@ -52,8 +52,8 @@ _**Single-Page-Application:**_
 - *The *SPA** UI will likely break release cycle from the REST API at this point to accommodate a quick release cycle for the UI separate from the API.
 
 ###Languages
-...Javascript/CSS/HTML - UI stand alone project
-...Java/Groovy - Microservices implementation *(may switch to Spring Boot/Spring Data (going to do a spike to decide))*
+   Javascript/CSS/HTML - UI stand alone project  
+   Java/Groovy - Microservices implementation *(may switch to Spring Boot/Spring Data (going to do a spike to decide))*
 
 ###Data Store
 As with releases of 0.4 through 0.6, the goal is to abstract the datastore technology as much as possible to elminiate being tied to a particular database.
