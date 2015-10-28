@@ -27,10 +27,10 @@
         <td class="levelTwo"><img src="${createLinkTo(dir: 'images/menu', file: 'rightarrow.gif')}" alt="Right Arrow"/>&nbsp;&nbsp;<g:link controller="siteMember" action="index">Organization</g:link></td>
     </tr>
     <tr>
-        <td class="levelTwo"><img src="${createLinkTo(dir: 'images/menu', file: 'rightarrow.gif')}" alt="Right Arrow"/>&nbsp;&nbsp;<g:link controller="siteMember" action="index">Product</g:link></td>
+        <td class="levelTwo"><img src="${createLinkTo(dir: 'images/menu', file: 'rightarrow.gif')}" alt="Right Arrow"/>&nbsp;&nbsp;<g:link controller="product" action="edit">Product</g:link></td>
     </tr>
     <tr>
-        <td class="levelTwo"><img src="${createLinkTo(dir: 'images/menu', file: 'rightarrow.gif')}" alt="Right Arrow"/>&nbsp;&nbsp;<g:link controller="siteMember" action="index">Release</g:link></td>
+        <td class="levelTwo"><img src="${createLinkTo(dir: 'images/menu', file: 'rightarrow.gif')}" alt="Right Arrow"/>&nbsp;&nbsp;<g:link controller="release" action="edit">Release</g:link></td>
     </tr>
     <tr>
         <td class="levelTwo"><img src="${createLinkTo(dir: 'images/menu', file: 'rightarrow.gif')}" alt="Right Arrow"/>&nbsp;&nbsp;<g:link controller="siteMember" action="index">Sprint</g:link></td>

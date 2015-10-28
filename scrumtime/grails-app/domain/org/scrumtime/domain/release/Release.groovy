@@ -24,7 +24,6 @@ class Release implements Comparable{
 
     String name
     String description
-    int completionOrder   // a value that indicates expected order of completion relative to other releases
     Date expectedStartDate
     Date expectedCompletionDate
     Date actualStartDate
@@ -34,9 +33,8 @@ class Release implements Comparable{
     String createdBy   // unique username
 
     static constraints = {
-		name(unique:'product',nullable:false, size:1..80)
-        description(size:0..512)
-        completionOrder(blank:false, unique:'product')
+		name(unique:'product',blank:false, nullable:false, size:1..80)
+        description(blank:false,nullable:false, size:0..512)
         product(nullable: false)
         expectedCompletionDate(nullable:true)
         expectedStartDate(nullable:true)

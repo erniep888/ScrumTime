@@ -30,7 +30,7 @@
         </tr>
         <tr>
             <td>
-                <div class="mainContent">
+                <div>
                     <g:layoutBody/>
                 </div>
             </td>

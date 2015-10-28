@@ -9,14 +9,6 @@
     font-size: 12px;
 }
 
-.width60 {
-    width: 60px;
-}
-
-.width110 {
-    width: 110px;
-}
-
-.width180 {
-    width: 180px;
+.editFieldSmall {
+    font-size: 11px;
 }

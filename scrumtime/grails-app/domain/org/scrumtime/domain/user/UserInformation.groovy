@@ -48,4 +48,14 @@ class UserInformation {
     static mapping = {
         systemUser cascade:"save-update"
     }
+
+    public boolean equals(Object obj) {
+        def same = false
+        if (obj instanceof UserInformation){
+            same= true;
+        }
+        return same
+    }
+
+
 }

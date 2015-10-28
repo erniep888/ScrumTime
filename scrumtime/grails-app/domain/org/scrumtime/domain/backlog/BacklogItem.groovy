@@ -19,6 +19,7 @@ import org.scrumtime.domain.product.Product
 import org.scrumtime.domain.release.Release
 import org.scrumtime.domain.sprint.Sprint
 import org.scrumtime.domain.user.SystemUser
+import org.scrumtime.domain.user.UserInformation
 
 class BacklogItem implements Comparable{
     Date dateCreated
@@ -29,10 +30,10 @@ class BacklogItem implements Comparable{
     Product assignedProduct
     Release assignedRelease
     Sprint assignedSprint
-    Integer workRemaining  // in hours
-    Integer workCompleted // in hours
-    String assignedTo  // the user information first name + last name
-    String estimatedBy // the user information first name + last name
+    int workRemaining  // in hours
+    int workCompleted // in hours
+    UserInformation assignedTo
+    UserInformation estimatedBy 
     BacklogPriority productPriority   // 1 to 10 with 1 being highest priority
 
     static constraints = {
