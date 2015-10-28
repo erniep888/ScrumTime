@@ -23,14 +23,6 @@ class ReleaseService {
 
     boolean transactional = true
 
-    def Release autoCreate(Product product, String username) {
-        def release = new Release(product: product,
-                name: '0.1', description: 'Auto generated release for ' + product.name,
-                createdBy:username)
-        release.save(flush: true)
-        return release
-    }
-
     def deleteAndCleanUserSettings(Release release){
         if (release){
             def userSettings = UserSettings.findAllByCurrentRelease(release)

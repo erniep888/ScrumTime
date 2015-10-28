@@ -17,25 +17,9 @@ package org.scrumtime.service
 
 import org.scrumtime.domain.user.SystemUser
 import org.scrumtime.domain.scrum.ScrumTeam
-import org.scrumtime.domain.scrum.ScrumRole
-import org.scrumtime.domain.organization.Organization
-import org.scrumtime.domain.scrum.ScrumTeamMember
 
 class ScrumService {
 
     boolean transactional = true
-
-    def ScrumTeam autoCreateScrumTeam(Organization organization, String username, String nickName) {
-        def scrumTeam
-        def systemUser = SystemUser.findByUsername(username)
-        if (systemUser) {
-            def scrumMaster = ScrumRole.findByName('Scrum Master')
-            def scrumTeamMember = new ScrumTeamMember(systemUser:systemUser, roles:[scrumMaster])
-            scrumTeam = new ScrumTeam(organization: organization,
-                    name: nickName + '_scrum team', description: 'Auto generated scrum team for ' + organization.name,
-                    createdBy: username, members: [scrumTeamMember])
-            scrumTeam.save(flush: true)
-        }
-        return scrumTeam
-    }
+    
 }

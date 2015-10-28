@@ -18,12 +18,9 @@ package org.scrumtime.service
 import org.scrumtime.domain.user.SystemUser
 import org.scrumtime.domain.user.UserInformation
 import org.scrumtime.domain.user.SystemUserCredential
-import org.scrumtime.domain.user.AuthorizationDefinition
-import java.security.MessageDigest
 
 class UserManagmentService {
     def authenticationService
-    def authorizationService
     boolean transactional = true
 
     /**
@@ -33,13 +30,11 @@ class UserManagmentService {
                             SystemUserCredential systemUserCredential,
                             UserInformation userInformation) {
         if (systemUser && systemUserCredential && userInformation) {
-            AuthorizationDefinition authorizationDefinition = authorizationService.createAndDoNotSaveAuthDefinition(systemUser)
             userInformation.systemUser = systemUser
             systemUserCredential.systemUser = systemUser
             systemUser.validate()
             systemUserCredential.validate()
             userInformation.validate()
-            authorizationDefinition.validate()
 
             if (systemUser.retypedUsername != systemUser.username) {
                 systemUser.errors.rejectValue('username',
@@ -57,17 +52,9 @@ class UserManagmentService {
                 systemUserCredential.errors.rejectValue('password',
                         'org.scrumtime.domain.user.SystemUserCredential.password.length.error')
             }
-            if (!userInformation.acceptedUserAgreement) {
-                userInformation.errors.rejectValue('acceptedUserAgreement',
-                        'org.scrumtime.domain.user.UserInformation.acceptedUserAgreement.notaccepted.error')
-            }
             if (!userInformation.captchaResponse) {
                 userInformation.errors.rejectValue('captchaResponse',
                         'org.scrumtime.domain.user.UserInformation.captchaResponse.notmatched.error')
-            }
-            if (authorizationDefinition.hasErrors()) {
-                systemUser.errors.rejectValue('username',
-                         'org.scrumtime.domain.user.AuthorizationDefinition.systemUser.nullable.error')
             }
 
             if (!systemUser.hasErrors()) {
@@ -79,7 +66,6 @@ class UserManagmentService {
                             authenticationService.hashPassword(systemUserCredential.password)
                         systemUserCredential.save()
                         userInformation.save()
-                        authorizationDefinition.save()
                     }
                 }
             }

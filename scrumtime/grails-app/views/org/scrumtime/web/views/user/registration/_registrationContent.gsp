@@ -8,7 +8,6 @@
                     <g:renderErrors bean="${systemUserCredential}" field="retypedPassword" as="list"/>
                     <g:renderErrors bean="${userInformation}" field="firstName" as="list"/>
                     <g:renderErrors bean="${userInformation}" field="nickName" as="list"/>
-                    <g:renderErrors bean="${userInformation}" field="acceptedUserAgreement" as="list"/>
                     <g:renderErrors bean="${userInformation}" field="captchaResponse" as="list"/>
                 </div>
         </g:hasErrors>
@@ -146,21 +145,6 @@
                 <td></td>
             </tr>
 
-            <tr>
-                <td class="registrationLabels middleLabel">
-                    <label for="selectedVisibility">Public Visibility:</label>
-                </td>
-                <td valign="top" class="registrationTrEdit">
-                    <g:select name="selectedVisibility" from="${visibilities}" optionKey="id" optionValue="name"
-                            value="${visibilityName?.encodeAsHTML()}"/>
-                </td>
-                <td>
-                    <span class="registrationInformation">
-                        <g:message code="registration.visibility.info"/>
-                    </span>
-                </td>
-            </tr>
-
             <tr class='register'>
                 <td class='registrationLabels middleLabel'>
                     <label for='captchaResponse'>Enter Access Code:</label>
@@ -173,17 +157,7 @@
 
                 </td>
             </tr>
-
-            <tr>
-                <td class="checkbox" colspan="2">
-                    <g:checkBox name="acceptedUserAgreement" value="${false}"/>
-                    <label  for="acceptedUserAgreement" class="${hasErrors(bean: userInformation, field: 'acceptedUserAgreement', 'checkBoxError')}" >
-                        <span>&nbsp;I accept the <a href="#">Terms and Conditions</a> and the <a href="#">Privacy Policy</a>.
-                        </span></label>
-                </td>
-                <td>&nbsp;
-                </td>
-            </tr>
+            
             <tr>
                 <td id="registerButtonTd">
                     <input id="registerButton" type="submit" value="Register"/>

@@ -21,11 +21,6 @@ import org.scrumtime.domain.common.PrioritizedLanguage
 import org.scrumtime.domain.common.PrioritizedTimeZone
 import org.scrumtime.domain.common.VisibilityType
 import org.scrumtime.domain.user.SystemUserCredential
-import org.scrumtime.domain.organization.Organization
-import org.scrumtime.domain.product.Product
-import org.scrumtime.domain.release.Release
-import org.scrumtime.domain.sprint.Sprint
-import org.scrumtime.domain.scrum.ScrumTeam
 import org.scrumtime.domain.user.UserSettings
 
 class RegistrationController {
@@ -60,10 +55,6 @@ class RegistrationController {
         if (params.selectedTimeZone) {
             userInformation.timeZone = PrioritizedTimeZone.get(params.selectedTimeZone)
         }
-        if (params.selectedVisibility) {
-            userInformation.visibilityType = VisibilityType.get(params.selectedVisibility)
-        }
-
         if (userInformation.captchaResponse && session.id) {
             if (!validCaptcha(userInformation.captchaResponse, session.id)) {
                 userInformation.captchaResponse = null
@@ -96,8 +87,7 @@ class RegistrationController {
                         systemUserCredential: systemUserCredential,
                         languages: PrioritizedLanguage.listOrderByDisplayLanguage(),
                         timeZones: PrioritizedTimeZone.listOrderByShortForm(),
-                        breadCrumbTrail:'Registration',
-                        visibilities: VisibilityType.findAll()])
+                        breadCrumbTrail:'Registration'])
     }
 
     private boolean validCaptcha(def captcha, def sessionId) {
@@ -149,7 +139,6 @@ class RegistrationController {
                     if (codeFromUrl == userInformation.validationCode) {
                         userInformation.emailVerified = true
                         userInformation.save(flush:true)
-                        autoCreateAll(systemUser, session)
                         success = true                        
                     }
                 } catch (Exception e) {
@@ -166,23 +155,5 @@ class RegistrationController {
     def success = {
         render(view: '/org/scrumtime/web/views/user/registration/registration',
                 model: [success: 'true', username: params.username])
-    }
-
-    private void autoCreateAll(SystemUser systemUser, def session){
-        UserInformation userInfo = UserInformation.findBySystemUser(systemUser)
-        def scrumtimeOrg = Organization.findByName('scrumtime.org')
-        scrumtimeOrg.members.add(systemUser)
-        scrumtimeOrg.save(flush:true)
-        def product = productService.autoCreate(scrumtimeOrg, systemUser.username, userInfo.nickName)
-        def release = releaseService.autoCreate(product, systemUser.username)
-        def sprint = sprintService.autoCreate(release, systemUser.username)
-        def scrumTeam = scrumService.autoCreateScrumTeam(scrumtimeOrg, systemUser.username, userInfo.nickName)
-        def userSettings = new UserSettings(systemUser:systemUser,
-            currentOrganization:scrumtimeOrg, currentProduct:product,
-            currentRelease:release, currentSprint:sprint,
-            currentScrumTeam: scrumTeam
-        )
-        userSettings.save()
-        session.userSettings = userSettings
     }
 }

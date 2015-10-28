@@ -29,7 +29,7 @@ class ReleaseController {
         }
     }
     def afterInterceptor = {model ->
-        //model.breadCrumbTrail = 'Management > Find > Organization'
+        
     }
 
     def index = {
