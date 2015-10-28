@@ -1,0 +1,36 @@
+/**
+Management
+**/
+/**
+Common Find and Search Results Windows
+**/
+.findManagementWindow {
+    width: 980px;
+    height: 90px;
+}
+.searchResultsManagementWindow {
+    width: 980px;
+    height: 250px;
+}
+.subSearchResultsDataHeight{
+      height: 217px;
+}
+/**
+Common Find Button
+**/
+.findButtonTd {
+    padding-top: 10px;
+    text-align: center;
+    padding-bottom: 5px;
+}
+
+/**
+Common View Window
+**/
+.viewWindow {
+    width: 980px;
+    height: 300px;
+}
+
+
+

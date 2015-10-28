@@ -1,0 +1,51 @@
+/**
+ *  Copyright 2008   scrumtime.org owners
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at 
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0 
+ *
+ *  Unless required by applicable law or agreed to in writing, software 
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ *  See the License for the specific language governing permissions and 
+ *  limitations under the License. 
+ *
+**/
+package org.scrumtime.domain.user
+
+import org.scrumtime.domain.common.VisibilityType
+import org.scrumtime.domain.common.PrioritizedTimeZone
+import org.scrumtime.domain.common.PrioritizedLanguage
+
+class UserInformation {
+    SystemUser systemUser
+    static belongsTo = SystemUser 
+    Date dateCreated
+	Date lastUpdated    
+    String firstName
+    String lastName
+    String nickName
+    PrioritizedTimeZone timeZone
+    PrioritizedLanguage language
+    VisibilityType visibilityType
+    Boolean acceptedUserAgreement = false
+    String captchaResponse 
+    Boolean emailVerified = false
+    Long validationCode
+
+    static transients = ['captchaResponse']
+
+    static constraints = {
+        systemUser(nullable: false)
+        firstName(blank:false,length:1..50)
+        lastName(length:1..50)
+        nickName(unique:true,blank:false,length:1..50)
+        visibilityType(nullable:false)
+    }
+
+    static mapping = {
+        systemUser cascade:"save-update"
+    }
+}

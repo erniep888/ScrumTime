@@ -1,0 +1,76 @@
+/**
+   The main menu is defined in the main.css.
+
+   This style sheet contains the settings for the main menu drop downs.
+*/
+/**
+Common to drop downs
+*/
+.dropDownMenu{
+    position:absolute;
+    border-left:#e9c682 dotted 2px;
+    border-right:#e9c682 dotted 2px;
+    border-bottom:#e9c682 dotted 2px;
+    height:100px;
+    width:200px;
+    margin-left:20px;
+    background-color:#fff;
+    z-index: 100;
+}
+.levelOne{
+    padding-left:28px;
+    font-size:12px;
+}
+.levelTwo{
+    padding-left:48px;
+    font-size:12px;
+}
+.levelThree{
+    padding-left:68px;
+    font-size:12px;
+}
+
+/**
+Sprint Menu
+*/
+#scrumMenu{
+    height:56px;
+    width:164px;
+    margin-left:110px;
+}
+
+/**
+Release Menu
+**/
+#backlogMenu{
+    height:114px;
+    width:210px;
+    margin-left:195px;
+}
+
+/**
+Product Menu
+*/
+#currentMenu{
+    height:200px;
+    width:264px;
+    margin-left:289px;
+}
+
+/**
+Organization Menu
+*/
+#managementMenu{
+    height:286px;
+    width:204px;
+    margin-left:383px;
+}
+
+/**
+Site Menu
+*/
+#profileMenu{
+    height:90px;
+    width:190px;
+    margin-left:512px;
+}

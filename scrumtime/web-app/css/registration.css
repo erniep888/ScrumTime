@@ -1,0 +1,87 @@
+.imgLink{
+    border-style:none;
+}
+table{
+    font: verdana;
+}
+#registrationContainingTd{
+    padding-top:7px;
+}
+.registrationLabels {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 0.8em;
+    padding-top: 4px;
+    padding-left: 25px;
+    width: 140px;
+    vertical-align: text-top;
+}
+.registrationExtraPaddingAbove{
+    padding-top:16px;
+}
+
+.registrationTrEdit {
+    vertical-align: text-top;
+    padding-top: 4px;
+    padding-left: 5px;
+}
+.editTextSize {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 0.8em;
+}
+
+.middleLabel{
+    vertical-align: middle;    
+}
+
+.checkbox{
+    padding-top:10px;
+    padding-left:22px;
+    padding-bottom:5px;
+    font-size: 0.8em;
+}
+
+#registerButtonTd{
+    padding-left:24px;
+    padding-top:10px;
+}
+#registerButton {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 0.8em;
+}
+
+
+.registrationError {
+    font-size:0.8em;
+    background: #fff3f3 url(../images/window_types/exclamation.png) 50% no-repeat;
+    border: 1px dotted #ccc;
+    color: #cc0000;
+    margin-left: 30px;    /** top right bottom left (trbl) **/
+    padding: 1px 7px 3px 30px
+}
+
+.registrationInformation {
+    font-size:0.8em;
+    background: #f3f8fc url(../images/window_types/information.png) 2px 50% no-repeat;
+    border: 1px solid #b2d1ff;
+    color: #006dba;
+    margin-left:30px;
+    padding: 1px 7px 3px 30px
+}
+
+.checkBoxError{
+    border:red solid 2px;
+}
+
+#continueButton form input{
+    margin-left:44%;
+}
+
+.registrationSuccessMessage{
+    padding:20px;
+    font-size:0.9em;
+}
+.registrationActivationFailureMessage{
+    padding:20px 0 20px 30px;  /** trbl **/
+    font-size:0.9em;
+    color:#ff1000;
+}
