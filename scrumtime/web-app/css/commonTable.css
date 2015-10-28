@@ -1,0 +1,81 @@
+.width100Percent {
+    width: 100%;
+}
+
+.tableHeader {
+    font-size: 13px;
+    text-align: center;
+    background-color: #eee;
+    border-right: #aaa solid 1px;
+    border-bottom: #aaa solid 1px;
+}
+
+.tableHeaderRight {
+    border-right: 0;
+}
+
+.tableDataDiv {
+    overflow-y: scroll;
+}
+
+.tableData {
+    font-size: 12px;
+    text-align: center;
+}
+/**
+Common Widths
+**/
+
+.width300 {
+    width: 300px;
+}
+
+.width250 {
+    width: 250px;
+}
+
+.width215 {
+    width: 215px;
+}
+
+.width200 {
+    width: 200px;
+}
+
+.width130 {
+    width: 130px;
+}
+
+.width80 {
+    width: 80px;
+}
+
+.width75 {
+    width: 75px;
+}
+
+.width70 {
+    width: 70px;
+}
+
+.width65{
+    width: 65px;
+}
+
+.width50 {
+    width: 50px;
+}
+
+/**
+Common Heights
+**/
+.height30{
+    height: 30px;
+}
+.height50{
+    height: 50px;
+}
+
+
+
+

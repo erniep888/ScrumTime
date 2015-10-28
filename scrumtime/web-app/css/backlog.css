@@ -1,0 +1,70 @@
+/**
+Backlog Specific
+**/
+
+/**
+Add To Backlog
+**/
+.addToBacklogWindow {
+    width: 980px;
+    height: 350px;
+}
+
+.addToBacklogEditDiv{
+    width: 690px;
+    height: 314px;
+    float:left;
+    /*border:#b3b9c4 solid 1px;*/
+}
+
+/**
+Current Table Settings
+**/
+
+.currentHeader{
+    font-size:10px;
+    text-align:center;
+    height:16px;
+    background-color:#e3e4e6;
+    border-left:#b3b9c4 solid 1px;
+    border-top:#b3b9c4 solid 1px;
+    border-right:#b3b9c4 solid 1px;
+}
+
+.currentContainer{
+    text-align:center;
+    height:50px;
+    border-left:#b3b9c4 solid 1px;
+    border-bottom:#b3b9c4 solid 1px;
+    border-right:#b3b9c4 solid 1px;
+    font-size:10px;
+}
+
+/**
+Backlog view
+**/
+.backlogViewDiv{
+    width: 690px;
+    height: 314px;
+    border:#b3b9c4 solid 1px;
+    margin-top:6px;
+    margin-left:10px;
+    float:left;
+}
+.backlogViewDivHeader{
+    float:left;
+    width: 676px;
+    /*border:1px solid black;*/
+
+}
+.backlogViewDivScrollable{
+    overflow-y:scroll;
+    /*float:left;*/
+    height:270px;
+    width: 680px;
+    /*border:1px solid black;*/
+    /*margin-left:0px;*/
+}
+
+
+

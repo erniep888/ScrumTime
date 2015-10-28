@@ -1,0 +1,105 @@
+/**
+Sub Window
+**/
+.subWindow {
+    margin-top: 16px;
+    border: #ccc solid 1px;
+    width: 100px;
+    height: 100px;
+}
+
+.subWindowTitle {
+    border-bottom: #ccc solid 1px;
+    font-size: 10px;
+    width: 100%;
+    height: 15px;
+    background: #bdd6fb;
+    letter-spacing: 1.3px;
+    line-height: 13px;
+}
+
+/**
+All common padding
+*/
+.paddingTop5 {
+    padding-top: 5px;
+}
+.paddingTop7 {
+    padding-top: 7px;
+}
+.paddingTop10 {
+    padding-top: 10px;
+}
+.paddingTop15 {
+    padding-top: 15px;
+}
+
+.paddingBottom5 {
+    padding-bottom: 5px;
+}
+.paddingBottom10 {
+    padding-bottom: 10px;
+}
+
+.paddingLeft5 {
+    padding-left: 5px;
+}
+
+.paddingLeft10 {
+    padding-left: 10px;
+}
+
+.paddingRight10 {
+    padding-right: 10px;
+}
+
+.paddingRight40 {
+    padding-right: 40px;
+}
+
+/**
+All common margins
+**/
+.marginRight5 {
+    margin-right:5px;
+}
+
+/**
+Font Sizes
+**/
+.fontSize10 {
+    font-size: 10px;
+}
+
+.fontSize11 {
+    font-size: 11px;
+}
+
+.fontSize12 {
+    font-size: 12px;
+}
+
+.fontSize12ExtraSpaces {
+    font-size: 12px;
+    padding-left: 15px;
+    letter-spacing: 1.5;
+}
+.fontRed{
+    color:#ff0000;
+}
+.fontSansSerif{
+    font-family: sans-serif ;
+}
+
+/**
+Text Align
+**/
+.vertAlignTop{
+    vertical-align:text-top;
+}
+.vertAlignMiddle{
+    vertical-align:middle;
+}
+.horiAlignCenter{
+    text-align:center;
+}
