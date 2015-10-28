@@ -2,43 +2,60 @@
 
 The vision of ScrumTime is to provide a simple Agile project management tool to the open source community.
 
-There have been several different implementations of this web application but none were completed to a full production level status.  The 1.0 version is intended to provide the initial production level implementation.
+There have been several different implementations of this web application but none were completed to a full production level status.  The 1.0 version is intended to provide the initial production level implementation.  
 
-### Microservices API
+**The most important goal of Scrumtime 1.0 is to provide a complete separation between the REST API and the Single Page Application UI.**
 
--Users
-Provides the authentication and authorization features.  This includes application-level roles.
+### 1.0 Minimum Features
+_**Microservices API supporting:**_
+-User - A user is the ScrumTime secured user that belongs to the default organization. This provides the CRUD operations for the user.
+-Authority - An authority defines the ScrumTime authorization of the user.
+-Backlog - The organization of stories in priority order of completion.  This provides the CRUD operations for the backlog list.
+-Product - A product may have stories, tasks, bugs, sprints, releases, or artifacts.
+-Team - A team belongs to the default organization and has team members and artifacts.
+-TeamMember - A teamMember belongs to a team and may have artifacts.
+-Story - A story belongs to a product, may contain artifacts, and may have child tasks or bugs.
+-Task - A task belongs to a story and/or a bug and may have artifacts.
+-Sprint - A sprint belongs to a product and may have stories and artifacts.
+-Release - A release belongs to a product and may have sprints and artifacts.
+-Artifact - An artifact belongs to a product, teamMember, team, story, task, sprint, bug, or release.  This is an uploadable file.
+-Bug - A bug belongs to a product, story, or bug and may have tasks and artifacts.
 
--Organizations
-Provides the organization create/read/update/delete features.
+_**Single-Page-Application:**_
+-Separate the UI project completely from the rest-api
 
--Backlog
-Provides story backlog create/read/update/delete features.
+### Post 1.0 Features
+_**Microservices API supporting:**_ 
+-HierarchicalEpic - Allows epics to be defined with parent/child relationships to other Epics.
+-HierarchicalStory - Allows stories to be defined with parent/child relationships to other Stories.
+-HierarchicalTask - Allows tasks to be defined with parent/child relationships to other Tasks.
+-Actor - An actor belongs to a product and may be used by multiple stories and has artifacts.
+-TeamRole - A team role belongs to a team member.
+-TeamMember - A team member belongs to a team and has artifacts.
+-Customer - A customer belongs to a product and default organization and has support tickets, ideas, feature requests, and invoices.
+-SupportTicket - A support ticket belongs to a customer and a product and has bugs, stories, sprints, and releases.
+-FeatureRequest - A feature request belongs to a customer and a product and has bugs, stories, sprints, releases, and artifacts.
+-ParkingLot - A parking lot belongs to a product and has stories, feature requests, and ideas.
+-Idea - An idea belongs to a parking lot and has artifacts.
+-Impediment - An impediment belongs to a sprint and has teams, team members, tasks, stories, customers, support tickets, ideas, and artifacts.
+-CustomerWiki - A customer wiki belongs to a product and has customer surveys, impediments, ideas, feature requests, support tickets, release notes, invoices, invoice alerts, release alerts, and artifacts.
+-TeamWiki - A team wiki belongs to a team and/or default organization and has team members, teams, work assignment alerts, sprint notes, release notes, release alerts, impediments, and artifacts.
+-Invoice - An invoice belongs to a customer and product.
+-CustomerSurvey - A customer survey belongs to a customer wiki.
+-ReleaseNote - A release note belongs to a release and has customer wikis and team wikis.
+-SprintNote - A sprint note belongs to a sprint and has team wikis.
+-InvoiceAlert - An invoice alert belongs to a customer and has customer wikis.
+-ReleaseAlert - A release alert belongs to a release and has customer wikis and team wikis.
+-WorkAssignmentAlert - A work assignment alert belongs to a product and has users.
 
-Tasks
--Provides the task create/read/update/delete features.
+_**Single-Page-Application:**_
+-The SPA UI will likely break release cycle from the REST API at this point to accommodate a quick release cycle for the UI separate from the API.
 
-Releases
--Provides the release create/read/update/delete features.
+###Languages
+Javascript/CSS/HTML - UI stand alone project
+Java/Groovy - Microservices implementation *(may switch to Spring Boot/Spring Data (going to do a spike to decide))*
 
-Sprints
--Provides the sprint create/read/update/delete features.
+###Data Store
+As with releases of 0.4 through 0.6, the goal is to abstract the datastore technology as much as possible to elminiate being tied to a particular database.
 
--Bugs
-Provides the bug management api.
-
--Stories
-Provides the story create/read/update/delete features.
-
--Artifacts
-Provides the artifact create/read/update/delete features.
-
-_**1.0 Minimum Features:**_ stories, tasks, bugs, upload artifacts, releases, sprints, organization
-
-_**Post 1.0 Features:**_ hierarchical epics, hierarchical stories, hierarchical tasks, support tickets, multiple projects, multiple teams
-
-_**Long-Term Desired Features:**_ client billing, project estimating, client wiki, team wiki
-
-_**1.0 Datastore:**_ Varied based on Microservice backend implementation.  The 1.0 release will reuse the Java and Groovy implementation from the 0.6 release to implement the datastore API.  This allows connectivity to multiple relational databases.  Hypothetically, it will allow connection to No-Sql db's too.  I just do not know yet.
-
-_**Languages:**_ Javascript, Java, C#, css, html
+It seems most likely that Spring Data will be used to expose data via REST endpoints.  The underlying datastore may be switched as long as it supports JPA.
