@@ -8,18 +8,18 @@ There have been several different implementations of this web application but no
 
 ### 1.0 Minimum Features
 _**Microservices API supporting:**_
--User - A user is the ScrumTime secured user that belongs to the default organization. This provides the CRUD operations for the user.
--Authority - An authority defines the ScrumTime authorization of the user.
--Backlog - The organization of stories in priority order of completion.  This provides the CRUD operations for the backlog list.
--Product - A product may have stories, tasks, bugs, sprints, releases, or artifacts.
--Team - A team belongs to the default organization and has team members and artifacts.
--TeamMember - A teamMember belongs to a team and may have artifacts.
--Story - A story belongs to a product, may contain artifacts, and may have child tasks or bugs.
--Task - A task belongs to a story and/or a bug and may have artifacts.
--Sprint - A sprint belongs to a product and may have stories and artifacts.
--Release - A release belongs to a product and may have sprints and artifacts.
--Artifact - An artifact belongs to a product, teamMember, team, story, task, sprint, bug, or release.  This is an uploadable file.
--Bug - A bug belongs to a product, story, or bug and may have tasks and artifacts.
+--User - A user is the ScrumTime secured user that belongs to the default organization. This provides the CRUD operations for the user.
+--Authority - An authority defines the ScrumTime authorization of the user.
+--Backlog - The organization of stories in priority order of completion.  This provides the CRUD operations for the backlog list.
+--Product - A product may have stories, tasks, bugs, sprints, releases, or artifacts.
+--Team - A team belongs to the default organization and has team members and artifacts.
+--TeamMember - A teamMember belongs to a team and may have artifacts.
+--Story - A story belongs to a product, may contain artifacts, and may have child tasks or bugs.
+--Task - A task belongs to a story and/or a bug and may have artifacts.
+--Sprint - A sprint belongs to a product and may have stories and artifacts.
+--Release - A release belongs to a product and may have sprints and artifacts.
+--Artifact - An artifact belongs to a product, teamMember, team, story, task, sprint, bug, or release.  This is an uploadable file.
+--Bug - A bug belongs to a product, story, or bug and may have tasks and artifacts.
 
 _**Single-Page-Application:**_
 -Separate the UI project completely from the rest-api
