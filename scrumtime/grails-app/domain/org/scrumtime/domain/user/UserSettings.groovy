@@ -23,7 +23,7 @@ import org.scrumtime.domain.sprint.Sprint
 
 class UserSettings {
     SystemUser systemUser
-    static belongsTo = SystemUser
+    static belongsTo = [SystemUser]
     Date dateCreated
 	Date lastUpdated    
     Organization currentOrganization
@@ -33,5 +33,11 @@ class UserSettings {
     ScrumTeam currentScrumTeam
     static hasMany = [memberOfOrganizations : Organization]
     SortedSet memberOfOrganizations
-
+    static constraints = {
+		currentOrganization(nullable:true)
+        currentProduct(nullable:true)
+        currentRelease(nullable:true)
+        currentSprint(nullable:true)
+        currentScrumTeam(nullable:true)
+    }
 }

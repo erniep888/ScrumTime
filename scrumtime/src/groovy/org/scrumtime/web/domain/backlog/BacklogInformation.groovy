@@ -3,7 +3,7 @@
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at 
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0 
  *
  *  Unless required by applicable law or agreed to in writing, software 
@@ -12,22 +12,18 @@
  *  See the License for the specific language governing permissions and 
  *  limitations under the License. 
  *
-**/
-package org.scrumtime.service
+ * */
+package org.scrumtime.web.domain.backlog
 
-import org.scrumtime.domain.sprint.Sprint
-import org.scrumtime.domain.release.Release
-import org.scrumtime.domain.release.Release
-
-class SprintService {
-
-    boolean transactional = true
-
-    def Sprint autoCreate(Release release, String username) {
-        def sprint = new Sprint(release: release,
-                name: '1', description: 'Auto generated sprint for ' + release.name,
-                createdBy:username)
-        sprint.save(flush: true)
-        return sprint
-    }
+/**
+ *
+ * @author epaschall
+ */
+class BacklogInformation {
+    String backlogName
+    int workRemaining
+    int workCompleted
+    int totalWork
 }
+
+

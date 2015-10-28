@@ -12,14 +12,19 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  *
-**/
+ * */
 package org.scrumtime.web.controller.management
 
 import org.scrumtime.domain.product.Product
+import org.scrumtime.domain.organization.Organization
+import org.scrumtime.domain.user.UserSettings
+import org.scrumtime.web.domain.management.ProductViewSettings
 
 class ProductController {
+    def productService
+
     def beforeInterceptor = {
-        if (!session.userIdentity){
+        if (!session.userIdentity) {
             redirect(controller: "home", action: "index")
         }
     }
@@ -28,38 +33,79 @@ class ProductController {
     }
 
     def index = {
-        render(view: '/org/scrumtime/web/views/management/product/find',
-               model:[breadCrumbTrail:'Management > Find > Product'])
-    }
-
-    def find = {
-        def products = findProducts(params)
-        render(view: '/org/scrumtime/web/views/management/product/find',
-               model:[breadCrumbTrail:'Management > Find > Product',
-                       products: products])
-    }
-
-    def findAll = {
-        def products = findProducts(null)
-        render(view: '/org/scrumtime/web/views/management/product/find',
-               model:[breadCrumbTrail:'Management > Find > Product',
-                       products: products])
+        chain(action: 'view', params: params)
     }
 
     def view = {
-        Product selectedProduct = Product.get(params.id)
+        def productViewSettings = session.productViewSettings
+        if (!productViewSettings)
+            productViewSettings = new ProductViewSettings(filterOrganizationId:
+                    session.userSettings.currentOrganization.id)
+        if (params.filterSubmit) {
+            productViewSettings.filterName = params?.filterName
+            productViewSettings.filterOrganizationId = Integer.parseInt(params?.filterOrganizationId)
+        }
+        session.productViewSettings = productViewSettings
+
+        def availableOrganizations = Organization.findAll()
+        def products = findProducts(productViewSettings)
         render(view: '/org/scrumtime/web/views/management/product/view',
-               model:[breadCrumbTrail:'Management > Find > Product > View',
-                       selectedProduct:selectedProduct])
+                model: [breadCrumbTrail: 'Management > Find > Product',
+                        products: products,
+                        productViewSettings:productViewSettings,
+                        availableOrganizations:availableOrganizations])
     }
 
-    private def findProducts(def params) {
+    def edit = {
+        Product selectedProduct
+        if (params.id) {  // this is an edit condition
+            // TODO: Handle product not found and no id sent
+            selectedProduct = Product.get(params.id)
+        }
+        else {
+            selectedProduct = new Product(organization:session.userSettings.currentOrganization,
+                    createdBy:session.userSettings.systemUser.username)
+        }
+
+        if (params.submitted) {
+            selectedProduct.properties = params
+            selectedProduct.save(flush: true)
+            if (!selectedProduct.hasErrors()) {
+                session.userSettings = UserSettings.findBySystemUser(session.userIdentity.authenticationToken.systemUser)
+                redirect(action: 'view', params: [id: selectedProduct.id])
+            }
+        }
+        render(view: '/org/scrumtime/web/views/management/product/edit',
+                model: [breadCrumbTrail: 'Management > Find > Product > Edit',
+                        selectedProduct: selectedProduct])
+
+    }
+
+    def delete = {
+        if (params.id) {  // this is an edit condition
+            // TODO: Handle product not found and no id sent
+            def selectedProduct = Product.get(params.id)
+            productService.deleteAndCleanUserSettings(selectedProduct)
+            session.userSettings = UserSettings.findBySystemUser(session.userIdentity.authenticationToken.systemUser)
+        }
+        redirect(action:'view')
+    }
+
+    private def findProducts(def productViewSettings) {
         def criteria = Product.createCriteria()
         def results = criteria.list {
-            if (params){
-                if (params.nameSearchField)
-                    ilike("name", "%" + params.nameSearchField + "%")
+            if (productViewSettings) {
+                if (productViewSettings.filterName)
+                    ilike("name", "%" + productViewSettings.filterName + "%")
+                if (productViewSettings.filterOrganizationId) {
+                    def organization = Organization.get(productViewSettings.filterOrganizationId)
+                    if (organization)
+                        eq("organization", organization)
+                }
+            } else {
+                ilike("name", "%%")
             }
+
             order('name', 'asc')
         }
         return results

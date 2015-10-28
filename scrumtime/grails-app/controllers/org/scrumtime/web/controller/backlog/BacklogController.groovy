@@ -18,84 +18,171 @@ package org.scrumtime.web.controller.backlog
 import org.scrumtime.domain.backlog.BacklogItem
 import org.scrumtime.domain.backlog.BacklogPriority
 import org.scrumtime.domain.user.UserInformation
-import org.scrumtime.service.user.SessionUserInformation
+import org.scrumtime.domain.user.SystemUser
+import org.scrumtime.web.domain.backlog.BacklogInformation
+import org.scrumtime.web.domain.backlog.BacklogViewSettings
 
 class BacklogController {
+    def backlogService
+    def userSessionService
+
     def beforeInterceptor = {
-        if (!session.userIdentity){
+        if (!session.userIdentity) {
             redirect(controller: "home", action: "index")
+        }
+
+        if (session.userSettings == null ||
+            session.userSettings.currentProduct == null ||
+            session.userSettings.currentRelease == null ||
+            session.userSettings.currentSprint == null){
+            redirect(controller:"settings", action:"requiresSettings")
         }
     }
 
-    def addToBacklog = {
-        BacklogItem backlogItem = new BacklogItem(workRemaining: 0, workCompleted: 0)
+    def index = {
+        //        render(view: '/org/scrumtime/web/views/backlog/testDraggable')
+        render "${backlogService.findProductBacklogInformation().workRemaining}"
+    }
+
+    def saveToProduct = {
+        params.target = 'product'
+        chain(action: 'viewBacklogItem', params: params)
+    }
+    def saveToRelease = {
+        params.target = 'release'
+        chain(action: 'viewBacklogItem', params: params)
+    }
+    def saveToSprint = {
+        params.target = 'sprint'
+        chain(action: 'viewBacklogItem', params: params)
+    }
+
+    def viewBacklogItem = {
+        BacklogItem backlogItem
+        def viewMode = params.viewMode
+        def backlogType = params.backlogType
+
+        if (params.id) {  // this is an edit condition
+            // TODO: Handle backlog item not found and no id sent
+            backlogItem = BacklogItem.get(params.id)
+        }
+        else {
+            backlogItem = new BacklogItem(workRemaining: 0, workCompleted: 0)
+        }
         backlogItem.properties = params
-        if (params.selectedPriority) {
-            backlogItem.productPriority = BacklogPriority.get(params.selectedPriority)
-        }
-        def priorities = BacklogPriority.findAll()
-        if (params.submitted){
-            backlogItem.assignedProduct = session?.userSettings?.currentProduct
-            if (params.selectedAssignedTo) {
-                def assignedTo = UserInformation.get(params.selectedAssignedTo)
-                backlogItem.assignedTo = assignedTo?.nickName
+        if (params.submitted) {
+            if (params.target == 'release') {
+                backlogItem.assignedProduct = session?.userSettings?.currentProduct
+                backlogItem.assignedRelease = session?.userSettings?.currentRelease
+                backlogItem.assignedSprint = null
+            } else if (params.target == 'sprint') {
+                backlogItem.assignedProduct = session?.userSettings?.currentProduct
+                backlogItem.assignedRelease = session?.userSettings?.currentRelease
+                backlogItem.assignedSprint = session?.userSettings?.currentSprint
             }
+            else {
+                backlogItem.assignedProduct = session?.userSettings?.currentProduct
+                backlogItem.assignedRelease = null
+                backlogItem.assignedSprint = null
+            }
+
+            if (params.selectedAssignedTo)
+                backlogItem.assignedTo = UserInformation.get(params.selectedAssignedTo)
+
             if (params.selectedEstimatedBy) {
-                def estimatedBy = UserInformation.get(params.selectedEstimatedBy)
-                backlogItem.estimatedBy = estimatedBy?.nickName
+                backlogItem.estimatedBy = UserInformation.get(params.selectedEstimatedBy)
             }
-            backlogItem.save()
+            if (params.selectedPriority) {
+                backlogItem.productPriority = BacklogPriority.get(params.selectedPriority)
+            }
+            backlogItem.save(flush: true)
             if (!backlogItem.hasErrors())
-                redirect(action: 'viewProductBacklog')
+                redirect(action: 'viewBacklog', params: [backlogType: params.target])
         }
-        // TODO: Replace findAll with an organization limited search (members only)
-        def availableUserInformation = UserInformation.findAll()
-        def availableUsers = convertUserInformationToSessionUserInformation(availableUserInformation)
+
+        def availableUsers = findAvailableUsers()
+        def priorities = BacklogPriority.findAll()
 
         render(view: '/org/scrumtime/web/views/backlog/addToBacklog',
                 model: [breadCrumbTrail: 'Backlog > Add To Backlog',
                         priorities: priorities, backlogItem: backlogItem,
-                        availableUsers: availableUsers])
+                        availableUsers: availableUsers,
+                        viewMode: viewMode,
+                        backlogType: backlogType])
     }
 
-    private List convertUserInformationToSessionUserInformation(def availableUserInformation) {
-        def availableUsers = new Vector<SessionUserInformation>()
-        def sessionUserInformation = new SessionUserInformation(id:-1,
-                    displayName:"-----------")
-        availableUsers.add(sessionUserInformation)
-        availableUserInformation.each {userInformation ->
-            sessionUserInformation = new SessionUserInformation(id:userInformation.id,
-                    displayName:userInformation.nickName)
-            availableUsers.add(sessionUserInformation)
+    def viewBacklog = {
+        def backlogViewSettings = session.backlogViewSettings
+        if (!backlogViewSettings)
+            backlogViewSettings = new BacklogViewSettings()
+        
+        if (params.filterSubmit) {
+            backlogViewSettings.filterName = params?.filterName
+            backlogViewSettings.filterUserId = Integer.parseInt(params?.filterUserId)
         }
-        return availableUsers
-    }
+        if (params.backlogType)
+            backlogViewSettings.backlogType = params.backlogType          
 
-    def addToProductBacklog = {
-        redirect(action: 'addToBacklog')
-    }
+        def backlog
+        if (backlogViewSettings.backlogType && backlogViewSettings.backlogType == 'release') {
+            backlog = backlogService.findReleaseBacklog(
+                    session?.userSettings?.currentRelease, backlogViewSettings)
+            backlogViewSettings.backlogType = 'release'
+        } else if (backlogViewSettings.backlogType && backlogViewSettings.backlogType == 'sprint') {
+            backlog = backlogService.findSprintBacklog(
+                    session?.userSettings?.currentSprint, backlogViewSettings)
+            backlogViewSettings.backlogType = 'sprint'
+        } else {
+            backlog = backlogService.findProductBacklog(
+                    session?.userSettings?.currentProduct, backlogViewSettings)
+            backlogViewSettings.backlogType = 'product'
+        }
+        session.backlogViewSettings = backlogViewSettings
 
-    def viewProductBacklog = {
-        def productBacklog = findProductBacklog()
-        render(view: '/org/scrumtime/web/views/backlog/viewProductBacklog',
+        def productBacklogInformation = backlogService.findProductBacklogInformation(session?.userSettings?.currentProduct)
+        def releaseBacklogInformation = backlogService.findReleaseBacklogInformation(session?.userSettings?.currentRelease)
+        def sprintBacklogInformation = backlogService.findSprintBacklogInformation(session?.userSettings?.currentSprint)
+        def availableUsers = findAvailableUsers()
+        render(view: '/org/scrumtime/web/views/backlog/viewBacklog',
                 model: [breadCrumbTrail: 'Backlog > Product Backlog',
-                        productBacklog: productBacklog])
+                        backlog: backlog,
+                        availableUsers: availableUsers,
+                        backlogViewSettings: backlogViewSettings,
+                        productBacklogInformation: productBacklogInformation,
+                        releaseBacklogInformation: releaseBacklogInformation,
+                        sprintBacklogInformation: sprintBacklogInformation])
     }
 
     def deleteFromBacklog = {
-        if (params.id) {
-            def backlogItem = BacklogItem.get(params.id)
-            backlogItem.delete()
-        }
-        redirect(action: 'viewProductBacklog')
+        backlogService.deleteFromBacklog(params.id)
+        redirect(action: 'viewBacklog')
     }
 
-    private def findProductBacklog() {
-        def criteria = BacklogItem.createCriteria()
-        def results = criteria.list {
-            if (session?.userSettings?.currentProduct)
-                eq("assignedProduct", session?.userSettings?.currentProduct)
-        }
-        return results
+
+    def dragToProductBacklog = {
+        backlogService.addToProductBacklog(params['id'],
+                session?.userSettings?.currentProduct)
+        redirect(action: 'viewBacklog')
     }
+
+    def dragToReleaseBacklog = {
+        backlogService.addToReleaseBacklog(params['id'],
+                session?.userSettings?.currentRelease)
+        redirect(action: 'viewBacklog')
+    }
+
+    def dragToSprintBacklog = {
+        backlogService.addToSprintBacklog(params['id'],
+                session?.userSettings?.currentSprint)
+        redirect(action: 'viewBacklog')
+    }
+
+    private def findAvailableUsers() {
+        // TODO: Replace findAll with an organization limited search (members only)
+        def availableUserInformations = UserInformation.findAll()
+//        def availableSessionUserInformations = userSessionService.
+//                convertUserListToSessionUserList(availableUserInformations)
+        return availableUserInformations
+    }
+
 }

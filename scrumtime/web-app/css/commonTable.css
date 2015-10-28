@@ -13,6 +13,26 @@
 .tableHeaderRight {
     border-right: 0;
 }
+.viewHeader {
+    font-size: 10px;
+    text-align: center;
+    height: 16px;
+    background-color: #e3e4e6;
+    border-top: #b3b9c4 solid 1px;
+}
+
+.rightBorder {
+    border-top: #b3b9c4 solid 1px;
+    border-right: #b3b9c4 solid 1px;
+}
+/**
+Common Filter Tr
+**/
+.filterTrEdit {
+    vertical-align: text-top;
+    padding-top: 4px;
+    padding-left: 5px;
+}
 
 .tableDataDiv {
     overflow-y: scroll;
@@ -42,8 +62,24 @@ Common Widths
     width: 200px;
 }
 
+.width180 {
+    width: 180px;
+}
+
+.width160 {
+    width: 160px;
+}
+
 .width130 {
     width: 130px;
+}
+
+.width110 {
+    width: 110px;
+}
+
+.width85 {
+    width: 80px;
 }
 
 .width80 {
@@ -62,9 +98,14 @@ Common Widths
     width: 65px;
 }
 
+.width60 {
+    width: 60px;
+}
+
 .width50 {
     width: 50px;
 }
+
 
 /**
 Common Heights

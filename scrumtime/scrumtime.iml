@@ -10,7 +10,7 @@
         <customNs />
       </configuration>
     </facet>
-    <facet type="Grails" name="Grails">
+    <facet type="Grails" name="Grails" implicit="true">
       <configuration />
     </facet>
   </component>
@@ -42,6 +42,7 @@
           <root url="file://$MODULE_DIR$/lib" />
           <root url="file://$MODULE_DIR$/plugins/jcaptcha-1.0/lib" />
           <root url="file://$MODULE_DIR$/plugins/mail-0.1/lib" />
+          <root url="file://$MODULE_DIR$/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -50,6 +51,7 @@
         <jarDirectory url="file://$MODULE_DIR$/plugins/mail-0.1/lib" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="GRAILS" level="application" />
     <orderEntryProperties />
   </component>
 </module>

@@ -17,6 +17,8 @@ package org.scrumtime.service
 
 import org.scrumtime.service.user.UserIdentity
 import javax.servlet.http.Cookie
+import org.scrumtime.service.user.SessionUserInformation
+import org.scrumtime.domain.user.SystemRole
 
 
 class UserSessionService {
@@ -36,6 +38,20 @@ class UserSessionService {
         return authorizeUser(authenticationToken)
     }
 
+    def List<SessionUserInformation> convertUserListToSessionUserList(def availableUserInfos) {
+        def availableSessionUserInfos = new Vector<SessionUserInformation>()
+//        def sessionUserInformation = new SessionUserInformation(id: -1,
+//                nickName: "-----------", username: "-----------" )
+//        availableSessionUserInfos.add(sessionUserInformation)
+        availableUserInfos.each {userInformation ->
+            def sessionUserInformation = new SessionUserInformation(id: userInformation.systemUser.id,
+                    nickName: userInformation.nickName,
+                    username: userInformation.systemUser.username)
+            availableSessionUserInfos.add(sessionUserInformation)
+        }
+        return availableSessionUserInfos
+    }
+
     private UserIdentity authorizeUser(authenticationToken){
         def authorizationDefinition = authorizationService.authorizeUser(authenticationToken)
         def userIdentity = new UserIdentity(authenticationToken: authenticationToken,
@@ -46,5 +62,16 @@ class UserSessionService {
             userIdentity.hasErrors = true
         return userIdentity
 
+    }
+
+    def isSiteOwner(def userIdentity){
+        if (userIdentity && userIdentity.authorizationDefinition){
+            def systemRole = SystemRole.findByName('SITE OWNER')
+            for (assignedRole in userIdentity.authorizationDefinition?.assignedRoles){
+                if (assignedRole.name == systemRole.name)
+                    return true
+            }
+        }
+        return false
     }
 }

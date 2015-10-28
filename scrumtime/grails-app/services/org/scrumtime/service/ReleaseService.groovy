@@ -17,7 +17,7 @@ package org.scrumtime.service
 
 import org.scrumtime.domain.release.Release
 import org.scrumtime.domain.product.Product
-import org.scrumtime.domain.release.Release
+import org.scrumtime.domain.user.UserSettings
 
 class ReleaseService {
 
@@ -25,9 +25,21 @@ class ReleaseService {
 
     def Release autoCreate(Product product, String username) {
         def release = new Release(product: product,
-                name: 'Release 1.0', description: 'Auto generated release for ' + product.name,
+                name: '0.1', description: 'Auto generated release for ' + product.name,
                 createdBy:username)
         release.save(flush: true)
         return release
+    }
+
+    def deleteAndCleanUserSettings(Release release){
+        if (release){
+            def userSettings = UserSettings.findAllByCurrentRelease(release)
+            for (userSetting in userSettings){
+                userSetting.currentRelease = null
+                userSetting.currentSprint = null
+                userSetting.save(flush:true)
+            }
+            release.delete(flush:true)
+        }
     }
 }

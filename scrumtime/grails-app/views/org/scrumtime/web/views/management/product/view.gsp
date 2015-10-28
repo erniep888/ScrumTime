@@ -10,36 +10,66 @@
 </head>
 <body>
 <center>
-    <div class="subWindow viewWindow">
-        <div class="subWindowTitle">View Product</div>
-        <table cellpadding="0" cellspacing="0" border="1" class="paddingTop5">
-            <tr>
-                <td class="fontSize12 width130">Name</td>
-                <td class="fontSize12 width300">${selectedProduct.name}</td>
-            </tr>
-            <tr>
-                <td class="fontSize12 width130">Description</td>
-                <td class="fontSize12 width300">${selectedProduct?.description}</td>
-            </tr>
-            <tr>
-                <td class="fontSize12 width130">Organization</td>
-                <td class="fontSize12 width300">${selectedProduct?.organization?.name}</td>
-            </tr>
-            <tr>
-                <td class="fontSize12 width130">Releases</td>
-                <td class="fontSize12 width300">${selectedProduct?.releases?.size()}</td>
-            </tr>
-            <tr>
-                <td colspan="2" class="findButtonTd">
-                    <g:hiddenField name="productId" value="${selectedProduct.id}"/>
-                    <input class="fontSize12 width60" type=button value="Back" onClick="history.go(-1)">&nbsp;
-                    <g:actionSubmit class="fontSize12 width60" action="edit" value="Edit"/>&nbsp;
-                    <g:actionSubmit class="fontSize12 width60" action="delete" value="Delete"/>
-                </td>
-            </tr>
-        </table>
-    </div>
+    <div class="subWindow managementViewDiv">
+        <div class="subWindowTitle">Products</div>
+        <div class="managementFilterDiv">
+            <table border="0">
+                <g:form name="filterProductForm" url="[controller:'product']">
+                    <tr>
+                        <scrumtime:editfield fieldName="filterName" labelValue="Name"
+                                labelClass="editFieldSmall"
+                                fieldTdClass="filterTrEdit
+                                  ${hasErrors(field:'filterName',' errors')}"
+                                fieldClass="editFieldSmall"
+                                fieldSize="45"
+                                fieldMaxLength="200"
+                                fieldValue="${productViewSettings?.filterName}"
+                                useSemiColon="true"/>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                        <td class="editFieldSmall">
+                            <label for="filterOrganizationId">Organization:</label>
+                        </td>
+                        <td valign="middle" class="editFieldSmall">
+                            <g:select name="filterOrganizationId" value="${productViewSettings?.filterOrganizationId}"
+                                    from="${availableOrganizations}" optionKey="id" optionValue="name"
+                                    noSelection="${['-1':'-------------------']}" class="editFieldSmall"/>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                        <td>
+                            <g:hiddenField name="filterSubmit" value="true"/>
+                            <g:actionSubmit class="fontSize12" action="view" value="Filter"/>&nbsp;
+                        </td>
+                    </tr>
+                </g:form>   <!-- There is a bug in ie 7 that prevents me from putting this after the table-->
+            </table>
+        </div>
+        <div class="managementViewDivHeader fontSize10">
+            <table class="width100Percent" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="viewHeader rightBorder width300">Name</td>
+                    <td class="viewHeader rightBorder width250">Organization</td>
+                    <td class="viewHeader rightBorder width200">Releases</td>
+                    <td class="viewHeader">Actions&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+        <div class="tableDataDiv managementViewData">
+            <table class="width100Percent" cellpadding="0" cellspacing="0" border="0">
+                <g:each var="product" in="${products}">
+                    <tr>
+                        <td class="tableData width300">${product?.name}</td>
+                        <td class="tableData width250">${product?.organization?.name}</td>
+                        <td class="tableData width200">${(product?.releases)?product?.releases?.size():0}</td>
+                        <td class="fontSize11 horiAlignCenter">
+                            &nbsp;<g:link controller="product" action="edit" id="${product?.id}">Edit</g:link>
+                            &nbsp;&nbsp;&nbsp;<g:link controller="product" action="delete" id="${product?.id}">Delete</g:link>
+                        </td>
 
+                    </tr>
+                </g:each>
+            </table>
+        </div>
+    </div>
 </center>
 </body>
 </html>

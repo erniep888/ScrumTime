@@ -17,7 +17,7 @@ package org.scrumtime.service
 
 import org.scrumtime.domain.product.Product
 import org.scrumtime.domain.organization.Organization
-import org.scrumtime.domain.user.SystemUser
+import org.scrumtime.domain.user.UserSettings
 
 class ProductService {
 
@@ -29,5 +29,18 @@ class ProductService {
                 createdBy: username)
         product.save(flush: true)
         return product
+    }
+
+    def deleteAndCleanUserSettings(Product product){
+        if (product){
+            def userSettings = UserSettings.findAllByCurrentProduct(product)
+            for (userSetting in userSettings){
+                userSetting.currentProduct = null
+                userSetting.currentRelease = null
+                userSetting.currentSprint = null
+                userSetting.save(flush:true)
+            }
+            product.delete(flush:true)
+        }
     }
 }
