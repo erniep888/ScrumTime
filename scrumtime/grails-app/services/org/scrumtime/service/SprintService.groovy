@@ -23,11 +23,4 @@ class SprintService {
 
     boolean transactional = true
 
-    def Sprint autoCreate(Release release, String username) {
-        def sprint = new Sprint(release: release,
-                name: '1', description: 'Auto generated sprint for ' + release.name,
-                createdBy:username)
-        sprint.save(flush: true)
-        return sprint
-    }
 }

@@ -24,32 +24,31 @@ class Sprint implements Comparable{
 
     String name
     String description
-    int completionOrder   // a value that indicates expected order of completion relative to other sprints
     Date expectedStartDate
     Date expectedCompletionDate
     Date actualStartDate
     Date actualCompletionDate
+    String visibility
     static belongsTo = [release: Release]
     static hasMany = [scrums: Scrum]
-    String createdBy  // unique user name
 
     static constraints = {
-		name(unique:'release',nullable:false, size:1..80)
-        description(size:0..512)
-        completionOrder(blank:false, unique:'release')
+		name(blank:false, unique:'release',nullable:false, size:1..80)
+        description(blank:false, size:0..512)
         release(nullable: false)
         expectedCompletionDate(nullable:true)
         expectedStartDate(nullable:true)
         actualCompletionDate(nullable:true)
         actualStartDate(nullable:true)
+        visibility(nullable:false, blank:false)
     }
 
     def int compareTo(obj) {
         def result = 0
         if (obj && obj instanceof Sprint){
             def sprint = (Sprint)obj
-            if (this.release == sprint.release)
-                result = this.completionOrder - sprint.completionOrder
+            if (this.release == sprint.release && expectedStartDate)
+                result = this.expectedStartDate - sprint.expectedStartDate
             else
                 result = this.release.compareTo(sprint.release)
         }

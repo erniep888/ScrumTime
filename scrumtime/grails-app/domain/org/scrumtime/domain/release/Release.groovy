@@ -30,7 +30,7 @@ class Release implements Comparable{
     Date actualCompletionDate    
     static belongsTo = [product: Product]
     static hasMany = [sprints: Sprint]
-    String createdBy   // unique username
+    String visibility
 
     static constraints = {
 		name(unique:'product',blank:false, nullable:false, size:1..80)
@@ -40,6 +40,7 @@ class Release implements Comparable{
         expectedStartDate(nullable:true)
         actualCompletionDate(nullable:true)
         actualStartDate(nullable:true)
+        visibility(nullable:false, blank:false)
     }
 
     static mapping = {

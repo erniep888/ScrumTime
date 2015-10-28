@@ -16,7 +16,6 @@
 package org.scrumtime.web.controller.management
 
 import org.scrumtime.domain.product.Product
-import org.scrumtime.domain.organization.Organization
 import org.scrumtime.domain.user.UserSettings
 import org.scrumtime.web.domain.management.ProductViewSettings
 
@@ -29,7 +28,7 @@ class ProductController {
         }
     }
     def afterInterceptor = {model ->
-        //model.breadCrumbTrail = 'Management > Find > Organization'
+        
     }
 
     def index = {
@@ -47,13 +46,11 @@ class ProductController {
         }
         session.productViewSettings = productViewSettings
 
-        def availableOrganizations = Organization.findAll()
         def products = findProducts(productViewSettings)
         render(view: '/org/scrumtime/web/views/management/product/view',
                 model: [breadCrumbTrail: 'Management > Find > Product',
                         products: products,
-                        productViewSettings:productViewSettings,
-                        availableOrganizations:availableOrganizations])
+                        productViewSettings:productViewSettings])
     }
 
     def edit = {
@@ -97,11 +94,6 @@ class ProductController {
             if (productViewSettings) {
                 if (productViewSettings.filterName)
                     ilike("name", "%" + productViewSettings.filterName + "%")
-                if (productViewSettings.filterOrganizationId) {
-                    def organization = Organization.get(productViewSettings.filterOrganizationId)
-                    if (organization)
-                        eq("organization", organization)
-                }
             } else {
                 ilike("name", "%%")
             }

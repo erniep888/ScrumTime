@@ -31,12 +31,12 @@ Common to drop downs
 }
 
 /**
-Sprint Menu
+Scrum Menu
 */
 #scrumMenu{
     height:56px;
     width:164px;
-    margin-left:110px;
+    margin-left:117px;
 }
 
 /**
@@ -45,32 +45,15 @@ Release Menu
 #backlogMenu{
     height:114px;
     width:210px;
-    margin-left:195px;
+    margin-left:117px;
 }
 
 /**
-Product Menu
+Tools Menu
 */
-#currentMenu{
-    height:200px;
-    width:264px;
-    margin-left:289px;
-}
-
-/**
-Organization Menu
-*/
-#managementMenu{
+#toolsMenu{
     height:286px;
     width:204px;
-    margin-left:383px;
+    margin-left:296px;
 }
 
-/**
-Site Menu
-*/
-#profileMenu{
-    height:90px;
-    width:190px;
-    margin-left:512px;
-}

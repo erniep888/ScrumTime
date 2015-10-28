@@ -17,6 +17,7 @@ package org.scrumtime.web.taglibs
 
 import javax.servlet.http.Cookie
 import org.scrumtime.service.user.UserIdentity
+import org.scrumtime.domain.user.UserSettings
 
 class UserTagLib {
     def userSessionService
@@ -35,25 +36,22 @@ class UserTagLib {
         }
     }
 
-    def ifIsAuthorized = {attrs, body ->
-        if (session.userIdentity?.authorizationDefinition && attrs.requiredPermissions) {
-            if (session.userIdentity?.
-                    authorizationDefinition?.
-                    uniquePermissionList.containsAll(attrs.requiredPermissions)) {
-                out << body()
-            }
-        }
-    }
-
     def useCookieLogin = {
-        if (!session.userIdentity){
-            Cookie requestCookie = request.cookies.find { it.name == "scrumtime.user" }
-            if (requestCookie){
-                UserIdentity userIdentity = userSessionService.loginDBRealmUser(requestCookie)
-                if (userIdentity && !userIdentity.hasErrors){
-                    session.userIdentity = userIdentity
-                }
-            }
+        def userIdentity = session?.getAttribute('userIdentity')
+        if (!userIdentity){
+            userIdentity = userSessionService.loginDBRealmUser("userx@demo.com", "userx")
+            session.setAttribute('userIdentity',userIdentity)
+            def userSettings = UserSettings.get(1)
+            session.setAttribute('userSettings', userSettings)
         }
+//        if (!userIdentity){
+//            Cookie requestCookie = request.cookies.find { it.name == "scrumtime.user" }
+//            if (requestCookie){
+//                userIdentity = userSessionService.loginDBRealmUser(requestCookie)
+//                if (userIdentity && !userIdentity.hasErrors){
+//                    session.setAttribute('userIdentity', userIdentity)
+//                }
+//            }
+//        }
     }
 }
