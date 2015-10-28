@@ -39,6 +39,6 @@ _**Post 1.0 Features:**_ hierarchical epics, hierarchical stories, hierarchical 
 
 _**Long-Term Desired Features:**_ client billing, project estimating, client wiki, team wiki
 
-_**1.0 Datastore:**_ MongoDB
+_**1.0 Datastore:**_ Varied based on Microservice backend implementation.  The 1.0 release will reuse the Java and Groovy implementation from the 0.6 release to implement the datastore API.  This allows connectivity to multiple relational databases.  Hypothetically, it will allow connection to No-Sql db's too.  I just do not know yet.
 
-_**Languages:**_ Javascript, css, html
+_**Languages:**_ Javascript, Java, C#, css, html
