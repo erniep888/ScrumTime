@@ -16,20 +16,11 @@
 package org.scrumtime.service
 
 import org.scrumtime.domain.product.Product
-import org.scrumtime.domain.organization.Organization
 import org.scrumtime.domain.user.UserSettings
 
 class ProductService {
 
     boolean transactional = true
-
-    def Product autoCreate(Organization organization, String username, String nickName) {
-        def product = new Product(organization: organization,
-                name: nickName + '_Product', description: 'Auto generated product for ' + organization.name,
-                createdBy: username)
-        product.save(flush: true)
-        return product
-    }
 
     def deleteAndCleanUserSettings(Product product){
         if (product){

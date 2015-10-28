@@ -21,6 +21,9 @@ import org.scrumtime.domain.user.UserInformation
 import org.scrumtime.domain.user.SystemUser
 import org.scrumtime.web.domain.backlog.BacklogInformation
 import org.scrumtime.web.domain.backlog.BacklogViewSettings
+import org.scrumtime.domain.product.Product
+import org.scrumtime.domain.release.Release
+import org.scrumtime.domain.sprint.Sprint
 
 class BacklogController {
     def backlogService
@@ -37,6 +40,11 @@ class BacklogController {
             session.userSettings.currentSprint == null){
             redirect(controller:"settings", action:"requiresSettings")
         }
+    }
+    def afterInterceptor = {model ->
+        model.products = Product.findAll()
+        model.releases = Release.findAll()
+        model.sprints = Sprint.findAllByRelease(Release.get(1))
     }
 
     def index = {

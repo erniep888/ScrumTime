@@ -13,12 +13,21 @@
  *  limitations under the License.
  *
 **/
-package org.scrumtime.service.user
+package org.scrumtime.domain.site
 
-import org.scrumtime.domain.user.AuthenticationToken
+import org.scrumtime.domain.user.SystemUser
 
+class Site {
+    Date dateCreated
+	Date lastUpdated
 
-class UserIdentity {
-    AuthenticationToken authenticationToken
-    Boolean hasErrors = false
+    String name
+	String description
+    static hasMany = [administrators : SystemUser]
+    SortedSet administrators
+
+    static constraints = {
+		name(blank:false, nullable:false,unique:true, size:1..80)
+        description(blank:false, nullable:false, size:1..512)
+    }
 }

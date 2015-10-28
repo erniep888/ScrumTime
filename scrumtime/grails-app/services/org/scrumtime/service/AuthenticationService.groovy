@@ -3,7 +3,7 @@
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at 
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0 
  *
  *  Unless required by applicable law or agreed to in writing, software 
@@ -12,7 +12,7 @@
  *  See the License for the specific language governing permissions and 
  *  limitations under the License. 
  *
-**/
+ * */
 package org.scrumtime.service
 
 import org.scrumtime.domain.user.SystemUserCredential
@@ -30,11 +30,10 @@ class AuthenticationService {
                                              String challengePassword) {
         def authenticationToken = new AuthenticationToken()
         def systemUser = SystemUser.findByUsername(username)
-        if (systemUser && challengePassword) {                        
+        if (systemUser && challengePassword) {
             if (systemUser.enabled) {
                 def userInformation = UserInformation.findBySystemUser(systemUser)
-                if (userInformation && userInformation.acceptedUserAgreement &&
-                        userInformation.emailVerified) {
+                if (userInformation && userInformation.emailVerified) {
                     def credential = SystemUserCredential.findBySystemUser(systemUser)
                     if (credential) {
                         def hashedChallengePassword = hashPassword(challengePassword)
@@ -42,6 +41,9 @@ class AuthenticationService {
                             authenticationToken.systemUser = systemUser
                             authenticationToken.timeOfAuthentication = new Date()
                             authenticationToken.save()
+                            authenticationToken.errors.allErrors.each {
+                                println it
+                            }
                         } else {
                             authenticationToken.errors.rejectValue('systemUser',
                                     'org.scrumtime.domain.user.AuthenticationToken.systemUser.invalid.error')
@@ -56,7 +58,7 @@ class AuthenticationService {
                 }
             } else {
                 authenticationToken.errors.rejectValue('systemUser',
-                    'org.scrumtime.domain.user.AuthenticationToken.systemUser.disabled.error')                
+                        'org.scrumtime.domain.user.AuthenticationToken.systemUser.disabled.error')
             }
         } else {
             authenticationToken.errors.rejectValue('systemUser',
@@ -65,20 +67,20 @@ class AuthenticationService {
         return authenticationToken
     }
 
-    def AuthenticationToken authenticateUser(Cookie requestCookie){
+    def AuthenticationToken authenticateUser(Cookie requestCookie) {
         def authenticationToken
-        if (requestCookie){
-            StringTokenizer tokenizer = new StringTokenizer(requestCookie.value,"|")
-            if (tokenizer.countTokens() == 2){
+        if (requestCookie) {
+            StringTokenizer tokenizer = new StringTokenizer(requestCookie.value, "|")
+            if (tokenizer.countTokens() == 2) {
                 String username = tokenizer.nextToken()
                 SystemUser systemUser = SystemUser.findByUsername(username)
-                if (systemUser && !systemUser.hasErrors()){
+                if (systemUser && !systemUser.hasErrors()) {
                     UserCookie dbCookie = UserCookie.findBySystemUser(systemUser)
-                    if (dbCookie && !dbCookie.hasErrors()){
+                    if (dbCookie && !dbCookie.hasErrors()) {
                         String randomValue = tokenizer.nextToken()
-                        if (randomValue == dbCookie.randomValue){
+                        if (randomValue == dbCookie.randomValue) {
                             authenticationToken = new AuthenticationToken(
-                                    systemUser:systemUser, timeOfAuthentication:new Date())
+                                    systemUser: systemUser, timeOfAuthentication: new Date())
                             authenticationToken.save()
                             if (authenticationToken.hasErrors())
                                 authenticationToken = null

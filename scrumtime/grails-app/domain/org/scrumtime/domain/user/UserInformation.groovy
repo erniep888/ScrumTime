@@ -29,9 +29,7 @@ class UserInformation {
     String nickName
     PrioritizedTimeZone timeZone
     PrioritizedLanguage language
-    VisibilityType visibilityType
-    Boolean acceptedUserAgreement = false
-    String captchaResponse 
+    String captchaResponse
     Boolean emailVerified = false
     Long validationCode
 
@@ -42,7 +40,9 @@ class UserInformation {
         firstName(blank:false,length:1..50)
         lastName(length:1..50)
         nickName(unique:true,blank:false,length:1..50)
-        visibilityType(nullable:false)
+        timeZone(nullable: true)
+        language(nullable: true)
+        validationCode(nullable: true)
     }
 
     static mapping = {

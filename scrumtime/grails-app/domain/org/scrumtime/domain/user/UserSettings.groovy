@@ -15,7 +15,6 @@
 **/
 package org.scrumtime.domain.user
 
-import org.scrumtime.domain.organization.Organization
 import org.scrumtime.domain.product.Product
 import org.scrumtime.domain.release.Release
 import org.scrumtime.domain.scrum.ScrumTeam
@@ -26,15 +25,11 @@ class UserSettings {
     static belongsTo = [SystemUser]
     Date dateCreated
 	Date lastUpdated    
-    Organization currentOrganization
     Product currentProduct
     Release currentRelease
     Sprint currentSprint
     ScrumTeam currentScrumTeam
-    static hasMany = [memberOfOrganizations : Organization]
-    SortedSet memberOfOrganizations
     static constraints = {
-		currentOrganization(nullable:true)
         currentProduct(nullable:true)
         currentRelease(nullable:true)
         currentSprint(nullable:true)

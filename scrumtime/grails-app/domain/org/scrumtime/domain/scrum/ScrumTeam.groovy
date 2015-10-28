@@ -15,19 +15,22 @@
 **/
 package org.scrumtime.domain.scrum
 
-import org.scrumtime.domain.organization.Organization
+import org.scrumtime.domain.user.SystemUser
 
 class ScrumTeam {
     String name
     String description
-    Organization organization
-    static belongsTo = Organization
-    static hasMany = [members : ScrumTeamMember]
-    String createdBy   // unique username
+    static hasMany = [pigs : SystemUser, chickens : SystemUser, scrumMasters: SystemUser, scribes:SystemUser]
+    SortedSet pigs
+    SortedSet chickens
+    SortedSet scrumMasters
+    SortedSet scribes
+    String visibility
 
     static constraints = {
-		name(unique:'organization',nullable:false, size:1..80)
+		name(blank:false, unique:true, nullable:false, size:1..80)
         description(size:0..512)
+        visibility(nullable:false, blank:false)
     }
 
     def int compareTo(obj) {

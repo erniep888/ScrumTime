@@ -18,24 +18,28 @@ package org.scrumtime.service
 import org.scrumtime.service.user.UserIdentity
 import javax.servlet.http.Cookie
 import org.scrumtime.service.user.SessionUserInformation
-import org.scrumtime.domain.user.SystemRole
 
 
 class UserSessionService {
     def authenticationService
-    def authorizationService
 
     boolean transactional = true
 
     def UserIdentity loginDBRealmUser(String username,
                                       String challengePassword) {
         def authenticationToken = authenticationService.authenticateUser(username, challengePassword)
-        return authorizeUser(authenticationToken)
+        def userIdentity = new UserIdentity(authenticationToken: authenticationToken)
+        if (!authenticationToken || authenticationToken?.hasErrors())
+            userIdentity.hasErrors = true
+        return userIdentity
     }
 
     def UserIdentity loginDBRealmUser(Cookie requestCookie){
         def authenticationToken = authenticationService.authenticateUser(requestCookie)
-        return authorizeUser(authenticationToken)
+        def userIdentity = new UserIdentity(authenticationToken: authenticationToken)
+        if (!authenticationToken || authenticationToken?.hasErrors())
+            userIdentity.hasErrors = true
+        return userIdentity
     }
 
     def List<SessionUserInformation> convertUserListToSessionUserList(def availableUserInfos) {
@@ -52,26 +56,4 @@ class UserSessionService {
         return availableSessionUserInfos
     }
 
-    private UserIdentity authorizeUser(authenticationToken){
-        def authorizationDefinition = authorizationService.authorizeUser(authenticationToken)
-        def userIdentity = new UserIdentity(authenticationToken: authenticationToken,
-                authorizationDefinition: authorizationDefinition)
-        if (!authenticationToken || !authorizationDefinition)
-            userIdentity.hasErrors = true
-        else if (authenticationToken.hasErrors() || authorizationDefinition.hasErrors())
-            userIdentity.hasErrors = true
-        return userIdentity
-
-    }
-
-    def isSiteOwner(def userIdentity){
-        if (userIdentity && userIdentity.authorizationDefinition){
-            def systemRole = SystemRole.findByName('SITE OWNER')
-            for (assignedRole in userIdentity.authorizationDefinition?.assignedRoles){
-                if (assignedRole.name == systemRole.name)
-                    return true
-            }
-        }
-        return false
-    }
 }
