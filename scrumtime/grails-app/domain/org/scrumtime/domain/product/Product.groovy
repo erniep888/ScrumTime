@@ -17,7 +17,7 @@ package org.scrumtime.domain.product
 
 import org.scrumtime.domain.organization.Organization
 import org.scrumtime.domain.release.Release
-import org.scrumtime.domain.release.Release
+import org.scrumtime.domain.user.SystemUser
 
 class Product implements Comparable{
     Date dateCreated
@@ -26,12 +26,12 @@ class Product implements Comparable{
     String name
     String description
     static belongsTo = [organization: Organization]
-    static hasMany = [releases: Release]
+    static hasMany = [releases: Release, owners : SystemUser]
     SortedSet releases
     String createdBy  // unique username
 
     static constraints = {
-		name(unique:'organization',nullable:false, size:1..80)
+		name(unique:'organization',blank:false,nullable:false, size:1..80)
         description(blank:false, size:1..512)
         organization(nullable:false)
     }

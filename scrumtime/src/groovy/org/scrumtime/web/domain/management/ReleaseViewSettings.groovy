@@ -13,15 +13,9 @@
  *  limitations under the License.
  *
 **/
-package org.scrumtime.service.user
+package org.scrumtime.web.domain.management
 
-/**
- * This class is currently required to deal with the fact that
- * Grails 1.0 cannot detach domain objects from the database.
- * Grails 1.1 is expected to support this.
- */
-class SessionUserInformation{
-    Integer id    // systemUser id
-    String nickName
-    String username
+class ReleaseViewSettings {
+    String filterName
+    Integer filterProductId
 }

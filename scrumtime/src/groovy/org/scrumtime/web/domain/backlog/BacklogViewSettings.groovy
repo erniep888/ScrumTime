@@ -13,21 +13,12 @@
  *  limitations under the License. 
  *
 **/
-package org.scrumtime.service
+package org.scrumtime.web.domain.backlog
 
-import org.scrumtime.domain.sprint.Sprint
-import org.scrumtime.domain.release.Release
-import org.scrumtime.domain.release.Release
+class BacklogViewSettings {
+    
+    String backlogType   // product or release or sprint
+    String filterName
+    Integer filterUserId
 
-class SprintService {
-
-    boolean transactional = true
-
-    def Sprint autoCreate(Release release, String username) {
-        def sprint = new Sprint(release: release,
-                name: '1', description: 'Auto generated sprint for ' + release.name,
-                createdBy:username)
-        sprint.save(flush: true)
-        return sprint
-    }
 }

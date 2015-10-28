@@ -16,53 +16,94 @@
 package org.scrumtime.web.controller.management
 
 import org.scrumtime.domain.release.Release
+import org.scrumtime.domain.product.Product
+import org.scrumtime.domain.user.UserSettings
+import org.scrumtime.web.domain.management.ReleaseViewSettings
 
 class ReleaseController {
+    def releaseService
+
     def beforeInterceptor = {
-        if (!session.userIdentity){
+        if (!session.userIdentity) {
             redirect(controller: "home", action: "index")
         }
     }
-    
     def afterInterceptor = {model ->
-        //model.breadCrumbTrail = 'Management > Find > Release'
+        //model.breadCrumbTrail = 'Management > Find > Organization'
     }
 
     def index = {
-        render(view: '/org/scrumtime/web/views/management/release/find',
-               model:[breadCrumbTrail:'Management > Find > Release'])
-    }
-
-    def find = {
-        def releases = findReleases(params)
-        render(view: '/org/scrumtime/web/views/management/release/find',
-               model:[breadCrumbTrail:'Management > Find > Release',
-                       releases: releases])
-    }
-
-    def findAll = {
-        def releases = findReleases(null)
-        render(view: '/org/scrumtime/web/views/management/release/find',
-               model:[breadCrumbTrail:'Management > Find > Release',
-                       releases: releases])
+        chain(action: 'view', params: params)
     }
 
     def view = {
-        Release selectedRelease = Release.get(params.id)
+        def releaseViewSettings = session.releaseViewSettings
+        if (!releaseViewSettings)
+            releaseViewSettings = new ReleaseViewSettings(filterProductId:
+                    session.userSettings.currentProduct.id)
+        if (params.filterSubmit) {
+            releaseViewSettings.filterName = params?.filterName
+            releaseViewSettings.filterProductId = Integer.parseInt(params?.filterProductId)
+        }
+        session.releaseViewSettings = releaseViewSettings
+
+        def availableProducts = Product.findAllByOrganization(session.userSettings.currentOrganization)
+        def releases = findReleases(releaseViewSettings)
         render(view: '/org/scrumtime/web/views/management/release/view',
-               model:[breadCrumbTrail:'Management > Find > Release > View',
-                       selectedRelease:selectedRelease])
+                model: [breadCrumbTrail: 'Management > Find > Release',
+                        releases: releases,
+                        releaseViewSettings:releaseViewSettings,
+                        availableProducts:availableProducts])
     }
 
-    private def findReleases(def params) {
+    def edit = {
+        Release selectedRelease
+        if (params.id) {  // this is an edit condition
+            // TODO: Handle release not found and no id sent
+            selectedRelease = Release.get(params.id)
+        }
+        else {
+            selectedRelease = new Release(product:session.userSettings.currentProduct,
+                    createdBy:session.userSettings.systemUser.username)
+        }
+
+        if (params.submitted) {
+            selectedRelease.properties = params
+            selectedRelease.save(flush: true)
+            if (!selectedRelease.hasErrors()) {
+                session.userSettings = UserSettings.findBySystemUser(session.userIdentity.authenticationToken.systemUser)
+                redirect(action: 'view', params: [id: selectedRelease.id])
+            }
+        }
+        render(view: '/org/scrumtime/web/views/management/release/edit',
+                model: [breadCrumbTrail: 'Management > Find > Release > Edit',
+                        selectedRelease: selectedRelease])
+
+    }
+
+    def delete = {
+        if (params.id) {  // this is an edit condition
+            // TODO: Handle product not found and no id sent
+            def selectedRelease = Release.get(params.id)
+            releaseService.deleteAndCleanUserSettings(selectedRelease)
+            session.userSettings = UserSettings.findBySystemUser(session.userIdentity.authenticationToken.systemUser)
+        }
+        redirect(action:'view')
+    }
+
+    private def findReleases(def releaseViewSettings) {
         def criteria = Release.createCriteria()
         def results = criteria.list {
-            if (params){
-                if (params.nameSearchField)
-                    ilike("name", "%" + params.nameSearchField + "%")
-            }
-            if (session?.userSettings?.currentProduct){
-                eq ("product", session?.userSettings?.currentProduct )
+            if (releaseViewSettings) {
+                if (releaseViewSettings.filterName)
+                    ilike("name", "%" + releaseViewSettings.filterName + "%")
+                if (releaseViewSettings.filterProductId) {
+                    def product = Product.get(releaseViewSettings.filterProductId)
+                    if (product)
+                        eq("product", product)
+                }
+            } else {
+                ilike("name", "%%")
             }
             order('name', 'asc')
         }

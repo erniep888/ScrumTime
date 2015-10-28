@@ -16,11 +16,15 @@
 package org.scrumtime.web.controller.management
 
 import org.scrumtime.domain.user.UserInformation
+import org.scrumtime.domain.user.SystemRole
 import org.scrumtime.domain.user.AuthorizationDefinition
+import org.scrumtime.domain.common.VisibilityType
 import org.scrumtime.domain.organization.Organization
 import org.scrumtime.web.domain.management.SiteMemberSummary
 
 class SiteMemberController {
+    def userSessionService
+
     def beforeInterceptor = {
         if (!session.userIdentity){
             redirect(controller: "home", action: "index")
@@ -108,6 +112,7 @@ class SiteMemberController {
                 if (params.lastNameSearchField)
                     ilike("lastName", "%" + params.lastNameSearchField + "%")
             }
+            
             order('nickName', 'asc')
         }
         return results

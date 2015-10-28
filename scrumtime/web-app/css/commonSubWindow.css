@@ -67,6 +67,14 @@ All common margins
 /**
 Font Sizes
 **/
+.fontSize8 {
+    font-size: 8px;
+}
+
+.fontSize9 {
+    font-size: 9px;
+}
+
 .fontSize10 {
     font-size: 10px;
 }
@@ -87,6 +95,10 @@ Font Sizes
 .fontRed{
     color:#ff0000;
 }
+
+.fontGray{
+    color:darkgray;
+}
 .fontSansSerif{
     font-family: sans-serif ;
 }
@@ -100,6 +112,12 @@ Text Align
 .vertAlignMiddle{
     vertical-align:middle;
 }
+.horiAlignLeft{
+    text-align:left;
+}
 .horiAlignCenter{
     text-align:center;
+}
+.horiAlignRight{
+    text-align:right;
 }

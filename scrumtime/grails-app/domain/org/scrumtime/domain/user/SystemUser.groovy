@@ -28,6 +28,7 @@ class SystemUser implements Comparable{
         return username
     }
 
+
     def int compareTo(obj) {
         def result = 0
         if (obj instanceof SystemUser){
