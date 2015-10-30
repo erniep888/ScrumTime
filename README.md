@@ -53,7 +53,9 @@ _**Single-Page-Application:**_
 
 ###Languages
    Javascript/CSS/HTML - UI stand alone project  
-   Java/Groovy - Microservices implementation *(may switch to Spring Boot/Spring Data (going to do a spike to decide))*
+
+###Microservices Implementation
+   Java/Groovy or Node.js **working on spike to determine viability of Node.js -- decide by November 5, 2015**
 
 ###Data Store
 As with releases of 0.4 through 0.6, the goal is to abstract the datastore technology as much as possible to elminiate being tied to a particular database.
