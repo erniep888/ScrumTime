@@ -55,9 +55,11 @@ _**Single-Page-Application:**_
    Javascript/CSS/HTML - UI stand alone project  
 
 ###Microservices Implementation
-   Java/Groovy or Node.js **working on spike to determine viability of Node.js -- decide by November 5, 2015**
+   Node.js 
 
 ###Data Store
 As with releases of 0.4 through 0.6, the goal is to abstract the datastore technology as much as possible to elminiate being tied to a particular database.
 
-It seems most likely that Spring Data will be used to expose data via REST endpoints.  The underlying datastore may be switched as long as it supports JPA.
+The specific backend datastore is yet to be determined but it will likely be one or more of the following: Cassandra, CounchDB, LevelDB, MySQL, MondoDB, Neo4j, PostgresSQL, Redis, SQLite, and ElasticSearch.
+
+I am also looking into abstracting the data store as much as possible via node-activerecord, Node-DBI, or Accessor (only MySQL and MongoDB supported).
