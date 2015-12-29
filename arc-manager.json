@@ -1,0 +1,12 @@
+{
+  "ids": {
+    "ManagerHost": 2,
+    "LoadBalancer": 1
+  },
+  "models": {
+    "ManagerHost": {
+      "aa155271-5aa3-4266-ac52-b447ee4118ec": "{\"id\":\"aa155271-5aa3-4266-ac52-b447ee4118ec\",\"host\":\"localhost\",\"port\":1234,\"actions\":[\"delete\",\"edit\"],\"protocol\":\"http\",\"created\":1451406377820,\"error\":{\"message\":\"connect ECONNREFUSED\"},\"errorType\":\"connection\",\"app\":null,\"processes\":null}"
+    },
+    "LoadBalancer": {}
+  }
+}
