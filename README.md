@@ -7,7 +7,7 @@ There have been several different implementations of this web application but no
 **The most important goal of Scrumtime 1.0 is to provide a complete separation between the REST API and the Single Page Application UI.**
 
 ### 1.0 Minimum Features
-_**Microservices API supporting:**_
+_**API supporting:**_
 - **User** - A user is the ScrumTime secured user that belongs to the default organization. This provides the CRUD operations for the user.
 - **Authority** - An authority defines the ScrumTime authorization of the user.
 - **Backlog** - The organization of stories in priority order of completion.  This provides the CRUD operations for the backlog list.
@@ -25,7 +25,7 @@ _**Single-Page-Application:**_
     - Separate the UI project completely from the rest-api
 
 ### Post 1.0 Features
-_**Microservices API supporting:**_ 
+_**API supporting:**_ 
 - **HierarchicalEpic** - Allows epics to be defined with parent/child relationships to other Epics.
 - **HierarchicalStory** - Allows stories to be defined with parent/child relationships to other Stories.
 - **HierarchicalTask** - Allows tasks to be defined with parent/child relationships to other Tasks.
@@ -52,14 +52,13 @@ _**Single-Page-Application:**_
 - *The *SPA** UI will likely break release cycle from the REST API at this point to accommodate a quick release cycle for the UI separate from the API.
 
 ###Languages
-   Javascript/CSS/HTML - UI stand alone project  
+-Javascript
+-CSS
+-HTML
+-SQL/JSON
 
-###Microservices Implementation
-   Node.js 
+###API Server Environment
+Node.js 
 
 ###Data Store
-As with releases of 0.4 through 0.6, the goal is to abstract the datastore technology as much as possible to elminiate being tied to a particular database.
-
-The specific backend datastore is yet to be determined but it will likely be one or more of the following: Cassandra, CounchDB, LevelDB, MySQL, MondoDB, Neo4j, PostgresSQL, Redis, SQLite, and ElasticSearch.
-
-I am also looking into abstracting the data store as much as possible via node-activerecord, Node-DBI, or Accessor (only MySQL and MongoDB supported).
+Making use of loopback.io to expose data that was originally stored in MSSQL.  With future 1.x releases, I plan to support the following databases: MySQL, PostgreSQL, MSSQL, and MongoDB.
