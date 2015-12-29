@@ -52,10 +52,10 @@ _**Single-Page-Application:**_
 - *The *SPA** UI will likely break release cycle from the REST API at this point to accommodate a quick release cycle for the UI separate from the API.
 
 ###Languages
--Javascript
--CSS
--HTML
--SQL/JSON
+- Javascript
+- CSS
+- HTML
+- SQL/JSON
 
 ###API Server Environment
 Node.js 
