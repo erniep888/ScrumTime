@@ -1,13 +1,13 @@
 {
   "db": {
-    "password": "E$%%3597p",
+    "password": "test",
     "name": "db",
     "connector": "memory",
     "user": "erniep888"
   },
   "scrumtimeDS": {
-    "host": "LNGRDUL-7006386\\SQLEXPRESS",
-    "url": "LNGRDUL-7006386\\SQLEXPRESS",
+    "host": "ernie-pc\\SQLEXPRESS",
+    "url": "ernie-pc\\SQLEXPRESS",
     "database": "C:\\db\\SCRUMTIME2.MDF",
     "username": "scrumtime",
     "password": "scrumtime1",
