@@ -6,6 +6,14 @@ There have been several different implementations of this web application but no
 
 **The most important goal of Scrumtime 1.0 is to provide a complete separation between the REST API and the Single Page Application UI.**
 
+### Todo ###
+- Get the ScrumTime.Foundation working before renaming to ScrumTime.Core
+- Ensure that the db can be switched to SQLServer (do not force MongoDB to be used)
+- Consult OWASP to determine the best secure JSON approach
+- Standup public service in cloud hosted environment
+- Create a new UI that is a Single Page Application
+- Evaluate GitHub and BitBucket user authentication mechanisms to determine if both can be supported
+
 ### 1.0 Minimum Features
 _**API supporting:**_
 - **User** - A user is the ScrumTime secured user that belongs to the default organization. This provides the CRUD operations for the user.
