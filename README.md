@@ -8,7 +8,7 @@ There have been several different implementations of this web application but no
 
 ### Todo ###
 - Get the ScrumTime.Foundation working before renaming to ScrumTime.Core
-    - Migrate to ASP.NET 6
+    - Migrate to ASP.NET MVC Web API 6
     - Ensure that the db can be switched to SQLServer (do not force MongoDB to be used)
 - Consult OWASP to determine the best secure JSON approach
 - Create a new UI that is a Single Page Application
@@ -68,7 +68,7 @@ _**Single-Page-Application:**_
 - SQL/JSON
 
 ###API Server Environment
-Node.js 
+ASP.NET MVC Web Api 6
 
 ###Data Store
-Making use of loopback.io to expose data that was originally stored in MSSQL.  With future 1.x releases, I plan to support the following databases: MySQL, PostgreSQL, MSSQL, and MongoDB.
+MongoDB and MSSQL
