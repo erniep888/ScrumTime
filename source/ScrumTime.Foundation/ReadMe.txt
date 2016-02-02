@@ -25,3 +25,4 @@ Product
 // Future
 Team
     
+-(ep) Instead of having the scrum tasks being identified with each meeting, I would prefer to promote an end user's ability to update the tasks on their own time.  The current model forces a scribe to be involved during the Scrums.      
