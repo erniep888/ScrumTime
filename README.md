@@ -8,11 +8,13 @@ There have been several different implementations of this web application but no
 
 ### Todo ###
 - Get the ScrumTime.Foundation working before renaming to ScrumTime.Core
-- Ensure that the db can be switched to SQLServer (do not force MongoDB to be used)
+    - Migrate to ASP.NET 6
+    - Ensure that the db can be switched to SQLServer (do not force MongoDB to be used)
 - Consult OWASP to determine the best secure JSON approach
-- Standup public service in cloud hosted environment
 - Create a new UI that is a Single Page Application
 - Evaluate GitHub and BitBucket user authentication mechanisms to determine if both can be supported
+- Remove the concept of ScrumTasks (allow tasks to be updated on end-user's schedule...not just during Scrum meetings)
+- Standup public service in cloud hosted environment (depending on cost)
 
 ### 1.0 Minimum Features
 _**API supporting:**_
@@ -30,7 +32,7 @@ _**API supporting:**_
 - **Bug** - A bug belongs to a product, story, or bug and may have tasks and artifacts.
 
 _**Single-Page-Application:**_
-    - Separate the UI project completely from the rest-api
+- Separate the UI project completely from the REST API
 
 ### Post 1.0 Features
 _**API supporting:**_ 
