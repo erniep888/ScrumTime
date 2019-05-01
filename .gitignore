@@ -26,3 +26,8 @@ Thumbs.db
 obj/
 _ReSharper*/
 [Tt]est[Rr]esult*
+UpgradeLog2.htm
+.vs/ScrumTime/v15/Server/sqlite3/storage.ide-wal
+.vs/ScrumTime/v15/Server/sqlite3/storage.ide-shm
+.vs/ScrumTime/v15/Server/sqlite3/db.lock
+.vs/ScrumTime/v15/Server/sqlite3/storage.ide
