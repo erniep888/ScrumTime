@@ -1,0 +1,9 @@
+.vs/ScrumTime/v15/Server/sqlite3/storage.ide-wal
+.vs/ScrumTime/v15/Server/sqlite3/storage.ide-shm
+.vs/ScrumTime/v15/Server/sqlite3/storage.ide
+.vs/ScrumTime/v15/Server/sqlite3/db.lock
+Source/Api/RBHI/ScrumTime.RBHI.Api/obj/
+Source/Api/RBHI/ScrumTime.RBHI.DataMapper/obj/
+Source/Api/RBHI/ScrumTime.RBHI.Test/obj/
+Source/Gateway/ScrumTime.Gateway.Api/obj/
+Source/Gateway/ScrumTime.Gateway.Test/obj/
