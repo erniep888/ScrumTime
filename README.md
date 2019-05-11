@@ -30,7 +30,7 @@ There have been several different implementations of this web application but no
 
 ---------------------------------------
 
-## Goals for 0.9.1 Release ##
+## Features for 0.9.1 Release ##
 
 * Epic microservice
   * Epics can have one and only one parent Epic
@@ -46,7 +46,7 @@ There have been several different implementations of this web application but no
 
 ---------------------------------------
 
-## Goals for 0.9.2 Release ##
+## Features for 0.9.2 Release ##
 
 * Add GitHub as user authentication mechanism
 * User microservice
@@ -59,7 +59,7 @@ There have been several different implementations of this web application but no
 
 ---------------------------------------
 
-## Goals for 0.9.3 Release ##
+## Features for 0.9.3 Release ##
 
 * Organization microservice
 * Team microservice
@@ -72,7 +72,7 @@ There have been several different implementations of this web application but no
 
 ---------------------------------------
 
-## Goals for 0.9.4 Release ##
+## Features for 0.9.4 Release ##
 
 * Dashboard microservice
     * Card - Bug count per project
@@ -82,7 +82,7 @@ There have been several different implementations of this web application but no
 
 ---------------------------------------
 
-## Goals for 0.9.7 Release ##
+## Features for 0.9.7 Release ##
 
 * Document the architecture
 * Document the User Interface
@@ -91,14 +91,14 @@ There have been several different implementations of this web application but no
 
 ---------------------------------------
 
-## Goals for 0.9.8 Release ##
+## Features for 0.9.8 Release ##
 
 * Provide an export data mechanism that allows users to download all their data for import into other systems.
 * Bug fixes
 
 ---------------------------------------
 
-## Goals for 0.9.9 Release ##
+## Features for 0.9.9 Release ##
 
 * Standup public service in cloud hosted environment
   * Allow others to use the service freely as long as my own funds allow
@@ -144,6 +144,8 @@ There have been several different implementations of this web application but no
 
 ### ChangeLog ###
 
+* 0.9.1 Alpha
+  * README.md addition of requirements and features.
 * 0.9.0 Beta1
   * ASP.NET MVC 3 release
   * Used Entity Framework and SQL Server
