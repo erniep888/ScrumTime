@@ -8,7 +8,7 @@ There have been several different implementations of this web application but no
 
 **The most important goals of Scrumtime 1.0 are to provide an open source Agile project management tool that is free to use in the cloud and is available to install locally.**
 
-## Basis ##
+## Requirements of ScrumTime ##
 
 > There are four primary questions that should be answered when starting any software application regardless of the project management methodology being used.  ScrumTime 1.0 is required to address each question.
 > * **WHAT** is being created?
