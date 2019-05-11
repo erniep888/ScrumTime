@@ -10,7 +10,7 @@ There have been several different implementations of this web application but no
 
 ## Requirements of ScrumTime ##
 
-> There are four primary questions that should be answered when starting any software application regardless of the project management methodology being used.  ScrumTime 1.0 is required to address each question.
+> There are four primary questions that should be answered when starting any software application regardless of the project management methodology being used.  ScrumTime 1.0 is required allow users to address each question for their project.
 > * **WHAT** is being created?
 > * **HOW** is it being created?
 > * **WHO** is concerned?
