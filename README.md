@@ -6,7 +6,7 @@ The vision of ScrumTime is to provide a simple Agile project management tool to 
 
 There have been several different implementations of this web application but none were completed to a full production level status. The 1.0 version will provide the initial production level implementation.  The current version is 0.9.1 Alpha.
 
-**The most important goals of Scrumtime 1.0 are to provide an open source Agile project management tool that is free to use in the cloud and is available to install locally.**
+**The two most important goals of Scrumtime 1.0 are to provide an open source Agile project management tool that is free to use in the cloud and is available to install locally.**
 
 ## Requirements of ScrumTime ##
 
