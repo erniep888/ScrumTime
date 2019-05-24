@@ -1,0 +1,179 @@
+/* Common */
+html
+{
+	font-family:Verdana;
+	font-size:12px;
+}
+body
+{
+	padding: 0; 
+	margin: 0; 
+	/*font: 0.7em Tahoma, Arial, sans-serif; */
+	line-height: 1.6em; 
+	background: #fff; 
+	color: #454545;
+}
+td 
+{
+	padding-top:4px;padding-bottom:4px;
+}
+.ui-tabs .ui-tabs-hide 
+{
+	display: none;
+}
+.nopadding
+{
+	border:0;
+	padding:0;
+	margin:0;
+}
+.linkAsButton a
+{
+	width:75px;
+	margin-bottom:4px;
+}        
+#pageHeader {	
+	height:70px;
+	background-color:#fff;
+	z-index:1;
+	min-width:990px;
+}
+
+#pageTitleDiv{	
+	
+	background:#fff;
+}
+
+#pageLogo {	
+	float:left;
+	margin-top:18px;
+	padding-left: 8px;
+}
+
+#pageLogoGraph 
+{
+	float:left;
+	margin-top:21px;
+	margin-left:14px;
+}
+
+#pageTagline{
+	font-family: arial;
+	color: rgb(153, 153, 153); 
+	font-size: 20px; 
+	text-align: right; 
+	vertical-align:top;
+	padding-right: 14px;
+	padding-top: 18px;
+}
+
+
+#pageFooterDiv
+{
+	font-size:12px;
+	background:#eee;
+	height:20px;	
+	z-index:1;
+	margin-top:5px;
+	margin-left:14px;
+	margin-right:14px;
+	border: 2px solid #aaaaaa;
+	color:#666;
+	min-width:990px;
+}
+
+#mainMenu
+{	
+	margin-left:18px;
+	margin-right:18px;	
+	min-width:1024px;
+}
+
+.simpleLink:active{
+	text-decoration:none; 
+	color:#666;
+}
+
+.simpleLink:visited{
+	text-decoration:none; 
+	color:#666;
+}
+.simpleLink:link{
+	text-decoration:none; 
+	color:#666;
+}
+
+.simpleLink:hover{
+	text-decoration:underline;
+	color:#222;
+}
+
+.simpleLink:active img{
+	border:0;
+}
+
+.simpleLink:visited img{
+	border:0;
+}
+
+.simpleLink:link img{
+	border:0;
+}
+
+.simpleLink:hover img{
+	border:0;
+}
+
+.noticableLink:active{
+	text-decoration:none; 
+	color:#0035a0;
+}
+
+.noticableLink:visited{
+	text-decoration:none; 
+	color:#0035a0;
+}
+.noticableLink:link{
+	text-decoration:none; 
+	color:#0035a0;
+}
+
+.noticableLink:hover{
+	text-decoration:underline;
+	color:#0035a0;
+}
+
+.storyTable{
+	background-color: #fff;
+}
+
+.typicalAltRows{
+	background-color: #ddd;
+}
+
+.taskTable{
+	background-color: #ffffff;  
+}
+
+.taskAltRows{
+	background-color: #ccd7b7; /* #96cb35; */ /* #def1f8; */
+}
+
+.loginLink a:active{
+	text-decoration:none; 
+	color:#666;
+}
+
+.loginLink a:visited{
+	text-decoration:none; 
+	color:#666;
+}
+.loginLink a:link{
+	text-decoration:none; 
+	color:#666;
+}
+
+.loginLink a:hover{
+	text-decoration:underline;
+	color:#222;
+}

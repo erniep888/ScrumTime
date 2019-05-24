@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{92FF6284-DB1A-46AC-9EC5-BCC7BDCC1A55}</ProjectGuid>
+    <ProjectTypeGuids>{F85E285D-A4E0-4152-9332-AB1D724D3325};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ScrumTime</RootNamespace>
+    <AssemblyName>ScrumTime</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ScrumController.cs" />
+    <Compile Include="Controllers\SprintController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ReleaseController.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
+    <Compile Include="Controllers\StoryController.cs" />
+    <Compile Include="Controllers\TaskController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\UserHelper.cs" />
+    <Compile Include="Helpers\SecureJsonResult.cs" />
+    <Compile Include="Helpers\SessionHelper.cs" />
+    <Compile Include="Helpers\StoryPoints.cs" />
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ScrumTime.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScrumTime.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ScrumService.cs" />
+    <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Services\SprintService.cs" />
+    <Compile Include="Services\ReleaseService.cs" />
+    <Compile Include="Services\StoryService.cs" />
+    <Compile Include="Services\TaskService.cs" />
+    <Compile Include="Services\UserSettingService.cs" />
+    <Compile Include="ViewModels\DashboardViewModel.cs" />
+    <Compile Include="ViewModels\JsonTaskHoursPerSprint.cs" />
+    <Compile Include="ViewModels\JsonSprintBurnDown.cs" />
+    <Compile Include="ViewModels\ProductCollectionViewModel.cs" />
+    <Compile Include="ViewModels\ProductViewModel.cs" />
+    <Compile Include="ViewModels\ScheduleViewModel.cs" />
+    <Compile Include="ViewModels\ScrumCollectionViewModel.cs" />
+    <Compile Include="ViewModels\ScrumViewModel.cs" />
+    <Compile Include="ViewModels\JsonSchedule.cs" />
+    <Compile Include="ViewModels\SprintCollectionViewModel.cs" />
+    <Compile Include="ViewModels\ReleaseCollectionViewModel.cs" />
+    <Compile Include="ViewModels\StoryViewModel.cs" />
+    <Compile Include="ViewModels\StoryCollectionViewModel.cs" />
+    <Compile Include="ViewModels\TaskCollectionViewModel.cs" />
+    <Compile Include="Views\Shared\NonAuthenticating.Master.cs">
+      <DependentUpon>NonAuthenticating.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Shared\NonAuthenticating.Master.designer.cs">
+      <DependentUpon>NonAuthenticating.Master</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\ScrumTime.mdf" />
+    <Content Include="App_Data\ScrumTime_log.ldf">
+      <DependentUpon>ScrumTime.mdf</DependentUpon>
+    </Content>
+    <Content Include="Content\Css\jquery.jqplot.min.css" />
+    <Content Include="Content\Css\main.css" />
+    <Content Include="Content\Css\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\Css\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\Css\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\Css\smoothness\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\Css\smoothness\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\Css\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\Css\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\Css\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\Css\smoothness\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\Css\smoothness\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\Css\smoothness\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\Css\smoothness\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\Css\smoothness\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\Css\smoothness\jquery-ui-1.8.4.custom.css" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-bg_diagonals-medium_95_f8dde1_40x40.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-bg_diagonals-small_90_2d3a18_40x40.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-bg_flat_0_8dd864_40x100.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-bg_hexagon_55_e2e6d6_12x10.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-icons_44c318_256x240.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\Css\smooth_withgreen\images\ui-icons_ee9e11_256x240.png" />
+    <Content Include="Content\Css\smooth_withgreen\jquery-ui-1.8.4.custom.css" />
+    <Content Include="Content\Images\asterisk.gif" />
+    <Content Include="Content\Images\disk.png" />
+    <Content Include="Content\Images\favicon.ico" />
+    <Content Include="Content\Images\Logos\logo_graph_48x48.png" />
+    <Content Include="Content\Images\Logos\ScrumTimeLogo.png" />
+    <Content Include="Content\Images\Menu\calendar.png" />
+    <Content Include="Content\Images\Menu\cancel24x24.png" />
+    <Content Include="Content\Images\Menu\note_accept.png" />
+    <Content Include="Content\Images\Menu\save24x24.png" />
+    <Content Include="Content\Images\Menu\trash.png" />
+    <Content Include="Content\Images\MessageTypes\exclamation.png" />
+    <Content Include="Content\Images\MessageTypes\information.png" />
+    <Content Include="Content\Images\MessageTypes\spinner.gif" />
+    <Content Include="Content\Images\movie.png" />
+    <Content Include="Content\Images\news_paper.gif" />
+    <Content Include="Content\Images\pdf_icon.gif" />
+    <Content Include="Content\Images\screen.png" />
+    <Content Include="Content\Images\scrumtime_logo.jpg" />
+    <Content Include="Content\Images\scrumtime_tagline.jpg" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\Plugins\cookie_plugin.js" />
+    <Content Include="Scripts\scrumtime-dashboard-1.0.js" />
+    <Content Include="Scripts\scrumtime-product-1.0.js" />
+    <Content Include="Scripts\scrumtime-scrum-1.0.js" />
+    <Content Include="Scripts\scrumtime-sprint-1.0.js" />
+    <Content Include="Scripts\scrumtime-release-1.0.js" />
+    <Content Include="Scripts\scrumtime-schedule-1.0.js" />
+    <Content Include="Scripts\excanvas.min.js" />
+    <Content Include="Scripts\jquery-1.4.2.min.js" />
+    <Content Include="Scripts\jquery.jqplot.min.js" />
+    <Content Include="Scripts\Plugins\jqplot.barRenderer.min.js" />
+    <Content Include="Scripts\Plugins\jqplot.canvasAxisLabelRenderer.min.js" />
+    <Content Include="Scripts\Plugins\jqplot.canvasAxisTickRenderer.min.js" />
+    <Content Include="Scripts\Plugins\jqplot.canvasTextRenderer.min.js" />
+    <Content Include="Scripts\Plugins\jqplot.categoryAxisRenderer.min.js" />
+    <Content Include="Scripts\Plugins\jqplot.dateAxisRenderer.min.js" />
+    <Content Include="Scripts\Plugins\jqplot.enhancedLegendRenderer.min.js" />
+    <Content Include="Scripts\Plugins\jqplot.logAxisRenderer.min.js" />
+    <Content Include="Scripts\Plugins\jqplot.pointLabels.min.js" />
+    <Content Include="Scripts\scrumtime-main-1.0.js" />
+    <Content Include="Scripts\jquery-ui-1.8.4.custom.min.js" />
+    <Content Include="Scripts\scrumtime-task-1.0.js" />
+    <Content Include="Scripts\scrumtime-story-1.0.js" />
+    <Content Include="Views\Account\List.ascx" />
+    <Content Include="Views\Dashboard\Index.ascx" />
+    <Content Include="Views\Home\CurrentProductAndSprint.ascx" />
+    <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Product\CurrentEdit.ascx" />
+    <Content Include="Views\Product\CurrentReadOnly.ascx" />
+    <Content Include="Views\Product\Edit.ascx" />
+    <Content Include="Views\Product\Index.ascx" />
+    <Content Include="Views\Product\List.ascx" />
+    <Content Include="Views\Product\ReadOnly.ascx" />
+    <Content Include="Views\Release\Edit.ascx" />
+    <Content Include="Views\Release\List.ascx" />
+    <Content Include="Views\Release\ListContainer.ascx" />
+    <Content Include="Views\Release\ReadOnly.ascx" />
+    <Content Include="Views\Schedule\Index.ascx" />
+    <Content Include="Views\Scrum\Index.ascx" />
+    <Content Include="Views\Scrum\List.ascx" />
+    <Content Include="Views\Scrum\ReadOnly.ascx" />
+    <Content Include="Views\Scrum\Edit.ascx" />
+    <Content Include="Views\Shared\FooterControl.ascx" />
+    <Content Include="Views\Shared\HeaderControl.ascx" />
+    <Content Include="Views\Shared\MainMenu.ascx" />
+    <Content Include="Views\Sprint\CurrentEdit.ascx" />
+    <Content Include="Views\Sprint\CurrentReadOnly.ascx" />
+    <Content Include="Views\Sprint\Edit.ascx" />
+    <Content Include="Views\Sprint\List.ascx" />
+    <Content Include="Views\Sprint\ListContainer.ascx" />
+    <Content Include="Views\Sprint\ReadOnly.ascx" />
+    <Content Include="Views\Story\Backlog.ascx" />
+    <Content Include="Views\Story\ReadOnlyColumns.ascx" />
+    <Content Include="Views\Story\Schedule.ascx" />
+    <Content Include="Views\Story\StoryActionCancelOnly.ascx" />
+    <Content Include="Views\Story\Edit.ascx" />
+    <Content Include="Views\Story\ReadOnly.ascx" />
+    <Content Include="Views\Story\List.ascx" />
+    <Content Include="Views\Task\Edit.ascx" />
+    <Content Include="Views\Task\StoryTaskBacklog.ascx" />
+    <Content Include="Views\Task\List.ascx" />
+    <Content Include="Views\Task\ReadOnly.ascx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Account\ChangePassword.aspx" />
+    <Content Include="Views\Account\ChangePasswordSuccess.aspx" />
+    <Content Include="Views\Account\LogOn.aspx" />
+    <Content Include="Views\Account\Register.aspx" />
+    <Content Include="Views\Shared\Error.aspx" />
+    <Content Include="Views\Shared\LogOnUserControl.ascx" />
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Views\Shared\NonAuthenticating.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\ScrumTime.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ScrumTime.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Images\Logos\ScrumTimeLogo.design" />
+    <Content Include="Views\Shared\ScrumTime.Master" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target> -->
+  <Target Name="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50266</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
