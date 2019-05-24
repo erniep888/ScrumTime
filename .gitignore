@@ -1,9 +1,28 @@
-.vs/ScrumTime/v15/Server/sqlite3/storage.ide-wal
-.vs/ScrumTime/v15/Server/sqlite3/storage.ide-shm
-.vs/ScrumTime/v15/Server/sqlite3/storage.ide
-.vs/ScrumTime/v15/Server/sqlite3/db.lock
-Source/Api/RBHI/ScrumTime.RBHI.Api/obj/
-Source/Api/RBHI/ScrumTime.RBHI.DataMapper/obj/
-Source/Api/RBHI/ScrumTime.RBHI.Test/obj/
-Source/Gateway/ScrumTime.Gateway.Api/obj/
-Source/Gateway/ScrumTime.Gateway.Test/obj/
+
+#ignore thumbnails created by windows
+Thumbs.db
+#Ignore files build by Visual Studio
+*.obj
+*.exe
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+[Bb]in
+[Dd]ebug*/
+*.lib
+*.sbr
+obj/
+_ReSharper*/
+[Tt]est[Rr]esult*
