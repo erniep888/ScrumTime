@@ -1,0 +1,12 @@
+C:\app-dev\dev\github\ScrumTime\source\api\ScrumTime.Domain\bin\Debug\netcoreapp3.1\ScrumTime.Domain.deps.json
+C:\app-dev\dev\github\ScrumTime\source\api\ScrumTime.Domain\bin\Debug\netcoreapp3.1\ScrumTime.Domain.dll
+C:\app-dev\dev\github\ScrumTime\source\api\ScrumTime.Domain\obj\Debug\netcoreapp3.1\ScrumTime.Domain.AssemblyInfoInputs.cache
+C:\app-dev\dev\github\ScrumTime\source\api\ScrumTime.Domain\obj\Debug\netcoreapp3.1\ScrumTime.Domain.AssemblyInfo.cs
+C:\app-dev\dev\github\ScrumTime\source\api\ScrumTime.Domain\obj\Debug\netcoreapp3.1\ScrumTime.Domain.csprojAssemblyReference.cache
+C:\app-dev\dev\github\ScrumTime\source\api\ScrumTime.Domain\bin\Debug\netcoreapp3.1\ScrumTime.Domain.runtimeconfig.json
+C:\app-dev\dev\github\ScrumTime\source\api\ScrumTime.Domain\bin\Debug\netcoreapp3.1\ScrumTime.Domain.runtimeconfig.dev.json
+C:\app-dev\dev\github\ScrumTime\source\api\ScrumTime.Domain\obj\Debug\netcoreapp3.1\ScrumTime.Domain.genruntimeconfig.cache
+C:\app-dev\dev\github\ScrumTime\source\api\ScrumTime.Domain\bin\Debug\netcoreapp3.1\ScrumTime.Domain.pdb
+C:\app-dev\dev\github\ScrumTime\source\api\ScrumTime.Domain\obj\Debug\netcoreapp3.1\ScrumTime.Domain.csproj.CoreCompileInputs.cache
+C:\app-dev\dev\github\ScrumTime\source\api\ScrumTime.Domain\obj\Debug\netcoreapp3.1\ScrumTime.Domain.dll
+C:\app-dev\dev\github\ScrumTime\source\api\ScrumTime.Domain\obj\Debug\netcoreapp3.1\ScrumTime.Domain.pdb
