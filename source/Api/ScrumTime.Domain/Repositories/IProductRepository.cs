@@ -7,6 +7,6 @@ namespace ScrumTime.Domain.Repositories
 {
     public interface IProductRepository : ICRUDRepository<Product>
     {
-        
+        public Product GetById(long id);
     }
 }
