@@ -2,23 +2,46 @@
     "workItems": [
         { 
             "id": 1, 
-            "name": "Create WorkItem List", 
+            "name": "Create Initial Application", 
             "description": "", 
             "priority": 1, 
-            "points": 3, 
+            "points": 3,             
             "hoursEstimate": 0, 
-            "stepsToReproduce":"", 
-            "workItemTypeId": 2            
+            "stepsToReproduce":"",  
+            "workItemParentId": 3,         
+            "workItemStatusId": 3,
+            "workItemTypeId": 2                    
         },
         {
             "id": 2, 
             "name": "Setup the initial Angular application", 
-            "description": "", 
-            "priority": 1,                     
+            "description": "Make an initial application that contains modules and leverages json-server", 
+            "priority": 1,                               
             "hoursEstimate": 10, 
-            "stepsToReproduce":"", 
-            "workItemTypeId": 3,
-            "parentId": 1            
+            "stepsToReproduce":"",                      
+            "workItemParentId": 1,         
+            "workItemStatusId": 3,
+            "workItemTypeId": 3       
+        },
+        {
+            "id": 3, 
+            "name": "Initial User Interface Project", 
+            "description": "Make an initial application that meets the strategic goals", 
+            "priority": 1,    
+            "workItemStatusId": 2,                                         
+            "workItemTypeId": 1                        
+        },
+        { 
+            "id": 4, 
+            "name": "Implement the Work Item Load with @NGRX", 
+            "description": "", 
+            "priority": 1, 
+            "points": 2,             
+            "hoursEstimate": 0, 
+            "stepsToReproduce":"",  
+            "workItemParentId": 3,         
+            "workItemStatusId": 2,
+            "workItemTypeId": 2                    
         }
     ],
     "workItemTypes": [
@@ -37,5 +60,19 @@
             "name": "Task", 
             "description": "A Task" 
         }
-    ]    
+    ],
+    "workItemStatuses":[
+        {
+            "id": 1,
+            "name": "To Do"
+        },
+        {
+            "id": 2,
+            "name": "In Progress"
+        },
+        {
+            "id": 3,
+            "name": "Done"
+        }
+    ]   
 }

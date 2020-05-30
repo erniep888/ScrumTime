@@ -24,7 +24,8 @@ export class WorkItemComponent implements OnInit {
       priority: data.priority,
       stepsToReproduce: data.stepsToReproduce,
       workItemTypeId: data.workItemTypeId,
-      parentId: data.parentId
+      workItemStatusId: data.workItemStatusId,
+      workItemParentId: data.workItemParentId
     });
   }
 
