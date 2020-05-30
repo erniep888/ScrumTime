@@ -8,6 +8,7 @@ export interface WorkItem {
   points: number;
   hoursEstimate: number;
   stepsToReproduce: string;
+  productId: number;
   workItemParentId: number;
   workItemTypeId: number;
   workItemStatusId: number;

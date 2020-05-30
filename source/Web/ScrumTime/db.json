@@ -8,6 +8,7 @@
             "points": 3,             
             "hoursEstimate": 0, 
             "stepsToReproduce":"",  
+            "productId": 1,
             "workItemParentId": 3,         
             "workItemStatusId": 3,
             "workItemTypeId": 2                    
@@ -18,7 +19,8 @@
             "description": "Make an initial application that contains modules and leverages json-server", 
             "priority": 1,                               
             "hoursEstimate": 10, 
-            "stepsToReproduce":"",                      
+            "stepsToReproduce":"",   
+            "productId": 1,                   
             "workItemParentId": 1,         
             "workItemStatusId": 3,
             "workItemTypeId": 3       
@@ -27,7 +29,8 @@
             "id": 3, 
             "name": "Initial User Interface Project", 
             "description": "Make an initial application that meets the strategic goals", 
-            "priority": 1,    
+            "priority": 1,  
+            "productId": 1,  
             "workItemStatusId": 2,                                         
             "workItemTypeId": 1                        
         },
@@ -39,6 +42,7 @@
             "points": 2,             
             "hoursEstimate": 0, 
             "stepsToReproduce":"",  
+            "productId": 1,
             "workItemParentId": 3,         
             "workItemStatusId": 2,
             "workItemTypeId": 2                    
@@ -74,5 +78,15 @@
             "id": 3,
             "name": "Done"
         }
-    ]   
+    ],
+    "products":[
+        {
+            "id": 1,
+            "name": "ScrumTime",
+            "tagline": "An Agile Project Management Tool",
+            "details": "Provide an agile means for tracking the software development life-cycle in a way that keeps the Requirements, Features, Epics, Stories, Tasks, Backlog, etc. with the source itself. Also, ensure that Epics and Stories can cascade in a parent-child relationship infinitely.  When tracking Post-It notes on a board, there is no limit to the breakdown of the application into Epics or Stories.",
+            "currentRelease": "0.9 Beta 1",
+            "nextRelease": "1.0"
+        }
+    ] 
 }

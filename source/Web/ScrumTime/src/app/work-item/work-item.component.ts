@@ -23,6 +23,7 @@ export class WorkItemComponent implements OnInit {
       points: data.points,
       priority: data.priority,
       stepsToReproduce: data.stepsToReproduce,
+      productId: data.productId,
       workItemTypeId: data.workItemTypeId,
       workItemStatusId: data.workItemStatusId,
       workItemParentId: data.workItemParentId
