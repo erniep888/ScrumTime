@@ -1,0 +1,41 @@
+{
+    "workItems": [
+        { 
+            "id": 1, 
+            "name": "Create WorkItem List", 
+            "description": "", 
+            "priority": 1, 
+            "points": 3, 
+            "hoursEstimate": 0, 
+            "stepsToReproduce":"", 
+            "workItemTypeId": 2            
+        },
+        {
+            "id": 2, 
+            "name": "Setup the initial Angular application", 
+            "description": "", 
+            "priority": 1,                     
+            "hoursEstimate": 10, 
+            "stepsToReproduce":"", 
+            "workItemTypeId": 3,
+            "parentId": 1            
+        }
+    ],
+    "workItemTypes": [
+        { 
+            "id": 1, 
+            "name": "Epic", 
+            "description": "An Epic" 
+        },
+        { 
+            "id": 2, 
+            "name": "Story", 
+            "description": "A Story" 
+        },
+        { 
+            "id": 3, 
+            "name": "Task", 
+            "description": "A Task" 
+        }
+    ]    
+}
