@@ -1,8 +1,5 @@
 # ScrumTime #
 
-## All new development is currently paused.
+## New development is underway.
 
-- Migrating to VS2019
-- Convert to .NET CORE API
-- Convert to Angular UI
-
+- Migrating to Angular 9
