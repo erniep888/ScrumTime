@@ -1,6 +1,6 @@
 import { WorkItemType } from './work-item-type';
 
-export interface WorkItem {
+export class WorkItem {
   id: number;
   name: string;
   description: string;
@@ -12,4 +12,7 @@ export interface WorkItem {
   workItemParentId: number;
   workItemTypeId: number;
   workItemStatusId: number;
+
+  constructor(){    
+  }
 }

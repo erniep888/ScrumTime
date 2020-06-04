@@ -42,8 +42,32 @@
             "points": 2,             
             "hoursEstimate": 0, 
             "stepsToReproduce":"",  
+            "productId": 1,                   
+            "workItemStatusId": 2,
+            "workItemTypeId": 2                    
+        },
+        { 
+            "id": 5, 
+            "name": "Allow users to keep scrumtime.json in their Git repository", 
+            "description": "", 
+            "priority": 1,              
+            "hoursEstimate": 0, 
+            "stepsToReproduce":"",  
             "productId": 1,
             "workItemParentId": 3,         
+            "workItemStatusId": 1,
+            "workItemTypeId": 4                    
+        },
+        { 
+            "id": 6, 
+            "name": "Create a backlog module.", 
+            "description": "Create a backlog module and separate the work item component into it.", 
+            "priority": 1,    
+            "points": 0.5,            
+            "hoursEstimate": 0, 
+            "stepsToReproduce":"",  
+            "productId": 1,
+            "workItemParentId": 4,         
             "workItemStatusId": 2,
             "workItemTypeId": 2                    
         }
@@ -63,6 +87,11 @@
             "id": 3, 
             "name": "Task", 
             "description": "A Task" 
+        },        
+        { 
+            "id": 4, 
+            "name": "Idea", 
+            "description": "An Idea" 
         }
     ],
     "workItemStatuses":[
