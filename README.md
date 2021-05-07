@@ -1,5 +1,5 @@
 # ScrumTime #
 
-## New development is underway.
+## This project is no longer active
 
-- Migrating to Angular 9
+
