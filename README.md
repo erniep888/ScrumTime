@@ -16,7 +16,7 @@ Therefore, the purpose of ScrumTime 2.0 is to stay aligned to the vision of Scru
 - Multiple teams must be supported
 - Files/Artifacts may be associated with Projects, Users, Teams, Epics, Stories, Tasks, or Bugs
 
-## Features ##
+## Design Considerations ##
 
 - Microservices architecture that allows components to be switched out as desired
 - Web front-end must be mobile-first in design
