@@ -20,6 +20,13 @@ Therefore, the purpose of ScrumTime 2.0 is to stay aligned to the vision of Scru
 
 - Microservices architecture that allows components to be switched out as desired
 - Web front-end must be mobile-first in design
+- Tiny - Multi-container deployment
+  - SQLite on Docker container
+  - express-gateway Docker container
+  - rabbitmq Docker container
+  - work items service
+  - user service
+  - project service
 
 ## Questions and Answers ##
 
